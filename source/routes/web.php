@@ -22,3 +22,11 @@ Route::get('/cadastroCliente', function(Request $request) {
 });
 
 Route::post('/cadastroCliente', "ClienteController@adicionarCliente");
+
+Route::get('/RemoverCliente/{id}', "ClienteController@remover");
+
+Route::get('/EditarCliente/{id}', "ClienteController@editar");
+
+Route::post('/ApagarCliente', "ClienteController@apagar");
+
+Route::post('/SalvarCliente', "ClienteController@salvar");

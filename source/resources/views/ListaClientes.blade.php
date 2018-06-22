@@ -7,6 +7,8 @@
     <ul>
       <?php foreach ($clientes as $cliente){ ?>
         <li><?php echo $cliente->nome ?></li>
+        <a href="/EditarCliente/{{$cliente->id}}">Editar</a>
+        <a href="/RemoverCliente/{{$cliente->id}}">Remover</a>
       <?php } ?>
     </ul>
   </body>
