@@ -4,6 +4,21 @@
     <title>Cadastrar Cliente</title>
   </head>
   <body>
+    
+    @if (count($errors) > 0)
+       <div class = "alert alert-danger">
+          <ul>
+             @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+             @endforeach
+          </ul>
+       </div>
+    @endif
+
+    <!-- <?php
+       // echo Form::open(array('url'=>'/validation'));
+    // ?> -->
+
     <h1>Cadastrar Cliente</h1>
     <form action = "cadastroCliente" method = "post">
       <input type = "hidden" name = "_token" value = "{{ csrf_token()}}"/>
@@ -14,5 +29,10 @@
       Email: <input type = "text" name = "email" ><br/>
       <input type="submit" value="cadastrarCliente" />
     </form>
+
+    <!-- <?php
+        // echo Form::close();
+    // ?> -->
+
   </body>
   </html>

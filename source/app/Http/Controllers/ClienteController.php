@@ -14,7 +14,6 @@ class ClienteController extends Controller
       $cliente->cpf = $request->cpf;
       $cliente->email = $request->email;
       $cliente->save();
-      return redirect ('/listaClientes');
     }
 
     public function listarClientes(){
