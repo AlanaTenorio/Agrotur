@@ -44,6 +44,20 @@ class ClienteController extends Controller
     }
 
     public function salvar(Request $request){
+      $validator = Validator::make($request->all(), [
+        'nome'=>'required',
+        'senha'=>'required|min:8|max:15',
+        'telefone'=>'required|digits:11', //regex:/^\(\d{2}\)\d{9}$/'
+        'cpf'=>'required|cpf',
+        'email'=>'required|email'
+      ]);
+
+      if ($validator->fails()) {
+          return redirect('/cadastroCliente')
+                      ->withErrors($validator)
+                      ->withInput();
+      }
+
       $cliente = \App\Cliente::find($request->id);
       $cliente->nome = $request->nome;
       $cliente->senha = $request->senha;
