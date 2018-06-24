@@ -3,10 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Validator;
 
 class ClienteController extends Controller
 {
     public function adicionarCliente(Request $request){
+      $validator = Validator::make($request->all(), [
+        'nome'=>'required',
+        'senha'=>'required|min:8|max:15',
+        'telefone'=>'required|digits:11', //regex:/^\(\d{2}\)\d{9}$/'
+        'cpf'=>'required|cpf',
+        'email'=>'required|email'
+      ]);
+
+      if ($validator->fails()) {
+          return redirect('/cadastroCliente')
+                      ->withErrors($validator)
+                      ->withInput();
+      }
+
       $cliente = new \App\Cliente();
       $cliente->nome = $request->nome;
       $cliente->senha = $request->senha;
@@ -14,6 +29,8 @@ class ClienteController extends Controller
       $cliente->cpf = $request->cpf;
       $cliente->email = $request->email;
       $cliente->save();
+
+      return redirect ('/listaClientes');
     }
 
     public function listarClientes(){

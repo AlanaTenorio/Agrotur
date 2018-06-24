@@ -21,7 +21,7 @@ Route::get('/cadastroCliente', function(Request $request) {
     return view('CadastroCliente');
 });
 
-Route::post('/cadastroCliente', "ClienteValidationController@validateform");
+Route::post('/cadastroCliente', "ClienteController@adicionarCliente");
 
 Route::get('/RemoverCliente/{id}', "ClienteController@remover");
 

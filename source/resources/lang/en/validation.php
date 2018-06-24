@@ -125,9 +125,26 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'nome' => [
+            'required' => 'Informe seu nome.',
         ],
+        'senha' => [
+            'required' => 'Informe sua senha.',
+            'min' => 'A senha precisa de, no mínimo, :min caracters.',
+            'max' => 'A senha não pode ser maior que :max caracters.',
+        ],
+        'telefone' => [
+            'required' => 'Informe seu telefone.',
+            'digits' => 'O telefone deve ter :digits digítos (DDD+número).',
+        ],
+        'cpf' => [
+            'required' => 'Informe seu CPF.',
+        ],
+        'email' => [
+            'required' => 'Informe seu email.',
+            'email' => 'Informe um endereço de email válido.',
+        ],
+
     ],
 
     /*
