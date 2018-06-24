@@ -142,7 +142,8 @@ return [
         ],
         'email' => [
             'required' => 'Informe seu email.',
-            'email' => 'Informe um endereço de email válido.',
+            'email' => 'Informe um email válido.',
+            'unique' => 'Email já cadastrado.'
         ],
 
     ],

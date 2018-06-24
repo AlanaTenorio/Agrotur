@@ -13,7 +13,7 @@ class ClienteController extends Controller
         'senha'=>'required|min:8|max:15',
         'telefone'=>'required|digits:11', //regex:/^\(\d{2}\)\d{9}$/'
         'cpf'=>'required|cpf',
-        'email'=>'required|email'
+        'email'=>'required|email|unique:clientes,email'
       ]);
 
       if ($validator->fails()) {
@@ -53,9 +53,10 @@ class ClienteController extends Controller
       ]);
 
       if ($validator->fails()) {
-          return redirect('/cadastroCliente')
-                      ->withErrors($validator)
-                      ->withInput();
+        return redirect()->action(
+                'ClienteController@editar', ['id' => $request->id]
+               )->withErrors($validator)
+                ->withInput();
       }
 
       $cliente = \App\Cliente::find($request->id);
