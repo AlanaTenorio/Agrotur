@@ -14,8 +14,8 @@
     <!-- Custom styles for this template -->
     <link href="form-validation.css" rel="stylesheet">
   </head>
+ 
   <body>
-  
   <header>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <a class="navbar-brand" href="#">Agrotur</a>
@@ -26,13 +26,14 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               <a class="nav-link" href="view">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="cadastroCliente">Cadastrar Cliente</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
+            <li class="dropdown">
+        			<a class="nav-link" data-toggle="dropdown" href="#">Opções Cliente
+        			<span class="caret"></span></a>
+        			<ul class="dropdown-menu">
+          			<li><a href="cadastroCliente">Cadastrar Cliente</a></li>
+          			<li><a href="listaClientes">Listar Clientes</a></li>
+        			</ul>
+      		</li>
           </ul>
           <form class="form-inline mt-2 mt-md-0">
             <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
@@ -67,6 +68,8 @@
     
     
    <p>&nbsp;&nbsp</p>
+   
+   <!-- Exibição do form de cadastro -->
     
     <div class="col-md-8 order-md-1">
           <h4 class="mb-3">Cadastrar Cliente</h4>
@@ -119,6 +122,7 @@
             
             <hr class="mb-4">
             <button class="btn btn-primary btn-lg btn-block" type="submit">Cadastrar Cliente</button>
+            
 
   </body>
   </html>
