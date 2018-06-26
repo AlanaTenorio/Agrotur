@@ -17,6 +17,10 @@ Route::get('/', function () {
 
 Route::get('/listaClientes', "ClienteController@listarClientes");
 
+Route::get('/view', function () {
+	return view('view');
+});
+
 Route::get('/cadastroCliente', function(Request $request) {
     return view('CadastroCliente');
 });
