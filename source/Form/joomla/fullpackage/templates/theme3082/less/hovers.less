@@ -1,0 +1,67 @@
+@import "variables.less";
+
+/*======================= TYPOGRAPHY =======================*/
+
+h1, h2, h3, h4, h5, h6{
+  a.custom_hover{
+	 
+  }
+}
+h4{
+  a.custom_hover{}
+}
+
+/*	menu	*/
+
+.navigation{
+  ul.sf-menu{
+    >li{
+      &.active, &.sfHover, &.current{
+        >a,
+        >span{
+		  .active-fill-out;
+        }
+      }
+      >a, >span{
+		  .hover-fill-out(@menuItemBgColorAct, 0px, @baseBorderRadius);
+      }
+    }
+    /*SubMenu Styles*/
+    ul{
+      >li{
+        > a,
+        > span{
+		  .hover-cub-hor(@subMenuItemBgColor, @subMenuItemColor, @subMenuItemBgColorAct, @subMenuItemColorAct, 6px 12px, @menuItemWidth, 800px);
+        }
+        &.active,
+        &.sfHover{
+          >a,
+          >span{
+		  	.active-cub-hor(@subMenuItemBgColorAct, @subMenuItemColorAct);
+          }
+        }
+      }
+    }
+  }
+}
+
+
+/*	footer	*/
+
+#copyright a{ .hover-right(@linkColorHover,10px);}
+
+.social {
+  li{
+    a{
+	  > span{
+		  .hover-fill-out(@linkColor);
+	  }
+    }
+  }
+}
+
+/*	scroll top top 	*/
+
+#back-top{
+	a{.hover-fill-out(@linkColor, 0px);}
+}

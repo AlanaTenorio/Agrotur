@@ -1,0 +1,1032 @@
+
+@import "variables.less"; // Custom for this template
+@import "../../../media/jui/less/mixins.less";
+
+/*	for cubic button	*/
+
+  .hover-cub-vert(@bg, @col, @bgAct, @colAct, @pad:0px, @perspective:800px){
+	  position: relative;
+	  display: inline-block;
+	  .perspective(@perspective);
+	  	> span{
+			position: relative;
+			display: inline-block;
+			background: @bg;
+			color: @col;
+			padding: @pad;
+			.transition(all 0.4s ease); 
+			.transform-origin(50% 0);
+			.transform-style(preserve-3d);
+		}
+		strong{
+			display: block;
+			font-weight: inherit; 
+			color: @colAct; 
+			position: absolute; 
+			padding: @pad; 
+			top: 100%; 
+			left: 0; 
+			width: 100%; 
+			height: 100%; 
+			background: darken(@bgAct, 18%); 
+			.transform(rotateX(-90deg)); 
+			.transform-origin(50% 0); 
+			.transition(all 0.4s ease); 
+			.box-sizing(border-box);
+		}
+		&:hover,
+		&:focus,
+		&:active,
+		&.active,
+		&.selected {
+			.transition(all 0.4s ease); 
+			> span{
+				background: darken(@bg, 18%);
+				.transform(rotateX(90deg) translateY(-50%));
+			}
+			strong{ 
+				background: @bgAct;
+			}
+		}
+  }
+  .active-cub-vert(@bgAct, @colAct){
+		.transition(all 0.4s ease); 
+		> span{
+			.transform(rotateX(90deg) translateY(-50%));
+		}
+		strong{
+			display:block;
+			background:@bgAct;
+			color:@colAct;
+		}
+  }
+  
+  .hover-cub-hor(@bg, @col, @bgAct, @colAct, @pad:0px, @width:50%, @perspective:10000px){
+	  position:relative;
+	  display:block;
+	  .perspective(@perspective);
+	  	> span{
+			position:relative;
+			display:block;
+			background:@bg;
+			color:@col;
+			padding:@pad;
+			.box-sizing(border-box);
+			background:@bg;
+			color:@col;
+			.transition(all 0.4s ease); 
+			.transform-origin(50% 50% -@width/2);
+			.transform-style(preserve-3d);
+		}
+		strong{
+			display:block;
+			font-weight: inherit; 
+			color:@colAct; 
+			position: absolute; 
+			padding:@pad; 
+			width: 100%; 
+			height: 100%; 
+			top:0%; 
+			left:100%; 
+			background:darken(@bgAct, 18%); 
+			.transition(all 0.4s ease); 
+			.box-sizing(border-box);
+			.transform(rotateY(90deg)); 
+			.transform-origin(0 50%); 
+		}
+		&:hover, &:focus, &:active, &.active, &.selected {
+			.transition(all 0.4s ease); 
+			> span{
+				background:darken(@bg, 18%);
+				.transform(rotateY(-90deg));
+			}
+			strong{ 
+				background:@bgAct;
+			}
+		}
+  }
+  .active-cub-hor(@bgAct, @colAct){
+		.transition(all 0.4s ease); 
+		> span{
+			.transform(rotateY(-90deg));
+		}
+		strong{
+			display:block;
+			background:@bgAct;
+			color:@colAct; 
+		}
+  }
+  
+/*	for links  	*/
+  
+  .hover-up(@colAct, @param:6px){
+		> span{
+			> span{ 
+				position: relative;
+				.transition(all 0.5s ease); 
+				top:0;
+			}
+			>strong{
+				display: block !important;
+				color: @colAct; 
+				font-weight:inherit; 
+				position:absolute; 
+				top:0px; 
+				left:0;
+				width:100%;
+				opacity:0;
+				.transition(all 0.5s ease);
+				pointer-events: none;
+			}
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+			> span{
+				> span{ 
+					opacity:0; 
+					top:-@param;
+				}
+				> strong{ 
+					opacity:1;
+				}
+			}
+		}
+  }
+  .hover-right(@colAct, @param:6px){
+		> span{
+			> span{ 
+				position: relative;
+				.transition(all 0.5s ease); 
+				left:0;
+			}
+			> strong{
+				display:block;
+				color: @colAct; 
+				font-weight:inherit; 
+				position:absolute; 
+				width:100%; 
+				top:0px; 
+				left:0; 
+				opacity:0;
+				.transition(all 0.5s ease);
+				pointer-events: none;
+			}
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+			> span{
+				> span{ 
+					opacity:0; 
+					left:@param;
+				}
+				> strong{ 
+					opacity:1;
+				}
+			}
+		}
+  }
+  .hover-down(@colAct, @param:6px){
+		> span{
+			> span{ 
+				position: relative;
+				.transition(all 0.5s ease); 
+				top:0;
+			}
+			>strong{
+				display:block;
+				color: @colAct; 
+				font-weight:inherit; 
+				position:absolute; 
+				width:100%; 
+				top:0px; 
+				left:0; 
+				opacity:0;
+				.transition(all 0.5s ease);
+				pointer-events: none;
+			}
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+			> span{
+				> span{ 
+					opacity:0; 
+					top:@param;
+				}
+				> strong{ 
+					opacity:1;
+				}
+			}
+		}
+  }
+  .hover-left(@colAct, @param:6px){
+		> span{
+			> span{ 
+				position: relative;
+				.transition(all 0.5s ease); 
+				left:0;
+			}
+			> strong{
+				display:block;
+				color: @colAct; 
+				font-weight:inherit; 
+				position:absolute; 
+				width:100%; 
+				top:0px; 
+				left:0; 
+				opacity:0;
+				.transition(all 0.5s ease);
+				pointer-events: none;
+			}
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+			> span{
+				> span{ 
+					opacity:0; 
+					left:-@param;
+				}
+				> strong{ 
+					opacity:1;
+				}
+			}
+		}
+  }
+  
+  .hover-fill(@colAct){
+	 >span{
+		 > span{ 
+			position: relative;
+			opacity:1;
+			.transition(all 0s ease-out);
+		}
+		>strong{
+			display:block;
+			color: @colAct; 
+			font-weight:inherit; 
+			position:absolute; 
+			width:100%;
+			height:0;
+			overflow:hidden;
+			top:0; 
+			left:0; 
+			.transition(all 0.6s ease-out);
+			pointer-events: none;
+		}
+	 }
+	 &:hover, &:focus, &:active, &.active, &.selected{
+		>span{
+			>span{ opacity:0;.transition(all 3s ease-out);}
+			>strong{
+				height:100%;
+			}
+		} 
+	 }
+  }
+  
+  .active-link(@colAct){
+		> span{
+			> span{ 
+				opacity:0;
+			}
+			> strong{ 
+				opacity:1;
+				height:100%;
+				width:100%;
+			}
+		}
+  }
+  
+  /***********************************************/
+  
+  
+  
+  
+  
+  
+/*	for button-bg	*/
+  
+  .hover-fill-out(@bgAct, @bord:-1px, @border-radius: 1000px){
+	  	position: relative;
+		> span{
+			position: relative;
+			 z-index: 3; 
+			 display: block;
+		}
+		&:before{ 
+			content: ""; 
+			pointer-events: none;
+			position: absolute;
+			top: @bord;
+			left: @bord;
+			right: @bord;
+			bottom: @bord;
+			.border-radius(@border-radius); 
+			opacity: 0; 
+			z-index: 1; 
+			background: @bgAct; 
+			.transform(scale(2)); 
+			.transition(all 0.4s ease); 
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				opacity:1; 
+				.transform(scale(1)); 
+			}
+		}
+  }
+  .active-fill-out(){
+		&:before{ 
+			opacity:1; 
+			.transform(scale(1));  
+		}
+  }
+  .hover-fill-in(@bgAct, @bord:-1px, @border-radius:50%){
+	  	position:relative;
+		> span{ 
+			position:relative; 
+			z-index:3; 
+			display:block
+		}
+		&:before{ 
+			content: ""; 
+			pointer-events: none;
+			position: absolute;
+			top:@bord;
+			left:@bord;
+			right:@bord;
+			bottom:@bord;
+			.border-radius(@border-radius); 
+			opacity: 0; 
+			z-index:1; 
+			background: @bgAct; 
+			.transform(scale(0)); 
+			.transition(all 0.3s ease-out); 
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				opacity:1; 
+				.transform(scale(1)); 
+			}
+		}
+  }
+  .active-fill-in(){
+		&:before{ 
+			opacity:1; 
+			.transform(scale(1));  
+		}
+  }
+  .hover-unfill-out(@bg, @bord:-1px, @border-radius:50%){
+	  	position:relative;
+		> span{ 
+			position:relative; 
+			z-index:3; 
+			display:block
+		}
+		&:before{ 
+			content: ""; 
+			pointer-events: none;
+			position: absolute;
+			top:@bord;
+			left:@bord;
+			right:@bord;
+			bottom:@bord;
+			.border-radius(@border-radius); 
+			opacity: 1; 
+			z-index:2; 
+			background: @bg; 
+			.transform(scale(1)); 
+			.transition(all 0.4s ease); 
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				opacity:0; 
+				.transform(scale(2)); 
+			}
+		}
+  }
+  .active-unfill-out(){
+		&:before{ 
+			opacity:0; 
+			.transform(scale(2));  
+		}
+  }
+  .hover-unfill-in(@bg, @bord:-1px, @border-radius:50%){
+	  	position:relative;
+		> span{ 
+			position:relative; 
+			z-index:3; 
+			display:block
+		}
+		&:before{ 
+			content: ""; 
+			pointer-events: none;
+			position: absolute;
+			top:@bord;
+			left:@bord;
+			right:@bord;
+			bottom:@bord;
+			.border-radius(@border-radius); 
+			opacity: 1; 
+			z-index:2; 
+			background: @bg; 
+			.transform(scale(1)); 
+			.transition(all 0.3s ease-out); 
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				opacity:0; 
+				.transform(scale(0)); 
+			}
+		}
+  }
+  .active-unfill-in(){
+		&:before{ 
+			opacity:0; 
+			.transform(scale(0));  
+		}
+  }
+ 
+ /******************************************/
+    
+  .hover-fill-right(@bgAct, @alpha:0, @bord:0, @border-radius:0, @scale:1){
+	  	position:relative;
+		> span{ 
+			position:relative; 
+			z-index:3;
+			display:block;
+		}
+		&:before{
+			content:"";
+			position:absolute;
+			.border-radius(@border-radius);
+			.transform(translateX(-110%) scale(@scale));
+			top:@bord;
+			left:@bord;
+			right:@bord;
+			bottom:@bord;
+			background:@bgAct;
+			opacity:@alpha;
+			pointer-events: none;
+			.transition(all 0.3s ease-in);
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				.transform(translateX(0) scale(1));
+				opacity:1;
+			}
+		}
+  }
+  .hover-fill-left(@bgAct, @alpha:0, @bord:0, @border-radius:0, @scale:1){
+	  	position:relative;
+		> span{ 
+			position:relative; 
+			z-index:3;
+			display:block;
+		}
+		&:before{
+			content:"";
+			position:absolute; 
+			.border-radius(@border-radius);
+			.transform(translateX(110%) scale(@scale));
+			top:@bord;
+			left:@bord;
+			right:@bord;
+			bottom:@bord;
+			background:@bgAct;
+			opacity:@alpha;
+			pointer-events: none;
+			.transition(all 0.3s ease-in);
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				.transform(translateX(0) scale(1));
+				opacity:1;
+			}
+		}
+  }
+  .hover-fill-up(@bgAct, @alpha:0, @bord:0, @border-radius:0, @scale:1){
+	  	position:relative;
+		> span{ 
+			position:relative; 
+			z-index:3;
+			display:block;
+		}
+		&:before{
+			content:"";
+			position:absolute; 
+			.border-radius(@border-radius);
+			.transform(translateY(110%) scale(@scale));
+			top:@bord;
+			left:@bord;
+			right:@bord;
+			bottom:@bord;
+			background:@bgAct;
+			opacity:@alpha;
+			pointer-events: none;
+			.transition(all 0.3s ease-in);
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				.transform(translateY(0%) scale(1));
+				opacity:1;
+			}
+		}
+  }
+  .hover-fill-down(@bgAct, @alpha:0, @bord:0, @border-radius:0, @scale:1){
+	  	position:relative;
+		> span{ 
+			position:relative; 
+			z-index:3;
+			display:block;
+		}
+		&:before{
+			content:"";
+			position:absolute; 
+			.border-radius(@border-radius);
+			.transform(translateY(-110%) scale(@scale));
+			top:@bord;
+			left:@bord;
+			right:@bord;
+			bottom:@bord;
+			background:@bgAct;
+			opacity:@alpha;
+			pointer-events: none;
+			.transition(all 0.3s ease-in);
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				.transform(translateY(0%) scale(1));
+				opacity:1;
+			}
+		}
+  }
+  .hover-fill-diagonal-top-left(@bgAct, @alpha:0, @bord:0, @border-radius:0, @scale:1){
+	  	position:relative;
+		> span{ 
+			position:relative; 
+			z-index:3;
+			display:block;
+		}
+		&:before{
+			content:"";
+			position:absolute; 
+			.border-radius(@border-radius);
+			.transform(translateY(-110%) translateX(-110%) scale(@scale));
+			top:@bord;
+			left:@bord;
+			right:@bord;
+			bottom:@bord;
+			background:@bgAct;
+			opacity:@alpha;
+			pointer-events: none;
+			.transition(all 0.3s ease-in);
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				.transform(translateY(0%) translateX(0%) scale(1));
+				opacity:1;
+			}
+		}
+  }
+  .hover-fill-diagonal-top-right(@bgAct, @alpha:0, @bord:0, @border-radius:0, @scale:1){
+	  	position:relative;
+		> span{ 
+			position:relative; 
+			z-index:3;
+			display:block;
+		}
+		&:before{
+			content:"";
+			position:absolute; 
+			.border-radius(@border-radius);
+			.transform(translateY(-110%) translateX(110%) scale(@scale));
+			top:@bord;
+			left:@bord;
+			right:@bord;
+			bottom:@bord;
+			background:@bgAct;
+			opacity:@alpha;
+			pointer-events: none;
+			.transition(all 0.3s ease-in);
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				.transform(translateY(0%) translateX(0%) scale(1));
+				opacity:1;
+			}
+		}
+  }
+  .hover-fill-diagonal-bottom-right(@bgAct, @alpha:0, @bord:0, @border-radius:0, @scale:1){
+	  	position:relative;
+		> span{ 
+			position:relative; 
+			z-index:3;
+			display:block;
+		}
+		&:before{
+			content:"";
+			position:absolute; 
+			.border-radius(@border-radius);
+			.transform(translateY(110%) translateX(110%) scale(@scale));
+			top:@bord;
+			left:@bord;
+			right:@bord;
+			bottom:@bord;
+			background:@bgAct;
+			opacity:@alpha;
+			pointer-events: none;
+			.transition(all 0.3s ease-in);
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				.transform(translateY(0%) translateX(0%) scale(1));
+				opacity:1;
+			}
+		}
+  }
+  .hover-fill-diagonal-bottom-left(@bgAct, @alpha:0, @bord:0, @border-radius:0, @scale:1){
+	  	position:relative;
+		> span{ 
+			position:relative; 
+			z-index:3;
+			display:block;
+		}
+		&:before{
+			content:"";
+			position:absolute; 
+			.border-radius(@border-radius);
+			.transform(translateY(110%) translateX(-110%) scale(@scale));
+			top:@bord;
+			left:@bord;
+			right:@bord;
+			bottom:@bord;
+			background:@bgAct;
+			opacity:@alpha;
+			pointer-events: none;
+			.transition(all 0.3s ease-in);
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				.transform(translateY(0%) translateX(0%) scale(1));
+				opacity:1;
+			}
+		}
+  }
+  .active-fill(){
+		&:before{
+			.transform(translateY(0%) translateX(0%) scale(1));
+			opacity:1;
+		}
+  }
+    
+  .hover-unfill-right(@bgAct, @alpha:0, @bord:0, @border-radius:0, @scale:1){
+	  	position:relative;
+		> span{ 
+			position:relative; 
+			z-index:3;
+			display:block;
+		}
+		&:before{
+			content:"";
+			position:absolute;
+			.border-radius(@border-radius);
+			.transform(translateX(0%) scale(1));
+			top:@bord;
+			left:@bord;
+			right:@bord;
+			bottom:@bord;
+			background:@bgAct;
+			opacity:1;
+			pointer-events: none;
+			.transition(all 0.3s ease-in);
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				.transform(translateX(-110%) scale(@scale));
+				opacity:@alpha;
+			}
+		}
+  }
+  .hover-unfill-left(@bgAct, @alpha:0, @bord:0, @border-radius:0, @scale:1){
+	  	position:relative;
+		> span{ 
+			position:relative; 
+			z-index:3;
+			display:block;
+		}
+		&:before{
+			content:"";
+			position:absolute; 
+			.border-radius(@border-radius);
+			.transform(translateX(0%) scale(1));
+			top:@bord;
+			left:@bord;
+			right:@bord;
+			bottom:@bord;
+			background:@bgAct;
+			opacity:1;
+			pointer-events: none;
+			.transition(all 0.3s ease-in);
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				.transform(translateX(110%) scale(@scale));
+				opacity:@alpha;
+			}
+		}
+  }
+  .hover-unfill-up(@bgAct, @alpha:0, @bord:0, @border-radius:0, @scale:1){
+	  	position:relative;
+		> span{ 
+			position:relative; 
+			z-index:3;
+			display:block;
+		}
+		&:before{
+			content:"";
+			position:absolute; 
+			.border-radius(@border-radius);
+			.transform(translateY(0%) scale(1));
+			opacity:1;
+			top:@bord;
+			left:@bord;
+			right:@bord;
+			bottom:@bord;
+			background:@bgAct;
+			pointer-events: none;
+			.transition(all 0.3s ease-in);
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				.transform(translateY(110%) scale(@scale));
+				opacity:@alpha;
+			}
+		}
+  }
+  .hover-unfill-down(@bgAct, @alpha:0, @bord:0, @border-radius:0, @scale:1){
+	  	position:relative;
+		> span{ 
+			position:relative; 
+			z-index:3;
+			display:block;
+		}
+		&:before{
+			content:"";
+			position:absolute; 
+			.border-radius(@border-radius);
+			.transform(translateY(0%) scale(1));
+			opacity:1;
+			top:@bord;
+			left:@bord;
+			right:@bord;
+			bottom:@bord;
+			background:@bgAct;
+			pointer-events: none;
+			.transition(all 0.3s ease-in);
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				.transform(translateY(-110%) scale(@scale));
+				opacity:@alpha;
+			}
+		}
+  }
+  .hover-unfill-diagonal-top-left(@bgAct, @alpha:0, @bord:0, @border-radius:0, @scale:1){
+	  	position:relative;
+		> span{ 
+			position:relative; 
+			z-index:3;
+			display:block;
+		}
+		&:before{
+			content:"";
+			position:absolute; 
+			.border-radius(@border-radius);
+			.transform(translateY(0%) translateX(0%) scale(1));
+			opacity:1;
+			top:@bord;
+			left:@bord;
+			right:@bord;
+			bottom:@bord;
+			background:@bgAct;
+			pointer-events: none;
+			.transition(all 0.3s ease-in);
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				.transform(translateY(-110%) translateX(-110%) scale(@scale));
+				opacity:@alpha;
+			}
+		}
+  }
+  .hover-unfill-diagonal-top-right(@bgAct, @alpha:0, @bord:0, @border-radius:0, @scale:1){
+	  	position:relative;
+		> span{ 
+			position:relative; 
+			z-index:3;
+			display:block;
+		}
+		&:before{
+			content:"";
+			position:absolute; 
+			.border-radius(@border-radius);
+			.transform(translateY(0%) translateX(0%) scale(1));
+			opacity:1;
+			top:@bord;
+			left:@bord;
+			right:@bord;
+			bottom:@bord;
+			background:@bgAct;
+			pointer-events: none;
+			.transition(all 0.3s ease-in);
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				.transform(translateY(-110%) translateX(110%) scale(@scale));
+				opacity:@alpha;
+			}
+		}
+  }
+  .hover-unfill-diagonal-bottom-right(@bgAct, @alpha:0, @bord:0, @border-radius:0, @scale:1){
+	  	position:relative;
+		> span{ 
+			position:relative; 
+			z-index:3;
+			display:block;
+		}
+		&:before{
+			content:"";
+			position:absolute; 
+			.border-radius(@border-radius);
+			.transform(translateY(0%) translateX(0%) scale(1));
+			opacity:1;
+			top:@bord;
+			left:@bord;
+			right:@bord;
+			bottom:@bord;
+			background:@bgAct;
+			pointer-events: none;
+			.transition(all 0.3s ease-in);
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				.transform(translateY(110%) translateX(110%) scale(@scale));
+				opacity:@alpha;
+			}
+		}
+  }
+  .hover-unfill-diagonal-bottom-left(@bgAct, @alpha:0, @bord:0, @border-radius:0, @scale:1){
+	  	position:relative;
+		> span{ 
+			position:relative; 
+			z-index:3;
+			display:block;
+		}
+		&:before{
+			content:"";
+			position:absolute; 
+			.border-radius(@border-radius);
+			.transform(translateY(0%) translateX(0%) scale(1));
+			opacity:1;
+			top:@bord;
+			left:@bord;
+			right:@bord;
+			bottom:@bord;
+			background:@bgAct;
+			pointer-events: none;
+			.transition(all 0.3s ease-in);
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				.transform(translateY(110%) translateX(-110%) scale(@scale));
+				opacity:@alpha;
+			}
+		}
+  }
+  .active-unfill(){
+		&:before{
+			.transform(translateY(0%) translateX(0%) scale(1));
+			opacity:0;
+		}
+  }
+  
+  /*********************	rotate button 	*********************/
+  
+  .hover-rotate-vert(@bg, @col, @bgAct, @colAct, @pad:0, @border-radius:0, @perspective:200px){
+		perspective:@perspective;
+		>span{
+			position:relative;
+			display:block; 
+			.transition(all 0.5s ease);
+			.transform(rotateX(0deg));
+			background:@bg;
+			.border-radius(@border-radius);
+			> span{
+				display:block;
+				color:@col;
+				padding:@pad;
+				.transform-origin(50% 50%);
+				.transform-style(preserve-3d);
+				.transform(rotateX(0deg));
+				.transition(all 0.5s ease); 
+			}
+			>strong{
+				font-weight:inherit;
+				position: absolute;
+				display:block;
+				top:0;
+				left:0;
+				width:100%;
+				height:100%;
+				.box-sizing(border-box);
+				color:@colAct;
+				padding:@pad;
+				opacity:0;
+				.transform-origin(50% 50%);
+				.transform-style(preserve-3d);
+				.transition(all 0.5s ease); 
+				.transform(rotateX(0deg));
+			}  
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+			>span{
+				.transform(rotateX(180deg));
+				background:@bgAct;
+				>span{
+					.transform(rotateX(180deg));
+					opacity:0;
+				}
+				>strong{
+					.transform(rotateX(180deg));
+					opacity:1;
+				}
+			}
+		}
+  }
+  
+  .hover-rotate-hor(@bg, @col, @bgAct, @colAct, @pad:0, @border-radius:0, @perspective:200px){
+		perspective:@perspective;
+		>span{
+			position:relative;
+			display:block; 
+			.transition(all 0.5s ease);
+			.transform(rotateY(0deg));
+			background:@bg;
+			.border-radius(@border-radius);
+			> span{
+				display:block;
+				color:@col;
+				padding:@pad;
+				.transform-origin(50% 50%);
+				.transform-style(preserve-3d);
+				.transform(rotateY(0deg));
+				.transition(all 0.5s ease); 
+			}
+			>strong{
+				font-weight:inherit;
+				position: absolute;
+				display:block;
+				top:0;
+				left:0;
+				width:100%;
+				height:100%;
+				.box-sizing(border-box);
+				color:@colAct;
+				padding:@pad;
+				opacity:0;
+				.transform-origin(50% 50%);
+				.transform-style(preserve-3d);
+				.transition(all 0.5s ease); 
+				.transform(rotateY(0deg));
+			}  
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+			>span{
+				.transform(rotateY(180deg));
+				background:@bgAct;
+				>span{
+					.transform(rotateY(180deg));
+					opacity:0;
+				}
+				>strong{
+					.transform(rotateY(180deg));
+					opacity:1;
+				}
+			}
+		}
+  }
+  
+  .active-rotate(@bgAct, @colAct){
+		>span{
+			.transform(rotateX(180deg) rotateY(180deg));
+			background:@bgAct;
+			> span{
+				.transform(rotateX(180deg) rotateY(180deg));
+				opacity:0;
+			}
+			>strong{
+				color:@colAct;
+				.transform(rotateX(180deg) rotateY(180deg));
+				opacity:1;
+			}  
+		}
+  }
+  
+  .hover-rotate-up(){}
+  

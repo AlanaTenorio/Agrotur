@@ -1,0 +1,142 @@
+// Core variables and mixins
+
+@import "variables.less"; // Custom for this template
+@import "hovers-mixins.less";
+
+// for hovers
+  
+  .hover-cub-vert(@bg, @col, @bgAct, @colAct, @pad:0px, @perspective:800px){
+		strong{
+			display:none !important;
+			height:0;
+			width:0;
+			overflow:hidden;
+			line-height:0;
+			padding:0
+		}
+		> span{
+			.transform(rotateX(0) translateY(0));
+		}
+		&:hover, &:focus, &:active, &.active, &.selected {
+			> span{
+				background:@bgAct;
+				color:@colAct;
+				.transform(rotateX(0) translateY(0));
+			}
+		}
+  }
+  .active-cub-vert(@bgAct, @colAct){
+		> span{
+			.transform(rotateX(0) translateY(0));
+			background:@bgAct;
+			color:@colAct;
+		}
+  }
+  
+  .hover-cub-hor(@bg, @col, @bgAct, @colAct, @pad:0px, @width:50%, @perspective:10000px){
+		strong{
+			display: none !important;
+			height:0;
+			width:0;
+			overflow:hidden;
+			line-height:0;
+			padding:0
+		}
+		&:hover, &:focus, &:active, &.active, &.selected {
+			> span{
+				.transform(rotateY(0));
+				background:@bgAct;
+				color:@colAct;
+			}
+		}
+  }
+  .active-cub-hor(@bgAct, @colAct){
+		> span{
+			.transform(rotateY(0));
+			background:@bgAct;
+			color:@colAct;
+		}
+  }
+  
+/*  
+// for links    
+  
+  .hover-up(@colAct, @param:6px){
+		> span{
+			>strong{
+				display:none;
+			}
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+			> span{
+				> span{ 
+					color:@colAct;
+					opacity:1; 
+					top:0;
+				}
+			}
+		}
+  }
+  .hover-right(@colAct, @param:6px){
+		> span{
+			> strong{
+				display:none;
+			}
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+			> span{
+				> span{ 
+					color:@colAct;
+					opacity:1; 
+					left:0;
+				}
+			}
+		}
+  }
+  .hover-down(@colAct, @param:6px){
+		> span{
+			>strong{
+				display:none;
+			}
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+			> span{
+				> span{ 
+					color:@colAct; 
+					opacity:1; 
+					top:0;
+				}
+			}
+		}
+  }
+  .hover-left(@colAct, @param:6px){
+		> span{ 
+			> strong{
+				display:none;
+			}
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+			> span{
+				> span{ 
+					color:@colAct;
+					opacity:1; 
+					left:0;
+				}
+			}
+		}
+  }
+  
+  .active-link(@colAct){
+		> span{
+			> span{
+				color:@colAct;
+				opacity:1; 
+				left:0;
+				top:0;
+			}
+		}
+  }
+*/
+@import "hovers.less"; // Custom for this template
+
+

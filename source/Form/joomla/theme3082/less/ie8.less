@@ -1,0 +1,464 @@
+// Core variables and mixins
+@import "variables.less"; // Custom for this template
+@import "hovers-mixins.less";
+
+// for hovers
+  
+  .hover-cub-vert(@bg, @col, @bgAct, @colAct, @pad:0px, @perspective:800px){
+		strong{
+			display:none !important;
+			height:0;
+			width:0;
+			overflow:hidden;
+			line-height:0;
+			padding:0
+		}
+		> span{
+			.transform(rotateX(0) translateY(0));
+		}
+		&:hover, &:focus, &:active, &.active, &.selected {
+			> span{
+				background:@bgAct;
+				color:@colAct;
+				.transform(rotateX(0) translateY(0));
+			}
+		}
+  }
+  .active-cub-vert(@bgAct, @colAct){
+		> span{
+			.transform(rotateX(0) translateY(0));
+			background:@bgAct;
+			color:@colAct;
+		}
+  }
+  
+  .hover-cub-hor(@bg, @col, @bgAct, @colAct, @pad:0px, @width:50%, @perspective:10000px){
+		strong{
+			display: none !important;
+			height:0;
+			width:0;
+			overflow:hidden;
+			line-height:0;
+			padding:0
+		}
+		&:hover, &:focus, &:active, &.active, &.selected {
+			> span{
+				.transform(rotateY(0));
+				background:@bgAct;
+				color:@colAct;
+			}
+		}
+  }
+  .active-cub-hor(@bgAct, @colAct){
+		> span{
+			.transform(rotateY(0));
+			background:@bgAct;
+			color:@colAct;
+		}
+  }
+  
+  
+// for links    
+  
+  .hover-up(@colAct, @param:6px){
+		> span{
+			>strong{
+				display:none;
+			}
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+			> span{
+				> span{ 
+					color:@colAct;
+					opacity:1; 
+					top:0;
+				}
+			}
+		}
+  }
+  .hover-right(@colAct, @param:6px){
+		> span{
+			> strong{
+				display:none;
+			}
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+			> span{
+				> span{ 
+					color:@colAct;
+					opacity:1; 
+					left:0;
+				}
+			}
+		}
+  }
+  .hover-down(@colAct, @param:6px){
+		> span{
+			>strong{
+				display:none;
+			}
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+			> span{
+				> span{ 
+					color:@colAct; 
+					opacity:1; 
+					top:0;
+				}
+			}
+		}
+  }
+  .hover-left(@colAct, @param:6px){
+		> span{ 
+			> strong{
+				display:none;
+			}
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+			> span{
+				> span{ 
+					color:@colAct;
+					opacity:1; 
+					left:0;
+				}
+			}
+		}
+  }
+  .active-link(@colAct){
+		> span{
+			> span{
+				color:@colAct;
+				opacity:1; 
+				left:0;
+				top:0;
+			}
+		}
+  }
+
+// for button-bg
+
+  .hover-fill-out(@bgAct, @bord:-1px, @border-radius:50%){
+		&:before{
+			display:none !important;
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				display:block !important;
+			}
+		}
+  }
+  .active-fill-out(){
+		&:before{ 
+			display:block !important;  
+		}
+  }
+  .hover-fill-in(@bgAct, @bord:-1px, @border-radius:50%){
+		&:before{
+			display:none !important;
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				display:block !important;
+			}
+		}
+  }
+  .active-fill-in(){
+		&:before{ 
+			display:block !important;  
+		}
+  }
+  .hover-unfill-out(@bgAct, @bord:-1px, @border-radius:50%){
+		&:before{
+			display:block !important;
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				display:none !important;
+			}
+		}
+  }
+  .active-unfill-out(){
+		&:before{ 
+			display:none !important;  
+		}
+  }
+  .hover-unfill-in(@bgAct, @bord:-1px, @border-radius:50%){
+		&:before{
+			display:block !important;
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				display:none !important;
+			}
+		}
+  }
+  .active-unfill-in(){
+		&:before{ 
+			display:none !important;  
+		}
+  }
+  .hover-fill-right(@bgAct, @alpha:0, @bord:0, @border-radius:0, @scale:1){
+		&:before{
+			display:none !important;
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				display:block !important;
+			}
+		}
+  }
+  .hover-fill-left(@bgAct, @alpha:0, @bord:0, @border-radius:0, @scale:1){
+		&:before{
+			display:none !important;
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				display:block !important;
+			}
+		}
+  }
+  .hover-fill-up(@bgAct, @alpha:0, @bord:0, @border-radius:0, @scale:1){
+		&:before{
+			display:none !important;
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				display:block !important;
+			}
+		}
+  }
+  .hover-fill-down(@bgAct, @alpha:0, @bord:0, @border-radius:0, @scale:1){
+		&:before{
+			display:none !important;
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				display:block !important;
+			}
+		}
+  }
+  .hover-fill-diagonal-bottom-left(@bgAct, @alpha:0, @bord:0, @border-radius:0, @scale:1){
+		&:before{
+			display:none !important;
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				display:block !important;
+			}
+		}
+  }
+  .hover-fill-diagonal-bottom-right(@bgAct, @alpha:0, @bord:0, @border-radius:0, @scale:1){
+		&:before{
+			display:none !important;
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				display:block !important;
+			}
+		}
+  }
+  .hover-fill-diagonal-top-left(@bgAct, @alpha:0, @bord:0, @border-radius:0, @scale:1){
+		&:before{
+			display:none !important;
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				display:block !important;
+			}
+		}
+  }
+  .hover-fill-diagonal-top-right(@bgAct, @alpha:0, @bord:0, @border-radius:0, @scale:1){
+		&:before{
+			display:none !important;
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				display:block !important;
+			}
+		}
+  }
+  .active-fill(){
+		&:before{
+			display:block !important;
+		}
+  }
+  
+  .hover-unfill-right(@bgAct, @alpha:0, @bord:0, @border-radius:0, @scale:1){
+		&:before{
+			display:block !important;
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+			display:none !important;
+			}
+		}
+  }
+  .hover-unfill-left(@bgAct, @alpha:0, @bord:0, @border-radius:0, @scale:1){
+		&:before{
+			display:block !important;
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				display:none !important;
+			}
+		}
+  }
+  .hover-unfill-up(@bgAct, @alpha:0, @bord:0, @border-radius:0, @scale:1){
+		&:before{
+			display:block !important;
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				display:none !important;
+			}
+		}
+  }
+  .hover-unfill-down(@bgAct, @alpha:0, @bord:0, @border-radius:0, @scale:1){
+		&:before{
+			display:block !important;
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				display:none !important;
+			}
+		}
+  }
+  .hover-unfill-diagonal-bottom-left(@bgAct, @alpha:0, @bord:0, @border-radius:0, @scale:1){
+		&:before{
+			display:block !important;
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				display:none !important;
+			}
+		}
+  }
+  .hover-unfill-diagonal-bottom-right(@bgAct, @alpha:0, @bord:0, @border-radius:0, @scale:1){
+		&:before{
+			display:block !important;
+
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{			
+				display:none !important;
+			}
+		}
+  }
+  .hover-unfill-diagonal-top-left(@bgAct, @alpha:0, @bord:0, @border-radius:0, @scale:1){
+		&:before{
+			display:block !important;
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				display:none !important;
+			}
+		}
+  }
+  .hover-unfill-diagonal-top-right(@bgAct, @alpha:0, @bord:0, @border-radius:0, @scale:1){
+		&:before{
+			display:block !important;
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+		  	&:before{
+				display:none !important;
+			}
+		}
+  }
+  .active-unfill(){
+		&:before{
+			display:none !important;
+		}
+  }
+
+
+  .hover-rotate-vert(@bg, @col, @bgAct, @colAct, @pad:0, @border-radius:0, @perspective:200px){
+		>span{
+			> span{ 
+			}
+			>strong{
+				display:none;
+				position:relative;
+			}  
+		}
+		&:hover, &:focus, &:active, &.active, &.selected{
+			>span{
+				>span{
+					display:none;
+				}
+				>strong{
+					display:block;
+				}
+			}
+		}
+  }
+  
+  .active-rotate(@bgAct, @colAct){
+		>span{
+			background:@bgAct;
+			> span{
+				display:none;
+			}
+			>strong{
+				color:@colAct;
+				display:block;
+				position:relative;
+			}  
+		}
+  }
+
+@import "hovers.less"; // Custom for this template
+
+html,body{
+  min-width: 980px;
+}
+
+#section-kmt{
+  .kmt-form-content{
+    .kmt-form-addon{
+      > div{
+        .input.kmt-location{
+          max-width: 1000px !important;
+        }
+      }
+    }
+  }
+}
+
+.gallery-item.gallery-grid .view{
+  .mask,
+  .content{
+    display: none;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader() !important;
+  }
+  &:hover{
+  	.mask,
+    .content{
+    	display: block;
+  	}
+  }
+}
+
+*[data-stellar-background-ratio]{
+  background-position-x: 50% !important;
+}
+
+ul#grid-list{
+  white-space: nowrap;
+}
+
+.fancybox-next span{
+  width: 100px;
+  margin-right: 40px;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=-0.7071067811865476, M12=-0.7071067811865474, M21=0.7071067811865474, M22=-0.7071067811865476, SizingMethod='auto expand')";
+  &:before{
+    left: 0;
+  }
+}
+
+.fancybox-prev span{
+  width: 100px;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.7071067811865482, M12=0.7071067811865466, M21=-0.7071067811865466, M22=0.7071067811865482, SizingMethod='auto expand')";
+  &:before{
+    left: 0;
+  }
+}
