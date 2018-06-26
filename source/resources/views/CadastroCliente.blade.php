@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Alysson Manso" >
     <link rel="icon" href="../../../../favicon.ico">
-    
+
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -14,7 +14,7 @@
     <!-- Custom styles for this template -->
     <link href="form-validation.css" rel="stylesheet">
   </head>
- 
+
   <body>
   <header>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -62,15 +62,15 @@
     <script src="js/bootstrap.min.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
     <script src="js/vendor/holder.min.js"></script>
-    
-    
-    
-    
-    
+
+
+
+
+
    <p>&nbsp;&nbsp</p>
-   
+
    <!-- Exibição do form de cadastro -->
-    
+
     <div class="col-md-8 order-md-1">
           <h4 class="mb-3">Cadastrar Cliente</h4>
 			<form action = "cadastroCliente" method = "post">
@@ -86,7 +86,7 @@
               </div>
               <div class="col-md-6 mb-3">
                 <label for="senha">Senha</label>
-                <input type="text" name = "senha" class="form-control" id="senha" placeholder="" required value={{ old('senha')}}> {{ $errors->first('senha')}} <br/>
+                <input type="password" name = "senha" class="form-control" id="senha" placeholder="" required value={{ old('senha')}}> {{ $errors->first('senha')}} <br/>
                 <div class="invalid-feedback">
                   É necessário uma senha válida.
                 </div>
@@ -97,7 +97,7 @@
               <div class="input-group">
                 <div class="input-group-prepend">
                 </div>
-                <input type="text" name="cpf" class="form-control" id="username" placeholder="xxxxxxxxx" required value={{ old('cpf')}}> {{ $errors->first('cpf')}} <br/>
+                <input type="text" name="cpf" class="form-control" id="username" placeholder="xxxxxxxxxxx" required value={{ old('cpf')}}> {{ $errors->first('cpf')}} <br/>
                 <div class="invalid-feedback" style="width: 100%;">
                   É necessário seu CPF.
                 </div>
@@ -119,10 +119,10 @@
                 Cadastre um telefone válido.
               </div>
             </div>
-            
+
             <hr class="mb-4">
             <button class="btn btn-primary btn-lg btn-block" type="submit">Cadastrar Cliente</button>
-            
+
 
   </body>
   </html>

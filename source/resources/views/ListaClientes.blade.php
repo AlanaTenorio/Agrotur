@@ -16,7 +16,7 @@
     <link href="carousel.css" rel="stylesheet">
   </head>
   <body>
-  		
+
   		<!-- Cabeçalho-->
   		<header>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -27,7 +27,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="view">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="dropdown">
         			<a class="nav-link" data-toggle="dropdown" href="#">Opções Cliente
@@ -69,9 +69,9 @@
     <script src="js/bootstrap.min.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
     <script src="js/vendor/holder.min.js"></script>
-    
+
     <p>&nbsp;&nbsp</p>
-    
+
     <!-- Listagem -->
    <h4 class="mb-3">Clientes Cadastrados</h4>
     <table class="table table-striped">
@@ -86,7 +86,7 @@
 
       <?php } ?>
   </thead>
-  
+
 </table>
   </body>
 </html>
