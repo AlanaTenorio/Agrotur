@@ -1,24 +1,22 @@
 <!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
+<html lang ="{{ app()->getLocale()}}">
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="Alysson Manso" >
+    <meta name="author" content="Eberson Manso" >
     <link rel="icon" href="../../../../favicon.ico">
 
-    <title>Agrotur</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="carousel.css" rel="stylesheet">
+    <link href="form-validation.css" rel="stylesheet">
+  </head>
 
-    </head>
-    
-    <body>
-     <header>
+  <body>
+  <header>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <a class="navbar-brand" href="#">Agrotur</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,12 +26,11 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               <a class="nav-link" href="view">Home <span class="sr-only">(current)</span></a>
-            </li>
             <li class="dropdown">
-        			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Opções Cliente
+        			<a class="nav-link" data-toggle="dropdown" href="#">Opções Cliente
         			<span class="caret"></span></a>
         			<ul class="dropdown-menu">
-          			<li><a href="cadastroCliente">Cadastrar Cliente</a></li>
+          			<li><a href="editarCliente">Editar Cliente</a></li>
           			<li><a href="listaClientes">Listar Clientes</a></li>
         			</ul>
       		</li>
@@ -65,20 +62,68 @@
     <script src="js/bootstrap.min.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
     <script src="js/vendor/holder.min.js"></script>
-    
-    
-    	<h1>Editar Cliente</h1>
 
-    	<form action="/SalvarCliente" method="post">
-    		<input type="hidden" name="_token" value="{{ csrf_token() }}" />
-    			<input type="hidden" name="id" value="{{ $cliente->id}}" />
-    			Nome: <input type="text" name="nome" value="{{$cliente->nome}}"> {{ $errors->first('nome')}} <br/>
-    			Senha: <input type="text" name="senha" value="{{$cliente->senha}}"> {{ $errors->first('senha')}} <br/>
-    			Telefone: <input type="text" name="telefone" value="{{$cliente->telefone}}"> {{ $errors->first('telefone')}} <br/>
-          Cpf: <input type="text" name="cpf" value="{{$cliente->cpf}}"> {{ $errors->first('cpf')}} <br/>
-          Email: <input type="text" name="email" value="{{$cliente->email}}"> {{ $errors->first('email')}} <br/>
-    			<input  type="submit" value="alterar" />
-    	</form>
 
-    </body>
-</html>
+
+
+
+   <p>&nbsp;&nbsp</p>
+
+   <!-- Exibição do form de edicao -->
+
+    <div class="col-md-8 order-md-1">
+          <h4 class="mb-3">Editar Cliente</h4>
+			<form action = "/SalvarCliente" method = "post">
+          <input type = "hidden" name = "_token" value = "{{ csrf_token()}}"/>
+          <input type="hidden" name="id" value="{{$cliente->id}}" />
+          <form class="needs-validation" novalidate>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="nome">Nome</label>
+                <input type="text" name = "nome" class="form-control" id="nome" placeholder="" required value="{{$cliente->nome}}"> {{ $errors->first('nome')}} <br/>
+                <div class="invalid-feedback">
+                  É necessário um nome válido.
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="senha">Senha</label>
+                <input type="password" name = "senha" class="form-control" id="senha" placeholder="" required value="{{$cliente->senha}}"> {{ $errors->first('senha')}} <br/>
+                <div class="invalid-feedback">
+                  É necessário uma senha válida.
+                </div>
+              </div>
+            </div>
+				<div class="mb-3">
+              <label for="username">CPF</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                </div>
+                <input type="text" name="cpf" class="form-control" id="username" placeholder="xxxxxxxxxxx" required value="{{$cliente->cpf}}"> {{ $errors->first('cpf')}} <br/>
+                <div class="invalid-feedback" style="width: 100%;">
+                  É necessário seu CPF.
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="email">Email</label>
+              <input type="email" name="email" class="form-control" id="email" placeholder="você@exemplo.com" value="{{$cliente->email}}"> {{ $errors->first('email')}} <br/>
+              <div class="invalid-feedback">
+                É necessário um CPF válido.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="telefone">Telefone</label>
+              <input type="text" name="telefone" class="form-control" id="address" placeholder="81998541236" required value="{{$cliente->telefone}}"> {{ $errors->first('telefone')}} <br/>
+              <div class="invalid-feedback">
+                Cadastre um telefone válido.
+              </div>
+            </div>
+
+            <hr class="mb-4">
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Salvar</button>
+
+
+  </body>
+  </html>
