@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/your/repo.svg?branch=master)](https://travis-ci.org/your/repo)
+
 ![AgroTur](https://github.com/AlanaTenorio/Agrotur/blob/master/Wiki/Imagens/AgroTurTexto.png?raw=true)
 
 # &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Conectando você com a natureza
