@@ -26,4 +26,5 @@ script:
   - npm run production
   - jshint resources/assets/js/modules/*
 
-branch: master
+branch: 
+  - master
