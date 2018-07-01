@@ -11,6 +11,7 @@ services:
   
 before_script:
   - composer self-update
+  - composer --working-dir=source/
   - composer install --no-interaction
   - cp .env.travis .env
   - pear install pear/PHP_CodeSniffer
