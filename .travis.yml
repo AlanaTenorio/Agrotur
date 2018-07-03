@@ -1,4 +1,16 @@
+os:
+  - linux
+
+language: php
+
 php:
-   - "7.2"
-+
-+script: ./build.s
+  - "7.2"
+
+services:
+  - postgresql
+  
+script:
+  - echo ""
+
+branch: 
+  - master
