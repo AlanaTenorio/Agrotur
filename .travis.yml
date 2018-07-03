@@ -2,15 +2,13 @@ os:
   - linux
 
 language: php
+dist: trusty
 
 php:
-  - "7.2"
-
-services:
-  - postgresql
+  - 7.2
   
-script:
-  - echo "THIS IS FROM MATILDA"
+before_script:
+  - travis_retry composer self-update
+  - travis_retry composer install --prefer-source --no-interaction --dev
 
-branch: 
-  - master
+script: ./vendor/bin/phpunit
