@@ -1,14 +1,22 @@
-os:
-  - linux
-
 language: php
-dist: trusty
 
 php:
+  - 7.1
   - 7.2
-  
-before_script:
-  - travis_retry composer self-update
-  - travis_retry composer install --prefer-source --no-interaction
 
-script: source/vendor/bin/phpunit
+before_script:
+  - cp .env.travis .env
+  - composer self-update
+  - composer install --prefer-source --no-interaction
+  - php artisan key:generate
+  - php artisan jwt:generate
+  - php artisan migrate
+
+before_install:
+  - pgsql -e 'CREATE DATABASE agrotur;'
+
+script:
+  - phpunit
+
+services:
+  - mysql
