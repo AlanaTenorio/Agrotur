@@ -11,9 +11,6 @@ before_script:
   - php artisan jwt:generate
   - php artisan migrate
 
-before_install:
-  - pgsql -e 'CREATE DATABASE agrotur;'
-
 script:
   - phpunit
 
