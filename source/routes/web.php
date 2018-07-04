@@ -70,3 +70,7 @@ Route::post('/cadastroServico', "ServiçoController@adicionarServico");
 Route::get('/InserirImagensServico/{id}', "ServiçoController@inserirImagensServico");
 
 Route::post('/salvarImagemServico', "ServiçoController@salvarImagemServico");
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

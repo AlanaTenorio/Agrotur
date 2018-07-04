@@ -21,6 +21,7 @@ class CreateClientesTable extends Migration
         $table->string('telefone');
         $table->string('cpf')->unique();;
         $table->string('email')->unique();;
+        $table->rememberToken();
       });
     }
 
