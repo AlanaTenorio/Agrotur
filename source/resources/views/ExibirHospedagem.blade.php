@@ -22,12 +22,16 @@
       <?php $anuncio = \App\Anuncio::find($hospedagem->anuncio_id) ?>
       <p> descrição: <?php echo $anuncio->descriçao ?> <br></p>
       <p> anunciante id: <?php echo $anuncio->anunciante_id ?> <br></p>
+      
       <?php 
         $imagens = \App\Imagem_Hospedagem::where('hospedagem_id', '=', $hospedagem->id)->get();
-        foreach ($imagens as $i) { ?>
-          <img src="<?php echo htmlspecialchars(stream_get_contents($i->imagem)); ?>" /><br>
-        <?php } ?>
-      <a href="/EditarHospedagem/{{$hospedagem->id}}">Editar</a>
-      <a href="/RemoverHospedagem/{{$hospedagem->id}}">Remover</a>
+        foreach ($imagens as $i) { 
+          $path = (stream_get_contents($i->imagem)); ?>
+          <img src="<?php echo $path ?>" /><br>
+      <?php } ?>
+
+      <a href="/EditarHospedagem/{{$hospedagem->id}}">Editar Hospedagem</a><br>
+      <a href="/EditarImagens/{{$hospedagem->id}}">Alterar/Adicionar Imagens</a><br>
+      <a href="/RemoverHospedagem/{{$hospedagem->id}}">Remover Hospedagem</a><br>
   </body>
 </html>

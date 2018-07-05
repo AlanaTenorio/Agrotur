@@ -79,7 +79,23 @@ class HospedagemController extends Controller
       $imagem->save();
     }
 
-    return redirect ("/InserirImagens/{$hospedagem->id}");
+    return redirect($_SERVER['HTTP_REFERER']);
+  }
+
+  public function editarImagens($id){
+    $hospedagem = \App\Hospedagem::find($id);
+    return view("EditarImagens", ['hospedagem' => $hospedagem]);
+  }
+
+  public function removerImagens($id){
+    $imagem = \App\Imagem_Hospedagem::find($id);
+    $h = $imagem->hospedagem_id;
+
+    $path = (stream_get_contents($imagem->imagem));
+    unlink(".".$path); // deleta o arquivo de imagem
+
+    $imagem->delete();
+    return redirect($_SERVER['HTTP_REFERER']);
   }
 
   public function remover($id) {
@@ -88,6 +104,8 @@ class HospedagemController extends Controller
     // Apaga todas as imagens da hospedagem escolhida
     $imagens = \App\Imagem_Hospedagem::where('hospedagem_id', '=', $id)->get();
     foreach ($imagens as $i) {
+      $path = (stream_get_contents($i->imagem));
+      // unlink(".".$path); // deleta o arquivo de imagem
       $i->delete();
     }
 

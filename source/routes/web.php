@@ -65,7 +65,11 @@ Route::post('/cadastroHospedagem', "HospedagemController@adicionarHospedagem");
 
 Route::get('/InserirImagens/{id}', "HospedagemController@inserirImagens");
 
-Route::post('/salvarImagem', "HospedagemController@salvarImagem");
+Route::post('/SalvarImagem', "HospedagemController@salvarImagem");
+
+Route::get('/EditarImagens/{id}', "HospedagemController@editarImagens");
+
+Route::get('/RemoverImagem/{id}', "HospedagemController@removerImagens");
 
 Route::get('/InserirServicosHospedagem/{id}', "HospedagemController@inserirServicosOferecidos");
 
