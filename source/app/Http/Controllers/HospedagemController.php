@@ -72,14 +72,33 @@ class HospedagemController extends Controller
     $hospedagem = \App\Hospedagem::find($request->hospedagem_id);
     $imagem = new \App\Imagem_Hospedagem();
 
+    // Testa se tem um arquivo sendo enviado
     if ($request->hasFile('primaryImage')) {
       $imagem->imagem = $repo->saveImage($request->primaryImage, $request->hospedagem_id, 'hospedagens', 250);
+      $imagem->hospedagem_id = $hospedagem->id;
+      $imagem->save();
     }
-    
-    $imagem->hospedagem_id = $hospedagem->id;
-    $imagem->save();
 
     return redirect ("/InserirImagens/{$hospedagem->id}");
+  }
+
+  public function remover($id) {
+    $hospedagem = \App\Hospedagem::find($id);
+    
+    // Apaga todas as imagens da hospedagem escolhida
+    $imagens = \App\Imagem_Hospedagem::where('hospedagem_id', '=', $id)->get();
+    foreach ($imagens as $i) {
+      $i->delete();
+    }
+
+    // Apaga todas os serviços da hospedagem escolhida
+    $servicos = \App\serviçoOferecido_hospedagem::where('hospedagem_id', '=', $id)->get();
+    foreach ($servicos as $s) {
+      $s->delete();
+    }
+
+    $hospedagem->delete();
+    return redirect("/listaHospedagens");
   }
 
   public function inserirServicosOferecidos($id){

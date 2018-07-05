@@ -57,6 +57,8 @@ Route::get('/ExibirHospedagem/{id}', "HospedagemController@exibirHospedagem");
 
 Route::get('/EditarHospedagem/{id}', "HospedagemController@editar");
 
+Route::get('/RemoverHospedagem/{id}', "HospedagemController@remover");
+
 Route::post('/SalvarHospedagem', "HospedagemController@salvar");
 
 Route::post('/cadastroHospedagem', "HospedagemController@adicionarHospedagem");

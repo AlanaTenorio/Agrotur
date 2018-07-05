@@ -25,10 +25,9 @@
       <?php 
         $imagens = \App\Imagem_Hospedagem::where('hospedagem_id', '=', $hospedagem->id)->get();
         foreach ($imagens as $i) { ?>
-          <img src="<?php echo htmlspecialchars(stream_get_contents($i->imagem)); ?>" />
+          <img src="<?php echo htmlspecialchars(stream_get_contents($i->imagem)); ?>" /><br>
         <?php } ?>
-
-
       <a href="/EditarHospedagem/{{$hospedagem->id}}">Editar</a>
+      <a href="/RemoverHospedagem/{{$hospedagem->id}}">Remover</a>
   </body>
 </html>
