@@ -51,6 +51,14 @@ Route::get('/cadastroHospedagem', function(Request $request) {
     return view('CadastroHospedagem');
 });
 
+Route::get('/listaHospedagens', "HospedagemController@listarHospedagens");
+
+Route::get('/ExibirHospedagem/{id}', "HospedagemController@exibirHospedagem");
+
+Route::get('/EditarHospedagem/{id}', "HospedagemController@editar");
+
+Route::post('/SalvarHospedagem', "HospedagemController@salvar");
+
 Route::post('/cadastroHospedagem', "HospedagemController@adicionarHospedagem");
 
 Route::get('/InserirImagens/{id}', "HospedagemController@inserirImagens");

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Repositories\ImageRepository;
 use Validator;
 
 class HospedagemController extends Controller
@@ -34,29 +35,49 @@ class HospedagemController extends Controller
     return redirect ("/InserirImagens/{$hospedagem->id}");
   }
 
+  public function listarHospedagens(){
+    $hospedagens = \App\Hospedagem::all();
+    return view ('ListaHospedagens', ['hospedagens' => $hospedagens]);
+  }
+
+  public function exibirHospedagem($id) {
+    $hospedagem = \App\Hospedagem::find($id);
+    return view("ExibirHospedagem", ['hospedagem' => $hospedagem]);
+  }
+
+  public function editar($id) {
+    $hospedagem = \App\Hospedagem::find($id);
+    return view("EditarHospedagem", ['hospedagem' => $hospedagem]);
+  }
+
+  public function salvar(Request $request) {
+    $hospedagem = \App\Hospedagem::find($request->id);
+    $hospedagem->nomePropriedade = $request->nomePropriedade;
+    $hospedagem->preçoDiaria = $request->preçoDiaria;
+    $hospedagem->save();
+
+    $anuncio = \App\Anuncio::find($hospedagem->anuncio_id);
+    $anuncio->descriçao = $request->descriçao;
+    $anuncio->anunciante_id = $request->anunciante_id;
+    $anuncio->save();
+    return redirect ('/listaHospedagens');
+  }
+
   public function inserirImagens($id){
     $hospedagem = \App\Hospedagem::find($id);
     return view("InserirImagens", ['hospedagem' => $hospedagem]);
   }
 
-  public function salvarImagem(Request $request){
+  public function salvarImagem(Request $request, ImageRepository $repo){
     $hospedagem = \App\Hospedagem::find($request->hospedagem_id);
     $imagem = new \App\Imagem_Hospedagem();
 
-    require_once("conexao.php");
-    //$dbconn = pg_connect("host=localhost port=5432 dbname=agrotur user=alana password=123456") or die('Não foi possível conectar: ' . pg_last_error());
-
-    $img = $_FILES["imagem"]["tmp_name"];
-    $nomeFinal = time().'.jpg';
-    $data = base64_decode($img);
-    $file = move_uploaded_file($img, $nomeFinal);
-    pg_query($dbconn, "begin");
-    $oid = pg_lo_import($dbconn, $nomeFinal);
-    $imagem->imagem = $oid;
+    if ($request->hasFile('primaryImage')) {
+      $imagem->imagem = $repo->saveImage($request->primaryImage, $request->hospedagem_id, 'hospedagens', 250);
+    }
+    
     $imagem->hospedagem_id = $hospedagem->id;
     $imagem->save();
-
-    unlink($nomeFinal);
 
     return redirect ("/InserirImagens/{$hospedagem->id}");
   }
