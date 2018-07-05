@@ -16,22 +16,25 @@
     <link href="carousel.css" rel="stylesheet">
   </head>
   <body>
-      <p> nome da propriedade: <?php echo $hospedagem->nomePropriedade ?> <br></p>
-      <p> preco diaria: <?php echo $hospedagem->preçoDiaria ?> <br></p>
-      <p> anuncio id: <?php echo $hospedagem->anuncio_id ?> <br></p>
-      <?php $anuncio = \App\Anuncio::find($hospedagem->anuncio_id) ?>
-      <p> descrição: <?php echo $anuncio->descriçao ?> <br></p>
-      <p> anunciante id: <?php echo $anuncio->anunciante_id ?> <br></p>
+
+      <p> nome da propriedade: {{ $hospedagem->nomePropriedade }} <br></p>
+      <p> preco diaria: {{ $hospedagem->preçoDiaria }} <br></p>
+      <p> anuncio id: {{ $hospedagem->anuncio_id }} <br></p>
+      <p> descrição: {{ $anuncio->descriçao }} <br></p>
+      <p> anunciante id: {{ $anuncio->anunciante_id }} <br></p>
       
-      <?php 
-        $imagens = \App\Imagem_Hospedagem::where('hospedagem_id', '=', $hospedagem->id)->get();
-        foreach ($imagens as $i) { 
-          $path = (stream_get_contents($i->imagem)); ?>
-          <img src="<?php echo $path ?>" /><br>
-      <?php } ?>
+      <p> serviços oferecidos: </p>
+      @foreach ($servicos as $s)
+        <p> {{ $s->serviço }} </p>
+      @endforeach
+
+      @foreach ($imagens as $i)
+        <img src="{{ asset($i->imagem) }}"/><br>
+      @endforeach
 
       <a href="/EditarHospedagem/{{$hospedagem->id}}">Editar Hospedagem</a><br>
-      <a href="/EditarImagens/{{$hospedagem->id}}">Alterar/Adicionar Imagens</a><br>
+      <a href="/EditarImagensHospedagem/{{$hospedagem->id}}">Alterar Imagens</a><br>
+      <a href="/EditarServicosHospedagem/{{$hospedagem->id}}">Alterar Serviços</a><br>
       <a href="/RemoverHospedagem/{{$hospedagem->id}}">Remover Hospedagem</a><br>
   </body>
 </html>

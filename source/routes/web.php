@@ -63,17 +63,21 @@ Route::post('/SalvarHospedagem', "HospedagemController@salvar");
 
 Route::post('/cadastroHospedagem', "HospedagemController@adicionarHospedagem");
 
-Route::get('/InserirImagens/{id}', "HospedagemController@inserirImagens");
+Route::get('/InserirImagensHospedagem/{id}', "HospedagemController@inserirImagens");
 
-Route::post('/SalvarImagem', "HospedagemController@salvarImagem");
+Route::post('/SalvarImagemHospedagem', "HospedagemController@salvarImagem");
 
-Route::get('/EditarImagens/{id}', "HospedagemController@editarImagens");
+Route::get('/EditarImagensHospedagem/{id}', "HospedagemController@editarImagens");
 
-Route::get('/RemoverImagem/{id}', "HospedagemController@removerImagens");
+Route::get('/RemoverImagemHospedagem/{id}', "HospedagemController@removerImagens");
 
 Route::get('/InserirServicosHospedagem/{id}', "HospedagemController@inserirServicosOferecidos");
 
 Route::post('/salvarServicosOferecidos', "HospedagemController@salvarServicosOferecidos");
+
+Route::get('/EditarServicosHospedagem/{id}', "HospedagemController@editarServicosOferecidos");
+
+Route::get('/RemoverServicosHospedagem/{id}', "HospedagemController@removerServicosOferecidos");
 
 Route::get('/cadastroServico', function(Request $request) {
     return view('CadastroServico');

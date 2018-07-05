@@ -79,8 +79,8 @@
   <?php foreach ($hospedagens as $hospedagem){ ?>
     <tr>
       <th scope="col">#</th>
-      <th scope="col"> <?php echo $hospedagem->nomePropriedade ?> </th>
-      <th scope="col"> <?php echo $hospedagem->preçoDiaria ?> </th>
+      <th scope="col"> {{$hospedagem->nomePropriedade}} </th>
+      <th scope="col"> {{$hospedagem->preçoDiaria}}  </th>
       <th scope="col"><a href="/ExibirHospedagem/{{$hospedagem->id}}">Visualizar</a></th>
     </tr>
 

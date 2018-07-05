@@ -32,7 +32,7 @@ class HospedagemController extends Controller
     $hospedagem->anuncio_id = $anuncio->id;
     $hospedagem->save();
 
-    return redirect ("/InserirImagens/{$hospedagem->id}");
+    return redirect ("/InserirImagensHospedagem/{$hospedagem->id}");
   }
 
   public function listarHospedagens(){
@@ -42,7 +42,13 @@ class HospedagemController extends Controller
 
   public function exibirHospedagem($id) {
     $hospedagem = \App\Hospedagem::find($id);
-    return view("ExibirHospedagem", ['hospedagem' => $hospedagem]);
+    $anuncio = \App\Anuncio::find($hospedagem->anuncio_id);
+    $imagens = \App\Imagem_Hospedagem::where('hospedagem_id', '=', $id)->get();
+    $servicos = \App\serviçoOferecido_hospedagem::where('hospedagem_id', '=', $id)->get();
+    return view("ExibirHospedagem", ['hospedagem' => $hospedagem,
+                                      'imagens' => $imagens,
+                                      'anuncio' => $anuncio,
+                                      'servicos' => $servicos]);
   }
 
   public function editar($id) {
@@ -63,9 +69,30 @@ class HospedagemController extends Controller
     return redirect ('/listaHospedagens');
   }
 
+  public function remover($id) {
+    $hospedagem = \App\Hospedagem::find($id);
+    
+    // Apaga todas as imagens da hospedagem escolhida
+    $imagens = \App\Imagem_Hospedagem::where('hospedagem_id', '=', $id)->get();
+    foreach ($imagens as $i) {
+      $path = $i->imagem;
+      unlink(".".$path); // deleta o arquivo de imagem
+      $i->delete();
+    }
+
+    // Apaga todas os serviços da hospedagem escolhida
+    $servicos = \App\serviçoOferecido_hospedagem::where('hospedagem_id', '=', $id)->get();
+    foreach ($servicos as $s) {
+      $s->delete();
+    }
+
+    $hospedagem->delete();
+    return redirect("/listaHospedagens");
+  }
+
   public function inserirImagens($id){
     $hospedagem = \App\Hospedagem::find($id);
-    return view("InserirImagens", ['hospedagem' => $hospedagem]);
+    return view("InserirImagensHospedagens", ['hospedagem' => $hospedagem]);
   }
 
   public function salvarImagem(Request $request, ImageRepository $repo){
@@ -84,39 +111,19 @@ class HospedagemController extends Controller
 
   public function editarImagens($id){
     $hospedagem = \App\Hospedagem::find($id);
-    return view("EditarImagens", ['hospedagem' => $hospedagem]);
+    $imagens = \App\Imagem_Hospedagem::where('hospedagem_id', '=', $hospedagem->id)->get();
+    return view("EditarImagensHospedagem", ['hospedagem' => $hospedagem,
+                                      'imagens' => $imagens]);
   }
 
   public function removerImagens($id){
     $imagem = \App\Imagem_Hospedagem::find($id);
-    $h = $imagem->hospedagem_id;
 
-    $path = (stream_get_contents($imagem->imagem));
+    $path = $imagem->imagem;
     unlink(".".$path); // deleta o arquivo de imagem
 
     $imagem->delete();
     return redirect($_SERVER['HTTP_REFERER']);
-  }
-
-  public function remover($id) {
-    $hospedagem = \App\Hospedagem::find($id);
-    
-    // Apaga todas as imagens da hospedagem escolhida
-    $imagens = \App\Imagem_Hospedagem::where('hospedagem_id', '=', $id)->get();
-    foreach ($imagens as $i) {
-      $path = (stream_get_contents($i->imagem));
-      // unlink(".".$path); // deleta o arquivo de imagem
-      $i->delete();
-    }
-
-    // Apaga todas os serviços da hospedagem escolhida
-    $servicos = \App\serviçoOferecido_hospedagem::where('hospedagem_id', '=', $id)->get();
-    foreach ($servicos as $s) {
-      $s->delete();
-    }
-
-    $hospedagem->delete();
-    return redirect("/listaHospedagens");
   }
 
   public function inserirServicosOferecidos($id){
@@ -131,6 +138,19 @@ class HospedagemController extends Controller
     $servico->serviço = $request->servico;
     $servico->save();
 
-    return redirect ("/InserirServicosHospedagem/{$hospedagem->id}");
+    return redirect($_SERVER['HTTP_REFERER']);
+  }
+
+  public function editarServicosOferecidos($id){
+    $hospedagem = \App\Hospedagem::find($id);
+    $servicos = \App\serviçoOferecido_hospedagem::where('hospedagem_id', '=', $hospedagem->id)->get();
+    return view("EditarServicosHospedagem", ['hospedagem' => $hospedagem,
+                                      'servicos' => $servicos]);
+  }
+
+  public function removerServicosOferecidos($id){
+    $servico = \App\serviçoOferecido_hospedagem::find($id);
+    $servico->delete();
+    return redirect($_SERVER['HTTP_REFERER']);
   }
 }
