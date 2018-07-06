@@ -97,8 +97,16 @@ Route::get('/inserirImagensServico', function(Request $request) {
 
 Route::get('/InserirImagensServico/{id}', "ServiçoController@inserirImagensServico");
 
+
+Route::post('/salvarImagemServico', "ServiçoController@salvarImagemServico");
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
 Route::post('/SalvarImagemServico', "ServiçoController@salvarImagemServico");
 
 Route::get('/EditarImagensServico/{id}', "ServiçoController@editarImagens");
 
 Route::get('/RemoverImagemServico/{id}', "ServiçoController@removerImagens");
+

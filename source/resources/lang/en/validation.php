@@ -139,6 +139,7 @@ return [
         ],
         'cpf' => [
             'required' => 'Informe seu CPF.',
+            'unique' => 'CPF já cadastrado.'
         ],
         'email' => [
             'required' => 'Informe seu email.',
