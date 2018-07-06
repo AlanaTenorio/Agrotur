@@ -73,15 +73,15 @@
     <p>&nbsp;&nbsp</p>
 
     <!-- Listagem -->
-   <h4 class="mb-3">Hospedagens Cadastradas</h4>
+   <h4 class="mb-3">Serviços Cadastradas</h4>
     <table class="table table-striped">
   <thead>
-  @foreach ($hospedagens as $hospedagem)
+  @foreach ($servicos as $servico)
     <tr>
       <th scope="col">#</th>
-      <th scope="col"> {{$hospedagem->nomePropriedade}} </th>
-      <th scope="col"> {{$hospedagem->preçoDiaria}}  </th>
-      <th scope="col"><a href="/ExibirHospedagem/{{$hospedagem->id}}">Visualizar</a></th>
+      <th scope="col"> {{$servico->nomeServiço}} </th>
+      <th scope="col"> {{$servico->preço}}  </th>
+      <th scope="col"><a href="/ExibirServico/{{$servico->id}}">Visualizar</a></th>
     </tr>
   @endforeach
   </thead>

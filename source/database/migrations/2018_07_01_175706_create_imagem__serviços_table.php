@@ -16,7 +16,7 @@ class CreateImagemServiçosTable extends Migration
         Schema::create('imagem__serviços', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->binary('imagem');
+            $table->string('imagem');
             $table->integer('serviço_id');
             $table->foreign('serviço_id')->references('id')->on('serviços');
         });

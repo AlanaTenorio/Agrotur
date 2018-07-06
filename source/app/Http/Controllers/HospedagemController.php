@@ -9,18 +9,7 @@ use Validator;
 class HospedagemController extends Controller
 {
   public function adicionarHospedagem(Request $request){
-    /*$validator = Validator::make($request->all(), [
-      'descriçao'=>'required',
-      'nomePropriedade'=>'required',
-      'preçoDiaria'=>'required|digits',
-    ]);
-
-    if ($validator->fails()) {
-        return redirect('/cadastroHospedagem')
-                    ->withErrors($validator)
-                    ->withInput();
-    }*/
-
+    
     $anuncio = new \App\Anuncio();
     $anuncio->descriçao = $request->descriçao;
     $anuncio->anunciante_id = $request->anunciante_id;
@@ -53,7 +42,9 @@ class HospedagemController extends Controller
 
   public function editar($id) {
     $hospedagem = \App\Hospedagem::find($id);
-    return view("EditarHospedagem", ['hospedagem' => $hospedagem]);
+    $anuncio = \App\Anuncio::find($hospedagem->anuncio_id)
+    return view("EditarHospedagem", ['hospedagem' => $hospedagem,
+                                     'anuncio' => $anuncio]);
   }
 
   public function salvar(Request $request) {
