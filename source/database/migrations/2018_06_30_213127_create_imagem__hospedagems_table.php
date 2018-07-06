@@ -16,7 +16,7 @@ class CreateImagemHospedagemsTable extends Migration
         Schema::create('imagem__hospedagems', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->binary('imagem');
+            $table->string('imagem');
             $table->integer('hospedagem_id');
             $table->foreign('hospedagem_id')->references('id')->on('hospedagems');
         });
