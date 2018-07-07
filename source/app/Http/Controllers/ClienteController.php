@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Validator;
+use Illuminate\Support\Facades\Hash;
 
 class ClienteController extends Controller
 {
     public function adicionarCliente(Request $request){
       $validator = Validator::make($request->all(), [
         'nome'=>'required',
-        'senha'=>'required|min:8|max:15',
+        'senha'=>'required|min:8|max:15|confirmed',
         'telefone'=>'required|digits:11', //regex:/^\(\d{2}\)\d{9}$/'
         'cpf'=>'required|cpf',
         'email'=>'required|email|unique:clientes,email'
@@ -24,7 +25,7 @@ class ClienteController extends Controller
 
       $cliente = new \App\Cliente();
       $cliente->nome = $request->nome;
-      $cliente->senha = $request->senha;
+      $cliente->senha = Hash::make($request->senha);
       $cliente->telefone = $request->telefone;
       $cliente->cpf = $request->cpf;
       $cliente->email = $request->email;
@@ -61,7 +62,7 @@ class ClienteController extends Controller
 
       $cliente = \App\Cliente::find($request->id);
       $cliente->nome = $request->nome;
-      $cliente->senha = $request->senha;
+      $cliente->senha = Hash::make($request->senha);
       $cliente->telefone = $request->telefone;
       $cliente->cpf = $request->cpf;
       $cliente->email = $request->email;

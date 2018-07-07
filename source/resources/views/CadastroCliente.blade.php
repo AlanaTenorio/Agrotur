@@ -90,6 +90,10 @@
                 <div class="invalid-feedback">
                   É necessário uma senha válida.
                 </div>
+
+                <label for="senha-confirmacao">Confirme a Senha</label>
+                <input type="password" name = "senha_confirmation" class="form-control" id="senha-confirmacao" placeholder="" required>
+
               </div>
             </div>
 				<div class="mb-3">
@@ -97,7 +101,7 @@
               <div class="input-group">
                 <div class="input-group-prepend">
                 </div>
-                <input type="text" name="cpf" class="form-control" id="username" placeholder="xxxxxxxxxxx" required value={{ old('cpf')}}> {{ $errors->first('cpf')}} <br/>
+                <input type="text" name="cpf" class="form-control" id="username" placeholder="xxx.xxx.xxx-xx" required value={{ old('cpf')}}> {{ $errors->first('cpf')}} <br/>
                 <div class="invalid-feedback" style="width: 100%;">
                   É necessário seu CPF.
                 </div>
