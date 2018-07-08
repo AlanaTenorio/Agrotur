@@ -42,7 +42,7 @@ class HospedagemController extends Controller
 
   public function editar($id) {
     $hospedagem = \App\Hospedagem::find($id);
-    $anuncio = \App\Anuncio::find($hospedagem->anuncio_id)
+    $anuncio = \App\Anuncio::find($hospedagem->anuncio_id);
     return view("EditarHospedagem", ['hospedagem' => $hospedagem,
                                      'anuncio' => $anuncio]);
   }
