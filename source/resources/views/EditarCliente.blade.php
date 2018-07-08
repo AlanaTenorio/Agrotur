@@ -229,15 +229,6 @@
                                 <i class="material-icons prefix">account_circle</i>
                                 <input type="text" name = "nome" class="form-control" id="nome" required value="{{$cliente->nome}}"> {{ $errors->first('nome')}} <br/>
                                 <label for="nome">Nome</label>
-                                <div class="invalid-feedback">
-                                  É necessário um nome válido.
-                                </div>
-                            </div>
-                            <div class="input-field col s6">
-                                <i class="material-icons prefix">lock</i>
-                                <input type="password" name = "senha" class="form-control" id="senha"required value="{{$cliente->senha}}"> {{ $errors->first('senha')}} <br/>
-                                <label for="senha">Senha</label>
-
                             </div>
                             <div class="input-field col s6">
                                 <i class="material-icons prefix">recent_actors</i>
@@ -255,9 +246,6 @@
                                 <i class="material-icons prefix">email</i>
                                 <input type="email" name="email" class="form-control" id="email" value="{{$cliente->email}}"> {{ $errors->first('email')}} <br/>
                                 <label for="email">Email</label>
-                                <div class="invalid-feedback">
-                                  É necessário um email válido.
-                                </div>
                             </div>
                         </div>
                     </form>
