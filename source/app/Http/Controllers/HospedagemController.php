@@ -9,7 +9,7 @@ use Validator;
 class HospedagemController extends Controller
 {
   public function adicionarHospedagem(Request $request){
-    
+
     $anuncio = new \App\Anuncio();
     $anuncio->descriçao = $request->descriçao;
     $anuncio->anunciante_id = $request->anunciante_id;
@@ -42,7 +42,7 @@ class HospedagemController extends Controller
 
   public function editar($id) {
     $hospedagem = \App\Hospedagem::find($id);
-    $anuncio = \App\Anuncio::find($hospedagem->anuncio_id)
+    $anuncio = \App\Anuncio::find($hospedagem->anuncio_id);
     return view("EditarHospedagem", ['hospedagem' => $hospedagem,
                                      'anuncio' => $anuncio]);
   }
@@ -62,7 +62,7 @@ class HospedagemController extends Controller
 
   public function remover($id) {
     $hospedagem = \App\Hospedagem::find($id);
-    
+
     // Apaga todas as imagens da hospedagem escolhida
     $imagens = \App\Imagem_Hospedagem::where('hospedagem_id', '=', $id)->get();
     foreach ($imagens as $i) {
