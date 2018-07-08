@@ -6,11 +6,11 @@
     <title>Remover Usuário</title>
     <!--caminho absoluto para o favicon-->
     <link rel="icon" id="icon_AgroTur" href="https://bit.ly/2z4Hf9o">
-    <!-- CSS 
+    <!-- CSS
     É mais conveniente usar caminhos absolutos.-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
-    
+
     <!--adicionar styles abaixo ao css do materialize ou criar um arquivo para estilos customizados-->
     <style>
         /*--------------------------------------------------------------------------------------
@@ -21,7 +21,7 @@
             min-height: 100vh;
             flex-direction: column;
         }
-    
+
         .page-footer.sticky-footer.main {
             flex: 1 0 auto;
         }
@@ -34,15 +34,15 @@
             bottom: 0;
             width: 100%;
         }
-    
+
         .page-footer .container {
             padding: 0 15px;
         }
-    
+
         #world-map-markers {
             height: 300px;
         }
-    
+
         #polar-chart-holder {
             padding-top: 20px;
         }
@@ -59,7 +59,7 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <text class="green-text text-darken-3">Agro</text><text class="orange-text text-darken-3">Tur</text>
                 </a>
-                
+
                 <ul class="right">
                     <li>
                         <!-- Dropdown Offer Service Trigger -->
@@ -107,7 +107,7 @@
                             <li><a href="#!" class="black-text">Formatar a exibição para<br/>
                                 definir largura e altura<br/>
                                 quando já estiver implementado.</a>
-                            </li>   
+                            </li>
                             <li><a href="#!" class="black-text">Ver Todos</a></li>
                         </ul>
                     </li>
@@ -125,7 +125,7 @@
                             <li><a href="#!" class="black-text">Formatar a exibição para<br/>
                                 definir largura e altura<br/>
                                 quando já estiver implementado.</a>
-                            </li>    
+                            </li>
                             <li><a href="#!" class="black-text">Textos intencionalmente visiveis
                             <li><a href="#!" class="black-text center">Ver Todas</a></li>
                         </ul>
@@ -148,7 +148,7 @@
                         <a class='waves-effect dropdown-trigger grey-text text-darken-3' href='#' data-target='dropdown_Account'>
                             CONTA
                         </a>
-                        
+
                         <!-- Dropdown Account Structure -->
                         <ul id='dropdown_Account' class='dropdown-content'>
                             <li><a href="#!" class="black-text">Minha Conta</a></li>
@@ -190,7 +190,7 @@
             </div>
         </nav>
     </div>
-    
+
     <!--barra de busca
     <div class="navbar-fixed">
             <nav class="white">
@@ -208,25 +208,9 @@
                 </nav>
     </div>
     Adicionar quando o botão estiver pronto
-    -->    
+    -->
 </body>
 
-<<<<<<< HEAD
-    <div class="col-md-8 order-md-1">
-          <h4 class="mb-3">Remover Cliente</h4>
-			<form action = "/ApagarCliente" method = "post">
-          <input type = "hidden" name = "_token" value = "{{ csrf_token()}}"/>
-          <input type="hidden" name="id" value="{{$cliente->id}}" />
-          <form class="needs-validation" novalidate>
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="nome">Nome</label>
-                <input type="text" name = "nome" disabled="disabled" class="form-control" id="nome" placeholder="" required value="{{$cliente->nome}}"> {{ $errors->first('nome')}} <br/>
-                <div class="invalid-feedback">
-                  É necessário um nome válido.
-                </div>
-              </div>
-=======
    <!-- FORMULÁRIO CADASTRO CLIENTE -->
     <section id="contact" class="section section-contact">
       <form action = "/ApagarCliente" method = "post">
@@ -245,56 +229,49 @@
                                 <i class="material-icons prefix">account_circle</i>
                                 <input type="text" name = "nome" disabled="disabled" class="form-control" id="nome" placeholder="" required value="{{$cliente->nome}}"> {{ $errors->first('nome')}} <br/>
                                 <label for="nome">Nome</label>
-                                
+                                <div class="invalid-feedback">
+                                  É necessário um nome válido.
+                                </div>
                             </div>
                             <div class="input-field col s6">
                                 <i class="material-icons prefix">lock</i>
                                 <input type="password" name = "senha" class="form-control" id="senha"required value="{{$cliente->senha}}"> {{ $errors->first('senha')}} <br/>
                                 <label for="senha">Senha</label>
-                                
+
                             </div>
                             <div class="input-field col s6">
                                 <i class="material-icons prefix">recent_actors</i>
                                 <input type="text" name="cpf" class="form-control" id="cpf" required value="{{$cliente->cpf}}"> {{ $errors->first('cpf')}} <br/>
                                 <label for="cpf">CPF</label>
-                                
+
                             </div>
                             <div class="input-field col s6">
                                 <i class="material-icons prefix">phone</i>
                                 <input type="text" name="telefone" disabled="disabled" class="form-control" id="telefone" required value="{{$cliente->telefone}}"> {{ $errors->first('telefone')}} <br/>
                                 <label for="telefone">Telefone</label>
-                                
+
                             </div>
                             <div class="input-field col s6">
                                 <i class="material-icons prefix">email</i>
                                 <input type="email" name="email" disabled="disabled" class="form-control" id="email" value="{{$cliente->email}}"> {{ $errors->first('email')}} <br/>
                                 <label for="email">Email</label>
-                                
+                                <div class="invalid-feedback">
+                                  É necessário um email válido.
+                                </div>
                             </div>
                         </div>
                     </form>
-                    
->>>>>>> TelasFase2
+
             </div>
             <div class="col s6">
                 <hr class="mb-4">
                 <button class="btn btn-primary btn-lg btn-block btn-large light-green darken-3 center" type="submit">Apagar</button>
-            </div>    
+            </div>
             </div>
         </div>
 
-<<<<<<< HEAD
-            <div class="mb-3">
-              <label for="email">Email</label>
-              <input type="email" name="email" disabled="disabled" class="form-control" id="email" placeholder="você@exemplo.com" value="{{$cliente->email}}"> {{ $errors->first('email')}} <br/>
-              <div class="invalid-feedback">
-                É necessário um email válido.
-              </div>
-            </div>
-=======
     </section>
   </body>
->>>>>>> TelasFase2
 
 <body><!--  Scripts Novamente, caminhos absolutos.-->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
