@@ -49,6 +49,11 @@
     </style>
   </head>
 
+    <!--
+        TODO O layout pode ser revisto.
+        Aproveitar melhor o espaço da tela, centralizar melhor os itens, deixar mais simétrico.
+    -->
+
   <body>
   <body><!--Navigation bar-->
     <div class="navbar-fixed hide-on-med-and-down">
