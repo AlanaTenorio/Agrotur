@@ -1,13 +1,12 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>
-            <title>Hello</title>
-
+      <title>Agortur</title>
     </head>
     <body>
     	<h1>Imagens</h1>
 
-    	<form action="/salvarImagemHospedagem" method="post" enctype="multipart/form-data">
+    	<form action="/SalvarImagemHospedagem" method="post" enctype="multipart/form-data">
     		<input type="hidden" name="_token" value="{{ csrf_token() }}" />
     			<input type="hidden" name="hospedagem_id" value="{{ $hospedagem->id}}" />
           <input type="file" id="primaryImage" name="primaryImage" accept="image/*" />
