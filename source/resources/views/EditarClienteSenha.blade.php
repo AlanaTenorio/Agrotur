@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="Alysson Manso" >
+    <meta name="author" content="Eberson Manso" >
     <link rel="icon" href="../../../../favicon.ico">
 
 
@@ -30,8 +30,8 @@
         			<a class="nav-link" data-toggle="dropdown" href="#">Opções Cliente
         			<span class="caret"></span></a>
         			<ul class="dropdown-menu">
-          			<li><a href="cadastroCliente">Cadastrar Cliente</a></li>
-          			<li><a href="listaClientes">Listar Clientes</a></li>
+          			<li><a href="EditarCliente">Editar Cliente</a></li>
+          			<li><a href="ListaClientes">Listar Clientes</a></li>
         			</ul>
       		</li>
           </ul>
@@ -69,63 +69,37 @@
 
    <p>&nbsp;&nbsp</p>
 
-   <!-- Exibição do form de cadastro -->
+   <!-- Exibição do form de edicao -->
 
     <div class="col-md-8 order-md-1">
-          <h4 class="mb-3">Cadastrar Cliente</h4>
-			<form action = "cadastroCliente" method = "post">
+          <h4 class="mb-3">Editar Senha</h4>
+			<form action = "/SalvarSenhaCliente" method = "post">
           <input type = "hidden" name = "_token" value = "{{ csrf_token()}}"/>
+          <input type="hidden" name="id" value="{{$cliente->id}}" />
           <form class="needs-validation" novalidate>
             <div class="row">
+
               <div class="col-md-6 mb-3">
-                <label for="nome">Nome</label>
-                <input type="text" name = "nome" class="form-control" id="nome" placeholder="" required value= {{ old('nome')}}> {{ $errors->first('nome')}} <br/>
-                <div class="invalid-feedback">
-                  É necessário um nome válido.
-                </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="senha">Senha</label>
-                <input type="password" name = "senha" class="form-control" id="senha" placeholder="" required value={{ old('senha')}}> {{ $errors->first('senha')}} <br/>
+                <label for="senha">Senha atual</label>
+                <input type="password" name = "senha" class="form-control" id="senha" placeholder="" required> {{ $errors->first('senha')}} <br/>
                 <div class="invalid-feedback">
                   É necessário uma senha válida.
                 </div>
 
-                <label for="senha-confirmacao">Confirme a Senha</label>
-                <input type="password" name = "senha_confirmation" class="form-control" id="senha-confirmacao" placeholder="" required>
-
-              </div>
-            </div>
-				<div class="mb-3">
-              <label for="username">CPF</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
+                <label for="senha">Nova Senha</label>
+                <input type="password" name = "novaSenha" class="form-control" id="novaSenha" placeholder="" required> {{ $errors->first('novaSenha')}} <br/>
+                <div class="invalid-feedback">
+                  É necessário uma senha válida.
                 </div>
-                <input type="text" name="cpf" class="form-control" id="username" placeholder="xxx.xxx.xxx-xx" required value={{ old('cpf')}}> {{ $errors->first('cpf')}} <br/>
-                <div class="invalid-feedback" style="width: 100%;">
-                  É necessário seu CPF.
-                </div>
-              </div>
-            </div>
 
-            <div class="mb-3">
-              <label for="email">Email</label>
-              <input type="email" name="email" class="form-control" id="email" placeholder="você@exemplo.com" value={{ old('email')}}> {{ $errors->first('email')}} <br/>
-              <div class="invalid-feedback">
-                É necessário um CPF válido.
-              </div>
-            </div>
+                <label for="senha">Confirme a Senha</label>
+                <input type="password" name = "novaSenha_confirmation" class="form-control" id="novaSenha-confirmacao" placeholder="" required>
 
-            <div class="mb-3">
-              <label for="telefone">Telefone</label>
-              <input type="text" name="telefone" class="form-control" id="address" placeholder="81998541236" required value={{ old('telefone')}}> {{ $errors->first('telefone')}} <br/>
-              <div class="invalid-feedback">
-                Cadastre um telefone válido.
               </div>
             </div>
 
             <hr class="mb-4">
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Cadastrar Cliente</button>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Salvar</button>
 
 
   </body>

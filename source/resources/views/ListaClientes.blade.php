@@ -81,6 +81,7 @@
       <th scope="col">#</th>
       <th scope="col"> <?php echo $cliente->nome ?> </th>
       <th scope="col"><a href="/EditarCliente/{{$cliente->id}}">Editar</a></th>
+      <th scope="col"><a href="/EditarSenha/{{$cliente->id}}">Editar Senha</a></th>
       <th scope="col"><a href="/RemoverCliente/{{$cliente->id}}">Remover</a></th>
     </tr>
 

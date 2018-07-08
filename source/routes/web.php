@@ -35,9 +35,13 @@ Route::get('/RemoverCliente/{id}', "ClienteController@remover");
 
 Route::get('/EditarCliente/{id}', "ClienteController@editar");
 
+Route::get('/EditarSenha/{id}', "ClienteController@editarSenha");
+
 Route::post('/ApagarCliente', "ClienteController@apagar");
 
 Route::post('/SalvarCliente', "ClienteController@salvar");
+
+Route::post('/SalvarSenhaCliente', "ClienteController@salvarSenha");
 
 Route::get('/cadastroHospedagem', function(Request $request) {
     return view('CadastroHospedagem');
@@ -109,4 +113,3 @@ Route::post('/SalvarImagemServico', "ServiçoController@salvarImagemServico");
 Route::get('/EditarImagensServico/{id}', "ServiçoController@editarImagens");
 
 Route::get('/RemoverImagemServico/{id}', "ServiçoController@removerImagens");
-
