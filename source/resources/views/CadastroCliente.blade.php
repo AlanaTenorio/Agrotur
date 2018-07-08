@@ -236,6 +236,10 @@
                                 <input type="password" name = "senha" class="form-control" id="senha" required value={{ old('senha')}}> {{ $errors->first('senha')}} <br/>
                                 <label for="senha">Senha</label>
 
+                                <div class="input-field col s12.5">
+                                  <input type="password" name = "senha_confirmation" class="form-control" id="senha_Confirmation" required>
+                                  <label for="senha_Confirmation">Confirme a senha</label>
+                                </div>
                             </div>
                             <div class="input-field col s6">
                                 <i class="material-icons prefix">recent_actors</i>
