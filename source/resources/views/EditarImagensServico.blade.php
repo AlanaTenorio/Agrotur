@@ -15,7 +15,7 @@
 
         <form action="/SalvarImagemServico" method="post" enctype="multipart/form-data">
         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-          <input type="hidden" name="serviço_id" value="{{ $servico->id}}" />
+          <input type="hidden" name="servico_id" value="{{ $servico->id}}" />
           <input type="file" id="primaryImage" name="primaryImage" accept="image/*" />
           <input type="submit" name="enviar" value="ENVIAR"/>
         </form>

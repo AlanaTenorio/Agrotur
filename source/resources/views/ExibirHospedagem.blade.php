@@ -257,7 +257,7 @@
                 <h5>Descrição</h5>
               </li>
               <li class="collection-item">
-                <p>{{ $anuncio->descriçao }}</p>
+                <p>{{ $anuncio->descricao }}</p>
               </li>
 
               <ul class="collection with-header">
@@ -269,7 +269,7 @@
                         <ul class="collection with-header">
 
                           @foreach ($servicos as $s)
-                            <li class="collection-item"> {{ $s->serviço }} </li>
+                            <li class="collection-item"> {{ $s->servico }} </li>
                           @endforeach
                           </ul>
                       </div>
@@ -287,7 +287,7 @@
             <div class="card-panel light-green lighten-3">
               
               <li class="collection-header light-green darken-3 white-text">
-                <h4>R$ {{ $hospedagem->preçoDiaria }} por dia</h4>
+                <h4>R$ {{ $hospedagem->precoDiaria }} por dia</h4>
               </li>
 
                 <h6>Check-in</h6>

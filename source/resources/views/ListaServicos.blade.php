@@ -79,8 +79,8 @@
   @foreach ($servicos as $servico)
     <tr>
       <th scope="col">#</th>
-      <th scope="col"> {{$servico->nomeServiço}} </th>
-      <th scope="col"> {{$servico->preço}}  </th>
+      <th scope="col"> {{$servico->nomeServico}} </th>
+      <th scope="col"> {{$servico->preco}}  </th>
       <th scope="col"><a href="/ExibirServico/{{$servico->id}}">Visualizar</a></th>
     </tr>
   @endforeach

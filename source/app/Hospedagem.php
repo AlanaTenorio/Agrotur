@@ -13,6 +13,6 @@ class Hospedagem extends Model
     return $this->hasMany('app\Imagem_Hospedagem');
   }
   public function servico_oferecido_Hospedagem(){
-    return $this->hasMany('app\serviçoOferecido_hospedagem');
+    return $this->hasMany('app\servicoOferecido_hospedagem');
   }
 }

@@ -83,33 +83,33 @@ Route::get('/cadastroServico', function(Request $request) {
     return view('CadastroServico');
 });
 
-Route::post('/cadastroServico', "ServiçoController@adicionarServico");
+Route::post('/cadastroServico', "ServicoController@adicionarServico");
 
-Route::get('/listaServicos', "ServiçoController@listarServicos");
+Route::get('/listaServicos', "ServicoController@listarServicos");
 
-Route::get('/EditarServico/{id}', "ServiçoController@editar");
+Route::get('/EditarServico/{id}', "ServicoController@editar");
 
-Route::post('/SalvarServico', "ServiçoController@salvar");
+Route::post('/SalvarServico', "ServicoController@salvar");
 
-Route::get('/ExibirServico/{id}', "ServiçoController@exibirServico");
+Route::get('/ExibirServico/{id}', "ServicoController@exibirServico");
 
-Route::get('/RemoverServico/{id}', "ServiçoController@remover");
+Route::get('/RemoverServico/{id}', "ServicoController@remover");
 
 Route::get('/inserirImagensServico', function(Request $request) {
     return view('InserirImagensServico');
 });
 
-Route::get('/InserirImagensServico/{id}', "ServiçoController@inserirImagensServico");
+Route::get('/InserirImagensServico/{id}', "ServicoController@inserirImagensServico");
 
 
-Route::post('/salvarImagemServico', "ServiçoController@salvarImagemServico");
+Route::post('/salvarImagemServico', "ServicoController@salvarImagemServico");
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('/SalvarImagemServico', "ServiçoController@salvarImagemServico");
+Route::post('/SalvarImagemServico', "ServicoController@salvarImagemServico");
 
-Route::get('/EditarImagensServico/{id}', "ServiçoController@editarImagens");
+Route::get('/EditarImagensServico/{id}', "ServicoController@editarImagens");
 
-Route::get('/RemoverImagemServico/{id}', "ServiçoController@removerImagens");
+Route::get('/RemoverImagemServico/{id}', "ServicoController@removerImagens");

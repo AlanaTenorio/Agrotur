@@ -5,63 +5,63 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\ImageRepository;
 
-class ServiçoController extends Controller
+class ServicoController extends Controller
 {
   public function adicionarServico(Request $request){
 
     $anuncio = new \App\Anuncio();
-    $anuncio->descriçao = $request->descriçao;
+    $anuncio->descricao = $request->descricao;
     $anuncio->anunciante_id = $request->anunciante_id;
     $anuncio->save();
 
-    $serviço = new \App\Serviço();
-    $serviço->nomeServiço = $request->nomeServiço;
-    $serviço->preço = $request->preço;
-    $serviço->anuncio_id = $anuncio->id;
-    $serviço->save();
+    $servico = new \App\Servico();
+    $servico->nomeServico = $request->nomeServico;
+    $servico->preco = $request->preco;
+    $servico->anuncio_id = $anuncio->id;
+    $servico->save();
 
-    return redirect ("/InserirImagensServico/{$serviço->id}");
+    return redirect ("/InserirImagensServico/{$servico->id}");
   }
 
   public function editar($id) {
-    $servico = \App\Serviço::find($id);
+    $servico = \App\Servico::find($id);
     $anuncio = \App\Anuncio::find($servico->anuncio_id);
     return view("EditarServico", ['servico' => $servico,
                                      'anuncio' => $anuncio]);
   }
 
   public function salvar(Request $request){
-    $serviço = \App\Serviço::find($request->id);
-    $serviço->nomeServiço = $request->nomeServiço;
-    $serviço->preço = $request->preço;
-    $serviço->save();
+    $servico = \App\Servico::find($request->id);
+    $servico->nomeServico = $request->nomeServico;
+    $servico->preco = $request->preco;
+    $servico->save();
 
-    $anuncio = \App\Anuncio::find($serviço->anuncio_id);
-    $anuncio->descriçao = $request->descriçao;
+    $anuncio = \App\Anuncio::find($servico->anuncio_id);
+    $anuncio->descricao = $request->descricao;
     $anuncio->anunciante_id = $request->anunciante_id;
     $anuncio->save();
     return redirect ('/listaServicos');
   }
 
   public function listarServicos(){
-    $servicos = \App\Serviço::all();
+    $servicos = \App\Servico::all();
     return view ('ListaServicos', ['servicos' => $servicos]);
   }
 
   public function exibirServico($id) {
-    $servicos = \App\Serviço::find($id);
+    $servicos = \App\Servico::find($id);
     $anuncio = \App\Anuncio::find($servicos->anuncio_id);
-    $imagens = \App\Imagem_Serviço::where('serviço_id', '=', $id)->get();
+    $imagens = \App\Imagem_Servico::where('servico_id', '=', $id)->get();
     return view("ExibirServico", ['servicos' => $servicos,
                                       'imagens' => $imagens,
                                       'anuncio' => $anuncio]);
   }
 
   public function remover($id) {
-    $servico = \App\Serviço::find($id);
+    $servico = \App\Servico::find($id);
     
     // Apaga todas as imagens da servico escolhida
-    $imagens = \App\Imagem_Serviço::where('serviço_id', '=', $id)->get();
+    $imagens = \App\Imagem_Servico::where('servico_id', '=', $id)->get();
     foreach ($imagens as $i) {
       $path = $i->imagem;
       unlink(".".$path); // deleta o arquivo de imagem
@@ -73,18 +73,18 @@ class ServiçoController extends Controller
   }
 
   public function inserirImagensServico($id){
-    $serviço= \App\Serviço::find($id);
-    return view("InserirImagensServico", ['serviço' => $serviço]);
+    $servico= \App\Servico::find($id);
+    return view("InserirImagensServico", ['servico' => $servico]);
   }
 
   public function salvarImagemServico(Request $request, ImageRepository $repo){
-    $servico = \App\Serviço::find($request->serviço_id);
-    $imagem = new \App\Imagem_Serviço();
+    $servico = \App\Servico::find($request->servico_id);
+    $imagem = new \App\Imagem_Servico();
 
     // Testa se tem um arquivo sendo enviado
     if ($request->hasFile('primaryImage')) {
-      $imagem->imagem = $repo->saveImage($request->primaryImage, $request->serviço_id, 'servicos', 250);
-      $imagem->serviço_id = $servico->id;
+      $imagem->imagem = $repo->saveImage($request->primaryImage, $request->servico_id, 'servicos', 250);
+      $imagem->servico_id = $servico->id;
       $imagem->save();
     }
     
@@ -92,14 +92,14 @@ class ServiçoController extends Controller
   }
 
   public function editarImagens($id){
-    $servico = \App\Serviço::find($id);
-    $imagens = \App\Imagem_Serviço::where('serviço_id', '=', $servico->id)->get();
+    $servico = \App\Servico::find($id);
+    $imagens = \App\Imagem_Servico::where('servico_id', '=', $servico->id)->get();
     return view("EditarImagensServico", ['servico' => $servico,
                                          'imagens' => $imagens]);
   }
 
   public function removerImagens($id){
-    $imagem = \App\Imagem_Serviço::find($id);
+    $imagem = \App\Imagem_Servico::find($id);
 
     $path = $imagem->imagem;
     unlink(".".$path); // deleta o arquivo de imagem
