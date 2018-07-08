@@ -85,13 +85,6 @@
                   É necessário um nome válido.
                 </div>
               </div>
-              <div class="col-md-6 mb-3">
-                <label for="senha">Senha</label>
-                <input type="password" name = "senha" disabled="disabled" class="form-control" id="senha" placeholder="" required value="{{$cliente->senha}}"> {{ $errors->first('senha')}} <br/>
-                <div class="invalid-feedback">
-                  É necessário uma senha válida.
-                </div>
-              </div>
             </div>
 				<div class="mb-3">
               <label for="username">CPF</label>
@@ -109,7 +102,7 @@
               <label for="email">Email</label>
               <input type="email" name="email" disabled="disabled" class="form-control" id="email" placeholder="você@exemplo.com" value="{{$cliente->email}}"> {{ $errors->first('email')}} <br/>
               <div class="invalid-feedback">
-                É necessário um CPF válido.
+                É necessário um email válido.
               </div>
             </div>
 
