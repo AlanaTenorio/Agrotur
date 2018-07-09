@@ -224,7 +224,7 @@
                         <thead>
                         <?php foreach ($clientes as $cliente){ ?>
                             <tr>
-                            <th scope="col">#</th>
+                            <th scope="col"><i class="material-icons">person</i></th>
                             <th scope="col"> <?php echo $cliente->nome ?> </th>
                             <th scope="col"><a href="/EditarCliente/{{$cliente->id}}">Editar</a></th>
                             <th scope="col"><a href="/RemoverCliente/{{$cliente->id}}">Remover</a></th>
