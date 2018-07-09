@@ -7,11 +7,11 @@
     <title>AgroTur - cadastrar anúncio</title>
     <!--caminho absoluto para o favicon-->
     <link rel="icon" id="icon_AgroTur" href="/public_resources/images/fav_icon.png"><!--TODO corrigir isso-->
-    <!-- CSS 
+    <!-- CSS
     É mais conveniente usar caminhos absolutos.-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
-    
+
     <!--adicionar styles abaixo ao css do materialize ou criar um arquivo para estilos customizados-->
     <style>
         /*--------------------------------------------------------------------------------------
@@ -22,7 +22,7 @@
             min-height: 100vh;
             flex-direction: column;
         }
-    
+
         .page-footer.sticky-footer.main {
             flex: 1 0 auto;
         }
@@ -35,15 +35,15 @@
             bottom: 0;
             width: 100%;
         }
-    
+
         .page-footer .container {
             padding: 0 15px;
         }
-    
+
         #world-map-markers {
             height: 300px;
         }
-    
+
         #polar-chart-holder {
             padding-top: 20px;
         }
@@ -60,7 +60,7 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <text class="green-text text-darken-3">Agro</text><text class="orange-text text-darken-3">Tur</text>
                 </a>
-                
+
                 <ul class="right">
                     <li>
                         <!-- Dropdown Offer Service Trigger -->
@@ -99,7 +99,7 @@
                             <li><a href="#!" class="black-text">Formatar a exibição para<br/>
                                 definir largura e altura<br/>
                                 quando já estiver implementado.</a>
-                            </li>   
+                            </li>
                             <li><a href="#!" class="black-text">Ver Todos</a></li>
                         </ul>
                     </li>
@@ -117,7 +117,7 @@
                             <li><a href="#!" class="black-text">Formatar a exibição para<br/>
                                 definir largura e altura<br/>
                                 quando já estiver implementado.</a>
-                            </li>    
+                            </li>
                             <li><a href="#!" class="black-text">Textos intencionalmente visiveis
                             <li><a href="#!" class="black-text center">Ver Todas</a></li>
                         </ul>
@@ -140,7 +140,7 @@
                         <a class='waves-effect dropdown-trigger grey-text text-darken-3' href='#' data-target='dropdown_Account'>
                             CONTA
                         </a>
-                        
+
                         <!-- Dropdown Account Structure -->
                         <ul id='dropdown_Account' class='dropdown-content'>
                             <li><a href="#!" class="black-text">Minha Conta</a></li>
@@ -182,7 +182,7 @@
             </div>
         </nav>
     </div>
-    
+
     <!--barra de busca
     <div class="navbar-fixed">
             <nav class="white">
@@ -200,7 +200,7 @@
                 </nav>
     </div>
     Adicionar quando o botão estiver pronto
-    -->    
+    -->
 </body>
 
 <body>
@@ -237,8 +237,8 @@
                 <label class="active" for="lodging_price">Preço da diária:</label>
                 <input name="lodging_price" placeholder="Valor em reais. Exemplo: 60.00" id="lodging_price" type="text" class="validate">
                 -->
-                <label class="active" for="precoDiaria">Preço da diária:</label>
-                <input name="precoDiaria" placeholder="Valor em reais. Exemplo: 60.00" id="precoDiaria" type="text" class="validate">
+                <label class="active" for="preco">Preço da diária:</label>
+                <input name="preco" placeholder="Valor em reais. Exemplo: 60.00" id="preco" type="text" class="validate">
             </div>
             <div class="col s12 center"> <!-- Descrição -->
                 <div class="row">
@@ -451,7 +451,7 @@
             </button>
         </div>
         <!--<input type="submit" value="proximo" />-->
-        
+
     </form>
 
 </body>
@@ -624,5 +624,5 @@
     </script>
 
 </body>
-  
+
 </html>

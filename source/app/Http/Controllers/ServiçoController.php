@@ -12,11 +12,11 @@ class ServicoController extends Controller
     $anuncio = new \App\Anuncio();
     $anuncio->descricao = $request->descricao;
     $anuncio->anunciante_id = $request->anunciante_id;
+    $anuncio->preco = $request->preco;
     $anuncio->save();
 
     $servico = new \App\Servico();
     $servico->nomeServico = $request->nomeServico;
-    $servico->preco = $request->preco;
     $servico->anuncio_id = $anuncio->id;
     $servico->save();
 
@@ -33,12 +33,12 @@ class ServicoController extends Controller
   public function salvar(Request $request){
     $servico = \App\Servico::find($request->id);
     $servico->nomeServico = $request->nomeServico;
-    $servico->preco = $request->preco;
     $servico->save();
 
     $anuncio = \App\Anuncio::find($servico->anuncio_id);
     $anuncio->descricao = $request->descricao;
     $anuncio->anunciante_id = $request->anunciante_id;
+    $anuncio->preco = $request->preco;
     $anuncio->save();
     return redirect ('/listaServicos');
   }
@@ -59,7 +59,7 @@ class ServicoController extends Controller
 
   public function remover($id) {
     $servico = \App\Servico::find($id);
-    
+
     // Apaga todas as imagens da servico escolhida
     $imagens = \App\Imagem_Servico::where('servico_id', '=', $id)->get();
     foreach ($imagens as $i) {
@@ -87,7 +87,7 @@ class ServicoController extends Controller
       $imagem->servico_id = $servico->id;
       $imagem->save();
     }
-    
+
     return redirect($_SERVER['HTTP_REFERER']);
   }
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHospedagemsTable extends Migration
+class CreateEnderecosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,16 @@ class CreateHospedagemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('hospedagems', function (Blueprint $table) {
+        Schema::create('enderecos', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('nomePropriedade');
+            $table->string("cidade");
+            $table->string("estado");
+            $table->string("rua");
+            $table->string("numero");
+            $table->string("bairro");
+            $table->string("cep")->unique();
+            $table->string("complemento");
             $table->integer('anuncio_id');
             $table->foreign('anuncio_id')->references('id')->on('anuncios');
         });
@@ -29,6 +35,6 @@ class CreateHospedagemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hospedagems');
+        Schema::dropIfExists('enderecos');
     }
 }

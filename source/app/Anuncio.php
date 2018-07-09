@@ -9,4 +9,8 @@ class Anuncio extends Model
   public function hospedagem(){
     return $this->hasOne('app\Hospedagem');
   }
+
+  public function endereco(){
+    return $this->hasOne('app\Endereco');
+  }
 }
