@@ -13,11 +13,11 @@ class HospedagemController extends Controller
     $anuncio = new \App\Anuncio();
     $anuncio->descricao = $request->descricao;
     $anuncio->anunciante_id = $request->anunciante_id;
+    $anuncio->preco = $request->preco;
     $anuncio->save();
 
     $hospedagem = new \App\Hospedagem();
     $hospedagem->nomePropriedade = $request->nomePropriedade;
-    $hospedagem->precoDiaria = $request->precoDiaria;
     $hospedagem->anuncio_id = $anuncio->id;
     $hospedagem->save();
 
@@ -50,12 +50,12 @@ class HospedagemController extends Controller
   public function salvar(Request $request) {
     $hospedagem = \App\Hospedagem::find($request->id);
     $hospedagem->nomePropriedade = $request->nomePropriedade;
-    $hospedagem->precoDiaria = $request->precoDiaria;
     $hospedagem->save();
 
     $anuncio = \App\Anuncio::find($hospedagem->anuncio_id);
     $anuncio->descricao = $request->descricao;
     $anuncio->anunciante_id = $request->anunciante_id;
+    $anuncio->preco = $request->preco;
     $anuncio->save();
     return redirect ('/listaHospedagens');
   }

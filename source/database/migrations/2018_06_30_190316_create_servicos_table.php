@@ -17,7 +17,6 @@ class CreateServicosTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('nomeServico');
-            $table->decimal('preco');
             $table->integer('anuncio_id');
             $table->foreign('anuncio_id')->references('id')->on('anuncios');
         });
