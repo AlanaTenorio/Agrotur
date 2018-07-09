@@ -318,12 +318,19 @@
       </div>
     </div>
 
-    <a href="/EditarHospedagem/{{$hospedagem->id}}">Editar Hospedagem</a><br>
-      <a href="/EditarImagensHospedagem/{{$hospedagem->id}}">Alterar Imagens</a><br>
-      <a href="/EditarServicosHospedagem/{{$hospedagem->id}}">Alterar Serviços</a><br>
-      <a href="/RemoverHospedagem/{{$hospedagem->id}}">Remover Hospedagem</a><br>
 
-  </section>
+<nav>
+  <div class="nav-wrapper light-green darken-3 center">
+    <a href="" class="brand-logo">Mais opções</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="/EditarHospedagem/{{$hospedagem->id}}">Editar Hospedagem</a></li>
+      <li><a href="/EditarImagensHospedagem/{{$hospedagem->id}}">Alterar Imagens</a></li>
+     <li><a href="/EditarServicosHospedagem/{{$hospedagem->id}}">Alterar Serviços</a></li>
+     <li><a href="/RemoverHospedagem/{{$hospedagem->id}}">Remover Hospedagem</a></li>
+    </ul>
+  </div>
+</nav>
+
 
   <!--JavaScript at end of body for optimized loading-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
