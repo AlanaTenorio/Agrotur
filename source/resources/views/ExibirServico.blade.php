@@ -6,11 +6,11 @@
     <title>{{ $servicos->nomeServiço }}</title>
     <!--caminho absoluto para o favicon-->
     <link rel="icon" id="icon_AgroTur" href="https://bit.ly/2z4Hf9o">
-    <!-- CSS 
+    <!-- CSS
     É mais conveniente usar caminhos absolutos.-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
-    
+
     <!--adicionar styles abaixo ao css do materialize ou criar um arquivo para estilos customizados-->
     <style>
         /*--------------------------------------------------------------------------------------
@@ -21,7 +21,7 @@
             min-height: 100vh;
             flex-direction: column;
         }
-    
+
         .page-footer.sticky-footer.main {
             flex: 1 0 auto;
         }
@@ -34,15 +34,15 @@
             bottom: 0;
             width: 100%;
         }
-    
+
         .page-footer .container {
             padding: 0 15px;
         }
-    
+
         #world-map-markers {
             height: 300px;
         }
-    
+
         #polar-chart-holder {
             padding-top: 20px;
         }
@@ -59,7 +59,7 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <text class="green-text text-darken-3">Agro</text><text class="orange-text text-darken-3">Tur</text>
                 </a>
-                
+
                 <ul class="right">
                     <li>
                         <!-- Dropdown Offer Service Trigger -->
@@ -107,7 +107,7 @@
                             <li><a href="#!" class="black-text">Formatar a exibição para<br/>
                                 definir largura e altura<br/>
                                 quando já estiver implementado.</a>
-                            </li>   
+                            </li>
                             <li><a href="#!" class="black-text">Ver Todos</a></li>
                         </ul>
                     </li>
@@ -125,7 +125,7 @@
                             <li><a href="#!" class="black-text">Formatar a exibição para<br/>
                                 definir largura e altura<br/>
                                 quando já estiver implementado.</a>
-                            </li>    
+                            </li>
                             <li><a href="#!" class="black-text">Textos intencionalmente visiveis
                             <li><a href="#!" class="black-text center">Ver Todas</a></li>
                         </ul>
@@ -148,7 +148,7 @@
                         <a class='waves-effect dropdown-trigger grey-text text-darken-3' href='#' data-target='dropdown_Account'>
                             CONTA
                         </a>
-                        
+
                         <!-- Dropdown Account Structure -->
                         <ul id='dropdown_Account' class='dropdown-content'>
                             <li><a href="#!" class="black-text">Minha Conta</a></li>
@@ -190,7 +190,7 @@
             </div>
         </nav>
     </div>
-    
+
     <!--barra de busca
     <div class="navbar-fixed">
             <nav class="white">
@@ -208,7 +208,7 @@
                 </nav>
     </div>
     Adicionar quando o botão estiver pronto
-    -->    
+    -->
 </body>
 
    <!-- EXIBIÇÃO ANUNCIO -->
@@ -263,11 +263,11 @@
           </ul>
         </div>
 
-        <!-- FORM DE HOSPEDAGEM--> 
+        <!-- FORM DE HOSPEDAGEM-->
 
         <div class="col s12 m6">
             <div class="card-panel light-green lighten-3">
-              
+
               <li class="collection-header light-green darken-3 white-text">
                 <h4>R$ {{ $servicos->preço }} por pessoa</h4>
               </li>
@@ -292,8 +292,8 @@
                       <option value="3">3</option>
                     </select>
                   </div>
-             
-            
+
+
               <input type="submit" value="Submit" class="btn light-green darken-3">
             </div>
           </div>
@@ -311,7 +311,7 @@
   </div>
 </nav>
 
-    
+
 
   <!--JavaScript at end of body for optimized loading-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
@@ -341,7 +341,7 @@
     M.Datepicker.init(datepicker2, {
       autoClose: true,
     });
-    
+
     //Quantidade de hóspedes
     document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('select');

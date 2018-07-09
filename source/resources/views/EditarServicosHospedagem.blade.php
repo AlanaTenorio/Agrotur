@@ -8,7 +8,7 @@
 
         <p> serviços oferecidos: </p>
         @foreach ($servicos as $s)
-          <p> {{ $s->serviço }} <a href="/RemoverServicosHospedagem/{{$s->id}}">Remover</a></p>
+          <p> {{ $s->servico }} <a href="/RemoverServicosHospedagem/{{$s->id}}">Remover</a></p>
         @endforeach
 
         <form action="/salvarServicosOferecidos" method="post">

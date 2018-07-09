@@ -49,6 +49,11 @@
     </style>
   </head>
 
+    <!--
+        TODO O layout pode ser revisto.
+        Aproveitar melhor o espaço da tela, centralizar melhor os itens, deixar mais simétrico.
+    -->
+
   <body>
   <body><!--Navigation bar-->
     <div class="navbar-fixed hide-on-med-and-down">
@@ -225,39 +230,39 @@
                     </li>
                     <form class="col s12 m10">
                         <div class="row">
-                            <div class="input-field col s6">
+                            <div class="input-field col s12 m6">
                                 <i class="material-icons prefix">account_circle</i>
                                 <input type="text" name="nome" class="form-control" id="nome"required value= {{ old('nome')}}> {{ $errors->first('nome')}} <br/>
                                 <label for="nome">Nome</label>
 
                             </div>
-                            <div class="input-field col s6">
-                                <i class="material-icons prefix">lock</i>
-                                <input type="password" name = "senha" class="form-control" id="senha" required value={{ old('senha')}}> {{ $errors->first('senha')}} <br/>
-                                <label for="senha">Senha</label>
-
-                                <div class="input-field col s12.5">
-                                  <input type="password" name = "senha_confirmation" class="form-control" id="senha_Confirmation" required>
-                                  <label for="senha_Confirmation">Confirme a senha</label>
-                                </div>
-                            </div>
-                            <div class="input-field col s6">
-                                <i class="material-icons prefix">recent_actors</i>
-                                <input type="text" name="cpf" class="form-control" id="cpf" required value={{ old('cpf')}}> {{ $errors->first('cpf')}} <br/>
-                                <label for="cpf">CPF</label>
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix">email</i>
+                                <input type="email" class="validate" name="email" class="form-control" id="email" value={{ old('email')}}> {{ $errors->first('email')}} <br/>
+                                <label for="email">Email</label>
 
                             </div>
-                            <div class="input-field col s6">
+                            <div class="input-field col s12 m6">
                                 <i class="material-icons prefix">phone</i>
                                 <input type="tel" name="telefone" class="form-control" id="telefone" required value={{ old('telefone')}}> {{ $errors->first('telefone')}} <br/>
                                 <label for="telefone">Telefone</label>
 
                             </div>
-                            <div class="input-field col s6">
-                                <i class="material-icons prefix">email</i>
-                                <input type="email" class="validate" name="email" class="form-control" id="email" value={{ old('email')}}> {{ $errors->first('email')}} <br/>
-                                <label for="email">Email</label>
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix">recent_actors</i>
+                                <input type="text" name="cpf" class="form-control" id="cpf" required value={{ old('cpf')}}> {{ $errors->first('cpf')}} <br/>
+                                <label for="cpf">CPF</label>
 
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix">lock</i>
+                                <input type="password" name = "senha" class="form-control" id="senha" required value={{ old('senha')}}> {{ $errors->first('senha')}} <br/>
+                                <label for="senha">Senha</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix">lock</i>
+                                <input type="password" name = "senha_confirmation" class="form-control" id="senha_Confirmation" required>
+                                <label for="senha_Confirmation">Confirme a senha</label>
                             </div>
                         </div>
                     </form>
@@ -272,6 +277,74 @@
 
     </section>
   </body>
+
+<body><!--Footer Desktop-->
+
+<footer class="page-footer teal darken-4 sticky-footer.main">
+    <div class="container">
+        <div class="row">
+            <div class="col l4 xl4 m6 s12"><!--mantendo os limitadores para celulares pra situações adversas-->
+                <h5 class="white-text">Agrotur</h5>
+                <ul>
+                    <li>
+                        <a class="white-text" href="#!">Sobre a Agrotur</a>
+                    </li>
+                    <li>
+                        <a class="white-text" href="#!">Link 2</a>
+                    </li>
+                    <li>
+                        <a class="white-text" href="#!">Link 3</a>
+                    </li>
+                    <li>
+                        <a class="white-text" href="#!">Link 4</a>
+                    </li>
+                </ul>
+
+
+            </div>
+            <div class="col l4 xl4 m6 s12">
+                <h5 class="white-text">Lista de links 1</h5>
+                <ul>
+                    <li>
+                        <a class="white-text" href="#!">Link 1</a>
+                    </li>
+                    <li>
+                        <a class="white-text" href="#!">Link 2</a>
+                    </li>
+                    <li>
+                        <a class="white-text" href="#!">Link 3</a>
+                    </li>
+                    <li>
+                        <a class="white-text" href="#!">Link 4</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col l4 xl4 m6  s12">
+                <h5 class="white-text">Lista de links 2</h5>
+                <ul>
+                    <li>
+                        <a class="white-text" href="#!">Link 1</a>
+                    </li>
+                    <li>
+                        <a class="white-text" href="#!">Link 2</a>
+                    </li>
+                    <li>
+                        <a class="white-text" href="#!">Link 3</a>
+                    </li>
+                    <li>
+                        <a class="white-text" href="#!">Link 4</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            &nbsp;&nbsp;&nbsp;&nbsp;Agrotur 2018
+        </div>
+    </div>
+</footer>
+</body>
 
 <body><!--  Scripts Novamente, caminhos absolutos.-->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -330,4 +403,4 @@
 
 </body>
 
-  </html>
+</html>
