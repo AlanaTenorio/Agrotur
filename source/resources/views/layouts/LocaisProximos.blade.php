@@ -473,24 +473,3 @@
         </span>
     </div>
 </body>
-
-<script>
-    $(document).ready(function () {
-        $('.collapsible').collapsible({
-            accordion: false
-        });
-    });
-    $(document).ready(function(){
-        $('.modal').modal();
-    });
-    $(document).ready(function(){
-        $('.carousel').carousel({
-            dist: -10,
-            indicators:true,
-        }
-        );
-    });
-    $(document).ready(function(){
-        $('.collapsible').collapsible();
-    });
-</script>
