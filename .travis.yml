@@ -13,7 +13,6 @@ before_install:
   - cd source/
   - travis_retry composer self-update
   - composer install
-  - php artisan migrate:fresh
 
 script:
   - phpunit --exclude-group FITS --bootstrap vendor/autoload.php tests
