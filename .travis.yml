@@ -9,9 +9,12 @@ php:
 services:
   - postgresql
 
+before_install:
+  - travis_retry composer self-update
+  - composer install
+
 script:
-  - cd source/
-  - vendor/bin/phpunit
+  - phpunit --exclude-group FITS --bootstrap vendor/autoload.php tests
 
 branch:
   - master
