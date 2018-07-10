@@ -10,15 +10,26 @@ class ServicoController extends Controller
   public function adicionarServico(Request $request){
 
     $anuncio = new \App\Anuncio();
-    $anuncio->descricao = $request->descricao;
-    $anuncio->anunciante_id = $request->anunciante_id;
-    $anuncio->preco = $request->preco;
+    $anuncio->descricao = $request->service_description;
+    $anuncio->anunciante_id = $request->provider_id;
+    $anuncio->preco = $request->service_price;
     $anuncio->save();
 
     $servico = new \App\Servico();
-    $servico->nomeServico = $request->nomeServico;
+    $servico->nomeServico = $request->service_title;
     $servico->anuncio_id = $anuncio->id;
     $servico->save();
+
+    $endereco = new \App\Endereco();
+    $endereco->anuncio_id = $anuncio->id;
+    $endereco->cidade = $request->service_municipality;
+    $endereco->estado = $request->service_state;
+    $endereco->rua = $request->service_street;
+    $endereco->numero = $request->service_street_number;
+    $endereco->bairro = $request->service_neighbourhood;
+    $endereco->cep = $request->service_postal_code;
+    $endereco->complemento = $request->service_address_complement;
+    $endereco->save();
 
     return redirect ("/InserirImagensServico/{$servico->id}");
   }

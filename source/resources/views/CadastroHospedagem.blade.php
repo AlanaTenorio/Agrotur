@@ -208,49 +208,25 @@
     <h4 class="container teal-text text-darken-3">Ofertar hospedagem</h4>
     <br/>
     <form class="container" action="cadastroHospedagem" method="post">
-
-        <!--Remover________________________________________________________________________________________________-->
-        <div class="red">
-            <br>
-            <h1 class="white-text container">LIXO - REMOVER</h1>
-            <div class="white-text container"> Anunciante:<input type="text" name = "anunciante_id"/> <br/> </div>
-            <br>
-            <hr>
-        </div>
-        <!--_______________________________________________________________________________________________________-->
-
+        <input type="hidden" name = "host_id" value="{{Auth::user()->id}}"/>
         <input type = "hidden" name = "_token" value = "{{ csrf_token()}}"/>
         <div class="row"> <!-- Título, preço e descrição -->
             <font size="5" class="row">
                 Descrição:
             </font>
             <div class="input-field col s12"> <!--título-->
-                <!--
                 <label class="active" for="lodging_title">Título do anúncio:</label>
                 <input name="lodging_title" placeholder="Exemplo: " id="lodging_title" type="text" class="validate">
-                -->
-                <label class="active" for="nomePropriedade">Título do anúncio:</label>
-                <input name="nomePropriedade" placeholder="Exemplo: " id="nomePropriedade" type="text" class="validate">
             </div>
             <div class="input-field col s12 m6 l4 left"> <!-- Preço -->
-                <!--
                 <label class="active" for="lodging_price">Preço da diária:</label>
                 <input name="lodging_price" placeholder="Valor em reais. Exemplo: 60.00" id="lodging_price" type="text" class="validate">
-                -->
-                <label class="active" for="preco">Preço da diária:</label>
-                <input name="preco" placeholder="Valor em reais. Exemplo: 60.00" id="preco" type="text" class="validate">
             </div>
             <div class="col s12 center"> <!-- Descrição -->
                 <div class="row">
-                    <!--
                     <div class="input-field col s12">
                         <label for="lodging_description">Descrição do anúncio:</label>
                         <textarea id="lodging_description" class="materialize-textarea" name="lodging_description"></textarea>
-                    </div>
-                    -->
-                    <div class="input-field col s12">
-                        <label for="descricao">Descrição do anúncio:</label>
-                        <textarea id="descricao" class="materialize-textarea" name="descricao"></textarea>
                     </div>
                 </div>
             </div>

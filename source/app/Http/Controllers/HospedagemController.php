@@ -11,15 +11,26 @@ class HospedagemController extends Controller
   public function adicionarHospedagem(Request $request){
 
     $anuncio = new \App\Anuncio();
-    $anuncio->descricao = $request->descricao;
-    $anuncio->anunciante_id = $request->anunciante_id;
-    $anuncio->preco = $request->preco;
+    $anuncio->descricao = $request->lodging_description;
+    $anuncio->anunciante_id = $request->host_id;
+    $anuncio->preco = $request->lodging_price;
     $anuncio->save();
 
     $hospedagem = new \App\Hospedagem();
-    $hospedagem->nomePropriedade = $request->nomePropriedade;
+    $hospedagem->nomePropriedade = $request->lodging_title;
     $hospedagem->anuncio_id = $anuncio->id;
     $hospedagem->save();
+
+    $endereco = new \App\Endereco();
+    $endereco->anuncio_id = $anuncio->id;
+    $endereco->cidade = $request->lodging_municipality;
+    $endereco->estado = $request->lodging_state;
+    $endereco->rua = $request->lodging_street;
+    $endereco->numero = $request->lodging_street_number;
+    $endereco->bairro = $request->lodging_neighbourhood;
+    $endereco->cep = $request->lodging_postal_code;
+    $endereco->complemento = $request->lodging_address_complement;
+    $endereco->save();
 
     return redirect ("/InserirImagensHospedagem/{$hospedagem->id}");
   }
