@@ -14,7 +14,7 @@
 @include('layouts.Navbar')
 
 <body>
-    <h1>Editar imagens</h1>
+    <h1>Editar Serviços</h1>
 
     <p> serviços oferecidos: </p>
     @foreach ($servicos as $s)

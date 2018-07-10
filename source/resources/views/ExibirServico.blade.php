@@ -38,7 +38,9 @@
             </li>
             <li class="collection-item">
               <i class="material-icons">location_on</i>
-              Rua tal cep tal
+              Cidade: {{$endereco->cidade}} - {{$endereco->cep}} - {{$endereco->estado}} </br>
+              Logradouro: {{$endereco->rua}}, Nº: {{$endereco->numero}}, {{$endereco->bairro}}
+              {{$endereco->complemento}} 
             </li>
 
             <ul>
@@ -71,7 +73,7 @@
             <div class="card-panel light-green lighten-3">
 
               <li class="collection-header light-green darken-3 white-text">
-                <h4>R$ {{ $servicos->preço }} por pessoa</h4>
+                <h4>R$ {{ $anuncio->preço }} por pessoa</h4>
               </li>
 
                 <h6>Check-in</h6>
