@@ -11,7 +11,11 @@
         "laravel/tinker": "^1.0",
         "laravellegends/pt-br-validator": "5.1.*",
         "twbs/bootstrap": "4.1.1",
-        "intervention/image": "dev-master"
+        "intervention/image": "dev-master",
+        "behat/behat": "^3.0",
+        "behat/mink": "^1.7",
+        "behat/mink-extension": "^2.1",
+        "laracasts/behat-laravel-extension": "^1.0"
     },
     "require-dev": {
         "filp/whoops": "^2.0",
@@ -55,7 +59,8 @@
     "config": {
         "preferred-install": "dist",
         "sort-packages": true,
-        "optimize-autoloader": true
+        "optimize-autoloader": true,
+        "bin-dir": "bin/"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

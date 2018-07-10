@@ -18,7 +18,7 @@ before_install:
 
 script:
   - phpunit --exclude-group FITS --bootstrap vendor/autoload.php tests
-  - bin/behat
+  - behat
 
 branch:
   - master
