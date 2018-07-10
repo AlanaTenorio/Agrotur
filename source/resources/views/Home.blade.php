@@ -8,33 +8,18 @@
     <link rel="icon" id="icon_AgroTur" href="/public_resources/images/fav_icon.png">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
-    
-    <style>
-        /*--------------------------------------------------------------------------------------
-        Bloco para usar um sticky footer, se der problema no IE, usar um condicional de browser.
-        */
-        function {
-            display: flex;
-            min-height: 100vh;
-            flex-direction: column;
-        }
-    
-        main {
-            flex: 1 0 auto;
-        }
-    </style>
 </head>
 
 
-@include('layouts.navbar')
+@include('layouts.Navbar')
 
-@include('layouts.locaisProximos')
+@include('layouts.LocaisProximos')
 
-@include('layouts.oQueBusca')
+@include('layouts.OQueBusca')
 
-@include('layouts.recomendadoHome')
+@include('layouts.RecomendadoHome')
 
-@include('layouts.footer')
+@include('layouts.Footer')
 
 <body>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

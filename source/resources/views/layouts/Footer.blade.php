@@ -1,6 +1,7 @@
-<body><!--Footer-->
+<!--TODO transformar isso num sticky footer-->
 
-    <footer class="page-footer teal darken-4 sticky-footer.main">
+<body><!--Footer-->
+    <footer class="page-footer teal darken-4">
         <div class="container">
             <div class="row">
                 <div class="col l4 xl4 m6 s12"><!--mantendo os limitadores para celulares pra situações adversas-->
