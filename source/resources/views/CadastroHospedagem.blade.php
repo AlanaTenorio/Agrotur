@@ -216,17 +216,17 @@
             </font>
             <div class="input-field col s12"> <!--título-->
                 <label class="active" for="lodging_title">Título do anúncio:</label>
-                <input name="lodging_title" placeholder="Exemplo: " id="lodging_title" type="text" class="validate">
+                <input name="lodging_title" placeholder="Exemplo: " id="lodging_title" type="text" class="validate" required value= {{ old('lodging_title')}}> {{ $errors->first('lodging_title')}}
             </div>
             <div class="input-field col s12 m6 l4 left"> <!-- Preço -->
                 <label class="active" for="lodging_price">Preço da diária:</label>
-                <input name="lodging_price" placeholder="Valor em reais. Exemplo: 60.00" id="lodging_price" type="text" class="validate">
+                <input name="lodging_price" placeholder="Valor em reais. Exemplo: 60.00" id="lodging_price" type="text" class="validate" required value= {{ old('lodging_price')}}> {{ $errors->first('lodging_price')}}
             </div>
             <div class="col s12 center"> <!-- Descrição -->
                 <div class="row">
                     <div class="input-field col s12">
                         <label for="lodging_description">Descrição do anúncio:</label>
-                        <textarea id="lodging_description" class="materialize-textarea" name="lodging_description"></textarea>
+                        <textarea id="lodging_description" class="materialize-textarea" name="lodging_description" required value= {{ old('lodging_description')}}> {{ $errors->first('lodging_description')}} </textarea>
                     </div>
                 </div>
             </div>
@@ -237,11 +237,11 @@
                 Endereço:
             </font>
             <div class="input-field col s12 m8 l9"> <!--cidade-->
-                <input name="lodging_municipality" id="lodging_municipality" type="text" class="validate">
+                <input name="lodging_municipality" id="lodging_municipality" type="text" class="validate" required value= {{ old('lodging_municipality')}}> {{ $errors->first('lodging_municipality')}}
                 <label class="active" for="lodging_municipality">Cidade:</label>
             </div>
             <div class="input-field col s12 m4 l3"> <!--estado-->
-                <select name="lodging_state" id="lodging_state">
+                <select name="lodging_state" id="lodging_state" class="validate" required value= {{ old('lodging_state')}}> {{ $errors->first('lodging_state')}}
                     <option value="" disabled selected>Escolha o estado</option>
                     <option value="ac">Acre</option>
                     <option value="al">Alagoas</option>
@@ -275,23 +275,23 @@
             </div>
             <div class="input-field col s12 l9"> <!-- rua -->
                 <label class="active" for="lodging_street">Rua:</label>
-                <input name="lodging_street" id="lodging_street" type="text" class="validate">
+                <input name="lodging_street" id="lodging_street" type="text" class="validate" required value= {{ old('lodging_street')}}> {{ $errors->first('lodging_street')}}
             </div>
             <div class="input-field col s12 l3"> <!-- número -->
                 <label class="active" for="lodging_street_number">Número:</label>
-                <input name="lodging_street_number" id="lodging_street_number" type="text" class="validate">
+                <input name="lodging_street_number" id="lodging_street_number" type="text" class="validate" required value= {{ old('lodging_street_number')}}> {{ $errors->first('lodging_street_number')}}
             </div>
             <div class="input-field col s12"> <!-- bairro -->
                 <label class="active" for="lodging_neighbourhood">Bairro:</label>
-                <input name="lodging_neighbourhood" id="lodging_neighbourhood" type="text" class="validate">
+                <input name="lodging_neighbourhood" id="lodging_neighbourhood" type="text" class="validate" required value= {{ old('lodging_neighbourhood')}}> {{ $errors->first('lodging_neighbourhood')}}
             </div>
             <div class="input-field col s12 m6"> <!-- CEP -->
                 <label class="active" for="lodging_postal_code">CEP:</label>
-                <input name="lodging_postal_code" id="lodging_postal_code" type="text" class="validate">
+                <input name="lodging_postal_code" id="lodging_postal_code" type="text" class="validate" required value= {{ old('lodging_postal_code')}}> {{ $errors->first('lodging_postal_code')}}
             </div>
-            <div class="input-field col s12"> <!-- bairro -->
+            <div class="input-field col s12"> <!-- complemento -->
                 <label class="active" for="lodging_address_complement">Complemento:</label>
-                <input name="lodging_address_complement" id="lodging_address_complement" type="text" class="validate">
+                <input name="lodging_address_complement" id="lodging_address_complement" type="text">
             </div>
         </div>
 
