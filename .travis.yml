@@ -10,8 +10,7 @@ services:
   - postgresql
 
 script:
-  - cd source/
-  - bin/phpunit
+  - vendor/bin/phpunit
 
 branch:
   - master
