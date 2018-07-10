@@ -9,8 +9,15 @@ php:
 services:
   - postgresql
 
+before_install:
+  - cd source/
+  - cp .env.example .env
+  - travis_retry composer self-update
+  - composer install
+  - psql -c 'create database agrotur;' -U postgres
+
 script:
-  - echo ""
+  - phpunit --exclude-group FITS --bootstrap vendor/autoload.php tests
 
 branch:
   - master
