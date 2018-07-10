@@ -5,24 +5,19 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>AgroTur - cadastrar anúncio</title>
-    <!--caminho absoluto para o favicon-->
-    <link rel="icon" id="icon_AgroTur" href="/public_resources/images/fav_icon.png"><!--TODO corrigir isso-->
-    <!-- CSS 
-    É mais conveniente usar caminhos absolutos.-->
+    <link rel="icon" id="icon_AgroTur" href="/public_resources/images/fav_icon.png">
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
-    
-    <!--adicionar styles abaixo ao css do materialize ou criar um arquivo para estilos customizados-->
+
     <style>
-        /*--------------------------------------------------------------------------------------
-        Bloco para usar um sticky footer, se der problema no IE, usar um condicional de browser.
-        */
-        .page-footer.sticky-footer {
+        function {
             display: flex;
             min-height: 100vh;
             flex-direction: column;
         }
-    
+<<<<<<< HEAD
+
         .page-footer.sticky-footer.main {
             flex: 1 0 auto;
         }
@@ -35,15 +30,15 @@
             bottom: 0;
             width: 100%;
         }
-    
+
         .page-footer .container {
             padding: 0 15px;
         }
-    
+
         #world-map-markers {
             height: 300px;
         }
-    
+
         #polar-chart-holder {
             padding-top: 20px;
         }
@@ -60,7 +55,7 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <text class="green-text text-darken-3">Agro</text><text class="orange-text text-darken-3">Tur</text>
                 </a>
-                
+
                 <ul class="right">
                     <li>
                         <!-- Dropdown Offer Service Trigger -->
@@ -99,7 +94,7 @@
                             <li><a href="#!" class="black-text">Formatar a exibição para<br/>
                                 definir largura e altura<br/>
                                 quando já estiver implementado.</a>
-                            </li>   
+                            </li>
                             <li><a href="#!" class="black-text">Ver Todos</a></li>
                         </ul>
                     </li>
@@ -117,7 +112,7 @@
                             <li><a href="#!" class="black-text">Formatar a exibição para<br/>
                                 definir largura e altura<br/>
                                 quando já estiver implementado.</a>
-                            </li>    
+                            </li>
                             <li><a href="#!" class="black-text">Textos intencionalmente visiveis
                             <li><a href="#!" class="black-text center">Ver Todas</a></li>
                         </ul>
@@ -140,7 +135,7 @@
                         <a class='waves-effect dropdown-trigger grey-text text-darken-3' href='#' data-target='dropdown_Account'>
                             CONTA
                         </a>
-                        
+
                         <!-- Dropdown Account Structure -->
                         <ul id='dropdown_Account' class='dropdown-content'>
                             <li><a href="#!" class="black-text">Minha Conta</a></li>
@@ -182,7 +177,7 @@
             </div>
         </nav>
     </div>
-    
+
     <!--barra de busca
     <div class="navbar-fixed">
             <nav class="white">
@@ -200,124 +195,106 @@
                 </nav>
     </div>
     Adicionar quando o botão estiver pronto
-    -->    
+    -->
 </body>
+=======
+
+        main {
+            flex: 1 0 auto;
+        }
+    </style>
+</head>
+
+@include('layouts.navbar')
+>>>>>>> 1b1316499ad99b8ba332df7cedefc8460448a35c
 
 <body>
     <br/>
     <h4 class="container teal-text text-darken-3">Ofertar serviço</h4>
     <br/>
     <form class="container" action="cadastroServico" method="post">
-
-        <!--Remover________________________________________________________________________________________________-->
-        <div class="red">
-            <br>
-            <h1 class="white-text container">LIXO - REMOVER</h1>
-            <div class="white-text container"> Anunciante:<input type="text" name = "anunciante_id"/> <br/> </div>
-            <br>
-            <hr>
-        </div>
-        <!--_______________________________________________________________________________________________________-->
-
+        <input type="hidden" name = "provider_id" value="{{Auth::user()->id}}"/>
         <input type = "hidden" name = "_token" value = "{{ csrf_token()}}"/>
-        <div class="row"> <!-- Título, preço e descrição -->
-            <font size="5" class="row">
-                Descrição:
-            </font>
-            <div class="input-field col s12"> <!--título-->
-                <!--
-                <label class="active" for="lodging_title">Título do anúncio:</label>
-                <input name="lodging_title" placeholder="Exemplo: " id="lodging_title" type="text" class="validate">
-                -->
-                <label class="active" for="nomeServico">Título do anúncio:</label>
-                <input name="nomeServico" placeholder="Exemplo: " id="nomeServico" type="text" class="validate">
-            </div>
-            <div class="input-field col s12 m6 l4 left"> <!-- Preço -->
-                <!--
-                <label class="active" for="lodging_price">Preço da diária:</label>
-                <input name="lodging_price" placeholder="Valor em reais. Exemplo: 60.00" id="lodging_price" type="text" class="validate">
-                -->
-                <label class="active" for="preco">Preço:</label>
-                <input name="preco" placeholder="Valor em reais. Exemplo: 60.00" id="preco" type="text" class="validate">
-            </div>
-            <div class="col s12 center"> <!-- Descrição -->
-                <div class="row">
-                    <!--
-                    <div class="input-field col s12">
-                        <label for="lodging_description">Descrição do anúncio:</label>
-                        <textarea id="lodging_description" class="materialize-textarea" name="lodging_description"></textarea>
-                    </div>
-                    -->
-                    <div class="input-field col s12">
-                        <label for="descricao">Descrição do anúncio:</label>
-                        <textarea id="descricao" class="materialize-textarea" name="descricao"></textarea>
-                    </div>
+        <div class="input-field col s12"> <!--título-->
+            <label class="active" for="lodging_title">Título do anúncio:</label>
+            <input name="service_title" placeholder="Exemplo: " id="service_title" type="text" class="validate" required value= {{ old('service_title')}}> {{ $errors->first('service_title')}}
+        </div>
+        <div class="input-field col s12 m6 l4 left"> <!-- Preço -->
+            <label class="active" for="service_price">Preço da diária:</label>
+            <input name="service_price" placeholder="Valor em reais. Exemplo: 60.00" id="service_price" type="text" class="validate" required value= {{ old('service_price')}}> {{ $errors->first('service_price')}}
+        </div>
+        <div class="col s12 center"> <!-- Descrição -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="service_description">Descrição do anúncio:</label>
+                    <textarea id="service_description" class="materialize-textarea" name="service_description" required value= {{ old('service_description')}}> {{ $errors->first('service_description')}} </textarea>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="row"> <!-- Endereço -->
-            <font size="5" class="row">
-                Endereço:
-            </font>
-            <div class="input-field col s12 m8 l9"> <!--cidade-->
-                <input name="lodging_municipality" id="lodging_municipality" type="text" class="validate">
-                <label class="active" for="lodging_municipality">Cidade:</label>
-            </div>
-            <div class="input-field col s12 m4 l3"> <!--estado-->
-                <select name="lodging_state" id="lodging_state">
-                    <option value="" disabled selected>Escolha o estado</option>
-                    <option value="ac">Acre</option>
-                    <option value="al">Alagoas</option>
-                    <option value="ap">Amapá</option>
-                    <option value="am">Amazonas</option>
-                    <option value="ba">Bahia</option>
-                    <option value="ce">Ceará</option>
-                    <option value="df">Distrito Federal</option>
-                    <option value="es">Espírito Santo</option>
-                    <option value="go">Goiás</option>
-                    <option value="ma">Maranhão</option>
-                    <option value="mt">Mato Grosso</option>
-                    <option value="ms">Mato Grosso do Sul</option>
-                    <option value="mg">Minas Gerais</option>
-                    <option value="pa">Pará</option>
-                    <option value="pb">Paraíba</option>
-                    <option value="pr">Paraná</option>
-                    <option value="pe">Pernambuco</option>
-                    <option value="pi">Piauí</option>
-                    <option value="rj">Rio de Janeiro</option>
-                    <option value="rn">Rio Grande do Norte</option>
-                    <option value="rs">Rio Grande do Sul</option>
-                    <option value="ro">Rondônia</option>
-                    <option value="rr">Roraima</option>
-                    <option value="sc">Santa Catarina</option>
-                    <option value="sp">São Paulo</option>
-                    <option value="se">Sergipe</option>
-                    <option value="to">Tocantins</option>
-                </select>
-                <label>Estado</label>
-            </div>
-            <div class="input-field col s12 l9"> <!-- rua -->
-                <label class="active" for="lodging_street">Rua:</label>
-                <input name="lodging_street" id="lodging_street" type="text" class="validate">
-            </div>
-            <div class="input-field col s12 l3"> <!-- número -->
-                <label class="active" for="lodging_street_number">Número:</label>
-                <input name="lodging_street_number" id="lodging_street_number" type="text" class="validate">
-            </div>
-            <div class="input-field col s12"> <!-- bairro -->
-                <label class="active" for="lodging_neighbourhood">Bairro:</label>
-                <input name="lodging_neighbourhood" id="lodging_neighbourhood" type="text" class="validate">
-            </div>
-            <div class="input-field col s12 m6"> <!-- CEP -->
-                <label class="active" for="lodging_postal_code">CEP:</label>
-                <input name="lodging_postal_code" id="lodging_postal_code" type="text" class="validate">
-            </div>
-            <div class="input-field col s12"> <!-- bairro -->
-                <label class="active" for="lodging_address_complement">Complemento:</label>
-                <input name="lodging_address_complement" id="lodging_address_complement" type="text" class="validate">
-            </div>
+    <div class="row"> <!-- Endereço -->
+        <font size="5" class="row">
+            Endereço:
+        </font>
+        <div class="input-field col s12 m8 l9"> <!--cidade-->
+            <input name="service_municipality" id="service_municipality" type="text" class="validate" required value= {{ old('service_municipality')}}> {{ $errors->first('service_municipality')}}
+            <label class="active" for="service_municipality">Cidade:</label>
         </div>
+        <div class="input-field col s12 m4 l3"> <!--estado-->
+            <select name="service_state" id="service_state" class="validate" required value= {{ old('service_state')}}> {{ $errors->first('service_state')}}
+                <option value="" disabled selected>Escolha o estado</option>
+                <option value="ac">Acre</option>
+                <option value="al">Alagoas</option>
+                <option value="ap">Amapá</option>
+                <option value="am">Amazonas</option>
+                <option value="ba">Bahia</option>
+                <option value="ce">Ceará</option>
+                <option value="df">Distrito Federal</option>
+                <option value="es">Espírito Santo</option>
+                <option value="go">Goiás</option>
+                <option value="ma">Maranhão</option>
+                <option value="mt">Mato Grosso</option>
+                <option value="ms">Mato Grosso do Sul</option>
+                <option value="mg">Minas Gerais</option>
+                <option value="pa">Pará</option>
+                <option value="pb">Paraíba</option>
+                <option value="pr">Paraná</option>
+                <option value="pe">Pernambuco</option>
+                <option value="pi">Piauí</option>
+                <option value="rj">Rio de Janeiro</option>
+                <option value="rn">Rio Grande do Norte</option>
+                <option value="rs">Rio Grande do Sul</option>
+                <option value="ro">Rondônia</option>
+                <option value="rr">Roraima</option>
+                <option value="sc">Santa Catarina</option>
+                <option value="sp">São Paulo</option>
+                <option value="se">Sergipe</option>
+                <option value="to">Tocantins</option>
+            </select>
+            <label>Estado</label>
+        </div>
+        <div class="input-field col s12 l9"> <!-- rua -->
+            <label class="active" for="service_street">Rua:</label>
+            <input name="service_street" id="service_street" type="text" class="validate" required value= {{ old('service_street')}}> {{ $errors->first('service_street')}}
+        </div>
+        <div class="input-field col s12 l3"> <!-- número -->
+            <label class="active" for="service_street_number">Número:</label>
+            <input name="service_street_number" id="service_street_number" type="text" class="validate" required value= {{ old('service_street_number')}}> {{ $errors->first('service_street_number')}}
+        </div>
+        <div class="input-field col s12"> <!-- bairro -->
+            <label class="active" for="service_neighbourhood">Bairro:</label>
+            <input name="service_neighbourhood" id="service_neighbourhood" type="text" class="validate" required value= {{ old('service_neighbourhood')}}> {{ $errors->first('service_neighbourhood')}}
+        </div>
+        <div class="input-field col s12 m6"> <!-- CEP -->
+            <label class="active" for="service_postal_code">CEP:</label>
+            <input name="service_postal_code" id="service_postal_code" type="text" class="validate" required value= {{ old('service_postal_code')}}> {{ $errors->first('service_postal_code')}}
+        </div>
+        <div class="input-field col s12"> <!-- complemento -->
+            <label class="active" for="service_address_complement">Complemento:</label>
+            <input name="service_address_complement" id="service_address_complement" type="text">
+        </div>
+    </div>
 
         <div class="row">
             <!-- Imagens e link do YouTube -->
@@ -440,8 +417,8 @@
                 </div>
             </div>
             <div class="input-field col s12"> <!-- YouTube video -->
-                <label class="active" for="lodging_video">Link para vídeo no YouTube:</label>
-                <input name="lodging_video" id="lodging_video" type="text" class="validate">
+                <label class="active" for="service_video">Link para vídeo no YouTube:</label>
+                <input name="service_video" id="service_video" type="text" class="validate">
             </div>
         </div>
 
@@ -451,119 +428,12 @@
             </button>
         </div>
         <!--<input type="submit" value="proximo" />-->
-        
+
     </form>
 
 </body>
 
-
-<body><!--toolbar mobile-->
-    <div class="fixed-action-btn toolbar hide-on-large-only"><!--modificar ícones para adicionar texto abaixo deles-->
-        <a class="btn-floating btn-large teal darken-4">
-            <i class="large material-icons">menu</i>
-        </a>
-        <ul>
-            <li>
-                <a class="btn-floating teal darken-4">
-                    <i class="material-icons">add</i><!--criar um ícone juntando o add ao home-->
-                </a>
-            </li>
-            <li>
-                <a class="btn-floating teal darken-4">
-                    <i class="material-icons">favorites</i>
-                </a>
-            </li>
-            <li>
-                <a class="btn-floating teal darken-4">
-                    <i class="material-icons">notifications</i>
-                </a>
-            </li>
-            <li>
-                <a class="btn-floating teal darken-4">
-                    <i class="material-icons">help</i>
-                </a>
-            </li>
-            <li>
-                <a class="btn-floating teal darken-4">
-                    <i class="material-icons">person</i>
-                </a>
-            </li>
-            <li>
-                <a class="btn-floating teal darken-4">
-                    <i class="material-icons">close</i>
-                </a>
-            </li>
-        </ul>
-    </div>
-</body>
-
-<body><!--Footer Desktop-->
-
-    <footer class="page-footer teal darken-4 sticky-footer.main">
-        <div class="container">
-            <div class="row">
-                <div class="col l4 xl4 m6 s12"><!--mantendo os limitadores para celulares pra situações adversas-->
-                    <h5 class="white-text">Agrotur</h5>
-                    <ul>
-                        <li>
-                            <a class="white-text" href="#!">Sobre a Agrotur</a>
-                        </li>
-                        <li>
-                            <a class="white-text" href="#!">Link 2</a>
-                        </li>
-                        <li>
-                            <a class="white-text" href="#!">Link 3</a>
-                        </li>
-                        <li>
-                            <a class="white-text" href="#!">Link 4</a>
-                        </li>
-                    </ul>
-
-
-                </div>
-                <div class="col l4 xl4 m6 s12">
-                    <h5 class="white-text">Lista de links 1</h5>
-                    <ul>
-                        <li>
-                            <a class="white-text" href="#!">Link 1</a>
-                        </li>
-                        <li>
-                            <a class="white-text" href="#!">Link 2</a>
-                        </li>
-                        <li>
-                            <a class="white-text" href="#!">Link 3</a>
-                        </li>
-                        <li>
-                            <a class="white-text" href="#!">Link 4</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col l4 xl4 m6  s12">
-                    <h5 class="white-text">Lista de links 2</h5>
-                    <ul>
-                        <li>
-                            <a class="white-text" href="#!">Link 1</a>
-                        </li>
-                        <li>
-                            <a class="white-text" href="#!">Link 2</a>
-                        </li>
-                        <li>
-                            <a class="white-text" href="#!">Link 3</a>
-                        </li>
-                        <li>
-                            <a class="white-text" href="#!">Link 4</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="footer-copyright">
-            <div class="container">
-                &nbsp;&nbsp;&nbsp;&nbsp;Agrotur 2018
-            </div>
-        </div>
-    </footer>
-</body>
+@include('layouts.footer')
 
 <body><!--  Scripts Novamente, caminhos absolutos.-->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -624,5 +494,5 @@
     </script>
 
 </body>
-  
+
 </html>
