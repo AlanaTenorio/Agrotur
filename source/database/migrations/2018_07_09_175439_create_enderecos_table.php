@@ -22,7 +22,7 @@ class CreateEnderecosTable extends Migration
             $table->string("numero");
             $table->string("bairro");
             $table->string("cep");
-            $table->string("complemento");
+            $table->string("complemento")->nullable();
             $table->integer('anuncio_id');
             $table->foreign('anuncio_id')->references('id')->on('anuncios');
         });

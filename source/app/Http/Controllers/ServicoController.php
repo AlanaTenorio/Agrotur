@@ -4,10 +4,42 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\ImageRepository;
+use Validator;
 
 class ServicoController extends Controller
 {
   public function adicionarServico(Request $request){
+    $messages = [
+        'service_description.required' => 'Insira uma descrição do anúncio',
+        'service_title.required' => 'Insira o título do anúncio',
+        'service_price.numeric' => 'Este valor deve ser um número',
+        'service_price.required' => 'Insira o preço deste anúncio',
+        'service_municipality.required' => 'Insira a cidade no endereço do anúncio',
+        'service_state.required' => 'Selecione um estado',
+        'service_street.required' => 'Insira a rua no endereço do anúncio',
+        'service_street_number.required' => 'Insira o número no endereço do anúncio',
+        'service_street_neighbourhood.required' => 'Insira o bairro no endereço do anúncio',
+        'service_postal_code.required' => 'Insira um CEP válido',
+        'service_postal_code.digits' => 'Insira um CEP válido',
+    ];
+
+    $validator = Validator::make($request->all(), [
+      'service_description'=>'required',
+      'service_title'=>'required',
+      'service_price'=>'required|numeric',
+      'service_municipality'=>'required',
+      'service_state'=>'required',
+      'service_street'=>'required',
+      'service_street_number'=>'required',
+      'service_neighbourhood'=>'required',
+      'service_postal_code'=>'required|digits:8',
+    ], $messages);
+
+    if ($validator->fails()) {
+        return redirect('/cadastroServico')
+                    ->withErrors($validator)
+                    ->withInput();
+    }
 
     $anuncio = new \App\Anuncio();
     $anuncio->descricao = $request->service_description;
@@ -42,6 +74,37 @@ class ServicoController extends Controller
   }
 
   public function salvar(Request $request){
+    /*$messages = [
+        'service_description.required' => 'Insira uma descrição do anúncio',
+        'service_title.required' => 'Insira o título do anúncio',
+        'service_price.numeric' => 'Este valor deve ser um número',
+        'service_price.required' => 'Insira o preço deste anúncio',
+        'service_municipality.required' => 'Insira a cidade no endereço do anúncio',
+        'service_state.required' => 'Selecione um estado',
+        'service_street.required' => 'Insira a rua no endereço do anúncio',
+        'service_street_number.required' => 'Insira o número no endereço do anúncio',
+        'service_street_neighbourhood.required' => 'Insira o bairro no endereço do anúncio',
+        'service_postal_code.required' => 'Insira um CEP válido',
+        'service_postal_code.digits' => 'Insira um CEP válido',
+    ];
+    $validator = Validator::make($request->all(), [
+      'service_description'=>'required',
+      'service_title'=>'required',
+      'service_price'=>'required|numeric',
+      'service_municipality'=>'required',
+      'service_state'=>'required',
+      'service_street'=>'required',
+      'service_street_number'=>'required',
+      'service_neighbourhood'=>'required',
+      'service_postal_code'=>'required|digits:8',
+    ], $messages);
+
+    if ($validator->fails()) {
+      return redirect()->action(
+              'SeviçoController@editar', ['id' => $request->id]
+             )->withErrors($validator)
+              ->withInput();
+    } */
     $servico = \App\Servico::find($request->id);
     $servico->nomeServico = $request->nomeServico;
     $servico->save();
