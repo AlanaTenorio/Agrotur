@@ -23,7 +23,7 @@
     </style>
 </head>
 
-@include('layouts.navbar')
+@include('layouts.Navbar')
 
 <body>
     <br/>
@@ -254,7 +254,7 @@
 
 </body>
 
-@include('layouts.footer')
+@include('layouts.Footer')
 
 <body><!--  Scripts Novamente, caminhos absolutos.-->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

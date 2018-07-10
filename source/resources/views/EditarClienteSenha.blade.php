@@ -67,7 +67,7 @@
 
 
 
-   <p>&nbsp;&nbsp</p>
+   <p>&nbsp;&nbsp;</p>
 
    <!-- Exibição do form de edicao -->
 
