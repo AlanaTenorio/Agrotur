@@ -1,9 +1,9 @@
-@section('content')
+
 <body><!--Navigation bar-->
     <div class="navbar-fixed hide-on-med-and-down">
         <nav class="white" role="navigation">
             <div class="nav-wrapper">
-                <a id="logo-container" href="#" class="brand-logo">
+                <a id="logo-container" href="{{ route('home') }}" class="brand-logo">
                     <!--Substituir por imagem do logo, quando houver um. Talvez manter texto e imagem-->
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <text class="green-text text-darken-3">Agro</text><text class="orange-text text-darken-3">Tur</text>
@@ -25,12 +25,10 @@
                         <ul id='dropdown_OfferService' class='dropdown-content'>
                             <!--Esse formato foi usado para manter a consistência da interface.-->
                             <li>
-                                <a href="#!" class="black-text">Formatar a exibição para
-                                    <br/> definir largura e altura
-                                    <br/> quando já estiver implementado.</a>
+                                <a href="{{ route('cadastro_hospedagem') }}" class="black-text">Ofertar Hospedagem</a>
                             </li>
                             <li>
-                                <a href="#!" class="black-text">Textos intencionalmente visiveis</a>
+                                <a href="{{ route('cadastro_servico') }}" class="black-text">Ofertar Serviço</a>
                             </li>
                         </ul>
                     </li>
@@ -82,11 +80,11 @@
                             <li><a href="#!" class="black-text">Sobre o Agrotur</a></li>
                         </ul>
                     </li>
-
                     <li>
+                        @if(Auth::guard()->check())
                         <!-- Dropdown Account Trigger -->
                         <a class='waves-effect dropdown-trigger grey-text text-darken-3' href='#' data-target='dropdown_Account'>
-                            CONTA
+                            <b>{{Auth::user()->nome}}</b>
                         </a>
                         
                         <!-- Dropdown Account Structure -->
@@ -99,8 +97,26 @@
                                     Link 4 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="material-icons right">view_module</i>
                                 </a>
                             </li>
-                            <li><a href="#!" class="black-text">Sair</a></li>
+                            <li>
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <div class="center-align black-text">
+                                        <p>
+                                        <button type="submit"class="waves-effect waves-light btn-flat"><b>SAIR</b></button>
+                                        </p>
+                                    </div>
+                                </form>
+                            </li>
                         </ul>
+                        @else
+                        <li>
+                        <!-- Dropdown Offer Service Trigger -->
+                        <a class='waves-effect dropdown-button grey-text text-darken-3' href="{{ route('login') }}"
+                         data-target='dropdown_Login'>
+                            ENTRAR
+                        </a>
+                    </li>
+                        @endif
                     </li>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </ul>
@@ -150,4 +166,44 @@
     Adicionar quando o botão estiver pronto
     -->    
 </body>
-@endsection
+
+
+<body> <!--mobile toolbar -->
+    <div class="fixed-action-btn toolbar hide-on-large-only"><!--modificar ícones para adicionar texto abaixo deles-->
+        <a class="btn-floating btn-large teal darken-4">
+            <i class="large material-icons">menu</i>
+        </a>
+        <ul>
+            <li>
+                <a class="btn-floating teal darken-4">
+                    <i class="material-icons">add</i><!--criar um ícone juntando o add ao home-->
+                </a>
+            </li>
+            <li>
+                <a class="btn-floating teal darken-4">
+                    <i class="material-icons">favorites</i>
+                </a>
+            </li>
+            <li>
+                <a class="btn-floating teal darken-4">
+                    <i class="material-icons">notifications</i>
+                </a>
+            </li>
+            <li>
+                <a class="btn-floating teal darken-4">
+                    <i class="material-icons">help</i>
+                </a>
+            </li>
+            <li>
+                <a class="btn-floating teal darken-4">
+                    <i class="material-icons">person</i>
+                </a>
+            </li>
+            <li>
+                <a class="btn-floating teal darken-4">
+                    <i class="material-icons">close</i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</body>

@@ -1,8 +1,5 @@
-@extends('Master')
 
-@section('content')
 <body><!--recomendado-->
-    <!--as imagens para os cards devem ser 4x3-->
     <div class="grey lighten-4 hide-on-med-and-down">
         <span class="grey-text text-lighten-4">
             <hr/>
@@ -19,7 +16,7 @@
             <div class="col s6 m3 l3 xl3">
                 <div class="card small">
                     <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="https://bit.ly/2KL0OIo">
+                        <img class="activator" src="https://i.imgur.com/vF4bF8z.jpg">
                     </div>
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">Nome da oferta
@@ -53,7 +50,7 @@
             <div class="col s6 m3 l3 xl3">
                 <div class="card small">
                     <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="https://bit.ly/2KL0OIo">
+                        <img class="activator" src="https://i.imgur.com/vF4bF8z.jpg">
                     </div>
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">Nome da oferta
@@ -83,7 +80,7 @@
             <div class="col s6 m3 l3 xl3">
                 <div class="card small">
                     <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="https://bit.ly/2KL0OIo">
+                        <img class="activator" src="https://i.imgur.com/vF4bF8z.jpg">
                     </div>
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">Nome da oferta
@@ -113,7 +110,7 @@
             <div class="col s6 m3 l3 xl3">
                 <div class="card small">
                     <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="https://bit.ly/2KL0OIo">
+                        <img class="activator" src="https://i.imgur.com/vF4bF8z.jpg">
                     </div>
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">Nome da oferta
@@ -143,7 +140,7 @@
             <div class="col s6 m3 l3 xl3">
                 <div class="card small">
                     <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="https://bit.ly/2KL0OIo">
+                        <img class="activator" src="https://i.imgur.com/vF4bF8z.jpg">
                     </div>
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">Nome da oferta
@@ -173,7 +170,7 @@
             <div class="col s6 m3 l3 xl3">
                 <div class="card small">
                     <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="https://bit.ly/2KL0OIo">
+                        <img class="activator" src="https://i.imgur.com/vF4bF8z.jpg">
                     </div>
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">Nome da oferta
@@ -203,7 +200,7 @@
             <div class="col s6 m3 l3 xl3">
                 <div class="card small">
                     <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="https://bit.ly/2KL0OIo">
+                        <img class="activator" src="https://i.imgur.com/vF4bF8z.jpg">
                     </div>
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">Nome da oferta
@@ -233,7 +230,7 @@
             <div class="col s6 m3 l3 xl3">
                 <div class="card small">
                     <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="https://bit.ly/2KL0OIo">
+                        <img class="activator" src="https://i.imgur.com/vF4bF8z.jpg">
                     </div>
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">Nome da oferta
@@ -288,7 +285,7 @@
             <div class="carousel-item black-text" style="height:400px !important; width:300px !important;">
                 <div class="card">
                     <div class="card-image">
-                        <img class="activator" src="https://bit.ly/2KL0OIo">
+                        <img class="activator" src="https://i.imgur.com/vF4bF8z.jpg">
                     </div>
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">Nome da oferta
@@ -319,7 +316,7 @@
             <div class="carousel-item" style="height:400px !important; width:300px !important;">
                 <div class="card">
                     <div class="card-image">
-                        <img class="activator" src="https://bit.ly/2KL0OIo">
+                        <img class="activator" src="https://i.imgur.com/vF4bF8z.jpg">
                     </div>
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">Nome da oferta
@@ -350,7 +347,7 @@
             <div class="carousel-item" style="height:400px !important; width:300px !important;">
                 <div class="card">
                     <div class="card-image">
-                        <img class="activator" src="https://bit.ly/2KL0OIo">
+                        <img class="activator" src="https://i.imgur.com/vF4bF8z.jpg">
                     </div>
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">Nome da oferta
@@ -381,7 +378,7 @@
             <div class="carousel-item" style="height:400px !important; width:300px !important;">
                 <div class="card">
                     <div class="card-image">
-                        <img class="activator" src="https://bit.ly/2KL0OIo">
+                        <img class="activator" src="https://i.imgur.com/vF4bF8z.jpg">
                     </div>
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">Nome da oferta
@@ -412,7 +409,7 @@
             <div class="carousel-item" style="height:400px !important; width:300px !important;">
                 <div class="card">
                     <div class="card-image">
-                        <img class="activator" src="https://bit.ly/2KL0OIo">
+                        <img class="activator" src="https://i.imgur.com/vF4bF8z.jpg">
                     </div>
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">Nome da oferta
@@ -443,7 +440,7 @@
             <div class="carousel-item" style="height:400px !important; width:300px !important;">
                 <div class="card">
                     <div class="card-image">
-                        <img class="activator" src="https://bit.ly/2KL0OIo">
+                        <img class="activator" src="https://i.imgur.com/vF4bF8z.jpg">
                     </div>
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">Nome da oferta
@@ -477,4 +474,3 @@
         </span>
     </div>
 </body>
-@endsection
