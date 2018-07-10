@@ -29,7 +29,6 @@
                                     <tr>
                                         <th scope="col"><i class="material-icons">landscape</i></th>
                                         <th scope="col"> {{$servico->nomeServiço}} </th>
-                                        <th scope="col"> Valor: {{$servico->preço}}  </th>
                                         <th scope="col"><a href="/ExibirServico/{{$servico->id}}">Visualizar</a></th>
                                     </tr>
                                     @endforeach

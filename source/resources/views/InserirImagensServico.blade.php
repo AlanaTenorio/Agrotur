@@ -13,13 +13,32 @@
 @include('layouts.Navbar')
 
 <body>
-    <h1>inserir imagens</h1>
+    <h1>Inserir imagens</h1>
     <form action="/SalvarImagemServico" method="post" enctype="multipart/form-data">
     		<input type="hidden" name="_token" value="{{ csrf_token() }}" />
     		<input type="hidden" name="servico_id" value="{{ $servico->id}}" />
-        <input type="file" name="primaryImage" multiple/>
-        <input type="submit" name="enviar" value="ENVIAR"/>
-        <a href="/cadastroServico">cadastrar outro serviço</a>
+            <div class="col s6 m4 l3">
+                    <div class="card">
+                        <div class="row center">
+                            <div class="card-image">
+                                <i class="material-icons large grey-text text-darken-2">insert_photo</i>
+                            </div>
+                        </div>
+                        <div class="row center">
+                            <input type="file" name="primaryImage" multiple/>
+                            <input type="submit" name="enviar" value="ENVIAR"/>
+                        </div>
+                    </div>
+                </div>
+             <nav>
+                <div class="nav-wrapper center white">
+                  <div class="col s12">
+                    <a href="/" class="breadcrumb green-text">Concluir</a>
+                  </div>
+                </div>
+              </nav>
+
+        
     </form>
 </body>
 
