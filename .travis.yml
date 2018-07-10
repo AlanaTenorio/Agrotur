@@ -8,9 +8,10 @@ php:
 
 services:
   - postgresql
-  
-script:
-  - echo ""
 
-branch: 
+script:
+  - cd source/
+  - bin/phpunit
+
+branch:
   - master
