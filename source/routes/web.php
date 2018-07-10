@@ -113,3 +113,7 @@ Route::post('/SalvarImagemServico', "ServiçoController@salvarImagemServico");
 Route::get('/EditarImagensServico/{id}', "ServiçoController@editarImagens");
 
 Route::get('/RemoverImagemServico/{id}', "ServiçoController@removerImagens");
+
+Route::get('login/google', 'GoogleController@redirectToProvider')->name('google.login');
+
+Route::get('login/google/callback', 'GoogleController@handleProviderCallback');
