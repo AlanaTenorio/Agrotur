@@ -208,49 +208,25 @@
     <h4 class="container teal-text text-darken-3">Ofertar serviço</h4>
     <br/>
     <form class="container" action="cadastroServico" method="post">
-
-        <!--Remover________________________________________________________________________________________________-->
-        <div class="red">
-            <br>
-            <h1 class="white-text container">LIXO - REMOVER</h1>
-            <div class="white-text container"> Anunciante:<input type="text" name = "anunciante_id"/> <br/> </div>
-            <br>
-            <hr>
-        </div>
-        <!--_______________________________________________________________________________________________________-->
-
+        <input type="hidden" name = "provider_id" value="{{Auth::user()->id}}"/>
         <input type = "hidden" name = "_token" value = "{{ csrf_token()}}"/>
         <div class="row"> <!-- Título, preço e descrição -->
             <font size="5" class="row">
                 Descrição:
             </font>
             <div class="input-field col s12"> <!--título-->
-                <!--
-                <label class="active" for="lodging_title">Título do anúncio:</label>
-                <input name="lodging_title" placeholder="Exemplo: " id="lodging_title" type="text" class="validate">
-                -->
-                <label class="active" for="nomeServico">Título do anúncio:</label>
-                <input name="nomeServico" placeholder="Exemplo: " id="nomeServico" type="text" class="validate">
+                <label class="active" for="service_title">Título do anúncio:</label>
+                <input name="service_title" placeholder="Exemplo: " id="service_title" type="text" class="validate">
             </div>
             <div class="input-field col s12 m6 l4 left"> <!-- Preço -->
-                <!--
-                <label class="active" for="lodging_price">Preço da diária:</label>
-                <input name="lodging_price" placeholder="Valor em reais. Exemplo: 60.00" id="lodging_price" type="text" class="validate">
-                -->
-                <label class="active" for="preco">Preço:</label>
-                <input name="preco" placeholder="Valor em reais. Exemplo: 60.00" id="preco" type="text" class="validate">
+                <label class="active" for="service_price">Preço da diária:</label>
+                <input name="service_price" placeholder="Valor em reais. Exemplo: 60.00" id="service_price" type="text" class="validate">
             </div>
             <div class="col s12 center"> <!-- Descrição -->
                 <div class="row">
-                    <!--
                     <div class="input-field col s12">
-                        <label for="lodging_description">Descrição do anúncio:</label>
-                        <textarea id="lodging_description" class="materialize-textarea" name="lodging_description"></textarea>
-                    </div>
-                    -->
-                    <div class="input-field col s12">
-                        <label for="descricao">Descrição do anúncio:</label>
-                        <textarea id="descricao" class="materialize-textarea" name="descricao"></textarea>
+                        <label for="service_description">Descrição do anúncio:</label>
+                        <textarea id="service_description" class="materialize-textarea" name="service_description"></textarea>
                     </div>
                 </div>
             </div>
@@ -261,11 +237,11 @@
                 Endereço:
             </font>
             <div class="input-field col s12 m8 l9"> <!--cidade-->
-                <input name="lodging_municipality" id="lodging_municipality" type="text" class="validate">
-                <label class="active" for="lodging_municipality">Cidade:</label>
+                <input name="service_municipality" id="service_municipality" type="text" class="validate">
+                <label class="active" for="service_municipality">Cidade:</label>
             </div>
             <div class="input-field col s12 m4 l3"> <!--estado-->
-                <select name="lodging_state" id="lodging_state">
+                <select name="service_state" id="service_state">
                     <option value="" disabled selected>Escolha o estado</option>
                     <option value="ac">Acre</option>
                     <option value="al">Alagoas</option>
@@ -298,24 +274,24 @@
                 <label>Estado</label>
             </div>
             <div class="input-field col s12 l9"> <!-- rua -->
-                <label class="active" for="lodging_street">Rua:</label>
-                <input name="lodging_street" id="lodging_street" type="text" class="validate">
+                <label class="active" for="service_street">Rua:</label>
+                <input name="service_street" id="service_street" type="text" class="validate">
             </div>
             <div class="input-field col s12 l3"> <!-- número -->
-                <label class="active" for="lodging_street_number">Número:</label>
-                <input name="lodging_street_number" id="lodging_street_number" type="text" class="validate">
+                <label class="active" for="service_street_number">Número:</label>
+                <input name="service_street_number" id="service_street_number" type="text" class="validate">
             </div>
             <div class="input-field col s12"> <!-- bairro -->
-                <label class="active" for="lodging_neighbourhood">Bairro:</label>
-                <input name="lodging_neighbourhood" id="lodging_neighbourhood" type="text" class="validate">
+                <label class="active" for="service_neighbourhood">Bairro:</label>
+                <input name="service_neighbourhood" id="service_neighbourhood" type="text" class="validate">
             </div>
             <div class="input-field col s12 m6"> <!-- CEP -->
-                <label class="active" for="lodging_postal_code">CEP:</label>
-                <input name="lodging_postal_code" id="lodging_postal_code" type="text" class="validate">
+                <label class="active" for="service_postal_code">CEP:</label>
+                <input name="service_postal_code" id="service_postal_code" type="text" class="validate">
             </div>
             <div class="input-field col s12"> <!-- bairro -->
-                <label class="active" for="lodging_address_complement">Complemento:</label>
-                <input name="lodging_address_complement" id="lodging_address_complement" type="text" class="validate">
+                <label class="active" for="service_address_complement">Complemento:</label>
+                <input name="service_address_complement" id="service_address_complement" type="text" class="validate">
             </div>
         </div>
 
@@ -440,8 +416,8 @@
                 </div>
             </div>
             <div class="input-field col s12"> <!-- YouTube video -->
-                <label class="active" for="lodging_video">Link para vídeo no YouTube:</label>
-                <input name="lodging_video" id="lodging_video" type="text" class="validate">
+                <label class="active" for="service_video">Link para vídeo no YouTube:</label>
+                <input name="service_video" id="service_video" type="text" class="validate">
             </div>
         </div>
 
