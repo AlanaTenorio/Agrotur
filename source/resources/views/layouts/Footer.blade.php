@@ -1,44 +1,5 @@
-<body> <!--toolbar mobile-->
-    <div class="fixed-action-btn toolbar hide-on-large-only"><!--modificar ícones para adicionar texto abaixo deles-->
-        <a class="btn-floating btn-large teal darken-4">
-            <i class="large material-icons">menu</i>
-        </a>
-        <ul>
-            <li>
-                <a class="btn-floating teal darken-4">
-                    <i class="material-icons">add</i><!--criar um ícone juntando o add ao home-->
-                </a>
-            </li>
-            <li>
-                <a class="btn-floating teal darken-4">
-                    <i class="material-icons">favorites</i>
-                </a>
-            </li>
-            <li>
-                <a class="btn-floating teal darken-4">
-                    <i class="material-icons">notifications</i>
-                </a>
-            </li>
-            <li>
-                <a class="btn-floating teal darken-4">
-                    <i class="material-icons">help</i>
-                </a>
-            </li>
-            <li>
-                <a class="btn-floating teal darken-4">
-                    <i class="material-icons">person</i>
-                </a>
-            </li>
-            <li>
-                <a class="btn-floating teal darken-4">
-                    <i class="material-icons">close</i>
-                </a>
-            </li>
-        </ul>
-    </div>
-</body>
+<body><!--Footer-->
 
-<body><!--Footer Desktop-->
     <footer class="page-footer teal darken-4 sticky-footer.main">
         <div class="container">
             <div class="row">
