@@ -24,7 +24,7 @@
             <input name="service_title" placeholder="Exemplo: " id="service_title" type="text" class="validate" required value= {{ old('service_title')}}> {{ $errors->first('service_title')}}
         </div>
         <div class="input-field col s12 m6 l4 left"> <!-- Preço -->
-            <label class="active" for="service_price">Preço da diária:</label>
+            <label class="active" for="service_price">Preço da experiência:</label>
             <input name="service_price" placeholder="Valor em reais. Exemplo: 60.00" id="service_price" type="text" class="validate" required value= {{ old('service_price')}}> {{ $errors->first('service_price')}}
         </div>
         <div class="col s12 center"> <!-- Descrição -->
@@ -100,126 +100,6 @@
         </div>
     </div>
 
-        <div class="row">
-            <!-- Imagens e link do YouTube -->
-            <font size="5" class="row">
-                Mídia:
-            </font>
-            <br/>
-            <div class="row"><!--imagens-->
-                <div class="col s6 m4 l3">
-                    <div class="card">
-                        <div class="row center">
-                            <div class="card-image">
-                                <i class="material-icons large grey-text text-darken-2">insert_photo</i>
-                            </div>
-                        </div>
-                        <div class="row center">
-                            <button class="btn-flat" type="button" name="action">
-                                <i class="material-icons">add</i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s6 m4 l3">
-                    <div class="card">
-                        <div class="row center">
-                            <div class="card-image">
-                                <i class="material-icons large grey-text text-darken-2">insert_photo</i>
-                            </div>
-                        </div>
-                        <div class="row center">
-                            <button class="btn-flat" type="button" name="action">
-                                <i class="material-icons">add</i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s6 m4 l3">
-                    <div class="card">
-                        <div class="row center">
-                            <div class="card-image">
-                                <i class="material-icons large grey-text text-darken-2">insert_photo</i>
-                            </div>
-                        </div>
-                        <div class="row center">
-                            <button class="btn-flat" type="button" name="action">
-                                <i class="material-icons">add</i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s6 m4 l3">
-                    <div class="card">
-                        <div class="row center">
-                            <div class="card-image">
-                                <i class="material-icons large grey-text text-darken-2">insert_photo</i>
-                            </div>
-                        </div>
-                        <div class="row center">
-                            <button class="btn-flat" type="button" name="action">
-                                <i class="material-icons">add</i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s6 m4 l3">
-                    <div class="card">
-                        <div class="row center">
-                            <div class="card-image">
-                                <i class="material-icons large grey-text text-darken-2">insert_photo</i>
-                            </div>
-                        </div>
-                        <div class="row center">
-                            <button class="btn-flat" type="button" name="action">
-                                <i class="material-icons">add</i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s6 m4 l3">
-                    <div class="card">
-                        <div class="row center">
-                            <div class="card-image">
-                                <i class="material-icons large grey-text text-darken-2">insert_photo</i>
-                            </div>
-                        </div>
-                        <div class="row center">
-                            <button class="btn-flat" type="button" name="action">
-                                <i class="material-icons">add</i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s6 m4 l3">
-                    <div class="card">
-                        <div class="row center">
-                            <div class="card-image">
-                                <i class="material-icons large grey-text text-darken-2">insert_photo</i>
-                            </div>
-                        </div>
-                        <div class="row center">
-                            <button class="btn-flat" type="button" name="action">
-                                <i class="material-icons">add</i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s6 m4 l3">
-                    <div class="card">
-                        <div class="row center">
-                            <div class="card-image">
-                                <i class="material-icons large grey-text text-darken-2">insert_photo</i>
-                            </div>
-                        </div>
-                        <div class="row center">
-                            <button class="btn-flat" type="button" name="action">
-                                <i class="material-icons">add</i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="input-field col s12"> <!-- YouTube video -->
                 <label class="active" for="service_video">Link para vídeo no YouTube:</label>
                 <input name="service_video" id="service_video" type="text" class="validate">
@@ -227,7 +107,7 @@
         </div>
 
         <div class="row center"><!--usar disabled num if enquanto tudo não estiver preenchido-->
-            <button class="btn-large waves-effect waves-light" type="submit" name="action">Cadastrar
+            <button class="btn-large waves-effect waves-light" type="submit" name="action">Continuar
                 <i class="material-icons right">send</i>
             </button>
         </div>

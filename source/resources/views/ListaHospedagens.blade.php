@@ -28,7 +28,7 @@
                                     <tr>
                                         <th scope="col"><i class="material-icons">home</i></th>
                                         <th scope="col"> {{$hospedagem->nomePropriedade}}</th>
-                                        <th scope="col"> Diária: {{$hospedagem->preçoDiaria}}  </th>
+                                        <!--<th scope="col"> Diária: {{$hospedagem->preçoDiaria}}  </th> -->
                                         <th scope="col"><a href="/ExibirHospedagem/{{$hospedagem->id}}">Visualizar</a></th></th>
                                     </tr>
                                     @endforeach
