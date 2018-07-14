@@ -33,7 +33,7 @@
              <nav>
                 <div class="nav-wrapper center white">
                   <div class="col s12">
-                    <a href="/" class="breadcrumb green-text">Concluir</a>
+                    <a href="/ExibirServico/{{$servico->id}}" class="breadcrumb green-text">Concluir</a>
                   </div>
                 </div>
               </nav>
