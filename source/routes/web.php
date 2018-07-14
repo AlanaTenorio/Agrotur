@@ -108,3 +108,9 @@ Route::post('/SalvarImagemServico', "ServicoController@salvarImagemServico");
 Route::get('/EditarImagensServico/{id}', "ServicoController@editarImagens");
 
 Route::get('/RemoverImagemServico/{id}', "ServicoController@removerImagens");
+
+Route::get('/contratarAnuncio', function(Request $request) {
+    return view('ContratarAnuncio');
+});
+
+Route::post('/contratarAnuncio', "TransacaoController@adicionarTransacao");
