@@ -40,14 +40,14 @@
               <i class="material-icons">location_on</i>
               Cidade: {{$endereco->cidade}} - {{$endereco->cep}} - {{$endereco->estado}} </br>
               Logradouro: {{$endereco->rua}}, Nº: {{$endereco->numero}}, {{$endereco->bairro}}
-              {{$endereco->complemento}} 
+              {{$endereco->complemento}}
             </li>
 
             <ul>
               <li class="collection-item avatar">
                 <img src="https://i.imgur.com/vF4bF8z.jpg" alt="" class="circle">
                 <span class="title">Anfitrião/Empresa</span>
-                 <p> anunciante id: {{ $anuncio->anunciante_id }} <br></p>
+                 <p> Anunciante: {{ $anunciante->nome }} <br></p>
                 <a href="#!" class="secondary-content">
                   <i class="material-icons">grade</i>
                 </a>
@@ -77,19 +77,19 @@
                           @endforeach
                           </ul>
                       </div>
-                      
-                      
-  
+
+
+
                   </li>
             </ul>
           </ul>
         </div>
 
-        <!-- FORM DE HOSPEDAGEM--> 
+        <!-- FORM DE HOSPEDAGEM-->
 
         <div class="col s12 m6">
             <div class="card-panel light-green lighten-3">
-              
+
               <li class="collection-header light-green darken-3 white-text">
                 <h4>R$ {{ $anuncio->preco }} por dia</h4>
               </li>
@@ -114,8 +114,8 @@
                       <option value="3">3</option>
                     </select>
                   </div>
-             
-            
+
+
               <input type="submit" value="Submit" class="btn light-green darken-3">
             </div>
           </div>
@@ -164,7 +164,7 @@
     M.Datepicker.init(datepicker2, {
       autoClose: true,
     });
-    
+
     //Quantidade de hóspedes
     document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('select');

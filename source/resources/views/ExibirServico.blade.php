@@ -40,14 +40,14 @@
               <i class="material-icons">location_on</i>
               Cidade: {{$endereco->cidade}} - {{$endereco->cep}} - {{$endereco->estado}} </br>
               Logradouro: {{$endereco->rua}}, Nº: {{$endereco->numero}}, {{$endereco->bairro}}
-              {{$endereco->complemento}} 
+              {{$endereco->complemento}}
             </li>
 
             <ul>
               <li class="collection-item avatar">
                 <img src="img/hotel.jpg" alt="" class="circle">
                 <span class="title">Anfitrião/Empresa</span>
-                 <p> anunciante id: {{ $anuncio->anunciante_id }} <br></p>
+                 <p> Anunciante: {{ $anunciante->nome }} <br></p>
                 <a href="#!" class="secondary-content">
                   <i class="material-icons">grade</i>
                 </a>
@@ -73,7 +73,7 @@
             <div class="card-panel light-green lighten-3">
 
               <li class="collection-header light-green darken-3 white-text">
-                <h4>R$ {{ $anuncio->preço }} por pessoa</h4>
+                <h4>R$ {{ $anuncio->preco }} por pessoa</h4>
               </li>
 
                 <h6>Check-in</h6>
