@@ -13,11 +13,9 @@
 
 Route::get('/', 'HomeController@home')->name('home');
 
-Route::get('/listaClientes', "ClienteController@listarClientes")->name('listar_clientes');
+Route::get('/view', 'HomeController@home')->name('home');
 
-Route::get('/view', function () {
-	return view('view');
-});
+Route::get('/listaClientes', "ClienteController@listarClientes")->name('listar_clientes');
 
 Route::get('/cadastroCliente', function(Request $request) {
     return view('CadastroCliente');
@@ -111,6 +109,6 @@ Route::get('/RemoverImagemServico/{id}', "ServiçoController@removerImagens");
 
 Route::get('login/google', 'GoogleController@redirectToProvider')->name('google.login');
 
-Route::get('login/google/callback', 'GoogleController@handleProviderCallback');
+Route::get('auth/google/callback', 'GoogleController@handleProviderCallback');
 
 Route::get('/RemoverImagemServico/{id}', "ServicoController@removerImagens");
