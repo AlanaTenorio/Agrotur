@@ -19,7 +19,7 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}" />
             <input type="hidden" name="id" value="{{ $hospedagem->id}}" />
             Nome da propriedade: <input type="text" name="nomePropriedade" value="{{$hospedagem->nomePropriedade}}"><br/>
-            Preço diaria: <input type="text" name="precoDiaria" value="{{$hospedagem->precoDiaria}}"><br/>
+            Preço diaria: <input type="text" name="preco" value="{{$anuncio->preco}}"><br/>
             Anuncio ID: <input type="text" name="anuncio_id" value="{{$hospedagem->anuncio_id}}"><br/>
 
             Descricao: <input type="text" name="descricao" value="{{$anuncio->descricao}}"><br/>
