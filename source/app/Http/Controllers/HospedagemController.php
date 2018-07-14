@@ -9,17 +9,59 @@ use Validator;
 class HospedagemController extends Controller
 {
   public function adicionarHospedagem(Request $request){
+    $messages = [
+        'lodging_description.required' => 'Insira uma descrição do anúncio',
+        'lodging_title.required' => 'Insira o título do anúncio',
+        'lodging_price.numeric' => 'Este valor deve ser um número',
+        'lodging_price.required' => 'Insira o preço deste anúncio',
+        'lodging_municipality.required' => 'Insira a cidade no endereço do anúncio',
+        'lodging_state.required' => 'Selecione um estado',
+        'lodging_street.required' => 'Insira a rua no endereço do anúncio',
+        'lodging_street_number.required' => 'Insira o número no endereço do anúncio',
+        'lodging_street_neighbourhood.required' => 'Insira o bairro no endereço do anúncio',
+        'lodging_postal_code.required' => 'Insira um CEP válido',
+        'lodging_postal_code.digits' => 'Insira um CEP válido',
+    ];
+
+    $validator = Validator::make($request->all(), [
+      'lodging_description'=>'required',
+      'lodging_title'=>'required',
+      'lodging_price'=>'required|numeric',
+      'lodging_municipality'=>'required',
+      'lodging_state'=>'required',
+      'lodging_street'=>'required',
+      'lodging_street_number'=>'required',
+      'lodging_neighbourhood'=>'required',
+      'lodging_postal_code'=>'required|digits:8',
+    ], $messages);
+
+    if ($validator->fails()) {
+        return redirect('/cadastroHospedagem')
+                    ->withErrors($validator)
+                    ->withInput();
+    }
 
     $anuncio = new \App\Anuncio();
-    $anuncio->descriçao = $request->descriçao;
-    $anuncio->anunciante_id = $request->anunciante_id;
+    $anuncio->descricao = $request->lodging_description;
+    $anuncio->anunciante_id = $request->host_id;
+    $anuncio->preco = $request->lodging_price;
     $anuncio->save();
 
     $hospedagem = new \App\Hospedagem();
-    $hospedagem->nomePropriedade = $request->nomePropriedade;
-    $hospedagem->preçoDiaria = $request->preçoDiaria;
+    $hospedagem->nomePropriedade = $request->lodging_title;
     $hospedagem->anuncio_id = $anuncio->id;
     $hospedagem->save();
+
+    $endereco = new \App\Endereco();
+    $endereco->anuncio_id = $anuncio->id;
+    $endereco->cidade = $request->lodging_municipality;
+    $endereco->estado = $request->lodging_state;
+    $endereco->rua = $request->lodging_street;
+    $endereco->numero = $request->lodging_street_number;
+    $endereco->bairro = $request->lodging_neighbourhood;
+    $endereco->cep = $request->lodging_postal_code;
+    $endereco->complemento = $request->lodging_address_complement;
+    $endereco->save();
 
     return redirect ("/InserirImagensHospedagem/{$hospedagem->id}");
   }
@@ -31,13 +73,15 @@ class HospedagemController extends Controller
 
   public function exibirHospedagem($id) {
     $hospedagem = \App\Hospedagem::find($id);
+    $endereco = \App\Endereco::find($id);
     $anuncio = \App\Anuncio::find($hospedagem->anuncio_id);
     $imagens = \App\Imagem_Hospedagem::where('hospedagem_id', '=', $id)->get();
-    $servicos = \App\serviçoOferecido_hospedagem::where('hospedagem_id', '=', $id)->get();
+    $servicos = \App\servicoOferecido_hospedagem::where('hospedagem_id', '=', $id)->get();
     return view("ExibirHospedagem", ['hospedagem' => $hospedagem,
                                       'imagens' => $imagens,
                                       'anuncio' => $anuncio,
-                                      'servicos' => $servicos]);
+                                      'servicos' => $servicos,
+                                      'endereco' => $endereco]);
   }
 
   public function editar($id) {
@@ -48,14 +92,46 @@ class HospedagemController extends Controller
   }
 
   public function salvar(Request $request) {
+    /*$messages = [
+        'lodging_description.required' => 'Insira uma descrição do anúncio',
+        'lodging_title.required' => 'Insira o título do anúncio',
+        'lodging_price.numeric' => 'Este valor deve ser um número',
+        'lodging_price.required' => 'Insira o preço deste anúncio',
+        'lodging_municipality.required' => 'Insira a cidade no endereço do anúncio',
+        'lodging_state.required' => 'Selecione um estado',
+        'lodging_street.required' => 'Insira a rua no endereço do anúncio',
+        'lodging_street_number.required' => 'Insira o número no endereço do anúncio',
+        'lodging_street_neighbourhood.required' => 'Insira o bairro no endereço do anúncio',
+        'lodging_postal_code.required' => 'Insira um CEP válido',
+        'lodging_postal_code.digits' => 'Insira um CEP válido',
+    ];
+    $validator = Validator::make($request->all(), [
+      'lodging_description'=>'required',
+      'lodging_title'=>'required',
+      'lodging_price'=>'required|numeric',
+      'lodging_municipality'=>'required',
+      'lodging_state'=>'required',
+      'lodging_street'=>'required',
+      'lodging_street_number'=>'required',
+      'lodging_neighbourhood'=>'required',
+      'lodging_postal_code'=>'required|digits:8',
+    ], $messages);
+
+    if ($validator->fails()) {
+      return redirect()->action(
+              'HospedagemController@editar', ['id' => $request->id]
+             )->withErrors($validator)
+              ->withInput();
+    } */
+
     $hospedagem = \App\Hospedagem::find($request->id);
     $hospedagem->nomePropriedade = $request->nomePropriedade;
-    $hospedagem->preçoDiaria = $request->preçoDiaria;
     $hospedagem->save();
 
     $anuncio = \App\Anuncio::find($hospedagem->anuncio_id);
-    $anuncio->descriçao = $request->descriçao;
+    $anuncio->descricao = $request->descricao;
     $anuncio->anunciante_id = $request->anunciante_id;
+    $anuncio->preco = $request->preco;
     $anuncio->save();
     return redirect ('/listaHospedagens');
   }
@@ -72,7 +148,7 @@ class HospedagemController extends Controller
     }
 
     // Apaga todas os serviços da hospedagem escolhida
-    $servicos = \App\serviçoOferecido_hospedagem::where('hospedagem_id', '=', $id)->get();
+    $servicos = \App\servicoOferecido_hospedagem::where('hospedagem_id', '=', $id)->get();
     foreach ($servicos as $s) {
       $s->delete();
     }
@@ -124,9 +200,9 @@ class HospedagemController extends Controller
 
   public function salvarServicosOferecidos(Request $request){
     $hospedagem = \App\Hospedagem::find($request->hospedagem_id);
-    $servico = new \App\serviçoOferecido_hospedagem();
+    $servico = new \App\servicoOferecido_hospedagem();
     $servico->hospedagem_id = $hospedagem->id;
-    $servico->serviço = $request->servico;
+    $servico->servico = $request->servico;
     $servico->save();
 
     return redirect($_SERVER['HTTP_REFERER']);
@@ -134,13 +210,13 @@ class HospedagemController extends Controller
 
   public function editarServicosOferecidos($id){
     $hospedagem = \App\Hospedagem::find($id);
-    $servicos = \App\serviçoOferecido_hospedagem::where('hospedagem_id', '=', $hospedagem->id)->get();
+    $servicos = \App\servicoOferecido_hospedagem::where('hospedagem_id', '=', $hospedagem->id)->get();
     return view("EditarServicosHospedagem", ['hospedagem' => $hospedagem,
                                       'servicos' => $servicos]);
   }
 
   public function removerServicosOferecidos($id){
-    $servico = \App\serviçoOferecido_hospedagem::find($id);
+    $servico = \App\servicoOferecido_hospedagem::find($id);
     $servico->delete();
     return redirect($_SERVER['HTTP_REFERER']);
   }

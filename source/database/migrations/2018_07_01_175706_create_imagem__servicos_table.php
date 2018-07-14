@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateServiçoOferecidoHospedagemsTable extends Migration
+class CreateImagemServicosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateServiçoOferecidoHospedagemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('serviço_oferecido_hospedagems', function (Blueprint $table) {
+        Schema::create('imagem__servicos', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('serviço');
-            $table->integer('hospedagem_id');
-            $table->foreign('hospedagem_id')->references('id')->on('hospedagems');
+            $table->string('imagem');
+            $table->integer('servico_id');
+            $table->foreign('servico_id')->references('id')->on('servicos');
         });
     }
 
@@ -29,6 +29,6 @@ class CreateServiçoOferecidoHospedagemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('serviço_oferecido_hospedagems');
+        Schema::dropIfExists('imagem__servicos');
     }
 }
