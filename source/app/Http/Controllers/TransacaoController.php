@@ -36,9 +36,10 @@ class TransacaoController extends Controller
     $transacao->dataEntrada = $request->dataEntrada;
     $transacao->dataSaida = $request->dataSaida;
     $transacao->quantPessoas = $request->quantPessoas;
-    //$transacao->anuncio_id = $request->anuncio_id;
-    $anuncio->cliente_id = $request->host_id;
-    //$transacao->cliente_id = $request->cliente_id;
+    //pegar aid pelo anuncio na tela atual
+    $transacao->anuncio_id = $request->anuncio_id;
+    //$transacao->cliente_id = $request->host_id;
+    $transacao->cliente_id = $request->cliente_id;
     $transacao->precoTotal = $this->calcularPreco($request->anuncio_id, $request->dataEntrada, $request->dataSaida);
 
     $transacao->save();
