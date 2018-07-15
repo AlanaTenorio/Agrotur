@@ -38,7 +38,7 @@ return [
     'google' => [
         'client_id' => '880600543783-bma31hhma53f9cp5a56t8m7qtb2nju2p.apps.googleusercontent.com',
         'client_secret' => 'ZS3GU_V4_SwqpoAJ_z__kWOz',
-        'redirect' => 'http://localhost/auth/google/callback',
+        'redirect' => 'http://localhost:80/login/google/callback',
     ],
 
 ];
