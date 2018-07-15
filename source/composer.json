@@ -11,7 +11,8 @@
         "laravel/tinker": "^1.0",
         "laravellegends/pt-br-validator": "5.1.*",
         "twbs/bootstrap": "4.1.1",
-        "intervention/image": "dev-master"
+        "intervention/image": "dev-master",
+        "laravel/socialite": "^3.0"
     },
     "require-dev": {
         "filp/whoops": "^2.0",
