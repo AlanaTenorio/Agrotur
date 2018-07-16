@@ -138,4 +138,32 @@ class ClienteController extends Controller
         return back();
       }
     }
+
+    // public function favoritar(Request $request){
+    //   $favorito = \App\Favorito::where([
+    //       ['cliente_id', '=', $request->user_id],
+    //       ['anuncio_id', '=', $request->anuncio_id],
+    //   ])->first();
+    //
+    //   if(!$favorito){
+    //     $novo_favorito = new \App\Favorito();
+    //     $novo_favorito->cliente_id = $request->user_id;
+    //     $novo_favorito->anuncio_id = $request->anuncio_id;
+    //
+    //     $novo_favorito->save();
+    //   }
+    //   return back();
+    // }
+    //
+    // public function desfavoritar(Request $request){
+    //   $favorito = \App\Favorito::where([
+    //       ['cliente_id', '=', $request->user_id],
+    //       ['anuncio_id', '=', $request->anuncio_id],
+    //   ])->first();
+    //
+    //   if($favorito){
+    //     $favorito->delete();
+    //   }
+    //   return back();
+    // }
 }

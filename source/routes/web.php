@@ -117,6 +117,6 @@ Route::get('/contratarAnuncio', function(Request $request) {
 
 Route::post('/contratarAnuncio', "TransacaoController@adicionarTransacao");
 
-Route::post('/ExibirHospedagem/{id}', 'ClienteController@favoritarOuDesfavoritar')->name('favoritar');
+Route::post('/ExibirHospedagem/{id}', 'ClienteController@favoritarOuDesfavoritar')->name('favoritos');
 
-Route::post('/ExibirServico/{id}', 'ClienteController@favoritarOuDesfavoritar')->name('favoritar');
+Route::post('/ExibirServico/{id}', 'ClienteController@favoritarOuDesfavoritar')->name('favoritos');

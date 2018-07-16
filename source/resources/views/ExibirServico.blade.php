@@ -45,23 +45,39 @@
 
             <ul>
               <li class="collection-item avatar">
-                <img src="img/hotel.jpg" alt="" class="circle">
+                <img src="https://i.imgur.com/vF4bF8z.jpg" alt="" class="circle">
                 <span class="title">Anfitrião/Empresa</span>
                  <p> Anunciante: {{ $anunciante->nome }} <br></p>
-                <a href="#!" class="secondary-content">
+                <!-- <a href="#!" class="secondary-content">
                   <i class="material-icons">grade</i>
-                </a>
+                </a> -->
+
+                <?php $favorito = \App\Favorito::where([
+                    ['cliente_id', '=', Auth::user()->id],
+                    ['anuncio_id', '=', $anuncio->id],
+                ])->first() ?>
+
+                @if ($favorito)
+                <form class="container" action="favoritos" method="post">
+                  <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                  <input type="hidden" name = "user_id" value="{{Auth::user()->id}}"/>
+                  <input type="hidden" name = "anuncio_id" value="{{$anuncio->id}}"/>
+                  <button class="secondary-content" type="submit" name="action">
+                    <i>desfav</i>
+                  </button>
+                </form>
+                @else:
+                <form class="container" action="favoritos" method="post">
+                  <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                  <input type="hidden" name = "user_id" value="{{Auth::user()->id}}"/>
+                  <input type="hidden" name = "anuncio_id" value="{{$anuncio->id}}"/>
+                  <button class="secondary-content" type="submit" name="action">
+                    <i>fav</i>
+                  </button>
+                </form>
+                @endif
               </li>
             </ul>
-
-            <form class="container" action="favoritar" method="post">
-              <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-              <input type="hidden" name = "user_id" value="{{Auth::user()->id}}"/>
-              <input type="hidden" name = "anuncio_id" value="{{$anuncio->id}}"/>
-              <button type="submit" name="action">
-                <i class="material-icons">grade</i>
-              </button>
-            </form>
 
             <!--DESCRIÇÃO E SERVIÇOS-->
 
