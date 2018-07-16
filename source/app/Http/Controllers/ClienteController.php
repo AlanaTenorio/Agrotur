@@ -116,4 +116,26 @@ class ClienteController extends Controller
       $cliente->delete();
       return redirect("/listaClientes");
     }
+
+    public function favoritarOuDesfavoritar(Request $request){
+      $clienteId = $request->user_id;
+      $anuncioId = $request->anuncio_id;
+
+      $favorito = \App\Favorito::where([
+          ['cliente_id', '=', $clienteId],
+          ['anuncio_id', '=', $anuncioId],
+      ])->first();
+
+      if(!$favorito){
+        $novo_favorito = new \App\Favorito();
+        $novo_favorito->cliente_id = $clienteId;
+        $novo_favorito->anuncio_id = $anuncioId;
+
+        $novo_favorito->save();
+        return back();
+      }else{
+        $favorito->delete();
+        return back();
+      }
+    }
 }

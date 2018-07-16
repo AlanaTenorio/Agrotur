@@ -59,8 +59,12 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('google')->stateless()->user();
         $authUser = $this->findUser($user);
-        Auth::login($authUser, true);
-        return redirect($this->redirectTo);
+        if($authUser){
+          Auth::login($authUser, true);
+          return redirect($this->redirectTo);
+        }else{
+          return redirect('cadastroCliente');
+        }
     }
 
     public function findUser($user)

@@ -54,6 +54,27 @@
               </li>
             </ul>
 
+            <?php $favorito = \App\Favorito::where([
+                ['cliente_id', '=', Auth::user()->id],
+                ['anuncio_id', '=', $anuncio->id],
+            ])->first() ?>
+
+            @if ($favorito)
+            <form class="container" action="favoritarOuDesfavoritar" method="post">
+              <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+              <input type="hidden" name = "user_id" value="{{Auth::user()->id}}"/>
+              <input type="hidden" name = "anuncio_id" value="{{$anuncio->id}}"/>
+              <button class="secondary-content" type="submit" name="action"><i class="material-icons">grade</i></button>
+            </form>
+            @else:
+            <form class="container" action=favoritarOuDesfavoritar" method="post">
+              <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+              <input type="hidden" name = "user_id" value="{{Auth::user()->id}}"/>
+              <input type="hidden" name = "anuncio_id" value="{{$anuncio->id}}"/>
+              <button type="submit" name="action"><i class="material-icons">grade</i></button>
+            </form>
+            @endif
+
             <!--DESCRIÇÃO E SERVIÇOS-->
 
             <ul class="collection with-header">
