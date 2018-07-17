@@ -116,4 +116,67 @@ class ClienteController extends Controller
       $cliente->delete();
       return redirect("/listaClientes");
     }
+
+    public function favoritarOuDesfavoritar(Request $request){
+      $clienteId = $request->user_id;
+      $anuncioId = $request->anuncio_id;
+
+      $favorito = \App\Favorito::where([
+          ['cliente_id', '=', $clienteId],
+          ['anuncio_id', '=', $anuncioId],
+      ])->first();
+
+      if(!$favorito){
+        $novo_favorito = new \App\Favorito();
+        $novo_favorito->cliente_id = $clienteId;
+        $novo_favorito->anuncio_id = $anuncioId;
+
+        $novo_favorito->save();
+        return back();
+      }else{
+        $favorito->delete();
+        return back();
+      }
+    }
+
+    public function visualizarFavoritos(){
+      $clienteId = Auth::user()->id;
+      $favoritos = \App\Favorito::where('cliente_id', '=', $clienteId)->get();
+
+      return view("ExibirFavoritos", ['favoritos' => $favoritos]);
+    }
+
+    public function procurarAnuncio($id){
+      $anuncio = \App\Anuncio::find($id);
+      return $anuncio;
+    }
+
+
+    // public function favoritar(Request $request){
+    //   $favorito = \App\Favorito::where([
+    //       ['cliente_id', '=', $request->user_id],
+    //       ['anuncio_id', '=', $request->anuncio_id],
+    //   ])->first();
+    //
+    //   if(!$favorito){
+    //     $novo_favorito = new \App\Favorito();
+    //     $novo_favorito->cliente_id = $request->user_id;
+    //     $novo_favorito->anuncio_id = $request->anuncio_id;
+    //
+    //     $novo_favorito->save();
+    //   }
+    //   return back();
+    // }
+    //
+    // public function desfavoritar(Request $request){
+    //   $favorito = \App\Favorito::where([
+    //       ['cliente_id', '=', $request->user_id],
+    //       ['anuncio_id', '=', $request->anuncio_id],
+    //   ])->first();
+    //
+    //   if($favorito){
+    //     $favorito->delete();
+    //   }
+    //   return back();
+    // }
 }

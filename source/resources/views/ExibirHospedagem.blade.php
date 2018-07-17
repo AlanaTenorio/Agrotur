@@ -40,17 +40,42 @@
               <i class="material-icons">location_on</i>
               Cidade: {{$endereco->cidade}} - {{$endereco->cep}} - {{$endereco->estado}} </br>
               Logradouro: {{$endereco->rua}}, Nº: {{$endereco->numero}}, {{$endereco->bairro}}
-              {{$endereco->complemento}} 
+              {{$endereco->complemento}}
             </li>
 
             <ul>
               <li class="collection-item avatar">
                 <img src="https://i.imgur.com/vF4bF8z.jpg" alt="" class="circle">
                 <span class="title">Anfitrião/Empresa</span>
-                 <p> anunciante id: {{ $anuncio->anunciante_id }} <br></p>
-                <a href="#!" class="secondary-content">
+                 <p> Anunciante: {{ $anunciante->nome }} <br></p>
+                <!-- <a href="#!" class="secondary-content">
                   <i class="material-icons">grade</i>
-                </a>
+                </a> -->
+
+                <?php $favorito = \App\Favorito::where([
+                    ['cliente_id', '=', Auth::user()->id],
+                    ['anuncio_id', '=', $anuncio->id],
+                ])->first() ?>
+
+                @if ($favorito)
+                <form class="container" action="favoritos" method="post">
+                  <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                  <input type="hidden" name = "user_id" value="{{Auth::user()->id}}"/>
+                  <input type="hidden" name = "anuncio_id" value="{{$anuncio->id}}"/>
+                  <button class="secondary-content" type="submit" name="action">
+                    <i>desfav</i>
+                  </button>
+                </form>
+                @else:
+                <form class="container" action="favoritos" method="post">
+                  <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                  <input type="hidden" name = "user_id" value="{{Auth::user()->id}}"/>
+                  <input type="hidden" name = "anuncio_id" value="{{$anuncio->id}}"/>
+                  <button class="secondary-content" type="submit" name="action">
+                    <i>fav</i>
+                  </button>
+                </form>
+                @endif
               </li>
             </ul>
 
@@ -77,19 +102,18 @@
                           @endforeach
                           </ul>
                       </div>
-                      
-                      
-  
+
+
+
                   </li>
             </ul>
           </ul>
         </div>
 
-        <!-- FORM DE HOSPEDAGEM--> 
-
+        <!-- FORM DE HOSPEDAGEM-->
         <div class="col s12 m6">
             <div class="card-panel light-green lighten-3">
-              
+
               <li class="collection-header light-green darken-3 white-text">
                 <h4>R$ {{ $anuncio->preco }} por dia</h4>
               </li>
@@ -97,26 +121,21 @@
                 <h6>Check-in</h6>
                 <div class="input-field">
                   <i class="material-icons prefix">date_range</i>
-                  <input id="icon_prefix" type="text" class="datepicker">
+                  <input id="dataEntrada" type="text" class="datepicker">
                 </div>
 
                 <h6>Checkout</h6>
                 <div class="input-field">
                   <i class="material-icons prefix">date_range</i>
-                  <input id="icon_prefix2" type="text" class="datepicker2">
+                  <input id="dataSaida" type="text" class="datepicker2">
                 </div>
 
                 <div class="input-field col s12">
-                    <select>
-                      <option value="" disabled selected>Quantidade de Hospedes</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                    </select>
-                  </div>
-             
-            
-              <input type="submit" value="Submit" class="btn light-green darken-3">
+                  <input type="text" name="quantPessoas" class="form-control" id="quantPessoas"> <br/>
+                  <label for="telefone">Quantidade de hóspedes</label>
+                </div>
+
+              <input type="submit" value="Próximo" class="btn light-green darken-3">
             </div>
           </div>
       </div>
@@ -164,7 +183,7 @@
     M.Datepicker.init(datepicker2, {
       autoClose: true,
     });
-    
+
     //Quantidade de hóspedes
     document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('select');

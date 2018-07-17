@@ -120,18 +120,20 @@ class ServicoController extends Controller
   public function listarServicos(){
     $servicos = \App\Servico::all();
     return view ('ListaServicos', ['servicos' => $servicos]);
-                                   
+
   }
 
   public function exibirServico($id) {
     $servicos = \App\Servico::find($id);
     $endereco = \App\Endereco::find($id);
     $anuncio = \App\Anuncio::find($servicos->anuncio_id);
+    $anunciante = \App\Cliente::find($anuncio->anunciante_id);
     $imagens = \App\Imagem_Servico::where('servico_id', '=', $id)->get();
     return view("ExibirServico", ['servicos' => $servicos,
                                       'imagens' => $imagens,
                                       'anuncio' => $anuncio,
-                                      'endereco'=>$endereco]);
+                                      'endereco' => $endereco,
+                                      'anunciante' => $anunciante]);
   }
 
   public function remover($id) {

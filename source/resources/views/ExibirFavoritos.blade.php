@@ -1,10 +1,9 @@
 <!doctype html>
 <html lang="pt-br">
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Agrotur - Serviços</title>
+    <title>Hospedagens</title>
     <link rel="icon" id="icon_AgroTur" href="/public_resources/images/fav_icon.png">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
@@ -18,18 +17,18 @@
         <div class="col s12 m7">
             <ul class="collection with-header center">
                 <li class="collection-header light-green darken-3 white-text">
-                    <h4>Serviços</h4>
+                    <h4>Favoritos</h4>
                 </li>
                 <li>
                     <form class="col s12 m12">
                         <div class="row">
                             <table class="table table-striped">
                                 <thead>
-                                    @foreach ($servicos as $servico)
+                                    @foreach ($favoritos as $fav)
                                     <tr>
-                                        <th scope="col"><i class="material-icons">landscape</i></th>
-                                        <th scope="col"> {{$servico->nomeServico}} </th>
-                                        <th scope="col"><a href="/ExibirServico/{{$servico->id}}">Visualizar</a></th>
+                                        <th scope="col"><i class="material-icons">home</i></th>
+                                        <th scope="col"> {{$fav->anuncio_id}}</th>
+
                                     </tr>
                                     @endforeach
                                 </thead>
@@ -59,7 +58,7 @@
         });
         $(document).ready(function () {
             $('.collapsible').collapsible({
-                accordion: false
+                accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
             });
         });
         $(document).ready(function(){
@@ -86,3 +85,5 @@
         });
     </script>
 </body>
+
+</html>

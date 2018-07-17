@@ -15,10 +15,6 @@ Route::get('/', 'HomeController@home')->name('home');
 
 Route::get('/listaClientes', "ClienteController@listarClientes")->name('listar_clientes');
 
-Route::get('/view', function () {
-	return view('view');
-});
-
 Route::get('/cadastroCliente', function(Request $request) {
     return view('CadastroCliente');
 })->name('cadastro_clientes');
@@ -107,4 +103,22 @@ Route::post('/SalvarImagemServico', "ServicoController@salvarImagemServico");
 
 Route::get('/EditarImagensServico/{id}', "ServicoController@editarImagens");
 
+Route::get('/RemoverImagemServico/{id}', "ServiçoController@removerImagens");
+
+Route::get('login/google', 'Auth\LoginController@redirectToProvider')->name('google.login');
+
+Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');
+
 Route::get('/RemoverImagemServico/{id}', "ServicoController@removerImagens");
+
+Route::get('/contratarAnuncio', function(Request $request) {
+    return view('ContratarAnuncio');
+});
+
+Route::post('/contratarAnuncio', "TransacaoController@adicionarTransacao");
+
+Route::post('/ExibirHospedagem/{id}', 'ClienteController@favoritarOuDesfavoritar')->name('favoritos');
+
+Route::post('/ExibirServico/{id}', 'ClienteController@favoritarOuDesfavoritar')->name('favoritos');
+
+Route::get('/exibirFavoritos', "ClienteController@visualizarFavoritos");

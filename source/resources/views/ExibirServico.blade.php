@@ -40,17 +40,42 @@
               <i class="material-icons">location_on</i>
               Cidade: {{$endereco->cidade}} - {{$endereco->cep}} - {{$endereco->estado}} </br>
               Logradouro: {{$endereco->rua}}, Nº: {{$endereco->numero}}, {{$endereco->bairro}}
-              {{$endereco->complemento}} 
+              {{$endereco->complemento}}
             </li>
 
             <ul>
               <li class="collection-item avatar">
-                <img src="img/hotel.jpg" alt="" class="circle">
+                <img src="https://i.imgur.com/vF4bF8z.jpg" alt="" class="circle">
                 <span class="title">Anfitrião/Empresa</span>
-                 <p> anunciante id: {{ $anuncio->anunciante_id }} <br></p>
-                <a href="#!" class="secondary-content">
+                 <p> Anunciante: {{ $anunciante->nome }} <br></p>
+                <!-- <a href="#!" class="secondary-content">
                   <i class="material-icons">grade</i>
-                </a>
+                </a> -->
+
+                <?php $favorito = \App\Favorito::where([
+                    ['cliente_id', '=', Auth::user()->id],
+                    ['anuncio_id', '=', $anuncio->id],
+                ])->first() ?>
+
+                @if ($favorito)
+                <form class="container" action="favoritos" method="post">
+                  <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                  <input type="hidden" name = "user_id" value="{{Auth::user()->id}}"/>
+                  <input type="hidden" name = "anuncio_id" value="{{$anuncio->id}}"/>
+                  <button class="secondary-content" type="submit" name="action">
+                    <i>desfav</i>
+                  </button>
+                </form>
+                @else:
+                <form class="container" action="favoritos" method="post">
+                  <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                  <input type="hidden" name = "user_id" value="{{Auth::user()->id}}"/>
+                  <input type="hidden" name = "anuncio_id" value="{{$anuncio->id}}"/>
+                  <button class="secondary-content" type="submit" name="action">
+                    <i>fav</i>
+                  </button>
+                </form>
+                @endif
               </li>
             </ul>
 
@@ -73,7 +98,7 @@
             <div class="card-panel light-green lighten-3">
 
               <li class="collection-header light-green darken-3 white-text">
-                <h4>R$ {{ $anuncio->preço }} por pessoa</h4>
+                <h4>R$ {{ $anuncio->preco }} por pessoa</h4>
               </li>
 
                 <h6>Check-in</h6>
