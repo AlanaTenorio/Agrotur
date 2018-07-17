@@ -146,6 +146,11 @@ class ClienteController extends Controller
       return view("ExibirFavoritos", ['favoritos' => $favoritos]);
     }
 
+    public function procurarAnuncio($id){
+      $anuncio = \App\Anuncio::find($id);
+      return $anuncio;
+    }
+
 
     // public function favoritar(Request $request){
     //   $favorito = \App\Favorito::where([
