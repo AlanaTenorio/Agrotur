@@ -139,6 +139,19 @@ class ClienteController extends Controller
       }
     }
 
+    public function visualizarFavoritos(){
+      $clienteId = Auth::user()->id;
+      $favoritos = \App\Favorito::where('cliente_id', '=', $clienteId)->get();
+
+      return view("ExibirFavoritos", ['favoritos' => $favoritos]);
+    }
+
+    public function procurarAnuncio($id){
+      $anuncio = \App\Anuncio::find($id);
+      return $anuncio;
+    }
+
+
     // public function favoritar(Request $request){
     //   $favorito = \App\Favorito::where([
     //       ['cliente_id', '=', $request->user_id],
