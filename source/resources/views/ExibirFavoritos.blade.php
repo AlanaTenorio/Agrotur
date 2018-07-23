@@ -88,6 +88,9 @@
                 </div>
             </li>
             @endforeach
+            <span class='center'>
+                <!--TODO Incluir paginação aqui -->
+            </span>
         </ul>
     </div>
 

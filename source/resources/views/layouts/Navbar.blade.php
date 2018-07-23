@@ -38,7 +38,7 @@
                     @if(Auth::guard()->check())
                     <li>
                         <?php
-                        $favoritos = \App\Favorito::where('cliente_id', '=', Auth::user()->id)->limit(5)->get();
+                        $favoritos = \App\Favorito::where('cliente_id', '=', Auth::user()->id)->limit(3)->get();
                         ?>
                         <!-- Dropdown Favorites Trigger -->
                         <a class='waves-effect dropdown-trigger grey-text text-darken-3' href='#' data-target='dropdown_Favorites'>FAVORITOS</a>
