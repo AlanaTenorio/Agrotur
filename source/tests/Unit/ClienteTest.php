@@ -18,7 +18,7 @@ class ClienteTest extends TestCase
 	public function test_if_name_can_be_assign()
 	{
 		$fakerCliente = factory(\App\Cliente::class)->create();
-		
+
 		$id = $fakerCliente->id;
 
 		// Testa se o objeto criado foi salvo corretamente, e está disponivel no BD
@@ -29,7 +29,7 @@ class ClienteTest extends TestCase
 	public function test_if_client_can_be_deleted()
 	{
 		$fakerCliente = factory(\App\Cliente::class)->create();
-		
+
 		$id = $fakerCliente->id;
 
 		// Testa se o objeto criado foi salvo corretamente, e está disponivel no BD
@@ -46,7 +46,7 @@ class ClienteTest extends TestCase
 	public function test_if_file_can_be_edited()
 	{
 		$fakerCliente = factory(\App\Cliente::class)->create();
-		
+
 		$id = $fakerCliente->id;
 
 		// Testa se o objeto criado foi salvo corretamente, e está disponivel no BD
