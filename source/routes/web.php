@@ -121,7 +121,7 @@ Route::post('/ExibirHospedagem/{id}', 'ClienteController@favoritarOuDesfavoritar
 
 Route::post('/ExibirServico/{id}', 'ClienteController@favoritarOuDesfavoritar')->name('favoritos');
 
-Route::get('/exibirFavoritos', "ClienteController@visualizarFavoritos");
+Route::get('/exibirFavoritos', "ClienteController@visualizarFavoritos")->name('listarFavoritos');
 
 Route::get('/pagamento', function(Request $request) {
     return view('pagamento');
