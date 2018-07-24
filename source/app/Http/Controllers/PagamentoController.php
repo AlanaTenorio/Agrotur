@@ -57,8 +57,8 @@ class PagamentoController extends Controller {
                 ->setDescription($request->get('descricao'));
 
     $redirect_urls = new RedirectUrls();
-    $redirect_urls->setReturnUrl(URL::route('status')) /** Specify return URL **/
-                  ->setCancelUrl(URL::route('status'));
+    $redirect_urls->setReturnUrl(URL::route('home')) /** Specify return URL **/
+                  ->setCancelUrl(URL::route('contratarAnuncio'));
 
     $payment = new Payment();
     $payment->setIntent('Sale')
@@ -73,12 +73,12 @@ class PagamentoController extends Controller {
       if (\Config::get('app.debug')) {
 
         \Session::put('error', 'Connection timeout');
-        return Redirect::route('pagamento');
+        return Redirect::route('/contratarAnuncio');
 
       } else {
 
         \Session::put('error', 'Some error occur, sorry for inconvenient');
-        return Redirect::route('pagamento');
+        return Redirect::route('/contratarAnuncio');
 
       }
     }
@@ -99,7 +99,7 @@ class PagamentoController extends Controller {
     }
 
     \Session::put('error', 'Unknown error occurred');
-    return Redirect::route('pagamento');
+    return Redirect::route('/contratarAnuncio');
   }
 
   public function statusPagamento(){
@@ -112,7 +112,7 @@ class PagamentoController extends Controller {
 
     if (empty(Input::get('PayerID')) || empty(Input::get('token'))) {
       \Session::put('error', 'Payment failed');
-      return Redirect::route('pagamento');
+      return Redirect::route('/contratarAnuncio');
     }
 
     $payment = Payment::get($payment_id, $this->_api_context);
@@ -124,11 +124,11 @@ class PagamentoController extends Controller {
 
     if ($result->getState() == 'approved') {
       \Session::put('success', 'Payment success');
-      return Redirect::route('pagamento');
+      return Redirect::route('home');
     }
 
     \Session::put('error', 'Payment failed');
-    return Redirect::route('pagamento');
+    return Redirect::route('/contratarAnuncio');
 
   }
 }

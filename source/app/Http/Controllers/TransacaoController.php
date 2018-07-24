@@ -44,7 +44,7 @@ class TransacaoController extends Controller
 
     $transacao->save();
 
-    return view ('ListaHospedagens');
+    return redirect()->route('paypal', ['valor' => $transacao->precoTotal, 'descricao' => $this->obtemDescricao($request->anuncio_id)]);
   }
 
   private static function calcularPreco($id, $dataEntrada, $dataSaida){
@@ -57,5 +57,10 @@ class TransacaoController extends Controller
     $precoTotal = $precoDiaria * $quantDias;
 
     return $precoTotal;
+  }
+
+  private static function obtemDescricao($id){
+    $anuncio = \App\Anuncio::find($id);
+    return $anuncio->descricao;
   }
 }
