@@ -123,11 +123,7 @@ Route::post('/ExibirServico/{id}', 'ClienteController@favoritarOuDesfavoritar')-
 
 Route::get('/exibirFavoritos', "ClienteController@visualizarFavoritos")->name('listarFavoritos');
 
-Route::get('/pagamento', function(Request $request) {
-    return view('pagamento');
-})->name('pagamento');
-
-Route::post('paypal', "PagamentoController@pagarComPayPal");
+Route::get('paypal', "PagamentoController@pagarComPayPal")->name('paypal');
 
 Route::get('status', "PagamentoController@statusPagamento")->name('status');
 

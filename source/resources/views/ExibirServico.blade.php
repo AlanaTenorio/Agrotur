@@ -76,6 +76,10 @@
                   <h4>R$ {{ $anuncio->preco }} por pessoa</h4>
                 </li>
 
+                <li class="collection-header light-green darken-3 white-text">
+                  <h4>R$ {{ $anuncio->preco }} por pessoa</h4>
+                </li>
+
                  <div class="row center ">
                     <th scope="col"><a href="/contratarAnuncio">Contratar Anúncio</a></th></th>
                   </div>
