@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 class AnuncioController extends Controller
 {
     public static function getDadosAnuncio($id) {
+        //Seria preciso remodelar o banco para tornar este código melhor.
         $type = 'Hospedagem';
         $isService = false;
         $ad = DB::table('anuncios')->where('id', $id)->first();
@@ -31,6 +32,7 @@ class AnuncioController extends Controller
         }
 
         if (empty($image)) {
+            //TODO substituir por uma imagem interna
             $image_link = "https://blog.stylingandroid.com/wp-content/themes/lontano-pro/images/no-image-slide.png";
         }
         else {
