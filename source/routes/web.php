@@ -111,15 +111,15 @@ Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback
 
 Route::get('/RemoverImagemServico/{id}', "ServicoController@removerImagens");
 
-Route::get('/contratarAnuncio', function(Request $request) {
-    return view('ContratarAnuncio');
+Route::get('/contratarAnuncio/{id}', function($id) {
+    return view('ContratarAnuncio', ['id' => $id]);
 });
 
-Route::post('/contratarAnuncio', "TransacaoController@adicionarTransacao")->name('contratarAnuncio');
+Route::post('/salvarTransacao', 'TransacaoController@adicionarTransacao');
 
-Route::post('/ExibirHospedagem/{id}', 'ClienteController@favoritarOuDesfavoritar')->name('favoritos');
+Route::post('/ExibirHospedagem/{id}', 'ClienteController@favoritarOuDesfavoritar')->name('exibirHospedagem');
 
-Route::post('/ExibirServico/{id}', 'ClienteController@favoritarOuDesfavoritar')->name('favoritos');
+Route::post('/ExibirServico/{id}', 'ClienteController@favoritarOuDesfavoritar')->name('exibirServico');
 
 Route::get('/exibirFavoritos', "ClienteController@visualizarFavoritos")->name('listarFavoritos');
 

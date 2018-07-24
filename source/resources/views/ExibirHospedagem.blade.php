@@ -111,22 +111,23 @@
         </div>
 
         <!-- FORM DE HOSPEDAGEM-->
-        
+
         <div class="col s12 m6">
               <div class="card-panel light-green lighten-3">
-                
+
                   <li class="collection-header light-green darken-3 white-text">
                     <h4>R$ {{ $anuncio->preco }} por dia</h4>
                   </li>
+                  <form action="/contratarAnuncio" method="post" enctype="multipart/form-data">
                   <div class="row center ">
-                    <th scope="col"><a href="/contratarAnuncio">Contratar Anúncio</a></th></th>
+                    <a href="/contratarAnuncio/{{$anuncio->id}}" class="breadcrumb green-text">Contratar Anúncio</a>
                   </div>
-                
+                </form>
               </div>
-              
+
           </div>
-      
-      
+
+
       </div>
     </div>
 

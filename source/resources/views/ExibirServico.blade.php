@@ -45,37 +45,12 @@
 
             <ul>
               <li class="collection-item avatar">
-                <img src="https://i.imgur.com/vF4bF8z.jpg" alt="" class="circle">
+                <img src="img/hotel.jpg" alt="" class="circle">
                 <span class="title">Anfitrião/Empresa</span>
                  <p> Anunciante: {{ $anunciante->nome }} <br></p>
-                <!-- <a href="#!" class="secondary-content">
+                <a href="#!" class="secondary-content">
                   <i class="material-icons">grade</i>
-                </a> -->
-
-                <?php $favorito = \App\Favorito::where([
-                    ['cliente_id', '=', Auth::user()->id],
-                    ['anuncio_id', '=', $anuncio->id],
-                ])->first() ?>
-
-                @if ($favorito)
-                <form class="container" action="favoritos" method="post">
-                  <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                  <input type="hidden" name = "user_id" value="{{Auth::user()->id}}"/>
-                  <input type="hidden" name = "anuncio_id" value="{{$anuncio->id}}"/>
-                  <button class="secondary-content" type="submit" name="action">
-                    <i>desfav</i>
-                  </button>
-                </form>
-                @else:
-                <form class="container" action="favoritos" method="post">
-                  <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                  <input type="hidden" name = "user_id" value="{{Auth::user()->id}}"/>
-                  <input type="hidden" name = "anuncio_id" value="{{$anuncio->id}}"/>
-                  <button class="secondary-content" type="submit" name="action">
-                    <i>fav</i>
-                  </button>
-                </form>
-                @endif
+                </a>
               </li>
             </ul>
 
@@ -96,7 +71,11 @@
 
         <div class="col s12 m6">
             <div class="card-panel light-green lighten-3">
-              
+
+                <li class="collection-header light-green darken-3 white-text">
+                  <h4>R$ {{ $anuncio->preco }} por pessoa</h4>
+                </li>
+
                 <li class="collection-header light-green darken-3 white-text">
                   <h4>R$ {{ $anuncio->preco }} por pessoa</h4>
                 </li>
@@ -104,7 +83,7 @@
                  <div class="row center ">
                     <th scope="col"><a href="/contratarAnuncio">Contratar Anúncio</a></th></th>
                   </div>
-              
+
             </div>
           </div>
       </div>

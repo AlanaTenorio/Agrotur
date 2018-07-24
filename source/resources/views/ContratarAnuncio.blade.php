@@ -15,19 +15,15 @@
     <br/>
     <h4 class="container teal-text text-darken-3">Reserva</h4>
     <br/>
-    <form class="container" action = "contratarAnuncio" method = "post">
+    <form class="container" action = "/salvarTransacao" method = "post">
         <input type="hidden" name = "host_id" value="{{Auth::user()->id}}"/>
         <input type = "hidden" name = "_token" value = "{{ csrf_token()}}"/>
         <div class="row"> <!-- Check in, checkout, Quantidade de Hospedes-->
             <font size="5" class="row">
                 Dados:
             </font>
-            <div class="input-field col s12"> <!--id anuncio-->
-                ID anuncio: <input name="anuncio_id" id="anuncio_id" type="text" class="validate" required value={{ old('anuncio_id')}}> {{ $errors->first('anuncio_id')}}
-            </div>
-            <div class="input-field col s12"> <!--id cliente-->
-                ID cliente: <input name="cliente_id" id="cliente_id" type="text" class="validate" required value={{ old('cliente_id')}}> {{ $errors->first('cliente_id')}}
-            </div>
+            <input type="hidden" name = "anuncio_id" value="{{ $id }}"/>
+
             <div class="input-field col s12 m6 l4 left"> <!-- Data entrada -->
                 Data de entrada: <input name="dataEntrada" id="dataEntrada" type="date" class="validate" required value={{ old('dataEntrada')}}> {{ $errors->first('dataEntrada')}}
             </div>
@@ -37,7 +33,7 @@
             <div class="input-field col s12"> <!--Quantidade-->
                 Quantidade de Pessoas: <input name="quantPessoas" id="quantPessoas" type="text" class="validate" required value={{ old('quantPessoas')}}> {{ $errors->first('quantPessoas')}}
             </div>
-            
+
         </div>
 
         <div class="row center"><!--usar disabled num if enquanto tudo não estiver preenchido-->
