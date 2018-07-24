@@ -19,21 +19,19 @@
 
 <body>
     <!--adicionada temporariamente aqui, será removida quando estiver pronta na navbar-->
-    <div class="navbar-fixed">
-        <nav class="white">
-            <div class="nav-wrapper container">
-                <form>
-                    <div class="input-field">
-                        <input placeholder="Exemplos: um local ou algo que você queira fazer" id="search" type="search" required>
-                        <label class="label-icon" for="search">
-                            <i class="material-icons grey-text">search</i>
-                        </label>
-                        <i class="material-icons">close</i>
-                    </div>
-                </form>
-            </div>
-        </nav>
-    </div>
+    <nav class="white">
+        <div class="nav-wrapper container">
+            <form>
+                <div class="input-field">
+                    <input placeholder="Exemplos: um local ou algo que você queira fazer" id="search" type="search" required>
+                    <label class="label-icon" for="search">
+                        <i class="material-icons grey-text">search</i>
+                    </label>
+                    <i class="material-icons">close</i>
+                </div>
+            </form>
+        </div>
+    </nav>
 
     <br><br><br>
 
