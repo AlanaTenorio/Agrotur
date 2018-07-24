@@ -130,3 +130,6 @@ Route::get('/pagamento', function(Request $request) {
 Route::post('paypal', "PagamentoController@pagarComPayPal");
 
 Route::get('status', "PagamentoController@statusPagamento")->name('status');
+
+Route::get('/busca', "BuscaController@getView")->name('busca');
+

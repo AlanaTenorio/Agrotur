@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Agrotur - favoritos</title>
+    <title>Agrotur - busca</title>
     <link rel="icon" id="icon_AgroTur" href="/public_resources/images/fav_icon.png">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
@@ -17,50 +17,46 @@
 
 
 <body>
-<!-- Listagem -->
-    <div class="container white">
-        <h4>Favoritos</h4>
-        <br>
-        <ul>
-            @foreach ($favoritos as $favorito)
-            <li>
-            <hr>
-                <?php $adData = \App\Http\Controllers\AnuncioController::getDadosAnuncio($favorito->anuncio_id) ?>
-
-                <div class="row">
-                    <div class="col s2 center">
-                        <a href="/Exibir{{ $adData['type'] }}/{{ $adData['id'] }}">
-                            <img class="centered-and-cropped" style="border-radius:0%" src="{{ $adData['image'] }}" width=150 height=150>
-                        </a>
+    <!--adicionada temporariamente aqui, será removida quando estiver pronta na navbar-->
+    <div class="navbar-fixed">
+        <nav class="white">
+            <div class="nav-wrapper container">
+                <form>
+                    <div class="input-field">
+                        <input placeholder="Exemplos: um local ou algo que você queira fazer" id="search" type="search" required>
+                        <label class="label-icon" for="search">
+                            <i class="material-icons grey-text">search</i>
+                        </label>
+                        <i class="material-icons">close</i>
                     </div>
-                    <div class="col s1"></div>
-                    <div class="col s9">
-                        <div class="row">
-                            <div class="col s8">
-                                <a class='grey-text text-darken-2' href='/Exibir{{ $adData["type"] }}/{{ $adData["id"] }}'>
-                                    <h5>{{ $adData['title'] }}</h5>
-                                </a>
-                            </div>
-                            <div class="col s4">
-                                <h5 class='right'>R$ {{ $adData['price'] }}</h5>
-                            </div>
-                        </div>
-                        <div class="row">
-                            
-                            {{substr($adData['description'], 0, 400)}}
-                            @if (strlen($adData['description']) > 400)
-                                ...
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            </li>
-            @endforeach
-            <span class='center'>
-                <!--TODO Incluir paginação aqui -->
-            </span>
-        </ul>
+                </form>
+            </div>
+        </nav>
     </div>
+
+    <br><br><br>
+
+    <div class="row">
+        <div class="col l3 hide-on-med-and-down">
+            <div class="container">
+                <div class="row">
+                    iooooooooo iiiiiiiiiiii i iiiiiiiiiiiiii iiiiiiiiiiii iiiiiiiiiiiiiiiii iiiiiiiiiiiii iiiiiiiiiiiiii iiiiiiiiiiii ob_clean
+                    iiiiiiiii iiiiiiiiii iiiiiiiiii i9iiiiiiiii iiiiiiiii iiiiiiiii iiiiiiiiiiii iiiiiiiiiii iiiiiiiiiiiii
+                </div>
+            </div>
+        </div>
+        <div class="col s12 l8">
+            <div class="row">
+                    iooooooooo iiiiiiiiiiii i iiiiiiiiiiiiii iiiiiiiiiiii iiiiiiiiiiiiiiiii iiiiiiiiiiiii iiiiiiiiiiiiii iiiiiiiiiiii ob_clean
+                    iiiiiiiii iiiiiiiiii iiiiiiiiii i9iiiiiiiii iiiiiiiii iiiiiiiii iiiiiiiiiiii iiiiiiiiiii iiiiiiiiiiiii
+                    iooooooooo iiiiiiiiiiii i iiiiiiiiiiiiii iiiiiiiiiiii iiiiiiiiiiiiiiiii iiiiiiiiiiiii iiiiiiiiiiiiii iiiiiiiiiiii ob_clean
+                    iiiiiiiii iiiiiiiiii iiiiiiiiii i9iiiiiiiii iiiiiiiii iiiiiiiii iiiiiiiiiiii iiiiiiiiiii iiiiiiiiiiiii
+                    iooooooooo iiiiiiiiiiii i iiiiiiiiiiiiii iiiiiiiiiiii iiiiiiiiiiiiiiiii iiiiiiiiiiiii iiiiiiiiiiiiii iiiiiiiiiiii ob_clean
+                    iiiiiiiii iiiiiiiiii iiiiiiiiii i9iiiiiiiii iiiiiiiii iiiiiiiii iiiiiiiiiiii iiiiiiiiiii iiiiiiiiiiiii
+            </div>
+        </div>
+    </div>
+
 
 </body>
 

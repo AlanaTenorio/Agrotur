@@ -45,57 +45,27 @@
                         <!-- Dropdown Favorites Structure -->
                         <ul id='dropdown_Favorites' class='dropdown-content'>
                             @foreach ($favoritos as $favorito)
-                            <?php
-                            //o projeto do banco precisaria ser revisto para se evitar esse tipo de coisa
-                            $type = 'Hospedagem';
-                            $isService = false;
-                            $ad = DB::table('anuncios')->where('id', $favorito->anuncio_id)->first();
-                            $lodging = DB::table('hospedagems')->where('anuncio_id', $favorito->anuncio_id)->first();
-                            if (empty($lodging)) {
-                                $lodging = DB::table('servicos')->where('anuncio_id', $favorito->anuncio_id)->first();
-                                $image = DB::table('imagem__servicos')->where('servico_id', $lodging->id)->first();
-                                $isService = true;
-                                $type = 'Servico';
-                            }
-                            else {
-                                $image = DB::table('imagem__hospedagems')->where('hospedagem_id', $lodging->id)->first();
-                            }
-                            ?>
+                            <?php $adData = \App\Http\Controllers\AnuncioController::getDadosAnuncio($favorito->anuncio_id) ?>
+                            
                             <li>
-                                <a class='grey-text text-darken-2' href='/Exibir{{$type}}/{{$lodging->id}}'>
+                                <a class='grey-text text-darken-2' href='/Exibir{{ $adData["type"] }}/{{ $adData["id"] }}'>
                                     <div class="row">
                                         <div class="left col s3">
-                                            <?php
-                                            try {
-                                                echo "<img class='centered-and-cropped' style='border-radius:0%' src='$image->imagem' width=75 height=75>";
-                                            }
-                                            catch(Exception $e) {
-                                                //imagem externa temporária para anúncios sem imagem cadastrada, precisa ser substituída futuramente
-                                                echo "<img class='centered-and-cropped' style='border-radius:0%'  src='https://blog.stylingandroid.com/wp-content/themes/lontano-pro/images/no-image-slide.png'
-                                                    width=75 height=75>";
-                                            }
-                                            ?>
+                                        <img class="centered-and-cropped" style="border-radius:0%" src="{{ $adData['image'] }}" width=75 height=75>
                                         </div>
                                         <div class='col s9 right'>
                                             <ul>
                                                 <li>
                                                     <b>
-                                                        @if ($isService)
-                                                            {{substr($lodging->nomeServico, 0, 32)}}
-                                                            @if (strlen($lodging->nomeServico) > 32)
-                                                            ...
-                                                            @endif
-                                                        @else
-                                                        {{substr($lodging->nomePropriedade, 0, 32)}}
-                                                            @if (strlen($lodging->nomePropriedade) > 32)
-                                                            ...
-                                                            @endif
+                                                        {{ substr($adData['title'], 0, 32) }}
+                                                        @if (strlen($adData['title']) > 32)
+                                                        ...
                                                         @endif
                                                     </b>
                                                 </li>
                                                 <li>
-                                                    {{substr($ad->descricao, 0, 57)}}
-                                                    @if (strlen($ad->descricao) > 57)
+                                                    {{substr($adData['description'], 0, 57)}}
+                                                    @if (strlen($adData['description']) > 57)
                                                     ...
                                                     @endif
                                                 </li>
