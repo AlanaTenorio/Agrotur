@@ -111,33 +111,22 @@
         </div>
 
         <!-- FORM DE HOSPEDAGEM-->
+        
         <div class="col s12 m6">
-            <div class="card-panel light-green lighten-3">
-
-              <li class="collection-header light-green darken-3 white-text">
-                <h4>R$ {{ $anuncio->preco }} por dia</h4>
-              </li>
-
-                <h6>Check-in</h6>
-                <div class="input-field">
-                  <i class="material-icons prefix">date_range</i>
-                  <input id="dataEntrada" type="text" class="datepicker">
-                </div>
-
-                <h6>Checkout</h6>
-                <div class="input-field">
-                  <i class="material-icons prefix">date_range</i>
-                  <input id="dataSaida" type="text" class="datepicker2">
-                </div>
-
-                <div class="input-field col s12">
-                  <input type="text" name="quantPessoas" class="form-control" id="quantPessoas"> <br/>
-                  <label for="telefone">Quantidade de hóspedes</label>
-                </div>
-
-              <input type="submit" value="Próximo" class="btn light-green darken-3">
-            </div>
+              <div class="card-panel light-green lighten-3">
+                
+                  <li class="collection-header light-green darken-3 white-text">
+                    <h4>R$ {{ $anuncio->preco }} por dia</h4>
+                  </li>
+                  <div class="row center ">
+                    <th scope="col"><a href="/contratarAnuncio">Contratar Anúncio</a></th></th>
+                  </div>
+                
+              </div>
+              
           </div>
+      
+      
       </div>
     </div>
 
