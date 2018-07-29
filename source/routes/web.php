@@ -128,3 +128,9 @@ Route::get('paypal', "PagamentoController@pagarComPayPal")->name('paypal');
 Route::get('status', "PagamentoController@statusPagamento")->name('status');
 
 Route::get('/busca', "BuscaController@getView")->name('busca');
+
+// Route::get('/avaliarAnuncio', function(Request $request) {
+//     return view('AvaliarAnuncio');
+// })->name('avaliar_anuncio');
+
+Route::post('/avaliarAnuncio', "AvaliacaoController@avaliarAnuncio");

@@ -127,6 +127,44 @@
 
           </div>
 
+          <div class="col s13 m6">
+                <div class="card-panel light-green lighten-3">
+
+                    <li class="collection-header light-green darken-3 white-text">
+                      <h5>Avaliações e comentários</h5>
+                    </li>
+                    @foreach ($avaliacoes as $a)
+                      <li class="collection-item"> {{ $a->nota }} </li>
+                      <label class="active" for="nota">Nota</label>
+
+                      <li class="collection-item"> {{ $a->comentario }} </li>
+                      <label for="comentario">Comentário</label></br>
+                    @endforeach
+                </div>
+
+            </div>
+
+          <div class="col s14 m6">
+                <div class="card-panel light-green lighten-3">
+
+                    <li class="collection-header light-green darken-3 white-text">
+                      <h5>Avalie este anúncio</h5>
+                    </li>
+                    <form action="/avaliarAnuncio" method="post" enctype="multipart/form-data">
+                      <input name="nota" id="nota" type="text"/>
+                      <label class="active" for="nota">Nota</label>
+
+                      <textarea id="comentario" class="materialize-textarea" name="comentario"></textarea>
+                      <label for="comentario">Comentário</label></br>
+                    <div class="row center ">
+                      <!-- <a href="/avaliarAnuncio" class="breadcrumb green-text">Avaliar</a> -->
+                      <input  type="submit" value="avaliar" />
+                    </div>
+                  </form>
+                </div>
+
+            </div>
+
 
       </div>
     </div>

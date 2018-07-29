@@ -78,12 +78,14 @@ class HospedagemController extends Controller
     $anunciante = \App\Cliente::find($anuncio->anunciante_id);
     $imagens = \App\Imagem_Hospedagem::where('hospedagem_id', '=', $id)->get();
     $servicos = \App\servicoOferecido_hospedagem::where('hospedagem_id', '=', $id)->get();
+    $avaliacoes = \App\Avaliacao_Anuncio::where('anuncio_id', '=', $id)->get();
     return view("ExibirHospedagem", ['hospedagem' => $hospedagem,
                                       'imagens' => $imagens,
                                       'anuncio' => $anuncio,
                                       'servicos' => $servicos,
                                       'endereco' => $endereco,
-                                      'anunciante' => $anunciante]);
+                                      'anunciante' => $anunciante,
+                                      'avaliacoes' => $avaliacoes]);
   }
 
   public function editar($id) {
