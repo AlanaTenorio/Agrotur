@@ -16,7 +16,7 @@ class AvaliacaoController extends Controller
 
       } else {
         $avaliacoes = $this->verificarAvaliacao($request->cliente_id, $request->anuncio_id);
-        if(sizeof($avaliacoes) == 1){
+        if(sizeof($avaliacoes) > 0){
           throw new \Exception("Não é possível avaliar novamente este anúncio", 1);
         }
         $avaliacaoAnuncio->cliente_id = $request->cliente_id;
@@ -24,9 +24,8 @@ class AvaliacaoController extends Controller
         $avaliacaoAnuncio->nota = $request->nota;
         $avaliacaoAnuncio->comentario = $request->comentario;
         $avaliacaoAnuncio->save();
-
+        return back();
       }
-      //return redirect($_SERVER['HTTP_REFERER']);
     }
 
     public function verificarTransacao($cliente_id, $anuncio_id){

@@ -132,5 +132,5 @@ Route::get('/busca', "BuscaController@getView")->name('busca');
 // Route::get('/avaliarAnuncio', function(Request $request) {
 //     return view('AvaliarAnuncio');
 // })->name('avaliar_anuncio');
-
-Route::post('/avaliarAnuncio', "AvaliacaoController@avaliarAnuncio");
+//Route::post('/ExibirHospedagem/{id}', "AvaliacaoController@avaliarAnuncio")->name('avaliarAnuncio');
+//Route::post('avaliar', "AvaliacaoController@avaliarAnuncio")->name('avaliar_anuncio');

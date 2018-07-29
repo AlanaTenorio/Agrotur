@@ -150,7 +150,7 @@
                     <li class="collection-header light-green darken-3 white-text">
                       <h5>Avalie este anúncio</h5>
                     </li>
-                    <form action="/avaliarAnuncio" method="post" enctype="multipart/form-data">
+                    <form action="avaliarAnuncio" class="container" method="post">
                       <input name="nota" id="nota" type="text"/>
                       <label class="active" for="nota">Nota</label>
 
@@ -158,7 +158,7 @@
                       <label for="comentario">Comentário</label></br>
                     <div class="row center ">
                       <!-- <a href="/avaliarAnuncio" class="breadcrumb green-text">Avaliar</a> -->
-                      <input  type="submit" value="avaliar" />
+                      <input  type="submit" value="avaliar" name="action"/>
                     </div>
                   </form>
                 </div>
