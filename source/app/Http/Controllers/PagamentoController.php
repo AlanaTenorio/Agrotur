@@ -58,7 +58,7 @@ class PagamentoController extends Controller {
 
     $redirect_urls = new RedirectUrls();
     $redirect_urls->setReturnUrl(URL::route('home')) /** Specify return URL **/
-                  ->setCancelUrl(URL::route('contratarAnuncio'));
+                  ->setCancelUrl(URL::route('home'));
 
     $payment = new Payment();
     $payment->setIntent('Sale')
