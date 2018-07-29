@@ -129,11 +129,13 @@ class ServicoController extends Controller
     $anuncio = \App\Anuncio::find($servicos->anuncio_id);
     $anunciante = \App\Cliente::find($anuncio->anunciante_id);
     $imagens = \App\Imagem_Servico::where('servico_id', '=', $id)->get();
+    $avaliacoes = \App\Avaliacao_Anuncio::where('anuncio_id', '=', $id)->get();
     return view("ExibirServico", ['servicos' => $servicos,
                                       'imagens' => $imagens,
                                       'anuncio' => $anuncio,
                                       'endereco' => $endereco,
-                                      'anunciante' => $anunciante]);
+                                      'anunciante' => $anunciante,
+                                      'avaliacoes' => $avaliacoes]);
   }
 
   public function remover($id) {
