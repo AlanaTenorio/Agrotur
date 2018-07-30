@@ -150,8 +150,11 @@
                     <li class="collection-header light-green darken-3 white-text">
                       <h5>Avalie este anúncio</h5>
                     </li>
-                    <form action="avaliarAnuncio" class="container" method="post">
-                      <input name="nota" id="nota" type="text"/>
+                    <form action="/avaliarAnuncio" method="post">
+                      <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                      <input type="hidden" name = "user_id" value="{{Auth::user()->id}}"/>
+                      <input type="hidden" name = "anuncio_id" value="{{$anuncio->id}}"/>
+                      <input name="nota" id="nota" type="text" required value={{ old('nota')}}> {{ $errors->first('nota')}} </br>
                       <label class="active" for="nota">Nota</label>
 
                       <textarea id="comentario" class="materialize-textarea" name="comentario"></textarea>
