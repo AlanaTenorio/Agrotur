@@ -76,18 +76,56 @@
                   <h4>R$ {{ $anuncio->preco }} por pessoa</h4>
                 </li>
 
-                <li class="collection-header light-green darken-3 white-text">
-                  <h4>R$ {{ $anuncio->preco }} por pessoa</h4>
-                </li>
-
                  <div class="row center ">
-                    <th scope="col"><a href="/contratarAnuncio">Contratar Anúncio</a></th></th>
+                    <a href="/contratarAnuncio/{{$anuncio->id}}" class="breadcrumb green-text">Contratar Anúncio</a>
                   </div>
 
             </div>
           </div>
+
+    <div class="col s13 m6">
+          <div class="card-panel light-green lighten-3">
+
+              <li class="collection-header light-green darken-3 white-text">
+                <h5>Avaliações e comentários</h5>
+              </li>
+              @foreach ($avaliacoes as $a)
+                <li class="collection-item"> {{ $a->nota }} </li>
+                <label class="active" for="nota">Nota</label>
+
+                <li class="collection-item"> {{ $a->comentario }} </li>
+                <label for="comentario">Comentário</label></br>
+              @endforeach
+          </div>
+
       </div>
+
+      <div class="col s14 m6">
+            <div class="card-panel light-green lighten-3">
+
+                <li class="collection-header light-green darken-3 white-text">
+                  <h5>Avalie este anúncio</h5>
+                </li>
+                <form action="/avaliarAnuncio" method="post">
+                  <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                  <input type="hidden" name = "user_id" value="{{Auth::user()->id}}"/>
+                  <input type="hidden" name = "anuncio_id" value="{{$anuncio->id}}"/>
+                  <input name="nota" id="nota" type="text" required value={{ old('nota')}}> {{ $errors->first('nota')}} </br>
+                  <label class="active" for="nota">Nota</label>
+
+                  <textarea id="comentario" class="materialize-textarea" name="comentario"></textarea>
+                  <label for="comentario">Comentário</label></br>
+                <div class="row center ">
+                  <!-- <a href="/avaliarAnuncio" class="breadcrumb green-text">Avaliar</a> -->
+                  <input  type="submit" value="avaliar" name="action"/>
+                </div>
+              </form>
+            </div>
+
+        </div>
+
     </div>
+  </div>
 
     <nav>
         <div class="nav-wrapper light-green darken-3 center">
