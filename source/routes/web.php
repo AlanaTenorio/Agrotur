@@ -111,25 +111,27 @@ Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback
 
 Route::get('/RemoverImagemServico/{id}', "ServicoController@removerImagens");
 
-Route::get('/contratarAnuncio', function(Request $request) {
-    return view('ContratarAnuncio');
+Route::get('/contratarAnuncio/{id}', function($id) {
+    return view('ContratarAnuncio', ['id' => $id]);
 });
 
-Route::post('/contratarAnuncio', "TransacaoController@adicionarTransacao");
+Route::post('/salvarTransacao', 'TransacaoController@adicionarTransacao');
 
-Route::post('/ExibirHospedagem/{id}', 'ClienteController@favoritarOuDesfavoritar')->name('favoritos');
+Route::post('/ExibirHospedagem/{id}', 'ClienteController@favoritarOuDesfavoritar')->name('exibirHospedagem');
 
-Route::post('/ExibirServico/{id}', 'ClienteController@favoritarOuDesfavoritar')->name('favoritos');
+Route::post('/ExibirServico/{id}', 'ClienteController@favoritarOuDesfavoritar')->name('exibirServico');
 
 Route::get('/exibirFavoritos', "ClienteController@visualizarFavoritos")->name('listarFavoritos');
 
-Route::get('/pagamento', function(Request $request) {
-    return view('pagamento');
-})->name('pagamento');
-
-Route::post('paypal', "PagamentoController@pagarComPayPal");
+Route::get('paypal', "PagamentoController@pagarComPayPal")->name('paypal');
 
 Route::get('status', "PagamentoController@statusPagamento")->name('status');
 
 Route::get('/busca', "BuscaController@getView")->name('busca');
 
+Route::post('/avaliarAnuncio', "AvaliacaoController@avaliarAnuncio");
+
+// Route::get('/avaliarAnuncio', function(Request $request) {
+//     return view('AvaliarAnuncio');
+// })->name('avaliar_anuncio');
+//Route::post('avaliar', "AvaliacaoController@avaliarAnuncio")->name('avaliar_anuncio');

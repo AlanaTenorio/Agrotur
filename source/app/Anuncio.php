@@ -13,4 +13,8 @@ class Anuncio extends Model
   public function endereco(){
     return $this->hasOne('app\Endereco');
   }
+
+  public function avaliacao_anuncios(){
+    return $this->hasMany('app\Avaliacao_Anuncio');
+  }
 }
