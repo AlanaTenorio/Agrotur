@@ -8,6 +8,8 @@
     <link rel="icon" id="icon_AgroTur" href="/public_resources/images/fav_icon.png">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <link href="https://pixinvent.com/materialize-material-design-admin-template/vendors/dropify/css/dropify.min.css" type="text/css" rel="stylesheet">
+
 </head>
 
 @include('layouts.Navbar')
@@ -16,7 +18,7 @@
     <br/>
     <h4 class="container teal-text text-darken-3">Ofertar hospedagem</h4>
     <br/>
-    <form class="container" action="cadastroHospedagem" method="post">
+    <form class="container" action="cadastroHospedagem" method="post" enctype="multipart/form-data">
         <input type="hidden" name = "host_id" value="{{Auth::user()->id}}"/>
         <input type = "hidden" name = "_token" value = "{{ csrf_token()}}"/>
         <div class="row"> <!-- Título, preço e descrição -->
@@ -25,7 +27,7 @@
             </font>
             <div class="input-field col s12"> <!--título-->
                 <label class="active" for="lodging_title">Título do anúncio:</label>
-                <input name="lodging_title" placeholder="Exemplo: " id="lodging_title" type="text" class="validate" required value= {{ old('lodging_title')}}> {{ $errors->first('lodging_title')}}
+                <input name="lodging_title" id="lodging_title" type="text" class="validate" required value= {{ old('lodging_title')}}> {{ $errors->first('lodging_title')}}
             </div>
             <div class="input-field col s12 m6 l4 left"> <!-- Preço -->
                 <label class="active" for="lodging_price">Preço da diária:</label>
@@ -104,23 +106,61 @@
             </div>
         </div>
 
+        <div class="row">
+            <!-- Imagens e link do YouTube -->
+            <font size="5" class="row">
+                Mídia:
+            </font>
+            <br/>
+            <div class="row"><!--imagens-->
+                @for ($i = 1; $i <= 8; $i++) <!--de 01 a 08 -->
+                <div class="col s6 m4 l3">
+                    <div class="card">
+                        <div class="row center">
+                            <div class="card-image">
+                                <i class="material-icons large grey-text text-darken-2">insert_photo</i>
+                            </div>
+                        </div>
+                        <div class="row center">
+                            <div class="file-field input-field">
+                                <div class="btn-flat">
+                                    <i class="material-icons">add</i>
+                                    <input type="file" id="image0{{$i}}" name="image0{{$i}}" accept="image/*">
+                                </div>
+                                <div class="file-path-wrapper container">
+                                    <input class="file-path validate" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endfor
+            
+                <div class="input-field col s12"> <!-- YouTube video -->
+                    <label class="active" for="lodging_video">Link para vídeo no YouTube:</label>
+                    <input name="lodging_video" id="lodging_video" type="text" class="validate">
+                </div>
+            </div>
+        </div>
 
         <div class="row center"><!--usar disabled num if enquanto tudo não estiver preenchido-->
-            <button class="btn-large waves-effect waves-light" type="submit" name="action">Continuar
+            <button class="btn-large waves-effect waves-light" type="submit" name="action">Cadastrar
                 <i class="material-icons right">send</i>
             </button>
         </div>
-        <!--<input type="submit" value="proximo" />-->
 
     </form>
 
 </body>
+
 
 @include('layouts.Footer')
 
 <body><!--  Scripts Novamente, caminhos absolutos.-->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <script type="text/javascript" src="https://pixinvent.com/materialize-material-design-admin-template/vendors/dropify/js/dropify.min.js"></script>
+
     <script>
         $('.dropdown-trigger').dropdown({
             alignment: 'right',

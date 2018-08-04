@@ -63,7 +63,18 @@ class HospedagemController extends Controller
     $endereco->complemento = $request->lodging_address_complement;
     $endereco->save();
 
-    return redirect ("/InserirImagensHospedagem/{$hospedagem->id}");
+
+    for ($i = 1; $i <= 8; $i++) {
+      $imagem = new \App\Imagem_Hospedagem();
+      $imageIndex = "image0".$i;
+      if ($request->hasFile($imageIndex)) {
+        $repo = new ImageRepository;
+        $imagem->imagem = $repo->saveImage($request->$imageIndex, $hospedagem->id, 'hospedagens', 2048);
+        $imagem->hospedagem_id = $hospedagem->id;
+        $imagem->save();
+      }
+    }
+    return redirect ('ExibirHospedagem/'.$hospedagem->id);
   }
 
   public function listarHospedagens(){
