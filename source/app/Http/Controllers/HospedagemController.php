@@ -63,6 +63,15 @@ class HospedagemController extends Controller
     $endereco->complemento = $request->lodging_address_complement;
     $endereco->save();
 
+    $services = $request->lodging_services;
+    $serviceList = explode(";", $services);
+
+    foreach ($serviceList as $service) {
+      $servico = new \App\servicoOferecido_hospedagem();
+      $servico->hospedagem_id = $hospedagem->id;
+      $servico->servico = $service;
+      $servico->save();
+    }
 
     for ($i = 1; $i <= 8; $i++) {
       $imagem = new \App\Imagem_Hospedagem();
@@ -108,38 +117,6 @@ class HospedagemController extends Controller
   }
 
   public function salvar(Request $request) {
-    /*$messages = [
-        'lodging_description.required' => 'Insira uma descrição do anúncio',
-        'lodging_title.required' => 'Insira o título do anúncio',
-        'lodging_price.numeric' => 'Este valor deve ser um número',
-        'lodging_price.required' => 'Insira o preço deste anúncio',
-        'lodging_municipality.required' => 'Insira a cidade no endereço do anúncio',
-        'lodging_state.required' => 'Selecione um estado',
-        'lodging_street.required' => 'Insira a rua no endereço do anúncio',
-        'lodging_street_number.required' => 'Insira o número no endereço do anúncio',
-        'lodging_street_neighbourhood.required' => 'Insira o bairro no endereço do anúncio',
-        'lodging_postal_code.required' => 'Insira um CEP válido',
-        'lodging_postal_code.digits' => 'Insira um CEP válido',
-    ];
-    $validator = Validator::make($request->all(), [
-      'lodging_description'=>'required',
-      'lodging_title'=>'required',
-      'lodging_price'=>'required|numeric',
-      'lodging_municipality'=>'required',
-      'lodging_state'=>'required',
-      'lodging_street'=>'required',
-      'lodging_street_number'=>'required',
-      'lodging_neighbourhood'=>'required',
-      'lodging_postal_code'=>'required|digits:8',
-    ], $messages);
-
-    if ($validator->fails()) {
-      return redirect()->action(
-              'HospedagemController@editar', ['id' => $request->id]
-             )->withErrors($validator)
-              ->withInput();
-    } */
-
     $hospedagem = \App\Hospedagem::find($request->id);
     $hospedagem->nomePropriedade = $request->nomePropriedade;
     $hospedagem->save();

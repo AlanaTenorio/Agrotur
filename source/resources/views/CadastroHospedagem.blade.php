@@ -104,6 +104,10 @@
                 <label class="active" for="lodging_address_complement">Complemento:</label>
                 <input name="lodging_address_complement" id="lodging_address_complement" type="text">
             </div>
+            <div class="input-field col s12"> <!-- complemento -->
+                <label class="active" for="lodging_services">Serviços oferecidos:</label>
+                <input name="lodging_services" id="lodging_services" type="text" placeholder='Informe os serviços separados por ";"' >
+            </div>
         </div>
 
         <div class="row">
@@ -152,7 +156,6 @@
     </form>
 
 </body>
-
 
 @include('layouts.Footer')
 

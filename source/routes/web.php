@@ -53,19 +53,20 @@ Route::post('/SalvarHospedagem', "HospedagemController@salvar");
 
 Route::post('/cadastroHospedagem', "HospedagemController@adicionarHospedagem");
 
-Route::get('/InserirImagensHospedagem/{id}', "HospedagemController@inserirImagens");
+//Route::get('/InserirImagensHospedagem/{id}', "HospedagemController@inserirImagens");
 
-Route::post('/SalvarImagemHospedagem', "HospedagemController@salvarImagem");
+//Route::post('/SalvarImagemHospedagem', "HospedagemController@salvarImagem");
 
 Route::get('/EditarImagensHospedagem/{id}', "HospedagemController@editarImagens");
 
 Route::get('/RemoverImagemHospedagem/{id}', "HospedagemController@removerImagens");
 
-Route::get('/InserirServicosHospedagem/{id}', "HospedagemController@inserirServicosOferecidos");
+//Route::get('/InserirServicosHospedagem/{id}', "HospedagemController@inserirServicosOferecidos");
 
-Route::get('/inserirServicosHospedagem', function(Request $request) {
+/*Route::get('/inserirServicosHospedagem', function(Request $request) {
     return view('InserirServicosHospedagem');
 });
+*/
 
 Route::post('/salvarServicosOferecidos', "HospedagemController@salvarServicosOferecidos");
 
