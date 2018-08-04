@@ -131,6 +131,14 @@ Route::get('/busca', "BuscaController@getView")->name('busca');
 
 Route::post('/avaliarAnuncio', "AvaliacaoController@avaliarAnuncio");
 
+Route::get('/TransacaoSucesso', function(Request $request) {
+    return view('TransacaoSucesso');
+});
+
+Route::get('/TransacaoFalha', function(Request $request) {
+    return view('TransacaoFalha');
+});
+
 // Route::get('/avaliarAnuncio', function(Request $request) {
 //     return view('AvaliarAnuncio');
 // })->name('avaliar_anuncio');
