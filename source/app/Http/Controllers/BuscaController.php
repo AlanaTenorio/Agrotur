@@ -3,82 +3,53 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Validator;
+use Illuminate\Support\Facades\Hash;
+use App\Endereco;
 
 class BuscaController extends Controller
 {
     public function getView(){
-        return view("Busca");
+        return view('Busca');
     }
+    public function buscaAnuncio(Request $request){
 
-    public function buscar($termos) {/*
-        $favoritos = \App\Favorito::where('cliente_id', '=', Auth::user()->id)->limit(3)->get();
+        //$hospedagens = \App\Anuncio::whereHas('endereco.cidade', 'ilike', 'garanhuns')->get();
+
+        /*$endereco_ids = \DB::table('enderecos')->where('cidade', 'ilike', 
+            $request->termo)->pluck('anuncio_id');
+        $hospedagens = \App\Anuncio::whereIn('id', $endereco_ids)->get();
+        var_dump($hospedagens->count());
+        return "";*/
+
+        \Auth::user()->id;
+
+        $hospedagens = \App\Anuncio::whereHas('endereco', function ($query) {
+            $query->where('cidade', 'ilike', \Request::get('termo'));
+        })->get();
+
+
+
+        //has('endereco.cidade', 'ilike', 'garanhuns')->get();
+        //var_dump($hospedagens->count());
+        //return "$request->termo";  
+
+        //$hospedagens = \App\Hospedagem::where('nomePropriedade', 'ilike', $request->termo)->get();
+
+        $enderecos = \App\Endereco::where('cidade', 'ilike', $request->termo)
+                            ->orWhere("estado", 'ilike', $request->termo)->get();
+
+        $servicosh = \App\servicoOferecido_hospedagem::where('servico', 'ilike', $request->termo)->get();
+
+        $servicos = \App\Servico::where('nomeServico', 'ilike', $request->termo)->get();
+         
+
+        //->get() or where('estado', '=', $termo)->get() or where('bairro', '=', $termo)->get() or where('rua', '=', $termo)->get();
+
         
-        <a class='waves-effect dropdown-trigger grey-text text-darken-3' href='#' data-target='dropdown_Favorites'>FAVORITOS</a>
-        <!-- Dropdown Favorites Structure -->
-        <ul id='dropdown_Favorites' class='dropdown-content'>
-            @foreach ($favoritos as $favorito)
-            
-            //o projeto do banco precisaria ser revisto para se evitar esse tipo de coisa
-            //TODO mover para uma função no controller
-            $type = 'Hospedagem';
-            $isService = false;
-            $ad = DB::table('anuncios')->where('id', $favorito->anuncio_id)->first();
-            $lodging = DB::table('hospedagems')->where('anuncio_id', $favorito->anuncio_id)->first();
-            if (empty($lodging)) {
-                $lodging = DB::table('servicos')->where('anuncio_id', $favorito->anuncio_id)->first();
-                $image = DB::table('imagem__servicos')->where('servico_id', $lodging->id)->first();
-                $isService = true;
-                $type = 'Servico';
-            }
-            else {
-                $image = DB::table('imagem__hospedagems')->where('hospedagem_id', $lodging->id)->first();
-            }
-            
-            <li>
-                <a class='grey-text text-darken-2' href='/Exibir{{$type}}/{{$lodging->id}}'>
-                    <div class="row">
-                        <div class="left col s3">
-                            
-                            try {
-                                echo "<img class='centered-and-cropped' style='border-radius:0%' src='$image->imagem' width=75 height=75>";
-                            }
-                            catch(Exception $e) {
-                                //imagem externa temporária para anúncios sem imagem cadastrada, precisa ser substituída futuramente
-                                echo "<img class='centered-and-cropped' style='border-radius:0%'  src='https://blog.stylingandroid.com/wp-content/themes/lontano-pro/images/no-image-slide.png'
-                                    width=75 height=75>";
-                            }
-                            
-                        </div>
-                        <div class='col s9 right'>
-                            <ul>
-                                <li>
-                                    <b>
-                                        @if ($isService)
-                                            {{substr($lodging->nomeServico, 0, 32)}}
-                                            @if (strlen($lodging->nomeServico) > 32)
-                                            ...
-                                            @endif
-                                        @else
-                                        {{substr($lodging->nomePropriedade, 0, 32)}}
-                                            @if (strlen($lodging->nomePropriedade) > 32)
-                                            ...
-                                            @endif
-                                        @endif
-                                    </b>
-                                </li>
-                                <li>
-                                    {{substr($ad->descricao, 0, 57)}}
-                                    @if (strlen($ad->descricao) > 57)
-                                    ...
-                                    @endif
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </a>
-            </li>
-            @endforeach
-            <li><a href="{{ route('listarFavoritos') }}" class="black-text center">Ver Todos</a></li>
-        </ul>*/
+        return view("ExibirBusca", ['servicosh' => $servicosh,
+                                    'servicos' => $servicos,
+                                      'hospedagens' => $hospedagens,
+                                      'enderecos' => $enderecos]);
     }
 }
