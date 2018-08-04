@@ -51,6 +51,34 @@
                 <a href="#!" class="secondary-content">
                   <i class="material-icons">grade</i>
                 </a>
+
+                <?php
+                  $favorito = False;
+                  if(Auth::check()){
+                    $favorito = \App\Favorito::where([
+                      ['cliente_id', '=', Auth::user()->id],
+                      ['anuncio_id', '=', $anuncio->id]
+                    ])->first();
+                  }
+                ?>
+
+                @if ($favorito)
+                <form class="container" action="favoritos" method="post">
+                  <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                  <input type="hidden" name = "anuncio_id" value="{{$anuncio->id}}"/>
+                  <button class="secondary-content" type="submit" name="action">
+                    <i>desfav</i>
+                  </button>
+                </form>
+                @else:
+                <form class="container" action="favoritos" method="post">
+                  <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                  <input type="hidden" name = "anuncio_id" value="{{$anuncio->id}}"/>
+                  <button class="secondary-content" type="submit" name="action">
+                    <i>fav</i>
+                  </button>
+                </form>
+                @endif
               </li>
             </ul>
 
@@ -108,7 +136,6 @@
                 </li>
                 <form action="/avaliarAnuncio" method="post">
                   <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                  <input type="hidden" name = "user_id" value="{{Auth::user()->id}}"/>
                   <input type="hidden" name = "anuncio_id" value="{{$anuncio->id}}"/>
                   <input name="nota" id="nota" type="text" required value={{ old('nota')}}> {{ $errors->first('nota')}} </br>
                   <label class="active" for="nota">Nota</label>

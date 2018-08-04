@@ -25,16 +25,17 @@ class AvaliacaoController extends Controller
       }
       $avaliacaoAnuncio = new \App\Avaliacao_Anuncio();
 
-      $transacoes = $this->verificarTransacao($request->user_id, $request->anuncio_id);
+      $user_id = Auth::user()->id;
+      $transacoes = $this->verificarTransacao($user_id, $request->anuncio_id);
 
       if($transacoes == NULL){
         throw new \Exception("Não é possível avaliar um anúncio antes de contratá-lo", 1);
       } else {
-        $avaliacoes = $this->verificarAvaliacao($request->user_id, $request->anuncio_id);
+        $avaliacoes = $this->verificarAvaliacao($user_id, $request->anuncio_id);
         if($avaliacoes != NULL){
           throw new \Exception("Não é possível avaliar novamente este anúncio", 1);
         }
-        $avaliacaoAnuncio->cliente_id = $request->user_id;
+        $avaliacaoAnuncio->cliente_id = Auth::user()->id;
         $avaliacaoAnuncio->anuncio_id = $request->anuncio_id;
         $avaliacaoAnuncio->nota = $request->nota;
         $avaliacaoAnuncio->comentario = $request->comentario;
