@@ -34,7 +34,6 @@ class HospedagemController extends Controller
       'lodging_neighbourhood'=>'required',
       'lodging_postal_code'=>'required|digits:8',
     ], $messages);
-
     if ($validator->fails()) {
         return redirect('/cadastroHospedagem')
                     ->withErrors($validator)
@@ -45,6 +44,7 @@ class HospedagemController extends Controller
     $anuncio->descricao = $request->lodging_description;
     $anuncio->anunciante_id = $request->host_id;
     $anuncio->preco = $request->lodging_price;
+    $anuncio->video = $request->lodging_video;
     $anuncio->save();
 
     $hospedagem = new \App\Hospedagem();
@@ -65,7 +65,6 @@ class HospedagemController extends Controller
 
     $services = $request->lodging_services;
     $serviceList = explode(";", $services);
-
     foreach ($serviceList as $service) {
       $servico = new \App\servicoOferecido_hospedagem();
       $servico->hospedagem_id = $hospedagem->id;

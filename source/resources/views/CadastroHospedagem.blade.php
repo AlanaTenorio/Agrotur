@@ -142,7 +142,9 @@
             
                 <div class="input-field col s12"> <!-- YouTube video -->
                     <label class="active" for="lodging_video">Link para vídeo no YouTube:</label>
-                    <input name="lodging_video" id="lodging_video" type="text" class="validate">
+                    <input name="lodging_video" id="lodging_video" type="text" class="validate"
+                    title='Insira um link válido para um video do YouTube'
+                    pattern='^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$'>
                 </div>
             </div>
         </div>
