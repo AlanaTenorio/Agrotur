@@ -19,13 +19,14 @@
     <form class="container" action="cadastroServico" method="post">
         <input type="hidden" name = "provider_id" value="{{Auth::user()->id}}"/>
         <input type = "hidden" name = "_token" value = "{{ csrf_token()}}"/>
+
         <div class="row"> <!-- Título, preço e descrição -->
             <font size="5" class="row">
                 Descrição:
             </font>
             <div class="input-field col s12"> <!--título-->
                 <label class="active" for="service_title">Título do anúncio:</label>
-                <input name="service_title" placeholder="Exemplo: " id="service_title" type="text" class="validate" required value= {{ old('service_title')}}> {{ $errors->first('service_title')}}
+                <input name="service_title" id="service_title" type="text" class="validate" required value= {{ old('service_title')}}> {{ $errors->first('service_title')}}
             </div>
             <div class="input-field col s12 m6 l4 left"> <!-- Preço -->
                 <label class="active" for="service_price">Preço da diária:</label>
@@ -104,17 +105,51 @@
             </div>
         </div>
 
-            <div class="input-field col s12"> <!-- YouTube video -->
-                <label class="active" for="service_video">Link para vídeo no YouTube:</label>
-                <input name="service_video" id="service_video" type="text" class="validate">
+        <div class="row">
+            <!-- Imagens e link do YouTube -->
+            <font size="5" class="row">
+                Mídia:
+            </font>
+            <br/>
+            <div class="row"><!--imagens-->
+                @for ($i = 1; $i <= 8; $i++) <!--de 01 a 08 -->
+                <div class="col s6 m4 l3">
+                    <div class="card">
+                        <div class="row center">
+                            <div class="card-image">
+                                <i class="material-icons large grey-text text-darken-2">insert_photo</i>
+                            </div>
+                        </div>
+                        <div class="row center">
+                            <div class="file-field input-field">
+                                <div class="btn-flat">
+                                    <i class="material-icons">add</i>
+                                    <input type="file" id="image0{{$i}}" name="image0{{$i}}" accept="image/*">
+                                </div>
+                                <div class="file-path-wrapper container">
+                                    <input class="file-path validate" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endfor
+            
+                <div class="input-field col s12"> <!-- YouTube video -->
+                    <label class="active" for="service_video">Link para vídeo no YouTube:</label>
+                    <input name="service_video" id="service_video" type="text" class="validate"
+                    title='Insira um link válido para um video do YouTube'
+                    pattern='^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$'>
+                </div>
             </div>
         </div>
 
         <div class="row center"><!--usar disabled num if enquanto tudo não estiver preenchido-->
-            <button class="btn-large waves-effect waves-light" type="submit" name="action">Continuar
+            <button class="btn-large waves-effect waves-light" type="submit" name="action">Cadastrar
                 <i class="material-icons right">send</i>
             </button>
         </div>
+
     </form>
 
 </body>
