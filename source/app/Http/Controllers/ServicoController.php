@@ -45,6 +45,7 @@ class ServicoController extends Controller
     $anuncio->descricao = $request->service_description;
     $anuncio->anunciante_id = $request->provider_id;
     $anuncio->preco = $request->service_price;
+    $anuncio->video = $request->service_video;
     $anuncio->save();
 
     $servico = new \App\Servico();
@@ -63,7 +64,18 @@ class ServicoController extends Controller
     $endereco->complemento = $request->service_address_complement;
     $endereco->save();
 
-    return redirect ("/InserirImagensServico/{$servico->id}");
+    for ($i = 1; $i <= 8; $i++) {
+      $imagem = new \App\Imagem_Servico();
+      $imageIndex = "image0".$i;
+      if ($request->hasFile($imageIndex)) {
+        $repo = new ImageRepository;
+        $imagem->imagem = $repo->saveImage($request->$imageIndex, $servico->id, 'servicos', 2048);
+        $imagem->servico_id = $servico->id;
+        $imagem->save();
+      }
+    }
+
+    return redirect ('ExibirServico/'.$servico->id);
   }
 
   public function editar($id) {

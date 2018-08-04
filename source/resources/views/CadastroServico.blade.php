@@ -16,7 +16,7 @@
     <br/>
     <h4 class="container teal-text text-darken-3">Ofertar serviço</h4>
     <br/>
-    <form class="container" action="cadastroServico" method="post">
+    <form class="container" action="cadastroServico" method="post" enctype="multipart/form-data">
         <input type="hidden" name = "provider_id" value="{{Auth::user()->id}}"/>
         <input type = "hidden" name = "_token" value = "{{ csrf_token()}}"/>
 
