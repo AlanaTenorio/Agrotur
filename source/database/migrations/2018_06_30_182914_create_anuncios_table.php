@@ -20,6 +20,7 @@ class CreateAnunciosTable extends Migration
             $table->text('descricao');
             $table->integer('anunciante_id');
             $table->foreign('anunciante_id')->references('id')->on('clientes');
+            $table->integer('quantidade_vagas');
         });
     }
 

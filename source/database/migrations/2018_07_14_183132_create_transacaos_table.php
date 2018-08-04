@@ -16,11 +16,11 @@ class CreateTransacaosTable extends Migration
         Schema::create('transacaos', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            //pagamento
             $table->dateTime('dataEntrada');
-            $table->dateTime('dataSaida');
+            $table->dateTime('dataSaida')->nullable();
             $table->decimal('precoTotal');
-            //$table->boolean('status');
+            //disponivel ou não
+            $table->boolean('status');
             $table->integer('quantPessoas');
             $table->integer('anuncio_id');
             $table->foreign('anuncio_id')->references('id')->on('anuncios');
