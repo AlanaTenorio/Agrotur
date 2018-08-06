@@ -45,7 +45,10 @@ class ServicoController extends Controller
     $anuncio->descricao = $request->service_description;
     $anuncio->anunciante_id = $request->provider_id;
     $anuncio->preco = $request->service_price;
-    $anuncio->video = $request->service_video;
+    $video = $request->lodging_video;
+    $video = str_ireplace("watch?v=", "embed/", $video);
+    $video = str_ireplace("youtu.be/", "www.youtube.com/watch?v=", $video);
+    $anuncio->video = $video;
     $anuncio->save();
 
     $servico = new \App\Servico();

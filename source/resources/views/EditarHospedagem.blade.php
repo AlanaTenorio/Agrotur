@@ -30,6 +30,18 @@
 
 </body>
 
+<nav>
+  <div class="nav-wrapper light-green darken-3 center">
+    <a href="" class="brand-logo">Mais opções</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="/EditarHospedagem/{{$hospedagem->id}}">Editar Hospedagem</a></li>
+      <li><a href="/EditarImagensHospedagem/{{$hospedagem->id}}">Alterar Imagens</a></li>
+     <li><a href="/EditarServicosHospedagem/{{$hospedagem->id}}">Alterar Serviços</a></li>
+     <li><a href="/RemoverHospedagem/{{$hospedagem->id}}">Remover Hospedagem</a></li>
+    </ul>
+  </div>
+</nav>
+
 @include('layouts.Footer')
 
 <body>

@@ -27,12 +27,14 @@ class AvaliacaoController extends Controller
 
       $transacoes = $this->verificarTransacao($request->user_id, $request->anuncio_id);
 
-      if($transacoes == NULL){
-        throw new \Exception("Não é possível avaliar um anúncio antes de contratá-lo", 1);
+      if($transacoes == NULL){//TODO lidar com isso de outra forma
+        //throw new \Exception("Não é possível avaliar um anúncio antes de contratá-lo", 1);
+        return back();
       } else {
         $avaliacoes = $this->verificarAvaliacao($request->user_id, $request->anuncio_id);
         if($avaliacoes != NULL){
-          throw new \Exception("Não é possível avaliar novamente este anúncio", 1);
+          //throw new \Exception("Não é possível avaliar novamente este anúncio", 1);
+          return back();
         }
         $avaliacaoAnuncio->cliente_id = $request->user_id;
         $avaliacaoAnuncio->anuncio_id = $request->anuncio_id;

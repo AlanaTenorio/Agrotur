@@ -53,7 +53,8 @@
                                         <div class="left col s3">
                                         <img class="centered-and-cropped" style="border-radius:0%" src="{{ $adData['image'] }}" width=75 height=75>
                                         </div>
-                                        <div class='col s9 right'>
+                                        <div class="col s3"></div>
+                                        <div class='col s6 right'>
                                             <ul>
                                                 <li>
                                                     <b>

@@ -44,7 +44,10 @@ class HospedagemController extends Controller
     $anuncio->descricao = $request->lodging_description;
     $anuncio->anunciante_id = $request->host_id;
     $anuncio->preco = $request->lodging_price;
-    $anuncio->video = $request->lodging_video;
+    $video = $request->lodging_video;
+    $video = str_ireplace("watch?v=", "embed/", $video);
+    $video = str_ireplace("youtu.be/", "www.youtube.com/watch?v=", $video);
+    $anuncio->video = $video;
     $anuncio->save();
 
     $hospedagem = new \App\Hospedagem();
