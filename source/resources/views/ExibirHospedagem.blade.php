@@ -51,7 +51,7 @@
         background: none;
         -moz-border-radius: 50px;
         -webkit-border-radius: 50px;
-        border-radius: 50px; 
+        border-radius: 50px;
     }
     .indicators{
         visibility: hidden;
@@ -80,7 +80,7 @@
                     </div>
                     @if ($anuncio->video != NULL)
                     <div class="carousel-item white-text">
-                        <iframe width="580" height="400" src="{{ $anuncio->video }}" 
+                        <iframe width="580" height="400" src="{{ $anuncio->video }}"
                         frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     </div>
                     @endif
@@ -262,7 +262,7 @@
                                 @foreach ($avaliacoes as $avaliacao)
                                     <div class="row card-panel">
                                         <div class="col s12 m9 l10">
-                                            "{{ $avaliacao->comentario }}" 
+                                            "{{ $avaliacao->comentario }}"
                                         </div>
                                         <div class="col s12 m3 l2">
                                             <?php
@@ -352,7 +352,7 @@
             toolbarEnabled: true
             });
         });
-        
+
         $('.carousel.carousel-slider').carousel({
             fullWidth: true,
             indicators: true,

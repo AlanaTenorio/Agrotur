@@ -11,6 +11,15 @@ class Avaliacao_Anuncio extends Model
   protected $primaryKey = ['cliente_id', 'anuncio_id'];
   public $incrementing = false;
 
+  public static $rules = [
+		'nota'=>'required|numeric|between: 0, 5',
+	];
+
+  public static $messages = [
+      'nota.required' => 'Insira uma nota pro anúncio',
+      'nota.between' => 'A nota deve ser um número de 0 a 5',
+  ];
+
   /**
   * Set the keys for a save update query.
   *
