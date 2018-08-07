@@ -13,7 +13,7 @@ class ClienteTest extends TestCase
 
 	/**
 	 * A basic test example.
-	 * git commit -m "Controler de Cliente refatorado para efetuação dos testes em cima da validação dessa classe."
+	 * 
 	 * @return void
 	 */
 	public function test_if_cpf_can_be_empty(){

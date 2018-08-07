@@ -27,7 +27,7 @@ class TransacaoController extends Controller
     ], $messages);
 
     if ($validator->fails()) {
-        return redirect('/contratarAnuncio')
+        return redirect('/contratarAnuncio/'.$request->anuncio_id)
                     ->withErrors($validator)
                     ->withInput();
     }

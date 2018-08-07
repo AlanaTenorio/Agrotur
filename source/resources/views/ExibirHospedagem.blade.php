@@ -156,7 +156,8 @@
                     <form action="/avaliarAnuncio" method="post">
                       <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                       <input type="hidden" name = "anuncio_id" value="{{$anuncio->id}}"/>
-                      <input name="nota" id="nota" type="text" required value={{ old('nota')}}> {{ $errors->first('nota')}} </br>
+                      <input type="hidden" name = "user_id" value="{{Auth::user()->id}}"/>
+                      <input name="nota" id="nota" type="text" required value={{ old('nota')}}> {{ $errors->first()}} </br>
                       <label class="active" for="nota">Nota</label>
 
                       <textarea id="comentario" class="materialize-textarea" name="comentario"></textarea>
