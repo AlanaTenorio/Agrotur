@@ -69,13 +69,13 @@
                     <div class="left">
                         <br><br><br><br><br><br><br>
                         <a href="prev" class="movePrevCarousel middle-indicator-text waves-effect content-indicator">
-                            <i class="material-icons left  middle-indicator-text">chevron_left</i>
+                            <i class="material-icons left teal-text text-darken-3 middle-indicator-text">chevron_left</i>
                         </a>
                     </div>
                     <div class="right">
                         <br><br><br><br><br><br><br>
                         <a href="next" class=" moveNextCarousel middle-indicator-text waves-effect content-indicator">
-                            <i class="material-icons right middle-indicator-text">chevron_right</i>
+                            <i class="material-icons right teal-text text-darken-3 middle-indicator-text">chevron_right</i>
                         </a>
                     </div>
                     @if ($anuncio->video != NULL)

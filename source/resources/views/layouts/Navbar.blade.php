@@ -28,10 +28,18 @@
                         <ul id='dropdown_OfferService' class='dropdown-content'>
                             <!--Esse formato foi usado para manter a consistência da interface.-->
                             <li>
-                                <a href="{{ route('cadastro_hospedagem') }}" class="black-text">Ofertar Hospedagem</a>
+                                <?php
+                                    $ref = "/login";
+                                    if (Auth::guard()->check()) $ref = "/cadastroHospedagem";
+                                ?>
+                                <a href="{{ $ref }}" class="black-text">Ofertar Hospedagem</a>
                             </li>
                             <li>
-                                <a href="{{ route('cadastro_servico') }}" class="black-text">Ofertar Serviço</a>
+                                <?php
+                                    $ref = "/login";
+                                    if (Auth::guard()->check()) $ref = "/cadastroServico";
+                                ?>
+                                <a href="{{ $ref }}" class="black-text">Ofertar Serviço</a>
                             </li>
                         </ul>
                     </li>

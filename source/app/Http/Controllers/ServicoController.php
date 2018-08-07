@@ -18,7 +18,7 @@ class ServicoController extends Controller
         'service_state.required' => 'Selecione um estado',
         'service_street.required' => 'Insira a rua no endereço do anúncio',
         'service_street_number.required' => 'Insira o número no endereço do anúncio',
-        'service_street_neighbourhood.required' => 'Insira o bairro no endereço do anúncio',
+        'service_street_neighborhood.required' => 'Insira o bairro no endereço do anúncio',
         'service_postal_code.required' => 'Insira um CEP válido',
         'service_postal_code.digits' => 'Insira um CEP válido',
     ];
@@ -31,7 +31,7 @@ class ServicoController extends Controller
       'service_state'=>'required',
       'service_street'=>'required',
       'service_street_number'=>'required',
-      'service_neighbourhood'=>'required',
+      'service_neighborhood'=>'required',
       'service_postal_code'=>'required|digits:8',
     ], $messages);
 
@@ -45,7 +45,7 @@ class ServicoController extends Controller
     $anuncio->descricao = $request->service_description;
     $anuncio->anunciante_id = $request->provider_id;
     $anuncio->preco = $request->service_price;
-    $video = $request->lodging_video;
+    $video = $request->service_video;
     $video = str_ireplace("watch?v=", "embed/", $video);
     $video = str_ireplace("youtu.be/", "www.youtube.com/watch?v=", $video);
     $anuncio->video = $video;
@@ -62,7 +62,7 @@ class ServicoController extends Controller
     $endereco->estado = $request->service_state;
     $endereco->rua = $request->service_street;
     $endereco->numero = $request->service_street_number;
-    $endereco->bairro = $request->service_neighbourhood;
+    $endereco->bairro = $request->service_neighborhood;
     $endereco->cep = $request->service_postal_code;
     $endereco->complemento = $request->service_address_complement;
     $endereco->save();
@@ -84,51 +84,63 @@ class ServicoController extends Controller
   public function editar($id) {
     $servico = \App\Servico::find($id);
     $anuncio = \App\Anuncio::find($servico->anuncio_id);
-    return view("EditarServico", ['servico' => $servico,
-                                     'anuncio' => $anuncio]);
+    
+    $endereco = \App\Endereco::where('anuncio_id', '=', $servico->anuncio_id)->get()->first();
+    $imagens = \App\Imagem_Servico::where('servico_id', '=', $servico->id)->get();
+    return view("EditarServico", 
+                ['servico' => $servico,
+                  'anuncio' => $anuncio,
+                  'endereco' => $endereco,
+                  'imagens' => $imagens,
+                ]
+                );
   }
 
   public function salvar(Request $request){
-    /*$messages = [
-        'service_description.required' => 'Insira uma descrição do anúncio',
-        'service_title.required' => 'Insira o título do anúncio',
-        'service_price.numeric' => 'Este valor deve ser um número',
-        'service_price.required' => 'Insira o preço deste anúncio',
-        'service_municipality.required' => 'Insira a cidade no endereço do anúncio',
-        'service_state.required' => 'Selecione um estado',
-        'service_street.required' => 'Insira a rua no endereço do anúncio',
-        'service_street_number.required' => 'Insira o número no endereço do anúncio',
-        'service_street_neighbourhood.required' => 'Insira o bairro no endereço do anúncio',
-        'service_postal_code.required' => 'Insira um CEP válido',
-        'service_postal_code.digits' => 'Insira um CEP válido',
-    ];
-    $validator = Validator::make($request->all(), [
-      'service_description'=>'required',
-      'service_title'=>'required',
-      'service_price'=>'required|numeric',
-      'service_municipality'=>'required',
-      'service_state'=>'required',
-      'service_street'=>'required',
-      'service_street_number'=>'required',
-      'service_neighbourhood'=>'required',
-      'service_postal_code'=>'required|digits:8',
-    ], $messages);
-
-    if ($validator->fails()) {
-      return redirect()->action(
-              'SeviçoController@editar', ['id' => $request->id]
-             )->withErrors($validator)
-              ->withInput();
-    } */
     $servico = \App\Servico::find($request->id);
-    $servico->nomeServico = $request->nomeServico;
+    $servico->nomeServico = $request->service_title;
     $servico->save();
 
     $anuncio = \App\Anuncio::find($servico->anuncio_id);
-    $anuncio->descricao = $request->descricao;
-    $anuncio->anunciante_id = $request->anunciante_id;
-    $anuncio->preco = $request->preco;
+    $anuncio->descricao = $request->service_description;
+    $anuncio->preco = $request->service_price;
+    $video = $request->service_video;
+    $video = str_ireplace("watch?v=", "embed/", $video);
+    $video = str_ireplace("youtu.be/", "www.youtube.com/watch?v=", $video);
+    $anuncio->video = $video;
     $anuncio->save();
+
+    
+    $endereco = \App\Endereco::where('anuncio_id', '=', $servico->anuncio_id)->get()->first();
+    $endereco->cidade = $request->service_municipality;
+    $endereco->estado = $request->service_state;
+    $endereco->rua = $request->service_street;
+    $endereco->numero = $request->service_street_number;
+    $endereco->bairro = $request->service_neighborhood;
+    $endereco->cep = $request->service_postal_code;
+    $endereco->complemento = $request->service_address_complement;
+    $endereco->save();
+
+    /*TODO
+      Falta poder apagar uma imagem, passar "delete" como value para a imagem inserida quando
+      ela dever ser deletada.
+    */
+    $images_old = \App\Imagem_Servico::where('servico_id', '=', $servico->id)->get();
+    for ($i = 1; $i <= 8; $i++) {
+      $imagem = new \App\Imagem_Servico();
+      $imageIndex = "image0".$i;
+      if ($request->hasFile($imageIndex)) {
+        if ($i - 1 < sizeof($images_old)) {
+          unlink(".".$images_old[$i-1]->imagem);
+          $images_old[$i-1]->delete();
+        }
+        $repo = new ImageRepository;
+        $imagem->imagem = $repo->saveImage($request->$imageIndex, $servico->id, 'servicos', 2048);
+        $imagem->servico_id = $servico->id;
+        $imagem->save();
+      }
+    }
+
     return redirect ('/listaServicos');
   }
 
@@ -140,7 +152,7 @@ class ServicoController extends Controller
 
   public function exibirServico($id) {
     $servicos = \App\Servico::find($id);
-    $endereco = \App\Endereco::find($id);
+    $endereco = \App\Endereco::where('anuncio_id', '=', $servicos->anuncio_id)->get()->first();
     $anuncio = \App\Anuncio::find($servicos->anuncio_id);
     $anunciante = \App\Cliente::find($anuncio->anunciante_id);
     $imagens = \App\Imagem_Servico::where('servico_id', '=', $id)->get();
