@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\ImageRepository;
 use App\Repositories\HospedagemRepository;
-use App\Validator\EnderecoValidator;
+use App\Validator\HospedagemValidator;
+use App\Imagem_Hospedagem;
 use Validator;
 
 //TODO refatorar isso
@@ -13,30 +14,6 @@ use Validator;
 class HospedagemController extends Controller
 {
   public function adicionarHospedagem(Request $request, HospedagemRepository $repo){
-
-    try {
-
-      EnderecoValidator::validate($request->all());
-
-    }catch(\App\Validator\ValidationException $e) {
-      return back()->withErrors($e->getValidator())
-                  ->withInput();
-    }
-
-    $video = $request->lodging_video;
-    $video = str_ireplace("watch?v=", "embed/", $video);
-    $video = str_ireplace("youtu.be/", "www.youtube.com/watch?v=", $video);
-
-    $anuncio = [
-      'descricao' => $request->lodging_description,
-      'anunciante_id' => $request->host_id,
-      'preco' => $request->lodging_price,
-      'video' => $video;
-    ];
-
-    $hospedagem = [
-      'nomePropriedade' => $request->lodging_title
-    ];
 
     $endereco = [
       'cidade' => $request->lodging_municipality,
@@ -48,16 +25,34 @@ class HospedagemController extends Controller
       'complemento' => $request->lodging_address_complement,
     ];
 
-    $hospedagemID = $repo->saveHospedagem($anuncio, $hospedagem, $endereco);
+    $video = $request->lodging_video;
+    $video = str_ireplace("watch?v=", "embed/", $video);
+    $video = str_ireplace("youtu.be/", "www.youtube.com/watch?v=", $video);
+
+    $anuncio = [
+      'descricao' => $request->lodging_description,
+      'anunciante_id' => $request->host_id,
+      'preco' => $request->lodging_price,
+      'video' => $video,
+    ];
+
+    $hospedagem = [
+      'nomePropriedade' => $request->lodging_title
+    ];
 
     $services = $request->lodging_services;
-    $serviceList = explode(";", $services);
-    foreach ($serviceList as $service) {
-      $servico = new servicoOferecido_hospedagem();
-      $servico->hospedagem_id = $hospedagemID;
-      $servico->servico = $service;
-      $servico->save();
+
+    try {
+
+      $dados = array_merge($endereco, $anuncio, $hospedagem);
+      HospedagemValidator::validate($dados);
+
+    }catch(\App\Validator\ValidationException $e) {
+      return back()->withErrors($e->getValidator())
+                  ->withInput();
     }
+
+    $hospedagemID = $repo->saveHospedagem($anuncio, $hospedagem, $endereco, $services);
 
     for ($i = 1; $i <= 8; $i++) {
       $imagem = new Imagem_Hospedagem();

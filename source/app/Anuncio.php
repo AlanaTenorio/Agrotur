@@ -10,14 +10,14 @@ class Anuncio extends Model
   protected $fillable = ['descricao', 'anunciante_id', 'preco', 'video'];
 
   public static $messages = [
-    'lodging_description.required' => 'Insira uma descrição do anúncio',
-    'lodging_price.numeric' => 'Este valor deve ser um número',
-    'lodging_price.required' => 'Insira o preço deste anúncio',
+    'descricao.required' => 'Insira uma descrição do anúncio',
+    'preco.numeric' => 'Este valor deve ser um número',
+    'preco.required' => 'Insira o preço deste anúncio',
   ];
 
   public static $rules = [
-    'lodging_description'=>'required',
-    'lodging_price'=>'required|numeric',
+    'descricao'=>'required',
+    'preco'=>'required|numeric',
   ];
 
   public function hospedagem(){

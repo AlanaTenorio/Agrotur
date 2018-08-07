@@ -4,41 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\ImageRepository;
+use App\Validator\ServicoValidator;
 use Validator;
 
 class ServicoController extends Controller
 {
   public function adicionarServico(Request $request){
-    $messages = [
-        'service_description.required' => 'Insira uma descrição do anúncio',
-        'service_title.required' => 'Insira o título do anúncio',
-        'service_price.numeric' => 'Este valor deve ser um número',
-        'service_price.required' => 'Insira o preço deste anúncio',
-        'service_municipality.required' => 'Insira a cidade no endereço do anúncio',
-        'service_state.required' => 'Selecione um estado',
-        'service_street.required' => 'Insira a rua no endereço do anúncio',
-        'service_street_number.required' => 'Insira o número no endereço do anúncio',
-        'service_street_neighborhood.required' => 'Insira o bairro no endereço do anúncio',
-        'service_postal_code.required' => 'Insira um CEP válido',
-        'service_postal_code.digits' => 'Insira um CEP válido',
-    ];
 
-    $validator = Validator::make($request->all(), [
-      'service_description'=>'required',
-      'service_title'=>'required',
-      'service_price'=>'required|numeric',
-      'service_municipality'=>'required',
-      'service_state'=>'required',
-      'service_street'=>'required',
-      'service_street_number'=>'required',
-      'service_neighborhood'=>'required',
-      'service_postal_code'=>'required|digits:8',
-    ], $messages);
+    try {
 
-    if ($validator->fails()) {
-        return redirect('/cadastroServico')
-                    ->withErrors($validator)
-                    ->withInput();
+      ServicoValidator::validate($request->all());
+
+    }catch(\App\Validator\ValidationException $e) {
+      return back()->withErrors($e->getValidator())
+                  ->withInput();
     }
 
     $anuncio = new \App\Anuncio();
@@ -84,10 +63,10 @@ class ServicoController extends Controller
   public function editar($id) {
     $servico = \App\Servico::find($id);
     $anuncio = \App\Anuncio::find($servico->anuncio_id);
-    
+
     $endereco = \App\Endereco::where('anuncio_id', '=', $servico->anuncio_id)->get()->first();
     $imagens = \App\Imagem_Servico::where('servico_id', '=', $servico->id)->get();
-    return view("EditarServico", 
+    return view("EditarServico",
                 ['servico' => $servico,
                   'anuncio' => $anuncio,
                   'endereco' => $endereco,
@@ -110,7 +89,7 @@ class ServicoController extends Controller
     $anuncio->video = $video;
     $anuncio->save();
 
-    
+
     $endereco = \App\Endereco::where('anuncio_id', '=', $servico->anuncio_id)->get()->first();
     $endereco->cidade = $request->service_municipality;
     $endereco->estado = $request->service_state;

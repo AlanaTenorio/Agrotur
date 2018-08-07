@@ -11,10 +11,10 @@ class HospedagemValidator{
 
   public static function validate($dados){
 
-    $validatorHospedagem = \Validator::make($dados, Hospedagem::$rules, Hospedagem::$messages);
+    $validator = \Validator::make($dados, Hospedagem::$rules, Hospedagem::$messages);
 
-    if(!$validatorHospedagem->errors()->isEmpty()){
-      throw new ValidationException($validatorHospedagem, $validatorHospedagem->errors());
+    if(!$validator->errors()->isEmpty()){
+      throw new ValidationException($validator, $validator->errors());
     }
 
     AnuncioValidator::validate($dados);

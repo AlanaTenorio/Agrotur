@@ -7,30 +7,20 @@ use DateTime;
 use DatePeriod;
 use DateIntercal;
 use Validator;
+use App\Validator\TransacaoValidator;
 
 class TransacaoController extends Controller
 {
   public function adicionarTransacao(Request $request){
-    $messages = [
-        'dataEntrada.required' => 'Selecione uma data de entrada',
-        'dataSaida.required' => 'Selecione uma data de saída',
-        'quantPessoas.numeric' => 'Este valor deve ser um número',
-        'quantPessoas.required' => 'Informe a quantidade de pessoas',
-        'dataEntrada.after' => 'Data de entrada inválida',
-        'dataSaida.after' => 'A data de saída deve ser após a data de entrada',
-    ];
+    try {
 
-    $validator = Validator::make($request->all(), [
-      'dataEntrada'=>'required|after:today',
-      'dataSaida'=>'required|after:dataEntrada',
-      'quantPessoas'=>'required|numeric',
-    ], $messages);
+			TransacaoValidator::validate($request->all());
 
-    if ($validator->fails()) {
-        return redirect('/contratarAnuncio/'.$request->anuncio_id)
-                    ->withErrors($validator)
-                    ->withInput();
-    }
+  	}catch(\App\Validator\ValidationException $e) {
+      return redirect('/contratarAnuncio/'.$request->anuncio_id)
+                  ->withErrors($e->getValidator())
+                  ->withInput();
+  	}
 
     $transacao = new \App\Transacao();
     $transacao->dataEntrada = $request->dataEntrada;
@@ -38,7 +28,6 @@ class TransacaoController extends Controller
     $transacao->quantPessoas = $request->quantPessoas;
     $transacao->anuncio_id = $request->anuncio_id;
     $transacao->cliente_id = $request->host_id;
-    //$transacao->cliente_id = $request->cliente_id;
     $transacao->precoTotal = $this->calcularPreco($request->anuncio_id, $request->dataEntrada, $request->dataSaida);
 
     $transacao->save();

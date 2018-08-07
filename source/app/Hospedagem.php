@@ -8,11 +8,11 @@ class Hospedagem extends Model
 {
 
   public static $messages = [
-      'lodging_title.required' => 'Insira o título do anúncio'
+      'nomePropriedade.required' => 'Insira o título do anúncio'
   ];
 
   public static $rules = [
-    'lodging_title'=>'required'
+    'nomePropriedade'=>'required'
   ];
 
   public function anuncio(){

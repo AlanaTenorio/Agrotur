@@ -5,9 +5,10 @@ namespace App\Repositories;
 use App\Hospedagem;
 use App\Anuncio;
 use App\Endereco;
+use App\servicoOferecido_hospedagem;
 
 class HospedagemRepository{
-    public function saveHospedagem($a, $h, $e){
+    public function saveHospedagem($a, $h, $e, $s){
       $anuncio = new Anuncio;
       $anuncio->fill($a);
       $anuncio->save();
@@ -23,6 +24,14 @@ class HospedagemRepository{
       $endereco = new Endereco();
       $endereco->fill($e);
       $endereco->save();
+
+      $serviceList = explode(";", $s);
+      foreach ($serviceList as $service) {
+        $servico = new servicoOferecido_hospedagem();
+        $servico->hospedagem_id = $hospedagem->id;
+        $servico->servico = $service;
+        $servico->save();
+      }
 
       return $hospedagem->id;
 

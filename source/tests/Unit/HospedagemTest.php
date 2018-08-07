@@ -19,26 +19,22 @@ class HospedagemTest extends TestCase
   use RefreshDatabase;
 
   private $hospedagem = [
-    'lodging_description' => 'O Grande Hotel Budapeste é ambientado na Europa da década de 30, em um país fictício conhecido como República de Zubrowka',
-    'lodging_title' => 'Hotel Budapeste',
-    'lodging_price' => 100,
-    'lodging_municipality' => 'Varsovia',
-    'lodging_state' => 'Polonia',
-    'lodging_street' => 'Rua das Amarguras',
-    'lodging_street_number' => 's/n',
-    'lodging_neighbourhood' => 'Bairro das Tristezas',
-    'lodging_postal_code' => '12345678',
-    'lodging_address_complement' => 'Casa vermelha'
+    'descricao' => 'O Grande Hotel Budapeste é ambientado na Europa da década de 30, em um país fictício conhecido como República de Zubrowka',
+    'nomePropriedade' => 'Hotel Budapeste',
+    'preco' => 100,
+    'cidade' => 'Varsovia',
+    'estado' => 'Polonia',
+    'rua' => 'Rua das Amarguras',
+    'numero' => 's/n',
+    'bairro' => 'Bairro das Tristezas',
+    'cep' => '12345678',
+    'complemento' => 'Casa vermelha'
   ];
-	/**
-	 *
-	 *
-	 * @return void
-	 */
+
 	public function test_if_description_can_be_empty() {
 		$this->expectException(\App\Validator\ValidationException::class);
 
-    $this->hospedagem['lodging_description'] = '';
+    $this->hospedagem['descricao'] = '';
 
 		HospedagemValidator::validate($this->hospedagem);
 	}
@@ -46,7 +42,7 @@ class HospedagemTest extends TestCase
   public function test_if_title_can_be_empty() {
 		$this->expectException(\App\Validator\ValidationException::class);
 
-    $this->hospedagem['lodging_title'] = '';
+    $this->hospedagem['nomePropriedade'] = '';
 
 		HospedagemValidator::validate($this->hospedagem);
 	}
@@ -54,7 +50,7 @@ class HospedagemTest extends TestCase
   public function test_if_state_can_be_empty() {
 		$this->expectException(\App\Validator\ValidationException::class);
 
-    $this->hospedagem['lodging_state'] = '';
+    $this->hospedagem['estado'] = '';
 
 		HospedagemValidator::validate($this->hospedagem);
 	}
@@ -65,26 +61,26 @@ class HospedagemTest extends TestCase
 
     $a = [
       'anunciante_id' => $fakerCliente->id,
-      'preco' => $this->hospedagem['lodging_price'],
-      'descricao' => $this->hospedagem['lodging_description'],
+      'preco' => $this->hospedagem['preco'],
+      'descricao' => $this->hospedagem['descricao'],
     ];
 
     $h = [
-      'nomePropriedade' => $this->hospedagem['lodging_title']
+      'nomePropriedade' => $this->hospedagem['nomePropriedade']
     ];
 
     $e = [
-      'cidade' => $this->hospedagem['lodging_municipality'],
-      'estado' => $this->hospedagem['lodging_state'],
-      'rua' => $this->hospedagem['lodging_street'],
-      'numero' => $this->hospedagem['lodging_street_number'],
-      'bairro' => $this->hospedagem['lodging_neighbourhood'],
-      'cep' => $this->hospedagem['lodging_postal_code'],
-      'complemento' => $this->hospedagem['lodging_address_complement'],
+      'cidade' => $this->hospedagem['cidade'],
+      'estado' => $this->hospedagem['estado'],
+      'rua' => $this->hospedagem['rua'],
+      'numero' => $this->hospedagem['numero'],
+      'bairro' => $this->hospedagem['bairro'],
+      'cep' => $this->hospedagem['cep'],
+      'complemento' => $this->hospedagem['complemento'],
     ];
 
     $repo = new HospedagemRepository;
-    $hospedagemID = $repo->saveHospedagem($a, $h, $e);
+    $hospedagemID = $repo->saveHospedagem($a, $h, $e, null);
 
     $hospedagem = Hospedagem::find($hospedagemID);
 
