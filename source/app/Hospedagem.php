@@ -16,12 +16,12 @@ class Hospedagem extends Model
   ];
 
   public function anuncio(){
-    return $this->belongsTo('app\Anuncio');
+    return $this->belongsTo('App\Anuncio');
   }
   public function imagem_Hospedagem(){
-    return $this->hasMany('app\Imagem_Hospedagem');
+    return $this->hasMany('App\Imagem_Hospedagem');
   }
   public function servico_oferecido_Hospedagem(){
-    return $this->hasMany('app\servicoOferecido_hospedagem');
+    return $this->hasMany('App\servicoOferecido_hospedagem');
   }
 }

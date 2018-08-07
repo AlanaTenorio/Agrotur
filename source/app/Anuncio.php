@@ -21,14 +21,18 @@ class Anuncio extends Model
   ];
 
   public function hospedagem(){
-    return $this->hasOne('app\Hospedagem');
+    return $this->hasOne('App\Hospedagem');
+  }
+
+  public function servico(){
+    return $this->hasOne('App\Servico');
   }
 
   public function endereco(){
-    return $this->hasOne('app\Endereco');
+    return $this->hasOne('App\Endereco');
   }
 
   public function avaliacao_anuncios(){
-    return $this->hasMany('app\Avaliacao_Anuncio');
+    return $this->hasMany('App\Avaliacao_Anuncio');
   }
 }

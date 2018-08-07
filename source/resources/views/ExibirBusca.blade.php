@@ -25,15 +25,9 @@
                         <div class="row">
                             <table class="table table-striped">
                                 <thead>
-                                    @foreach ($enderecos as $endereco)
-                                    <tr>
-                                        <th scope="col"><i class="material-icons">landscape</i></th>
-                                        <th scope="col"> {{$endereco->cidade}}</th>
-                                    </tr>
-                                    @endforeach
                                     @foreach ($hospedagens as $hospedagem)
                                     <tr>
-                                        <th scope="col"><i class="material-icons">landscape</i></th>
+                                        <th scope="col"><i class="material-icons">send</i></th>
                                         <th scope="col"> {{$hospedagem->nomePropriedade}}</th>
                                         <th scope="col"><a href="/ExibirHospedagem/{{$hospedagem->id}}">Visualizar</a></th></th>
                                     </tr>
@@ -41,13 +35,21 @@
                                     @foreach ($servicosh as $servicoh)
                                     <tr>
                                         <th scope="col"><i class="material-icons">landscape</i></th>
-                                        <th scope="col"> {{$servicoh->nomeServico}}</th>
+                                        <th scope="col"> {{$servicoh->nomePropriedade}}</th>
+                                        <th scope="col"><a href="/ExibirHospedagem/{{$servicoh->id}}">Visualizar</a></th></th>
+                                    </tr>
+                                    @endforeach
+                                    @foreach ($hospedagensVal as $hospedagemVal)
+                                    <tr>
+                                        <th scope="col"><i class="material-icons">ac_unit</i></th>
+                                        <th scope="col"><a href="/ExibirHospedagem/{{$hospedagemVal->id}}">Visualizar</a></th></th>
                                     </tr>
                                     @endforeach
                                     @foreach ($servicos as $servico)
                                     <tr>
-                                        <th scope="col"><i class="material-icons">landscape</i></th>
+                                        <th scope="col"><i class="material-icons">clear</i></th>
                                         <th scope="col"> {{$servico->nomeServico}}</th>
+                                        <th scope="col"><a href="/ExibirServico/{{$servico->id}}">Visualizar</a></th></th>
                                     </tr>
                                     @endforeach
                                 </thead>
