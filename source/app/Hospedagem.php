@@ -6,6 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Hospedagem extends Model
 {
+
+  public static $messages = [
+      'nomePropriedade.required' => 'Insira o título do anúncio'
+  ];
+
+  public static $rules = [
+    'nomePropriedade'=>'required'
+  ];
+
   public function anuncio(){
     return $this->belongsTo('app\Anuncio');
   }

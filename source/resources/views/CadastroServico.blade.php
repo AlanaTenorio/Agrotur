@@ -92,8 +92,8 @@
                 <input name="service_street_number" id="service_street_number" type="text" class="validate" required value= {{ old('service_street_number')}}> {{ $errors->first('service_street_number')}}
             </div>
             <div class="input-field col s12"> <!-- bairro -->
-                <label class="active" for="service_neighbourhood">Bairro:</label>
-                <input name="service_neighbourhood" id="service_neighbourhood" type="text" class="validate" required value= {{ old('service_neighbourhood')}}> {{ $errors->first('service_neighbourhood')}}
+                <label class="active" for="service_neighborhood">Bairro:</label>
+                <input name="service_neighborhood" id="service_neighborhood" type="text" class="validate" required value= {{ old('service_neighbourhood')}}> {{ $errors->first('service_neighbourhood')}}
             </div>
             <div class="input-field col s12 m6"> <!-- CEP -->
                 <label class="active" for="service_postal_code">CEP:</label>
@@ -134,7 +134,7 @@
                     </div>
                 </div>
                 @endfor
-            
+
                 <div class="input-field col s12"> <!-- YouTube video -->
                     <label class="active" for="service_video">Link para vídeo no YouTube:</label>
                     <input name="service_video" id="service_video" type="text" class="validate"
