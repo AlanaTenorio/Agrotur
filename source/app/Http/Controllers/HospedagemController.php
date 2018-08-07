@@ -4,90 +4,67 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\ImageRepository;
+use App\Repositories\HospedagemRepository;
+use App\Validator\HospedagemValidator;
+use App\Imagem_Hospedagem;
 use Validator;
 
 //TODO refatorar isso
 
 class HospedagemController extends Controller
 {
-  public function adicionarHospedagem(Request $request){
-    $messages = [
-        'lodging_description.required' => 'Insira uma descrição do anúncio',
-        'lodging_title.required' => 'Insira o título do anúncio',
-        'lodging_price.numeric' => 'Este valor deve ser um número',
-        'lodging_price.required' => 'Insira o preço deste anúncio',
-        'lodging_municipality.required' => 'Insira a cidade no endereço do anúncio',
-        'lodging_state.required' => 'Selecione um estado',
-        'lodging_street.required' => 'Insira a rua no endereço do anúncio',
-        'lodging_street_number.required' => 'Insira o número no endereço do anúncio',
-        'lodging_street_neighbourhood.required' => 'Insira o bairro no endereço do anúncio',
-        'lodging_postal_code.required' => 'Insira um CEP válido',
-        'lodging_postal_code.digits' => 'Insira um CEP válido',
+  public function adicionarHospedagem(Request $request, HospedagemRepository $repo){
+
+    $endereco = [
+      'cidade' => $request->lodging_municipality,
+      'estado' => $request->lodging_state,
+      'rua' => $request->lodging_street,
+      'numero' => $request->lodging_street_number,
+      'bairro' => $request->lodging_neighbourhood,
+      'cep' => $request->lodging_postal_code,
+      'complemento' => $request->lodging_address_complement,
     ];
 
-    $validator = Validator::make($request->all(), [
-      'lodging_description'=>'required',
-      'lodging_title'=>'required',
-      'lodging_price'=>'required|numeric',
-      'lodging_municipality'=>'required',
-      'lodging_state'=>'required',
-      'lodging_street'=>'required',
-      'lodging_street_number'=>'required',
-      'lodging_neighbourhood'=>'required',
-      'lodging_postal_code'=>'required|digits:8',
-    ], $messages);
-    if ($validator->fails()) {
-        return redirect('/cadastroHospedagem')
-                    ->withErrors($validator)
-                    ->withInput();
-    }
-
-    $anuncio = new \App\Anuncio();
-    $anuncio->descricao = $request->lodging_description;
-    $anuncio->anunciante_id = $request->host_id;
-    $anuncio->preco = $request->lodging_price;
     $video = $request->lodging_video;
     $video = str_ireplace("watch?v=", "embed/", $video);
     $video = str_ireplace("youtu.be/", "www.youtube.com/watch?v=", $video);
-    $anuncio->video = $video;
-    $anuncio->save();
 
-    $hospedagem = new \App\Hospedagem();
-    $hospedagem->nomePropriedade = $request->lodging_title;
-    $hospedagem->anuncio_id = $anuncio->id;
-    $hospedagem->save();
+    $anuncio = [
+      'descricao' => $request->lodging_description,
+      'anunciante_id' => $request->host_id,
+      'preco' => $request->lodging_price,
+      'video' => $video,
+    ];
 
-    $endereco = new \App\Endereco();
-    $endereco->anuncio_id = $anuncio->id;
-    $endereco->cidade = $request->lodging_municipality;
-    $endereco->estado = $request->lodging_state;
-    $endereco->rua = $request->lodging_street;
-    $endereco->numero = $request->lodging_street_number;
-    $endereco->bairro = $request->lodging_neighbourhood;
-    $endereco->cep = $request->lodging_postal_code;
-    $endereco->complemento = $request->lodging_address_complement;
-    $endereco->save();
+    $hospedagem = [
+      'nomePropriedade' => $request->lodging_title
+    ];
 
     $services = $request->lodging_services;
-    $serviceList = explode(";", $services);
-    foreach ($serviceList as $service) {
-      $servico = new \App\servicoOferecido_hospedagem();
-      $servico->hospedagem_id = $hospedagem->id;
-      $servico->servico = $service;
-      $servico->save();
+
+    try {
+
+      $dados = array_merge($endereco, $anuncio, $hospedagem);
+      HospedagemValidator::validate($dados);
+
+    }catch(\App\Validator\ValidationException $e) {
+      return back()->withErrors($e->getValidator())
+                  ->withInput();
     }
 
+    $hospedagemID = $repo->saveHospedagem($anuncio, $hospedagem, $endereco, $services);
+
     for ($i = 1; $i <= 8; $i++) {
-      $imagem = new \App\Imagem_Hospedagem();
+      $imagem = new Imagem_Hospedagem();
       $imageIndex = "image0".$i;
       if ($request->hasFile($imageIndex)) {
         $repo = new ImageRepository;
-        $imagem->imagem = $repo->saveImage($request->$imageIndex, $hospedagem->id, 'hospedagens', 2048);
-        $imagem->hospedagem_id = $hospedagem->id;
+        $imagem->imagem = $repo->saveImage($request->$imageIndex, $hospedagemID, 'hospedagens', 2048);
+        $imagem->hospedagem_id = $hospedagemID;
         $imagem->save();
       }
     }
-    return redirect ('ExibirHospedagem/'.$hospedagem->id);
+    return redirect ('ExibirHospedagem/'.$hospedagemID);
   }
 
   public function listarHospedagens(){
@@ -124,7 +101,7 @@ class HospedagemController extends Controller
     $servicosStr = trim($servicosStr, ";");
     $endereco = \App\Endereco::where('anuncio_id', '=', $hospedagem->anuncio_id)->get()->first();
     $imagens = \App\Imagem_Hospedagem::where('hospedagem_id', '=', $hospedagem->id)->get();
-    return view("EditarHospedagem", 
+    return view("EditarHospedagem",
                 ['hospedagem' => $hospedagem,
                   'anuncio' => $anuncio,
                   'endereco' => $endereco,
@@ -148,7 +125,7 @@ class HospedagemController extends Controller
     $anuncio->video = $video;
     $anuncio->save();
 
-    
+
     $endereco =  \App\Endereco::where('anuncio_id', '=', $hospedagem->anuncio_id)->get()->first();
     $endereco->cidade = $request->lodging_municipality;
     $endereco->estado = $request->lodging_state;
@@ -163,7 +140,7 @@ class HospedagemController extends Controller
     foreach ($services_old as $service) {
       $service->delete();
     }
-    
+
     $services = $request->lodging_services;
     $serviceList = explode(";", $services);
     foreach ($serviceList as $service) {
@@ -193,6 +170,7 @@ class HospedagemController extends Controller
     }
 
     return redirect ('/listaHospedagens');
+
   }
 
   public function remover($id) {

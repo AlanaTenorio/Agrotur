@@ -2,37 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Validator;
 use Auth;
+use Validator;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Validator\ClienteValidator;
 
 class ClienteController extends Controller
 {
     public function adicionarCliente(Request $request){
-      $validator = Validator::make($request->all(), [
-        'nome'=>'required',
-        'senha'=>'required|min:8|max:15|confirmed',
-        'telefone'=>'required|digits:11', //regex:/^\(\d{2}\)\d{9}$/'
-        'cpf'=>'required|cpf',
-        'email'=>'required|email|unique:clientes,email'
-      ]);
 
-      if ($validator->fails()) {
-          return redirect('/cadastroCliente')
-                      ->withErrors($validator)
-                      ->withInput();
-      }
+      try {
+  			ClienteValidator::validate($request->all());
 
-      $cliente = new \App\Cliente();
-      $cliente->nome = $request->nome;
-      $cliente->senha = Hash::make($request->senha);
-      $cliente->telefone = $request->telefone;
-      $cliente->cpf = $request->cpf;
-      $cliente->email = $request->email;
-      $cliente->save();
+        $cliente = new \App\User();
+        $cliente->nome = $request->nome;
+        $cliente->senha = Hash::make($request->senha);
+        $cliente->telefone = $request->telefone;
+        $cliente->cpf = $request->cpf;
+        $cliente->email = $request->email;
+        $cliente->save();
 
-      return redirect ('/listaClientes');
+        Auth::login($cliente, true);
+
+        return redirect ('/');
+    	}catch(\App\Validator\ValidationException $e) {
+        return back()->withErrors($e->getValidator())
+                    ->withInput();
+    	}
     }
 
     public function listarClientes(){
@@ -151,32 +148,4 @@ class ClienteController extends Controller
       return $anuncio;
     }
 
-
-    // public function favoritar(Request $request){
-    //   $favorito = \App\Favorito::where([
-    //       ['cliente_id', '=', $request->user_id],
-    //       ['anuncio_id', '=', $request->anuncio_id],
-    //   ])->first();
-    //
-    //   if(!$favorito){
-    //     $novo_favorito = new \App\Favorito();
-    //     $novo_favorito->cliente_id = $request->user_id;
-    //     $novo_favorito->anuncio_id = $request->anuncio_id;
-    //
-    //     $novo_favorito->save();
-    //   }
-    //   return back();
-    // }
-    //
-    // public function desfavoritar(Request $request){
-    //   $favorito = \App\Favorito::where([
-    //       ['cliente_id', '=', $request->user_id],
-    //       ['anuncio_id', '=', $request->anuncio_id],
-    //   ])->first();
-    //
-    //   if($favorito){
-    //     $favorito->delete();
-    //   }
-    //   return back();
-    // }
 }
