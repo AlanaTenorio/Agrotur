@@ -15,7 +15,7 @@
                 <ul class="right">
                     <li>
                         <!-- Dropdown Offer Service Trigger -->
-                        <a class='waves-effect dropdown-button grey-text text-darken-3' href='{{ route("busca") }}' data-target='dropdown_Search'>
+                        <a class='waves-effect dropdown-button grey-text text-darken-3' href='/busca' data-target='dropdown_Search'>
                             <i class="large material-icons left">search</i>
                             PESQUISAR
                             <!--<i class="large material-icons right">arrow_drop_down</i>-->
@@ -23,7 +23,7 @@
                     </li>
                     <li>
                         <!-- Dropdown Offer Service Trigger -->
-                        <a class='waves-effect dropdown-trigger grey-text text-darken-3' href='#' data-target='dropdown_OfferService'>OFERTAR UM SERVIÇO</a>
+                        <a class='waves-effect dropdown-trigger grey-text text-darken-3' href='#' data-target='dropdown_OfferService'>ANUNCIE</a>
                         <!-- Dropdown Offer Service Structure -->
                         <ul id='dropdown_OfferService' class='dropdown-content'>
                             <!--Esse formato foi usado para manter a consistência da interface.-->

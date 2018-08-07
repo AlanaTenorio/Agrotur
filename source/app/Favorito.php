@@ -50,10 +50,10 @@ class Favorito extends Model
   }
 
   public function cliente(){
-    return $this->hasOne('app\Cliente');
+    return $this->hasOne('App\Cliente');
   }
 
   public function anuncio(){
-    return $this->hasOne('app\Anuncio');
+    return $this->hasOne('App\Anuncio');
   }
 }
