@@ -93,7 +93,7 @@
             </div>
             <div class="input-field col s12"> <!-- bairro -->
                 <label class="active" for="service_neighborhood">Bairro:</label>
-                <input name="service_neighborhood" id="service_neighborhood" type="text" class="validate" required value= {{ old('service_neighbourhood')}}> {{ $errors->first('service_neighbourhood')}}
+                <input name="service_neighborhood" id="service_neighborhood" type="text" class="validate" required value= {{ old('service_neighborhood')}}> {{ $errors->first('service_neighborhood')}}
             </div>
             <div class="input-field col s12 m6"> <!-- CEP -->
                 <label class="active" for="service_postal_code">CEP:</label>
