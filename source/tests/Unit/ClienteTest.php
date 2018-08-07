@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
+use App\Validator\ClienteValidator;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -12,51 +13,36 @@ class ClienteTest extends TestCase
 
 	/**
 	 * A basic test example.
-	 *
+	 * git commit -m "Controler de Cliente refatorado para efetuação dos testes em cima da validação dessa classe."
 	 * @return void
 	 */
-	public function test_if_name_can_be_assign()
-	{
-		$fakerCliente = factory(\App\Cliente::class)->create();
+	public function test_if_cpf_can_be_empty(){
+		$this->expectException(\App\Validator\ValidationException::class);
 
-		$id = $fakerCliente->id;
+		$fakerCliente = factory(\App\Cliente::class)->make();
 
-		// Testa se o objeto criado foi salvo corretamente, e está disponivel no BD
-		$cliente = \App\Cliente::find($id);
-		$this->assertEquals($fakerCliente->nome, $cliente->nome);
+		$fakerCliente->cpf = "";
+
+		$array = $fakerCliente->toArray();
+		$array["senha_confirmation"] = $fakerCliente->senha;
+
+		ClienteValidator::validate($array);
+
 	}
 
-	public function test_if_client_can_be_deleted()
-	{
-		$fakerCliente = factory(\App\Cliente::class)->create();
+	public function test_if_cpf_can_be_repeated(){
+		$this->expectException(\App\Validator\ValidationException::class);
 
-		$id = $fakerCliente->id;
+		$fakerCliente1 = factory(\App\Cliente::class)->create();
 
-		// Testa se o objeto criado foi salvo corretamente, e está disponivel no BD
-		$cliente = \App\Cliente::find($id);
-		$this->assertEquals($fakerCliente->id, $cliente->id);
+		$fakerCliente2 = factory(\App\Cliente::class)->make();
 
-		$cliente->delete();
+		$fakerCliente2->cpf = $fakerCliente1->cpf;
 
-		// Testa se o objeto foi deletado, e não se encontra mais no BD
-		$cliente = \App\Cliente::find($id);
-		$this->assertEquals($cliente, null);
+		$array = $fakerCliente2->toArray();
+		$array["senha_confirmation"] = $fakerCliente2->senha;
+
+		ClienteValidator::validate($array);
 	}
 
-	public function test_if_file_can_be_edited()
-	{
-		$fakerCliente = factory(\App\Cliente::class)->create();
-
-		$id = $fakerCliente->id;
-
-		// Testa se o objeto criado foi salvo corretamente, e está disponivel no BD
-		$cliente = \App\Cliente::find($id);
-		$this->assertEquals($fakerCliente->id, $cliente->id);
-
-		$cliente->nome = 'Menino Neymar';
-		$cliente->update();
-
-		$cliente = \App\Cliente::find($id);
-		$this->assertEquals('Menino Neymar', $cliente->nome);
-	}
 }
