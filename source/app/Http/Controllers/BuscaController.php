@@ -22,13 +22,41 @@ class BuscaController extends Controller
         var_dump($hospedagens->count());
         return "";*/
 
-        \Auth::user()->id;
 
         $hospedagens = \App\Anuncio::whereHas('endereco', function ($query) {
             $query->where('cidade', 'ilike', \Request::get('termo'));
+        })->orwhereHas('endereco', function ($query) {
+            $query->where('cep', 'ilike', \Request::get('termo'));
+        })->orwhereHas('endereco', function ($query) {
+            $query->where('estado', 'ilike', \Request::get('termo'));
+        })->orwhereHas('hospedagem', function ($query) {
+            $query->where('nomePropriedade', 'ilike', \Request::get('termo'));
+        })->orwhereHas('hospedagem', function ($query) {
+            $query->where('nomePropriedade', 'ilike', \Request::get('termo'));
         })->get();
 
+        $servicos = \App\Anuncio::whereHas('servico', function ($query) {
+            $query->where('nomeServico', 'ilike', \Request::get('termo'));
+        })->get();
 
+        $endereco_ids = \DB::table('servico_oferecido_hospedagems')->where('servico', 'ilike', 
+            $request->termo)->pluck('hospedagem_id');
+        $servicosh = \App\Hospedagem::whereIn('id', $endereco_ids)->get();
+
+        switch ($request->termo) {
+            case 0:
+                $hospedagensVal = \App\Anuncio::where('preco', '<=', 100)->get();
+                break;
+            case 1:
+                //$hospedagensVal = \App\Anuncio::where([['preco', '>', 100])->get();
+                break;
+            case 2:
+                echo "i equals 2";
+                break;
+        }
+
+
+         /*= \App\servicoOferecido_hospedagem::where('servico', 'ilike', $request->termo)->get();*/
 
         //has('endereco.cidade', 'ilike', 'garanhuns')->get();
         //var_dump($hospedagens->count());
@@ -36,20 +64,12 @@ class BuscaController extends Controller
 
         //$hospedagens = \App\Hospedagem::where('nomePropriedade', 'ilike', $request->termo)->get();
 
-        $enderecos = \App\Endereco::where('cidade', 'ilike', $request->termo)
-                            ->orWhere("estado", 'ilike', $request->termo)->get();
-
-        $servicosh = \App\servicoOferecido_hospedagem::where('servico', 'ilike', $request->termo)->get();
-
-        $servicos = \App\Servico::where('nomeServico', 'ilike', $request->termo)->get();
-         
-
         //->get() or where('estado', '=', $termo)->get() or where('bairro', '=', $termo)->get() or where('rua', '=', $termo)->get();
 
         
         return view("ExibirBusca", ['servicosh' => $servicosh,
-                                    'servicos' => $servicos,
                                       'hospedagens' => $hospedagens,
-                                      'enderecos' => $enderecos]);
+                                      'servicos' => $servicos,
+                                      'hospedagensVal' => $hospedagensVal]);
     }
 }

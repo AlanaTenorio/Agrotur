@@ -44,51 +44,66 @@
 
     <div class="row">
         <div class="col l3 hide-on-med-and-down">
-            <form action="#">
+            <form class="container" action="/ExibirBusca" method="post">
+            <input type = "hidden" name = "_token" value = "{{ csrf_token()}}"/>
                 <div class="container">
                     <div class="row">
                         <p>
-                            <h5>Tipo</h5>
-                            <label>
-                                <input type="checkbox" class="filled-in" checked="checked" />
-                                <span>Hospedagem</span>
-                            </label>
+                            <h5>Filtros</h5>
                         </p>
                     </div>
                     <div class="row">
-                        <h5>Localização</h5>
-                        <div class="grey-text text-darken-2">
-                            Acre<br>
-                            Amapá<br>
-                            ...
-                        </div>
+                        <h6>Localização</h6>
+                            <select name="termo" id="lodging_state" class="validate" value= {{ old('lodging_state')}}> {{ $errors->first('lodging_state')}}
+                                <option value="" disabled selected>Escolha o estado</option>
+                                <option value="ac">Acre</option>
+                                <option value="al">Alagoas</option>
+                                <option value="ap">Amapá</option>
+                                <option value="am">Amazonas</option>
+                                <option value="ba">Bahia</option>
+                                <option value="ce">Ceará</option>
+                                <option value="df">Distrito Federal</option>
+                                <option value="es">Espírito Santo</option>
+                                <option value="go">Goiás</option>
+                                <option value="ma">Maranhão</option>
+                                <option value="mt">Mato Grosso</option>
+                                <option value="ms">Mato Grosso do Sul</option>
+                                <option value="mg">Minas Gerais</option>
+                                <option value="pa">Pará</option>
+                                <option value="pb">Paraíba</option>
+                                <option value="pr">Paraná</option>
+                                <option value="pe">Pernambuco</option>
+                                <option value="pi">Piauí</option>
+                                <option value="rj">Rio de Janeiro</option>
+                                <option value="rn">Rio Grande do Norte</option>
+                                <option value="rs">Rio Grande do Sul</option>
+                                <option value="ro">Rondônia</option>
+                                <option value="rr">Roraima</option>
+                                <option value="sc">Santa Catarina</option>
+                                <option value="sp">São Paulo</option>
+                                <option value="se">Sergipe</option>
+                                <option value="to">Tocantins</option>
+                            </select>
                     </div>
                     <div class="row">
-                        <h5>Preço</h5>
-                        <div class="grey-text text-darken-2">
-                            Até R$100,00 <br>
-                            R$100,00 a R$300,00 <br>
-                            R$300,00 a R$500,00 <br>
-                            Acima de R$500,00
-                            <div class="row">
-                                <div class="input-field inline small-input-field">
-                                    <input id="email_inline" type="email" class="validate">
-                                    <label for="email_inline">min</label>
-                                </div>
-                                &mdash;
-                                <div class="input-field inline small-input-field">
-                                    <input id="email_inline" type="email" class="validate">
-                                    <label for="email_inline">max</label>
-                                </div>
-                                <a class="btn-floating btn-small waves-effect waves-light green darken-4">
-                                    <i class="material-icons small">keyboard_arrow_right</i>
-                                </a>
-                            </div>
-                        </div>
+                        <h6>Preço</h6>
+                            <select name="termo2" id="lodging_price" class="validate" value= {{ old('lodging_price')}}> {{ $errors->first('lodging_price')}}
+                                <option value="0">Até R$100</option>
+                                <option value="1">R$101 a R$200</option>
+                                <option value="2">R$201 a R$300</option>
+                                <option value="3">R$301 a R$401</option>
+                                <option value="4">Acima de 500</option>
+                            </select>
                     </div>
+                    
                 </div>
+                <button class="btn-large waves-effect waves-light orange" type="submit" name="action">Filtrar
+                        <i class="material-icons right">send</i>
+                </button>
             </form>
         </div>
+
+        
 
         <div class="col s12 l8">
             <div class="row">
@@ -181,6 +196,9 @@
             var instances = M.FloatingActionButton.init(elems, {
             toolbarEnabled: true
             });
+        });
+        $(document).ready(function () {
+            $('select').formSelect();
         });
     </script>
 </body>

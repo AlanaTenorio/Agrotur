@@ -23,10 +23,10 @@ class Cliente extends Model
 	];
 
   public function favorito(){
-    return $this->hasMany('app\Favorito');
+    return $this->hasMany('App\Favorito');
   }
 
   public function avaliacao_anuncios(){
-    return $this->hasMany('app\Avaliacao_Anuncio');
+    return $this->hasMany('App\Avaliacao_Anuncio');
   }
 }

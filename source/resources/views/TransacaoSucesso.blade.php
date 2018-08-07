@@ -12,7 +12,7 @@
 @include('layouts.Navbar')
 
 <body>
-    <form class="container" action="Home" method="post">
+    <form class="container" action="home" method="post">
         <br/><br/><br/>
             <h4 class="container teal-text text-darken-3 center">Transação concluída com sucesso 
             <i class="medium material-icons">check</i></h4>
@@ -20,10 +20,10 @@
 
     </form>
 
-    <div class="row center"><!--usar disabled num if enquanto tudo não estiver preenchido-->
-            <button class="btn-large waves-effect waves-light light-green darken 3" type="submit" name="action">Continuar
-                <i class="material-icons right">send</i>
-            </button>
+    <div class="row center">
+            <a class="center waves-effect teal waves-teal darken-3 white-text btn-flat btn-large" href="/">
+                Continuar <i class="material-icons right">send</i>
+            </a>
     </div><br/><br/><br/><br/><br/><br/><br/>
 
 

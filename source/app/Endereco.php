@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Endereco extends Model
 {
-
   protected $fillable = [ 'anuncio_id', 'cidade', 'estado', 'rua', 'numero', 'bairro', 'cep', 'complemento'];
 
   public static $messages = [
