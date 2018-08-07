@@ -21,17 +21,24 @@
     <!--adicionada temporariamente aqui, será removida quando estiver pronta na navbar-->
     <nav class="white">
         <div class="nav-wrapper container">
-            <form>
-                <div class="input-field">
-                    <input placeholder="Exemplos: um local ou algo que você queira fazer" id="search" type="search" required>
-                    <label class="label-icon" for="search">
+            <form class="container" action="/ExibirBusca" method="post">
+            <input type = "hidden" name = "_token" value = "{{ csrf_token()}}"/>
+              <div class="input-field">
+                <label class="label-icon" for="search">
                         <i class="material-icons grey-text">search</i>
-                    </label>
-                    <i class="material-icons">close</i>
-                </div>
-            </form>
+                </label>
+                <input type="text" name='termo' class="white grey-text autocomplete" id="autocomplete-input" placeholder="       o que você está buscando?">
+                <button class="btn-large waves-effect waves-light orange" type="submit" name="action">Pesquisar
+                        <i class="material-icons right">send</i>
+                </button>
+
+                
+              </div>
+          </form>
         </div>
     </nav>
+
+
 
     <br><br><br>
 

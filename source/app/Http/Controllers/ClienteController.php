@@ -118,7 +118,7 @@ class ClienteController extends Controller
     }
 
     public function favoritarOuDesfavoritar(Request $request){
-      $clienteId = $request->user_id;
+      $clienteId = Auth::user()->id;
       $anuncioId = $request->anuncio_id;
 
       $favorito = \App\Favorito::where([
