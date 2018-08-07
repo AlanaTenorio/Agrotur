@@ -98,6 +98,7 @@
                         <b>Editar</b> <i class="material-icons right">edit</i>
                     </a>
                 </div>
+                @endif
                 <div class="row">
                     <div class="col l1"></div>
                     <div class="col l10">
