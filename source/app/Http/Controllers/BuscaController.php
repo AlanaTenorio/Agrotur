@@ -43,13 +43,20 @@ class BuscaController extends Controller
             $request->termo)->pluck('hospedagem_id');
         $servicosh = \App\Hospedagem::whereIn('id', $endereco_ids)->get();
 
-        $hospedagensVal = \App\Anuncio::where('preco', '<', 101)->get();
+        switch ($request->termo) {
+            case 0:
+                $hospedagensVal = \App\Anuncio::where('preco', '<=', 100)->get();
+                break;
+            case 1:
+                //$hospedagensVal = \App\Anuncio::where([['preco', '>', 100])->get();
+                break;
+            case 2:
+                echo "i equals 2";
+                break;
+        }
 
-            
+
          /*= \App\servicoOferecido_hospedagem::where('servico', 'ilike', $request->termo)->get();*/
-
-
-
 
         //has('endereco.cidade', 'ilike', 'garanhuns')->get();
         //var_dump($hospedagens->count());
@@ -57,15 +64,12 @@ class BuscaController extends Controller
 
         //$hospedagens = \App\Hospedagem::where('nomePropriedade', 'ilike', $request->termo)->get();
 
-
-        
-         
-
         //->get() or where('estado', '=', $termo)->get() or where('bairro', '=', $termo)->get() or where('rua', '=', $termo)->get();
 
         
         return view("ExibirBusca", ['servicosh' => $servicosh,
                                       'hospedagens' => $hospedagens,
-                                      'servicos' => $servicos]);
+                                      'servicos' => $servicos,
+                                      'hospedagensVal' => $hospedagensVal]);
     }
 }

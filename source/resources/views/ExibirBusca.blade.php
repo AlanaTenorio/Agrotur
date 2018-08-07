@@ -39,6 +39,12 @@
                                         <th scope="col"><a href="/ExibirHospedagem/{{$servicoh->id}}">Visualizar</a></th></th>
                                     </tr>
                                     @endforeach
+                                    @foreach ($hospedagensVal as $hospedagemVal)
+                                    <tr>
+                                        <th scope="col"><i class="material-icons">ac_unit</i></th>
+                                        <th scope="col"><a href="/ExibirHospedagem/{{$hospedagemVal->id}}">Visualizar</a></th></th>
+                                    </tr>
+                                    @endforeach
                                     @foreach ($servicos as $servico)
                                     <tr>
                                         <th scope="col"><i class="material-icons">clear</i></th>
