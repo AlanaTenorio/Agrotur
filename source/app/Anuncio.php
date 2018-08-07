@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Anuncio extends Model
 {
 
-  protected $fillable = ['descricao', 'anunciante_id', 'preco'];
+  protected $fillable = ['descricao', 'anunciante_id', 'preco', 'video'];
 
   public static $messages = [
     'lodging_description.required' => 'Insira uma descrição do anúncio',

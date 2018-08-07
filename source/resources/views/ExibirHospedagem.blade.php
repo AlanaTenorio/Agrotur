@@ -11,221 +11,302 @@
 
 @include('layouts.Navbar')
 
+<style>/*estilo do carrossel*/
+    @font-face {
+        font-family: 'Material Icons';
+        font-style: normal;
+        font-weight: 400;
+        src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://fonts.gstatic.com/s/materialicons/v18/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2) format('woff2');
+    }
+
+    .material-icons {
+        font-family: 'Material Icons';
+        font-weight: normal;
+        font-style: normal;
+        font-size: 24px;
+        line-height: 1;
+        letter-spacing: normal;
+        text-transform: none;
+        display: inline-block;
+        white-space: nowrap;
+        word-wrap: normal;
+        direction: ltr;
+        -moz-font-feature-settings: 'liga';
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .middle-indicator{
+        position:absolute;
+            top:50%;
+        }
+        .middle-indicator-text{
+            font-size: 4.2rem;
+        }
+        a.middle-indicator-text{
+            color:white !important;
+        }
+    .content-indicator{
+        width: 64px;
+        height: 64px;
+        background: none;
+        -moz-border-radius: 50px;
+        -webkit-border-radius: 50px;
+        border-radius: 50px;
+    }
+    .indicators{
+        visibility: hidden;
+    }
+}
+</style>
+
 <body>
-
-   <!-- EXIBIÇÃO ANUNCIO -->
-
-<body>
-  <!--GALERIA -->
-  <section class="slider">
-    <ul class="slides">
-      @foreach ($imagens as $i)
-      <li>
-        <img src="{{ asset($i->imagem) }}"/>
-      </li>
-      @endforeach
-    </ul>
-  </section>
-
-  <!--INFORMAÇÕES DO LOCAL-->
-  <section id="contact" class="section section-contact">
-    <div class="container">
-      <div class="row">
-        <div class="col s12 m6">
-          <ul class="collection with-header">
-            <li class="collection-header light-green darken-3 white-text">
-              <h4>{{ $hospedagem->nomePropriedade }} <h4>
-            </li>
-            <li class="collection-item">
-              <i class="material-icons">location_on</i>
-              Cidade: {{$endereco->cidade}} - {{$endereco->cep}} - {{$endereco->estado}} </br>
-              Logradouro: {{$endereco->rua}}, Nº: {{$endereco->numero}}, {{$endereco->bairro}}
-              {{$endereco->complemento}}
-            </li>
-
-            <ul>
-              <li class="collection-item avatar">
-                <img src="https://i.imgur.com/vF4bF8z.jpg" alt="" class="circle">
-                <span class="title">Anfitrião/Empresa</span>
-                 <p> Anunciante: {{ $anunciante->nome }} <br></p>
-                <!-- <a href="#!" class="secondary-content">
-                  <i class="material-icons">grade</i>
-                </a> -->
-
-                <?php
-                  $favorito = False;
-                  if(Auth::check()){
-                    $favorito = \App\Favorito::where([
-                      ['cliente_id', '=', Auth::user()->id],
-                      ['anuncio_id', '=', $anuncio->id]
-                    ])->first();
-                  }
-                ?>
-
-                @if ($favorito)
-                <form class="container" action="favoritos" method="post">
-                  <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                  <input type="hidden" name = "anuncio_id" value="{{$anuncio->id}}"/>
-                  <button class="secondary-content" type="submit" name="action">
-                    <i>desfav</i>
-                  </button>
-                </form>
-                @else:
-                <form class="container" action="favoritos" method="post">
-                  <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                  <input type="hidden" name = "anuncio_id" value="{{$anuncio->id}}"/>
-                  <button class="secondary-content" type="submit" name="action">
-                    <i>fav</i>
-                  </button>
-                </form>
-                @endif
-              </li>
-            </ul>
-
-            <!--DESCRIÇÃO E SERVIÇOS-->
-
-            <ul class="collection with-header">
-              <li class="collection-header">
-                <h5>Descrição</h5>
-              </li>
-              <li class="collection-item">
-                <p>{{ $anuncio->descricao }}</p>
-              </li>
-
-              <ul class="collection with-header">
-                  <li class="collection-header">
-                    <h5>Serviços</h5>
-                  </li>
-                  <li class="collection-item">
-                    <div class="col">
-                        <ul class="collection with-header">
-
-                          @foreach ($servicos as $s)
-                            <li class="collection-item"> {{ $s->servico }} </li>
-                          @endforeach
-                          </ul>
-                      </div>
-
-
-
-                  </li>
-            </ul>
-          </ul>
-        </div>
-
-        <!-- FORM DE HOSPEDAGEM-->
-
-        <div class="col s12 m6">
-              <div class="card-panel light-green lighten-3">
-
-                  <li class="collection-header light-green darken-3 white-text">
-                    <h4>R$ {{ $anuncio->preco }} por dia</h4>
-                  </li>
-                  <form action="/contratarAnuncio" method="post" enctype="multipart/form-data">
-                  <div class="row center ">
-                    <a href="/contratarAnuncio/{{$anuncio->id}}" class="breadcrumb green-text">Contratar Anúncio</a>
-                  </div>
-                </form>
-              </div>
-
-          </div>
-
-          <div class="col s13 m6">
-                <div class="card-panel light-green lighten-3">
-
-                    <li class="collection-header light-green darken-3 white-text">
-                      <h5>Avaliações e comentários</h5>
-                    </li>
-                    @foreach ($avaliacoes as $a)
-                      <li class="collection-item"> {{ $a->nota }} </li>
-                      <label class="active" for="nota">Nota</label>
-
-                      <li class="collection-item"> {{ $a->comentario }} </li>
-                      <label for="comentario">Comentário</label></br>
+    <br><br>
+    <section>
+        <div class="row">
+            <div class="col m1"></div>
+            <div class="col s12 m10 l5 center">
+                <div class="carousel carousel-slider center"><!-- fotos -->
+                    <div class="left">
+                        <br><br><br><br><br><br><br>
+                        <a href="prev" class="movePrevCarousel middle-indicator-text waves-effect content-indicator">
+                            <i class="material-icons left teal-text text-darken-3 middle-indicator-text">chevron_left</i>
+                        </a>
+                    </div>
+                    <div class="right">
+                        <br><br><br><br><br><br><br>
+                        <a href="next" class=" moveNextCarousel middle-indicator-text waves-effect content-indicator">
+                            <i class="material-icons right teal-text text-darken-3 middle-indicator-text">chevron_right</i>
+                        </a>
+                    </div>
+                    @if ($anuncio->video != NULL)
+                    <div class="carousel-item white-text">
+                        <iframe width="580" height="400" src="{{ $anuncio->video }}"
+                        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                    @endif
+                    @foreach ($imagens as $imagem)
+                    <div class="carousel-item white-text">
+                        <img class="centered-and-cropped" style="border-radius:0%" src="{{ asset($imagem->imagem) }}" width="580" height="400">
+                    </div>
                     @endforeach
                 </div>
-
             </div>
-
-          <div class="col s14 m6">
-                <div class="card-panel light-green lighten-3">
-
-                    <li class="collection-header light-green darken-3 white-text">
-                      <h5>Avalie este anúncio</h5>
-                    </li>
-                    <form action="/avaliarAnuncio" method="post">
-                      <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                      <input type="hidden" name = "anuncio_id" value="{{$anuncio->id}}"/>
-                      <input type="hidden" name = "user_id" value="{{Auth::user()->id}}"/>
-                      <input name="nota" id="nota" type="text" required value={{ old('nota')}}> {{ $errors->first()}} </br>
-                      <label class="active" for="nota">Nota</label>
-
-                      <textarea id="comentario" class="materialize-textarea" name="comentario"></textarea>
-                      <label for="comentario">Comentário</label></br>
-                    <div class="row center ">
-                      <!-- <a href="/avaliarAnuncio" class="breadcrumb green-text">Avaliar</a> -->
-                      <input  type="submit" value="avaliar" name="action"/>
-                    </div>
-                  </form>
+            <div class="col s12 m10 l5">
+                @if (Auth::guard()->check() and Auth::user()->id == $anunciante->id)<!-- editar -->
+                <div class="row">
+                    <a class="right waves-effect waves-teal darken-4 btn-flat" href="/EditarHospedagem/{{$hospedagem->id}}">
+                        <b>Editar</b> <i class="material-icons right">edit</i>
+                    </a>
                 </div>
-
+                @endif
+                <div class="row">
+                    <div class="col l1"></div>
+                    <div class="col l10">
+                        <h4>{{ $hospedagem->nomePropriedade }}</h4>
+                    </div>
+                    @if (Auth::guard()->check())
+                    <div class="col l1">
+                        <?php $favorito = \App\Favorito::where([
+                            ['cliente_id', '=', Auth::user()->id],
+                            ['anuncio_id', '=', $anuncio->id],
+                        ])->first() ?>
+                        <br>
+                        @if ($favorito)
+                        <form class="container" action="favoritos" method="post">
+                            <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                            <input type="hidden" name = "user_id" value="{{Auth::user()->id}}"/>
+                            <input type="hidden" name = "anuncio_id" value="{{$anuncio->id}}"/>
+                            <button class="secondary-content btn-floating btn-flat" type="submit" name="action">
+                                <i class="material-icons right teal-text text-darken-3">favorite</i>
+                            </button>
+                        </form>
+                        @else
+                        <form class="container" action="favoritos" method="post">
+                            <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                            <input type="hidden" name = "user_id" value="{{Auth::user()->id}}"/>
+                            <input type="hidden" name = "anuncio_id" value="{{$anuncio->id}}"/>
+                            <button class="secondary-content btn-floating btn-flat" type="submit" name="action">
+                                <i class="material-icons right teal-text text-darken-3">favorite_border</i>
+                            </button>
+                        </form>
+                        @endif
+                    </div>
+                    @endif
+                </div>
+                <div class="row">
+                    <div class="col l1"></div>
+                    <div class="col l11">
+                        <h5 class='left'>Diária: R$ {{ $anuncio->preco }}</h5>
+                        <?php
+                            $ref = "/login";
+                            if (Auth::guard()->check()) $ref = "/contratarAnuncio/".$anuncio->id;
+                        ?>
+                        <a class="right waves-effect teal waves-teal darken-3 white-text btn-flat btn-large" href="{{$ref}}">
+                            Reservar <i class="material-icons right">add_shopping_cart</i>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col l1"></div>
+                    <div class="col l11">
+                        <b>Localização:</b>
+                        <div class="row">
+                            <div class="col s6">
+                                <strong>Cidade:</strong> {{$endereco->cidade}}
+                            </div>
+                            <div class="col s6">
+                                <strong>Estado:</strong> {{strtoupper($endereco->estado)}}
+                            </div>
+                            <div class="col s6">
+                                <strong>Rua:</strong> {{$endereco->rua}}
+                            </div>
+                            <div class="col s6">
+                                <strong>Número:</strong> {{$endereco->numero}}
+                            </div>
+                            <div class="col s12">
+                                <strong>Bairro:</strong> {{$endereco->bairro}}
+                            </div>
+                            <div class="col s12">
+                                <strong>CEP:</strong> {{$endereco->cep}}
+                            </div>
+                            <div class="col s12">
+                                <strong>Complemento:</strong> {{$endereco->complemento}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <div class="col m1"></div>
+        </div>
+    </section>
 
+    <section>
+        <div class="row">
+            <div class="col m1"></div>
+            <div class="col m6">
+                <div class="row green-text text-darken-3">
+                    <h5>Descrição</h5>
+                </div>
+                <div class="row">
+                    <p>{{ $anuncio->descricao }}</p>
+                </div>
+                <div class="row green-text text-darken-3">
+                    <h6>Serviços oferecidos</h6>
+                </div>
+                <div class="row">
+                    <ul style="list-style-type:none">
+                        @foreach ($servicos as $servico)
+                        <li>
+                            <b>-</b> {{ $servico->servico }}
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+            <div class="col m5"></div>
+        </div>
+    </section>
 
-      </div>
-    </div>
+    <section>
+        <div class="row">
+            @if (Auth::guard()->check())
+            <div class="row">
+                <div class="col m1"></div>
+                <div class="col s12 m10">
+                    <h5 class="green-text text-darken-3" >Avalie este anúncio</h5>
+                    <div>
+                        <form action="/avaliarAnuncio" method="post">
+                            <div class="row">
+                                <div class="input-field col s12 m9 l10">
+                                    <label for="comentario">Comentário</label>
+                                    <textarea id="comentario" class="materialize-textarea" name="comentario"></textarea>
+                                </div>
+                                <div class="col s12 m3 l2">
+                                    <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                                    <input type="hidden" name="user_id" value="{{Auth::user()->id}}"/>
+                                    <input type="hidden" name="anuncio_id" value="{{$anuncio->id}}"/>
+                                    <div class="input-field"> <!--avaliação-->
+                                        <select name="nota" id="nota" class="validate" required value={{old('nota')}}> {{ $errors->first('nota')}}
+                                            <option value="" disabled selected>Avaliação</option>
+                                            <option value="1">Péssimo</option>
+                                            <option value="2">Ruim</option>
+                                            <option value="3">Razoável</option>
+                                            <option value="4">Bom</option>
+                                            <option value="5">Muito bom</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col s12 center">
+                                    <button class="btn-flat teal darken-3 white-text waves-effect waves-light center" type="submit" name="action" value="avaliar">
+                                        Submeter
+                                        <i class="material-icons right">send</i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col m1"></div>
+            </div>
+            @endif
 
-
-<nav>
-  <div class="nav-wrapper light-green darken-3 center">
-    <a href="" class="brand-logo">Mais opções</a>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="/EditarHospedagem/{{$hospedagem->id}}">Editar Hospedagem</a></li>
-      <li><a href="/EditarImagensHospedagem/{{$hospedagem->id}}">Alterar Imagens</a></li>
-     <li><a href="/EditarServicosHospedagem/{{$hospedagem->id}}">Alterar Serviços</a></li>
-     <li><a href="/RemoverHospedagem/{{$hospedagem->id}}">Remover Hospedagem</a></li>
-    </ul>
-  </div>
-</nav>
-
-
-  <!--JavaScript at end of body for optimized loading-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
-
-  <script>
-    //Sidenav
-    const sideNav = document.querySelector('.sidenav');
-    M.Sidenav.init(sideNav, {});
-
-    //Slider de Imagens
-    const slider = document.querySelector('.slider');
-    M.Slider.init(slider, {
-      indicators: true,
-      height: 500,
-      transition: 500,
-      interval: 6000
-    });
-
-    //Date picker Check in
-    const datepicker = document.querySelector('.datepicker');
-    M.Datepicker.init(datepicker, {
-      autoClose: true,
-    });
-
-    //Date picker Check out
-    const datepicker2 = document.querySelector('.datepicker2');
-    M.Datepicker.init(datepicker2, {
-      autoClose: true,
-    });
-
-    //Quantidade de hóspedes
-    document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('select');
-    var instances = M.FormSelect.init(elems, {});
-  });
-
-  </script>
-
+            <div class="row">
+                <div class="col m1"></div>
+                <div class="col s12 m10">
+                    <div>
+                        <h5 class="green-text text-darken-3" >Avaliações</h5>
+                        <ul>
+                            @if (sizeof($avaliacoes) == 0)
+                                <li>Ainda não há avaliações para este anúncio.</li>
+                            @else
+                                @foreach ($avaliacoes as $avaliacao)
+                                    <div class="row card-panel">
+                                        <div class="col s12 m9 l10">
+                                            "{{ $avaliacao->comentario }}"
+                                        </div>
+                                        <div class="col s12 m3 l2">
+                                            <?php
+                                                $nota = "";
+                                                switch ($avaliacao->nota) {
+                                                    case 1:
+                                                        $nota = "Péssimo";
+                                                        break;
+                                                    case 2:
+                                                        $nota = "Ruim";
+                                                        break;
+                                                    case 3:
+                                                        $nota = "Razoável";
+                                                        break;
+                                                    case 4:
+                                                        $nota = "Bom";
+                                                        break;
+                                                    case 5:
+                                                        $nota = "Muito Bom";
+                                                        break;
+                                                    default:
+                                                        $nota = "Não avaliado";
+                                                }
+                                            ?>
+                                            <strong>Avaliação:</strong> {{$nota}}
+                                        </div>
+                                        <div class="col m11">
+                                            <span class="">
+                                                <?php
+                                                    $c_id = (string) $avaliacao->cliente_id;
+                                                    $user = DB::table('clientes')->where('id', $c_id)->first();
+                                                ?>
+                                                <b>&nbsp;&nbsp;&ndash; {{$user->nome}}</b>
+                                            </span>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endif
+                        </ul>
+                    </div>
+                </div>
+                <div class="col m1"></div>
+            </div>
+        </div>
     </section>
 </body>
 
@@ -271,8 +352,31 @@
             toolbarEnabled: true
             });
         });
-    </script>
 
+        $('.carousel.carousel-slider').carousel({
+            fullWidth: true,
+            indicators: true,
+            duration: 2000,
+        });
+
+        // move next carousel
+        $('.moveNextCarousel').click(function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            $('.carousel').carousel('next');
+        });
+
+        // move prev carousel
+        $('.movePrevCarousel').click(function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            $('.carousel').carousel('prev');
+        });
+
+        $(document).ready(function(){
+            $('select').formSelect();
+        });
+    </script>
 </body>
 
 </html>
