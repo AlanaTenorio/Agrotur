@@ -18,6 +18,7 @@ class CreateAnunciosTable extends Migration
             $table->timestamps();
             $table->decimal('preco');
             $table->text('descricao');
+            $table->string('video')->nullable();
             $table->integer('anunciante_id');
             $table->foreign('anunciante_id')->references('id')->on('clientes');
         });

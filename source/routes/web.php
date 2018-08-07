@@ -47,6 +47,10 @@ Route::get('login/google', 'Auth\LoginController@redirectToProvider')->name('goo
 
 Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');
 
+//Route::get('/InserirImagensHospedagem/{id}', "HospedagemController@inserirImagens");
+
+//Route::post('/SalvarImagemHospedagem', "HospedagemController@salvarImagem");
+
 Route::get('/busca', "BuscaController@getView")->name('busca');
 
 //rotas que precisam de autorizacao para serem acessadas
@@ -58,6 +62,13 @@ Route::middleware('auth')->group(function() {
 
   Route::get('/EditarHospedagem/{id}', "HospedagemController@editar");
 
+//Route::get('/InserirServicosHospedagem/{id}', "HospedagemController@inserirServicosOferecidos");
+
+/*Route::get('/inserirServicosHospedagem', function(Request $request) {
+    return view('InserirServicosHospedagem');
+});
+*/
+  
   Route::get('/inserirImagens', function(Request $request) {
       return view('InserirImagens');
   });
