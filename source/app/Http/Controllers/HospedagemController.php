@@ -4,66 +4,46 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\ImageRepository;
+use App\Repositories\HospedagemRepository;
+use App\Validator\EnderecoValidator;
 use Validator;
 
 class HospedagemController extends Controller
 {
-  public function adicionarHospedagem(Request $request){
-    $messages = [
-        'lodging_description.required' => 'Insira uma descrição do anúncio',
-        'lodging_title.required' => 'Insira o título do anúncio',
-        'lodging_price.numeric' => 'Este valor deve ser um número',
-        'lodging_price.required' => 'Insira o preço deste anúncio',
-        'lodging_municipality.required' => 'Insira a cidade no endereço do anúncio',
-        'lodging_state.required' => 'Selecione um estado',
-        'lodging_street.required' => 'Insira a rua no endereço do anúncio',
-        'lodging_street_number.required' => 'Insira o número no endereço do anúncio',
-        'lodging_street_neighbourhood.required' => 'Insira o bairro no endereço do anúncio',
-        'lodging_postal_code.required' => 'Insira um CEP válido',
-        'lodging_postal_code.digits' => 'Insira um CEP válido',
-    ];
+  public function adicionarHospedagem(Request $request, HospedagemRepository $repo){
 
-    $validator = Validator::make($request->all(), [
-      'lodging_description'=>'required',
-      'lodging_title'=>'required',
-      'lodging_price'=>'required|numeric',
-      'lodging_municipality'=>'required',
-      'lodging_state'=>'required',
-      'lodging_street'=>'required',
-      'lodging_street_number'=>'required',
-      'lodging_neighbourhood'=>'required',
-      'lodging_postal_code'=>'required|digits:8',
-    ], $messages);
+    try {
 
-    if ($validator->fails()) {
-        return redirect('/cadastroHospedagem')
-                    ->withErrors($validator)
-                    ->withInput();
+      EnderecoValidator::validate($request->all());
+
+    }catch(\App\Validator\ValidationException $e) {
+      return back()->withErrors($e->getValidator())
+                  ->withInput();
     }
 
-    $anuncio = new \App\Anuncio();
-    $anuncio->descricao = $request->lodging_description;
-    $anuncio->anunciante_id = $request->host_id;
-    $anuncio->preco = $request->lodging_price;
-    $anuncio->save();
+    $anuncio = [
+      'descricao' => $request->lodging_description,
+      'anunciante_id' => $request->host_id,
+      'preco' => $request->lodging_price,
+    ];
 
-    $hospedagem = new \App\Hospedagem();
-    $hospedagem->nomePropriedade = $request->lodging_title;
-    $hospedagem->anuncio_id = $anuncio->id;
-    $hospedagem->save();
+    $hospedagem = [
+      'nomePropriedade' => $request->lodging_title
+    ];
 
-    $endereco = new \App\Endereco();
-    $endereco->anuncio_id = $anuncio->id;
-    $endereco->cidade = $request->lodging_municipality;
-    $endereco->estado = $request->lodging_state;
-    $endereco->rua = $request->lodging_street;
-    $endereco->numero = $request->lodging_street_number;
-    $endereco->bairro = $request->lodging_neighbourhood;
-    $endereco->cep = $request->lodging_postal_code;
-    $endereco->complemento = $request->lodging_address_complement;
-    $endereco->save();
+    $endereco = [
+      'cidade' => $request->lodging_municipality,
+      'estado' => $request->lodging_state,
+      'rua' => $request->lodging_street,
+      'numero' => $request->lodging_street_number,
+      'bairro' => $request->lodging_neighbourhood,
+      'cep' => $request->lodging_postal_code,
+      'complemento' => $request->lodging_address_complement,
+    ];
 
-    return redirect ("/InserirImagensHospedagem/{$hospedagem->id}");
+    $hospedagemID = $repo->saveHospedagem($anuncio, $hospedagem, $endereco);
+
+    return redirect ("/InserirImagensHospedagem/{$hospedagemID}");
   }
 
   public function listarHospedagens(){
@@ -97,37 +77,6 @@ class HospedagemController extends Controller
   }
 
   public function salvar(Request $request) {
-    /*$messages = [
-        'lodging_description.required' => 'Insira uma descrição do anúncio',
-        'lodging_title.required' => 'Insira o título do anúncio',
-        'lodging_price.numeric' => 'Este valor deve ser um número',
-        'lodging_price.required' => 'Insira o preço deste anúncio',
-        'lodging_municipality.required' => 'Insira a cidade no endereço do anúncio',
-        'lodging_state.required' => 'Selecione um estado',
-        'lodging_street.required' => 'Insira a rua no endereço do anúncio',
-        'lodging_street_number.required' => 'Insira o número no endereço do anúncio',
-        'lodging_street_neighbourhood.required' => 'Insira o bairro no endereço do anúncio',
-        'lodging_postal_code.required' => 'Insira um CEP válido',
-        'lodging_postal_code.digits' => 'Insira um CEP válido',
-    ];
-    $validator = Validator::make($request->all(), [
-      'lodging_description'=>'required',
-      'lodging_title'=>'required',
-      'lodging_price'=>'required|numeric',
-      'lodging_municipality'=>'required',
-      'lodging_state'=>'required',
-      'lodging_street'=>'required',
-      'lodging_street_number'=>'required',
-      'lodging_neighbourhood'=>'required',
-      'lodging_postal_code'=>'required|digits:8',
-    ], $messages);
-
-    if ($validator->fails()) {
-      return redirect()->action(
-              'HospedagemController@editar', ['id' => $request->id]
-             )->withErrors($validator)
-              ->withInput();
-    } */
 
     $hospedagem = \App\Hospedagem::find($request->id);
     $hospedagem->nomePropriedade = $request->nomePropriedade;
@@ -139,6 +88,7 @@ class HospedagemController extends Controller
     $anuncio->preco = $request->preco;
     $anuncio->save();
     return redirect ('/listaHospedagens');
+
   }
 
   public function remover($id) {
