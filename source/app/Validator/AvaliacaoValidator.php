@@ -2,6 +2,7 @@
 
 namespace App\Validator;
 
+use DateTime;
 use App\Avaliacao_Anuncio;
 use App\Validator\ValidationException;
 
@@ -10,6 +11,10 @@ class AvaliacaoValidator{
     $validator = \Validator::make($dados, Avaliacao_Anuncio::$rules, Avaliacao_Anuncio::$messages);
 
     $transacoes = self::verificarTransacao($dados['user_id'], $dados['anuncio_id']);
+
+    //$data1 = new DateTime();
+    //$data2 = new DateTime($transacoes->dataSaida);
+    //var_dump($data2);
 
     if($transacoes == NULL){
       $validator->errors()->add('erroAutorização','Não é possível avaliar um anúncio antes de contratá-lo');
