@@ -68,7 +68,7 @@ Route::middleware('auth')->group(function() {
     return view('InserirServicosHospedagem');
 });
 */
-  
+
   Route::get('/inserirImagens', function(Request $request) {
       return view('InserirImagens');
   });
@@ -131,6 +131,7 @@ Route::middleware('auth')->group(function() {
 });
 
 Route::middleware('auth')->group(function() {
+
   Route::get('/EditarCliente/{id}', "ClienteController@editar");
 
   Route::get('/EditarSenha/{id}', "ClienteController@editarSenha");
@@ -152,8 +153,8 @@ Route::middleware('auth')->group(function() {
   Route::post('/ExibirHospedagem/{id}', 'ClienteController@favoritarOuDesfavoritar')->name('favoritos');
 
   Route::post('/ExibirServico/{id}', 'ClienteController@favoritarOuDesfavoritar')->name('favoritos');
-});
 
+});
 
 Route::get('/TransacaoSucesso', function(Request $request) {
     return view('TransacaoSucesso');
