@@ -233,6 +233,9 @@
                                 </div>
                             </li>
                             @endforeach
+                            @if (sizeof($compras) == 0)
+                                <h2 class="valign-wrapper center">Você não realizou nenhuma compra</h2>
+                            @endif
                             <span class='center'>
                                 <!--TODO Incluir paginação aqui -->
                             </span>
@@ -288,6 +291,9 @@
                                 </div>
                             </li>
                             @endforeach
+                            @if (sizeof($ads) == 0)
+                                <h2 class="valign-wrapper center">Você não possui anúncios cadastrados</h2>
+                            @endif
                             <span class='center'>
                                 <!--TODO Incluir paginação aqui -->
                             </span>
