@@ -13,6 +13,8 @@
 
 @include('layouts.Navbar')
 
+@include('layouts.StatusPagamento')
+
 @include('layouts.LocaisProximos')
 
 @include('layouts.OQueBusca')

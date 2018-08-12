@@ -16,7 +16,7 @@
     <h4 class="container teal-text text-darken-3">Reserva</h4>
     <br/>
     <form class="container" action = "/salvarTransacao" method = "post">
-        <input type="hidden" name = "host_id" value="{{Auth::user()->id}}"/>
+        <input type="hidden" name = "cliente_id" value="{{Auth::user()->id}}"/>
         <input type = "hidden" name = "_token" value = "{{ csrf_token()}}"/>
         <div class="row"> <!-- Check in, checkout, Quantidade de Hospedes-->
             <font size="5" class="row">
