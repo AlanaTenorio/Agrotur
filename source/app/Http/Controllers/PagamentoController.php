@@ -57,8 +57,8 @@ class PagamentoController extends Controller {
                 ->setDescription($request->get('descricao'));
 
     $redirect_urls = new RedirectUrls();
-    $redirect_urls->setReturnUrl(URL::route('tran_sucesso')) /** Specify return URL **/
-                  ->setCancelUrl(URL::route('tran_falha'));
+    $redirect_urls->setReturnUrl(URL::route('status')) /** Specify return URL **/
+                  ->setCancelUrl(URL::route('status'));
 
     $payment = new Payment();
     $payment->setIntent('Sale')
@@ -66,19 +66,18 @@ class PagamentoController extends Controller {
             ->setRedirectUrls($redirect_urls)
             ->setTransactions(array($transaction));
 
-    /** dd($payment->create($this->_api_context));exit; **/
     try {
       $payment->create($this->_api_context);
     } catch (\PayPal\Exception\PPConnectionException $ex) {
       if (\Config::get('app.debug')) {
 
         \Session::put('error', 'Connection timeout');
-        return Redirect::route('/contratarAnuncio');
+        return Redirect::route('/');
 
       } else {
 
         \Session::put('error', 'Some error occur, sorry for inconvenient');
-        return Redirect::route('/contratarAnuncio');
+        return Redirect::route('/');
 
       }
     }
@@ -99,7 +98,7 @@ class PagamentoController extends Controller {
     }
 
     \Session::put('error', 'Unknown error occurred');
-    return Redirect::route('/contratarAnuncio');
+    return Redirect::route('/');
   }
 
   public function statusPagamento(){
@@ -112,7 +111,7 @@ class PagamentoController extends Controller {
 
     if (empty(Input::get('PayerID')) || empty(Input::get('token'))) {
       \Session::put('error', 'Payment failed');
-      return Redirect::route('/contratarAnuncio');
+      return Redirect::route('home');
     }
 
     $payment = Payment::get($payment_id, $this->_api_context);
@@ -123,12 +122,12 @@ class PagamentoController extends Controller {
     $result = $payment->execute($execution, $this->_api_context);
 
     if ($result->getState() == 'approved') {
-      \Session::put('success', 'Payment success');
+      \Session::put('success', 'Pagamento efetuado com sucesso');
       return Redirect::route('home');
     }
 
-    \Session::put('error', 'Payment failed');
-    return Redirect::route('/contratarAnuncio');
+    \Session::put('error', 'Pagamento falhou');
+    return Redirect::route('home');
 
   }
 }
