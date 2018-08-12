@@ -152,8 +152,11 @@ Route::middleware('auth')->group(function() {
   Route::post('/ExibirHospedagem/{id}', 'ClienteController@favoritarOuDesfavoritar')->name('favoritos');
 
   Route::post('/ExibirServico/{id}', 'ClienteController@favoritarOuDesfavoritar')->name('favoritos');
-});
 
+  Route::get('/perfil', "ClienteController@visualizarPerfil")->name('visualizarPerfil');
+
+  Route::get('/perfil/{id}', "ClienteController@visualizarPerfilOutro")->name('visualizarPerfilOutro');
+});
 
 Route::get('/TransacaoSucesso', function(Request $request) {
     return view('TransacaoSucesso');
