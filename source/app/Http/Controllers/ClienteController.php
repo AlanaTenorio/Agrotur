@@ -148,4 +148,12 @@ class ClienteController extends Controller
       return $anuncio;
     }
 
+    //Anunciante visualiza clientes que contrataram seu anúncio
+    public function visualizarClientesTransacoes($anunciante_id){
+      $anuncios = \App\Anuncio::where('anunciante_id', '=', $anunciante_id)->get();
+      foreach ($anuncios as $anuncio) {
+        $transacao =  \App\Transacao::where('anuncio_id', '=', $anuncio->id)->get()->first();
+      }
+    }
+
 }
