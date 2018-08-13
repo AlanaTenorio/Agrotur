@@ -51,7 +51,7 @@ class ClienteController extends Controller
     public function salvar(Request $request){
       $validator = Validator::make($request->all(), [
         'nome'=>'required',
-        'telefone'=>'required|digits:11', //regex:/^\(\d{2}\)\d{9}$/'
+        'telefone'=>'required|digits:11',
         'cpf'=>'required|cpf',
         'email'=>'required|email'
       ]);

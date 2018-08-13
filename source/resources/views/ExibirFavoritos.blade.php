@@ -15,7 +15,6 @@
 .centered-and-cropped { object-fit: cover }
 </style>
 
-
 <body>
 <!-- Listagem -->
     <div class="container white">
