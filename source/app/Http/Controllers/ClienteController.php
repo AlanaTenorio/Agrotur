@@ -53,8 +53,19 @@ class ClienteController extends Controller
         'nome'=>'required',
         'telefone'=>'required|digits:11', //regex:/^\(\d{2}\)\d{9}$/'
         'cpf'=>'required|cpf',
-        'email'=>'required|email'
+        'email'=>'required|email',
+        'senha_atual' => 'required',
+        'nova_senha' => 'required|min:8|max:15|confirmed'
       ]);
+
+      $validator->after(function ($validator) use ($request){
+        if (!(Hash::check($request->get('senha_atual'), Auth::user()->senha))) {
+            $validator->errors()->add('senha_atual', 'Senha incorreta');
+        }
+        if(strcmp($request->get('senha_atual'), $request->get('nova_senha')) == 0){
+            $validator->errors()->add('nova_senha', 'Nova senha igual a senha atual');
+        }
+      });
 
       if ($validator->fails()) {
         return redirect()->action(
@@ -69,39 +80,10 @@ class ClienteController extends Controller
       $user->telefone = $request->telefone;
       $user->cpf = $request->cpf;
       $user->email = $request->email;
+      $user->senha = bcrypt($request->nova_senha);
       $user->save();
 
-      return redirect ('/listaClientes');
-    }
-
-    public function salvarSenha(Request $request){
-      $validator = Validator::make($request->all(), [
-        'senha'=>'required',
-        'novaSenha'=>'required|min:8|max:15|confirmed'
-      ]);
-
-      $validator->after(function ($validator) use ($request){
-        if (!(Hash::check($request->get('senha'), Auth::user()->senha))) {
-            $validator->errors()->add('senha', 'Senha informada não confere');
-        }
-        if(strcmp($request->get('senha'), $request->get('novaSenha')) == 0){
-            $validator->errors()->add('novaSenha', 'Nova senha igual a senha atual');
-        }
-      });
-
-      if ($validator->fails()) {
-        return redirect()->action(
-                'ClienteController@editarSenha', ['id' => $request->id]
-               )->withErrors($validator)
-                ->withInput();
-      }
-
-      $user = Auth::user();
-
-      $user->senha = bcrypt($request->get('novaSenha'));
-      $user->save();
-
-      return redirect ('/listaClientes');
+      return redirect ('/perfil');
     }
 
     public function remover(Request $request){
