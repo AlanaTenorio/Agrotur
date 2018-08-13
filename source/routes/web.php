@@ -47,10 +47,6 @@ Route::get('login/google', 'Auth\LoginController@redirectToProvider')->name('goo
 
 Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');
 
-//Route::get('/InserirImagensHospedagem/{id}', "HospedagemController@inserirImagens");
-
-//Route::post('/SalvarImagemHospedagem', "HospedagemController@salvarImagem");
-
 Route::get('/busca', "BuscaController@getView")->name('busca');
 
 //rotas que precisam de autorizacao para serem acessadas
@@ -62,42 +58,14 @@ Route::middleware('auth')->group(function() {
 
   Route::get('/EditarHospedagem/{id}', "HospedagemController@editar");
 
-//Route::get('/InserirServicosHospedagem/{id}', "HospedagemController@inserirServicosOferecidos");
-
-/*Route::get('/inserirServicosHospedagem', function(Request $request) {
-    return view('InserirServicosHospedagem');
-});
-*/
-
-  Route::get('/inserirImagens', function(Request $request) {
-      return view('InserirImagens');
-  });
-
   Route::get('/RemoverHospedagem/{id}', "HospedagemController@remover");
 
   Route::post('/SalvarHospedagem', "HospedagemController@salvar");
 
   Route::post('/cadastroHospedagem', "HospedagemController@adicionarHospedagem");
 
-  Route::get('/InserirImagensHospedagem/{id}', "HospedagemController@inserirImagens");
-
-  Route::post('/SalvarImagemHospedagem', "HospedagemController@salvarImagem");
-
-  Route::get('/EditarImagensHospedagem/{id}', "HospedagemController@editarImagens");
-
   Route::get('/RemoverImagemHospedagem/{id}', "HospedagemController@removerImagens");
 
-  Route::get('/InserirServicosHospedagem/{id}', "HospedagemController@inserirServicosOferecidos");
-
-  Route::get('/inserirServicosHospedagem', function(Request $request) {
-      return view('InserirServicosHospedagem');
-  });
-
-  Route::post('/salvarServicosOferecidos', "HospedagemController@salvarServicosOferecidos");
-
-  Route::get('/EditarServicosHospedagem/{id}', "HospedagemController@editarServicosOferecidos");
-
-  Route::get('/RemoverServicosHospedagem/{id}', "HospedagemController@removerServicosOferecidos");
 });
 
 Route::middleware('auth')->group(function() {
@@ -107,23 +75,12 @@ Route::middleware('auth')->group(function() {
 
   Route::post('/cadastroServico', "ServicoController@adicionarServico");
 
-  Route::post('/SalvarImagemServico', "ServicoController@salvarImagemServico");
-
-  Route::get('/EditarImagensServico/{id}', "ServicoController@editarImagens");
 
   Route::get('/RemoverImagemServico/{id}', "ServiçoController@removerImagens");
 
   Route::post('/SalvarServico', "ServicoController@salvar");
 
   Route::get('/RemoverServico/{id}', "ServicoController@remover");
-
-  Route::get('/inserirImagensServico', function(Request $request) {
-      return view('InserirImagensServico');
-  });
-
-  Route::get('/InserirImagensServico/{id}', "ServicoController@inserirImagensServico");
-
-  Route::post('/salvarImagemServico', "ServicoController@salvarImagemServico");
 
   Route::get('/EditarServico/{id}', "ServicoController@editar");
 
@@ -133,8 +90,6 @@ Route::middleware('auth')->group(function() {
 Route::middleware('auth')->group(function() {
 
   Route::get('/EditarCliente/{id}', "ClienteController@editar");
-
-  Route::get('/EditarSenha/{id}', "ClienteController@editarSenha");
 
   Route::post('/avaliarAnuncio', "AvaliacaoController@avaliarAnuncio");
 
