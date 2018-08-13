@@ -167,7 +167,7 @@ class ClienteController extends Controller
       $anuncio = \App\Anuncio::find($id);
       return $anuncio;
     }
-    
+
     public static function getDadosCliente($id) {
       $client = DB::table('clientes')->where('id', $id)->first();
       $purchases = array(0);
