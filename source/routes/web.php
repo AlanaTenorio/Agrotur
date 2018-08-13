@@ -154,15 +154,18 @@ Route::middleware('auth')->group(function() {
 
   Route::post('/ExibirServico/{id}', 'ClienteController@favoritarOuDesfavoritar')->name('favoritos');
 
-  Route::get('/TransacaoSucesso', function(Request $request) {
+  Route::get('/perfil', "ClienteController@visualizarPerfil")->name('visualizarPerfil');
+
+  Route::get('/vendedor/{id}', "ClienteController@visualizarPerfilVendedor")->name('visualizarPerfilVendedor');
+});
+
+Route::get('/TransacaoSucesso', function(Request $request) {
     return view('TransacaoSucesso');
   })->name('tran_sucesso');
 
-  Route::get('/TransacaoFalha', function(Request $request) {
-    return view('TransacaoFalha');
-  })->name('tran_falha');;
-
-});
+Route::get('/TransacaoFalha', function(Request $request) {
+return view('TransacaoFalha');
+})->name('tran_falha');
 
 Route::post('/ExibirBusca', "BuscaController@buscaAnuncio");
 

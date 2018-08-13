@@ -128,7 +128,7 @@
                         
                         <!-- Dropdown Account Structure -->
                         <ul id='dropdown_Account' class='dropdown-content'>
-                            <li><a href="#!" class="black-text">Minha Conta</a></li>
+                            <li><a href="/perfil?tab=conta" class="black-text">Minha Conta</a></li>
                             <li class="divider" tabindex="-1"></li>
                             <li><a href="#!" class="black-text">Link 2</a></li>
                             <li><a href="#!" class="black-text">Link 3</a></li>
