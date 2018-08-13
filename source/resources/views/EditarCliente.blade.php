@@ -46,12 +46,12 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">lock</i>
-                        <input type="password" name = "senha_atual" class="form-control" id="senha_atual" required> {{ $errors->first('senha')}} <br/>
+                        <input type="password" name = "senha_atual" class="form-control" id="senha_atual"> {{ $errors->first('senha')}} <br/>
                         <label for="senha_atual">Senha atual</label>
                     </div>
                     <div class="input-field col s12">
                         <i class="material-icons prefix">lock_open</i>
-                        <input type="password" name="nova_senha" class="form-control" id="nova_senha" required> {{ $errors->first('nova_senha')}} <br/>
+                        <input type="password" name="nova_senha" class="form-control" id="nova_senha"> {{ $errors->first('nova_senha')}} <br/>
                         <label for="nova_senha">Nova senha</label>
                     </div>
                     <div class="input-field col s12">

@@ -53,19 +53,19 @@ class ClienteController extends Controller
         'nome'=>'required',
         'telefone'=>'required|digits:11', //regex:/^\(\d{2}\)\d{9}$/'
         'cpf'=>'required|cpf',
-        'email'=>'required|email',
-        'senha_atual' => 'required',
-        'nova_senha' => 'required|min:8|max:15|confirmed'
+        'email'=>'required|email'
       ]);
-
-      $validator->after(function ($validator) use ($request){
-        if (!(Hash::check($request->get('senha_atual'), Auth::user()->senha))) {
-            $validator->errors()->add('senha_atual', 'Senha incorreta');
-        }
-        if(strcmp($request->get('senha_atual'), $request->get('nova_senha')) == 0){
-            $validator->errors()->add('nova_senha', 'Nova senha igual a senha atual');
-        }
-      });
+      
+      if ($request->senha_atual != '' or $request->nova_senha != '' or $request->nova_senha_confirmation != '') {
+        $validator->after(function ($validator) use ($request){
+          if (!(Hash::check($request->get('senha_atual'), Auth::user()->senha))) {
+              $validator->errors()->add('senha_atual', 'Senha incorreta');
+          }
+          if(strcmp($request->get('senha_atual'), $request->get('nova_senha')) == 0){
+              $validator->errors()->add('nova_senha', 'Nova senha igual a senha atual');
+          }
+        });
+      }
 
       if ($validator->fails()) {
         return redirect()->action(
@@ -80,7 +80,9 @@ class ClienteController extends Controller
       $user->telefone = $request->telefone;
       $user->cpf = $request->cpf;
       $user->email = $request->email;
-      $user->senha = bcrypt($request->nova_senha);
+      if ($request->nova_senha != '') {
+        $user->senha = bcrypt($request->nova_senha);
+      }
       $user->save();
 
       return redirect ('/perfil');
