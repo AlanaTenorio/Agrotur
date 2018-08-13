@@ -198,7 +198,11 @@
 
     <section>
         <div class="row">
-            @if (Auth::guard()->check())
+            <?php 
+            $transacao = \App\Transacao::where('anuncio_id', '=', $anuncio->id)->where('cliente_id', '=', Auth::user()->id)->first();
+            $avaliacao = \App\Avaliacao_Anuncio::where('anuncio_id', '=', $anuncio->id)->where('cliente_id', '=', Auth::user()->id)->first();
+            ?>
+            @if (Auth::guard()->check() and $transacao != NULL and $avaliacao == NULL)
             <div class="row">
                 <div class="col m1"></div>
                 <div class="col s12 m10">
