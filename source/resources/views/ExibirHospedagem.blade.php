@@ -104,7 +104,7 @@
                     <div class="col l10">
                         <h4>{{ $hospedagem->nomePropriedade }}</h4>
                     </div>
-                    @if (Auth::guard()->check())
+                    @if (Auth::guard()->check() and Auth::user()->id != $anunciante->id))
                     <div class="col l1">
                         <?php $favorito = \App\Favorito::where([
                             ['cliente_id', '=', Auth::user()->id],
@@ -141,9 +141,11 @@
                             $ref = "/login";
                             if (Auth::guard()->check()) $ref = "/contratarAnuncio/".$anuncio->id;
                         ?>
+                        @if (Auth::guard()->check() and Auth::user()->id != $anunciante->id)
                         <a class="right waves-effect teal waves-teal darken-3 white-text btn-flat btn-large" href="{{$ref}}">
                             Reservar <i class="material-icons right">add_shopping_cart</i>
                         </a>
+                        @endif
                     </div>
                 </div>
                 <div class="row">
@@ -209,11 +211,13 @@
 
     <section>
         <div class="row">
-          <?php $transacao = \App\Transacao::where('anuncio_id', '=', $anuncio->id)->where('cliente_id', '=', Auth::user()->id)->first();
-          $avaliacao = \App\Avaliacao_Anuncio::where('anuncio_id', '=', $anuncio->id)->where('cliente_id', '=', Auth::user()->id)->first();
-          ?>
+            @if (Auth::guard()->check() and Auth::user()->id != $anunciante->id)
+            <?php
+             $transacao = \App\Transacao::where('anuncio_id', '=', $anuncio->id)->where('cliente_id', '=', Auth::user()->id)->first();
+             $avaliacao = \App\Avaliacao_Anuncio::where('anuncio_id', '=', $anuncio->id)->where('cliente_id', '=', Auth::user()->id)->first();
+            ?>
+            @if($transacao != NULL and $avaliacao == NULL)
 
-            @if (Auth::guard()->check() and $transacao != NULL and $avaliacao == NULL)
             <div class="row">
                 <div class="col m1"></div>
                 <div class="col s12 m10">
@@ -252,6 +256,7 @@
                 </div>
                 <div class="col m1"></div>
             </div>
+            @endif
             @endif
 
             <div class="row">
