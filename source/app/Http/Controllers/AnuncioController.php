@@ -44,7 +44,20 @@ class AnuncioController extends Controller
             'title' => $title,
             'description' => $ad->descricao,
             'price' => $ad->preco,
-            'image' => $image_link
+            'image' => $image_link,
+            'seller_id' => $ad->anunciante_id,
         ];
+    }
+
+    public static function getVendasAnuncio($id) {
+        return \App\Transacao::where('anuncio_id', $id)->get();
+    }
+
+    public static function getReceitaAnuncio($id) {
+        $output = 0;
+        foreach (\App\Http\Controllers\AnuncioController::getVendasAnuncio($id) as $sale) {
+            $output += $sale->precoTotal;
+        }
+        return $output;
     }
 }

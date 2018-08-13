@@ -46,7 +46,6 @@
                             </div>
                         </div>
                         <div class="row">
-                            
                             {{substr($adData['description'], 0, 400)}}
                             @if (strlen($adData['description']) > 400)
                                 ...

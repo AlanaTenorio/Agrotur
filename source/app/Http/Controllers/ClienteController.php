@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use DB;
 use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -142,9 +143,42 @@ class ClienteController extends Controller
 
       return view("ExibirFavoritos", ['favoritos' => $favoritos]);
     }
+    
+    public function visualizarPerfil(){
+      $clienteId = Auth::user()->id;
+      $compras = \App\Transacao::where('cliente_id', '=', $clienteId)->get();
+      $ads = \App\Anuncio::where('anunciante_id', $clienteId)->get();
+
+      return view("Perfil", [
+                            'compras' => $compras,
+                            'ads' => $ads
+                            ]
+                  );
+    }
+
+    public function visualizarPerfilOutro(){
+      $clienteId = Auth::user()->id;
+      $favoritos = \App\Favorito::where('cliente_id', '=', $clienteId)->get();
+
+      return view("Perfil", ['favoritos' => $favoritos]);
+    }
 
     public function procurarAnuncio($id){
       $anuncio = \App\Anuncio::find($id);
       return $anuncio;
     }
+
+    public static function getDadosCliente($id) {
+      $client = DB::table('clientes')->where('id', $id)->first();
+      $purchases = array(0);
+      $ads = array(0);
+      $ratingAsASeller = 0;
+
+      return [
+          'client' => $client,
+          'purchases' => $purchases,
+          'ads' => $ads,
+          'rating' => $ratingAsASeller,
+      ];
+  }
 }
