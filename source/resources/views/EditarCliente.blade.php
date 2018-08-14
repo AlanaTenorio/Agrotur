@@ -26,7 +26,7 @@
                     </div>
                     <div class="input-field col s12">
                         <i class="material-icons prefix">recent_actors</i>
-                        <input type="text" name="cpf" class="form-control" id="cpf" required value="{{$cliente->cpf}}"> {{ $errors->first('cpf')}} <br/>
+                        <input type="text" disabled name="cpf" class="form-control" id="cpf" required value="{{$cliente->cpf}}"> {{ $errors->first('cpf')}} <br/>
                         <label for="cpf">CPF</label>
                     </div>
                     <div class="input-field col s12">
