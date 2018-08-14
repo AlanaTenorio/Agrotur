@@ -11,13 +11,13 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <text class="green-text text-darken-3">Agro</text><text class="orange-text text-darken-3">Tur</text>
                 </a>
-                
+
                 <ul class="right">
                     <li>
                         <!-- Dropdown Offer Service Trigger -->
                         <a class='waves-effect dropdown-button grey-text text-darken-3' href='/busca' data-target='dropdown_Search'>
-                            <i class="large material-icons left">search</i>
-                            PESQUISAR
+
+                            PESQUISE
                             <!--<i class="large material-icons right">arrow_drop_down</i>-->
                         </a>
                     </li>
@@ -54,7 +54,7 @@
                         <ul id='dropdown_Favorites' class='dropdown-content'>
                             @foreach ($favoritos as $favorito)
                             <?php $adData = \App\Http\Controllers\AnuncioController::getDadosAnuncio($favorito->anuncio_id) ?>
-                            
+
                             <li>
                                 <a class='grey-text text-darken-2' href='/Exibir{{ $adData["type"] }}/{{ $adData["id"] }}'>
                                     <div class="row">
@@ -101,7 +101,7 @@
                             <li><a href="#!" class="black-text">Formatar a exibição para<br/>
                                 definir largura e altura<br/>
                                 quando já estiver implementado.</a>
-                            </li>    
+                            </li>
                             <li><a href="#!" class="black-text">Textos intencionalmente visiveis
                             <li><a href="#!" class="black-text center">Ver Todas</a></li>
                         </ul>
@@ -125,7 +125,7 @@
                         <a class='waves-effect dropdown-trigger grey-text text-darken-3' href='#' data-target='dropdown_Account'>
                             <b>{{Auth::user()->nome}}</b>
                         </a>
-                        
+
                         <!-- Dropdown Account Structure -->
                         <ul id='dropdown_Account' class='dropdown-content'>
                             <li><a href="/perfil?tab=conta" class="black-text">Minha Conta</a></li>
@@ -185,7 +185,7 @@
             </div>
         </nav>
     </div>
-    
+
     <!--barra de busca
     <div class="navbar-fixed">
             <nav class="white">
@@ -203,7 +203,7 @@
                 </nav>
     </div>
     Adicionar quando o botão estiver pronto
-    -->    
+    -->
 </body>
 
 
