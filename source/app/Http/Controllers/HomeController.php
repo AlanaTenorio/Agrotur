@@ -11,7 +11,7 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function home() {
-      $anuncios = Anuncio::inRandomOrder()->take(10)->get();
+      $anuncios = Anuncio::inRandomOrder()->take(8)->get();
       return view('Home',["anuncios"=>$anuncios]);
     }
 }
