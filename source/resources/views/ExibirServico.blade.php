@@ -52,7 +52,7 @@
         background: none;
         -moz-border-radius: 50px;
         -webkit-border-radius: 50px;
-        border-radius: 50px; 
+        border-radius: 50px;
     }
     .indicators{
         visibility: hidden;
@@ -81,7 +81,7 @@
                     </div>
                     @if ($anuncio->video != NULL)
                     <div class="carousel-item white-text">
-                        <iframe width="580" height="400" src="{{ $anuncio->video }}" 
+                        <iframe width="580" height="400" src="{{ $anuncio->video }}"
                         frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     </div>
                     @endif
@@ -105,7 +105,7 @@
                     <div class="col l10">
                         <h4>{{ $servicos->nomeServico }}</h4>
                     </div>
-                    @if (Auth::guard()->check())
+                    @if (Auth::guard()->check() and Auth::user()->id != $anunciante->id))
                     <div class="col l1">
                         <?php $favorito = \App\Favorito::where([
                             ['cliente_id', '=', Auth::user()->id],
@@ -142,9 +142,11 @@
                             $ref = "/login";
                             if (Auth::guard()->check()) $ref = "/contratarAnuncio/".$anuncio->id;
                         ?>
+                        @if (Auth::guard()->check() and Auth::user()->id != $anunciante->id)
                         <a class="right waves-effect teal waves-teal darken-3 white-text btn-flat btn-large" href="{{$ref}}">
                             Reservar <i class="material-icons right">add_shopping_cart</i>
                         </a>
+                        @endif
                     </div>
                 </div>
                 <div class="row">
@@ -198,11 +200,12 @@
 
     <section>
         <div class="row">
-            <?php 
-            $transacao = \App\Transacao::where('anuncio_id', '=', $anuncio->id)->where('cliente_id', '=', Auth::user()->id)->first();
-            $avaliacao = \App\Avaliacao_Anuncio::where('anuncio_id', '=', $anuncio->id)->where('cliente_id', '=', Auth::user()->id)->first();
-            ?>
-            @if (Auth::guard()->check() and $transacao != NULL and $avaliacao == NULL)
+          @if (Auth::guard()->check() and Auth::user()->id != $anunciante->id)
+          <?php
+           $transacao = \App\Transacao::where('anuncio_id', '=', $anuncio->id)->where('cliente_id', '=', Auth::user()->id)->first();
+           $avaliacao = \App\Avaliacao_Anuncio::where('anuncio_id', '=', $anuncio->id)->where('cliente_id', '=', Auth::user()->id)->first();
+          ?>
+          @if($transacao != NULL and $avaliacao == NULL)
             <div class="row">
                 <div class="col m1"></div>
                 <div class="col s12 m10">
@@ -242,6 +245,7 @@
                 <div class="col m1"></div>
             </div>
             @endif
+            @endif
 
             <div class="row">
                 <div class="col m1"></div>
@@ -255,7 +259,7 @@
                                 @foreach ($avaliacoes as $avaliacao)
                                     <div class="row card-panel">
                                         <div class="col s12 m9 l10">
-                                            "{{ $avaliacao->comentario }}" 
+                                            "{{ $avaliacao->comentario }}"
                                         </div>
                                         <div class="col s12 m3 l2">
                                             <?php
@@ -345,7 +349,7 @@
             toolbarEnabled: true
             });
         });
-        
+
         $('.carousel.carousel-slider').carousel({
             fullWidth: true,
             indicators: true,
