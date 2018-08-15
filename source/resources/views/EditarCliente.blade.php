@@ -25,11 +25,6 @@
                         <label for="nome">Nome</label>
                     </div>
                     <div class="input-field col s12">
-                        <i class="material-icons prefix">recent_actors</i>
-                        <input type="text" disabled name="cpf" class="form-control" id="cpf" required value="{{$cliente->cpf}}"> {{ $errors->first('cpf')}} <br/>
-                        <label for="cpf">CPF</label>
-                    </div>
-                    <div class="input-field col s12">
                         <i class="material-icons prefix">email</i>
                         <input type="email" name="email" class="form-control" id="email" value="{{$cliente->email}}"> {{ $errors->first('email')}} <br/>
                         <label for="email">Email</label>
@@ -39,6 +34,14 @@
                         <input type="tel" name="telefone" class="form-control" id="telefone"required value="{{Auth::user()->telefone}}"> {{ $errors->first('telefone')}} <br/>
                         <label for="telefone">Telefone</label>
 
+                    </div>
+                    <div class="row">
+                        <div class="col s2 l1">
+                            <i class="material-icons small prefix">recent_actors</i>
+                        </div>
+                        <div class="col s10 l11">
+                            <strong>CPF: </strong>{{Auth::user()->cpf}}
+                        </div>
                     </div>
                 </div>
 
