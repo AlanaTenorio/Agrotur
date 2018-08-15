@@ -150,7 +150,7 @@
         </div>
 
         <div class="row center"><!--usar disabled num if enquanto tudo não estiver preenchido-->
-            <button class="btn-large waves-effect waves-light" type="submit" name="action">Cadastrar
+            <button class="btn-large waves-effect waves-light light-green darken-3" type="submit" name="action">Cadastrar
                 <i class="material-icons right">send</i>
             </button>
         </div>
