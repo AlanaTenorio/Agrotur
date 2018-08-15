@@ -56,12 +56,12 @@ class ClienteController extends Controller
                 'email'=>'required|email'
             ]);
             
-            if ($request->senha_atual != '' or $request->nova_senha != '' or $request->nova_senha_confirmation != '') {
+            if (!empty($request->senha_atual) or !empty($request->nova_senha) or !empty($request->nova_senha_confirmation)) {
                 $validator->after(function ($validator) use ($request){
-                    if (!(Hash::check($request->get('senha_atual'), Auth::user()->senha))) {
+                    if (!(Hash::check($request->senha_atual, Auth::user()->senha))) {
                             $validator->errors()->add('senha_atual', 'Senha incorreta');
                     }
-                    if(strcmp($request->get('senha_atual'), $request->get('nova_senha')) == 0){
+                    if(strcmp($request->senha_atual, $request->nova_senha) == 0){
                             $validator->errors()->add('nova_senha', 'Nova senha igual a senha atual');
                     }
                 });
@@ -80,7 +80,7 @@ class ClienteController extends Controller
             $user->telefone = $request->telefone;
             //$user->cpf = $request->cpf;
             $user->email = $request->email;
-            if ($request->nova_senha != '') {
+            if (!empty($request->nova_senha)) {
                 $user->senha = bcrypt($request->nova_senha);
             }
             $user->save();
