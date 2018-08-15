@@ -52,7 +52,7 @@ class ClienteController extends Controller
             $validator = Validator::make($request->all(), [
                 'nome'=>'required',
                 'telefone'=>'required|digits:11',
-                'cpf'=>'required|cpf',
+                //'cpf'=>'required|cpf',
                 'email'=>'required|email'
             ]);
             
@@ -78,7 +78,7 @@ class ClienteController extends Controller
 
             $user->nome = $request->nome;
             $user->telefone = $request->telefone;
-            $user->cpf = $request->cpf;
+            //$user->cpf = $request->cpf;
             $user->email = $request->email;
             if ($request->nova_senha != '') {
                 $user->senha = bcrypt($request->nova_senha);
