@@ -88,11 +88,12 @@
                     <div class="row">
                         <h6>Preço</h6>
                             <select name="termo2" id="lodging_price" class="validate" value= {{ old('lodging_price')}}> {{ $errors->first('lodging_price')}}
+                                 <option value="" disabled selected>Faixa de preço</option>
                                 <option value="0">Até R$100</option>
                                 <option value="1">R$101 a R$200</option>
                                 <option value="2">R$201 a R$300</option>
                                 <option value="3">R$301 a R$401</option>
-                                <option value="4">Acima de 500</option>
+                                <option value="4">Acima de 400</option>
                             </select>
                     </div>
                     

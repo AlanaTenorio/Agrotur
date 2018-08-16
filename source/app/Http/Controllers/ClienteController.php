@@ -55,7 +55,7 @@ class ClienteController extends Controller
                 //'cpf'=>'required|cpf',
                 'email'=>'required|email'
             ]);
-            
+
             if (!empty($request->senha_atual) or !empty($request->nova_senha) or !empty($request->nova_senha_confirmation)) {
                 $validator->after(function ($validator) use ($request){
                     if (!(Hash::check($request->senha_atual, Auth::user()->senha))) {
@@ -127,7 +127,7 @@ class ClienteController extends Controller
 
             return view("ExibirFavoritos", ['favoritos' => $favoritos]);
         }
-        
+
         public function visualizarPerfil(){
             $clienteId = Auth::user()->id;
             $compras = \App\Transacao::where('cliente_id', '=', $clienteId)->get();

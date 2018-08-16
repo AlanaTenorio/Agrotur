@@ -14,7 +14,6 @@ class BuscaController extends Controller
     }
     public function buscaAnuncio(Request $request){
 
-        //$hospedagens = \App\Anuncio::whereHas('endereco.cidade', 'ilike', 'garanhuns')->get();
 
         /*$endereco_ids = \DB::table('enderecos')->where('cidade', 'ilike', 
             $request->termo)->pluck('anuncio_id');
@@ -22,54 +21,71 @@ class BuscaController extends Controller
         var_dump($hospedagens->count());
         return "";*/
 
+        $hospedagens = \App\Anuncio::where("preco", ">", 0);
 
-        $hospedagens = \App\Anuncio::whereHas('endereco', function ($query) {
-            $query->where('cidade', 'ilike', \Request::get('termo'));
-        })->orwhereHas('endereco', function ($query) {
-            $query->where('cep', 'ilike', \Request::get('termo'));
-        })->orwhereHas('endereco', function ($query) {
-            $query->where('estado', 'ilike', \Request::get('termo'));
-        })->orwhereHas('hospedagem', function ($query) {
-            $query->where('nomePropriedade', 'ilike', \Request::get('termo'));
-        })->orwhereHas('hospedagem', function ($query) {
-            $query->where('nomePropriedade', 'ilike', \Request::get('termo'));
-        })->get();
-
-        $servicos = \App\Anuncio::whereHas('servico', function ($query) {
-            $query->where('nomeServico', 'ilike', \Request::get('termo'));
-        })->get();
-
-        $endereco_ids = \DB::table('servico_oferecido_hospedagems')->where('servico', 'ilike', 
-            $request->termo)->pluck('hospedagem_id');
-        $servicosh = \App\Hospedagem::whereIn('id', $endereco_ids)->get();
-
-        switch ($request->termo) {
+        if($request->termo2 != NULL) {
+         switch ($request->termo2) {
             case 0:
-                $hospedagensVal = \App\Anuncio::where('preco', '<=', 100)->get();
+                $hospedagens = $hospedagens->whereBetween('preco', [0, 100] );
                 break;
             case 1:
-                //$hospedagensVal = \App\Anuncio::where([['preco', '>', 100])->get();
+                $hospedagens = $hospedagens->whereBetween('preco', [101, 200] );
                 break;
             case 2:
-                echo "i equals 2";
+                $hospedagens = $hospedagens->whereBetween('preco', [201, 300] );
+                break;
+            case 3:
+                $hospedagens = $hospedagens->whereBetween('preco', [301, 400] );
+                break;
+            case 4:
+                $hospedagens = $hospedagens->whereBetween('preco', [401, 100000000] );
                 break;
         }
+        }
+
+        if(\Request::get('termo') != NULL) {
+          $hospedagens = $hospedagens->whereHas('endereco', function ($query2) {
+                  $query2->where('cidade', 'ilike', \Request::get('termo'))
+                        ->orWhere('cep', 'ilike', \Request::get('termo'))
+                        ->orWhere('estado', 'ilike', \Request::get('termo'))
+                        ->orWhere('bairro', 'ilike', \Request::get('termo'));
+              });
 
 
-         /*= \App\servicoOferecido_hospedagem::where('servico', 'ilike', $request->termo)->get();*/
+           $hospedagens = $hospedagens->orWhereHas('hospedagem', function ($query3) {
+                      $query3->where('nomePropriedade', 'ilike', \Request::get('termo'))
+                              ->orWhere('nomePropriedade', 'ilike', \Request::get('termo'));
+                  });
 
-        //has('endereco.cidade', 'ilike', 'garanhuns')->get();
-        //var_dump($hospedagens->count());
-        //return "$request->termo";  
 
-        //$hospedagens = \App\Hospedagem::where('nomePropriedade', 'ilike', $request->termo)->get();
+           $hospedagens = $hospedagens->orWhereHas('servico', function ($query4) {
+                      $query4->where('nomeServico', 'ilike', \Request::get('termo'))
+                              ->orWhere('nomeServico', 'ilike', \Request::get('termo'));
+                  });
 
-        //->get() or where('estado', '=', $termo)->get() or where('bairro', '=', $termo)->get() or where('rua', '=', $termo)->get();
+           $endereco_ids = \DB::table('servico_oferecido_hospedagems')->where('servico', 'ilike', 
+            $request->termo)->pluck('hospedagem_id');
+           $hospedagens = \App\Hospedagem::whereIn('id', $endereco_ids);
+ }   
+      $hospedagens = $hospedagens->get();
+      
+
+       // echo ($hospedagens->toSql());
+        
+      //  return "";
+
+     
+  /*        
 
         
-        return view("ExibirBusca", ['servicosh' => $servicosh,
+        $servicosh = \App\Hospedagem::whereIn('id', $endereco_ids)->get();
+
+        -------------------------------------------------------------------------*/
+
+        
+        return view("ExibirBusca", [ 'servicosh' => array(), //$servicosh,
                                       'hospedagens' => $hospedagens,
-                                      'servicos' => $servicos,
-                                      'hospedagensVal' => $hospedagensVal]);
+                                      'servicos' => array(), //$servicos,
+                                      ]);
     }
 }

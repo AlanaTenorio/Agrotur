@@ -17,66 +17,49 @@
 @include('layouts.Navbar')
 
 <body>
-  
-
    <!-- FORMULÁRIO CADASTRO CLIENTE -->
+    <br/>
+        <h4 class="container teal-text text-darken-3">Cadastro de Usuário</h4>
+    
     <section id="contact" class="section section-contact">
-      <form action = "cadastroCliente" method = "post">
+      <form class="container" action="cadastroCliente" method="post" enctype="multipart/form-data">
       <input type = "hidden" name = "_token" value = "{{ csrf_token()}}"/>
       <form class="needs-validation" novalidate>
-        <div class="row center">
-            <div class="col s12 m7">
-                <ul class="collection with-header center">
-                    <li class="collection-header light-green darken-3 white-text">
-                        <h4>Cadastro Usuário</h4>
-                    </li>
-                    <form class="col s12 m10">
-                        <div class="row">
-                            <div class="input-field col s12 m6">
-                                <i class="material-icons prefix">account_circle</i>
-                                <input type="text" name="nome" class="form-control" id="nome"required value= {{ old('nome')}}> {{ $errors->first('nome')}} <br/>
-                                <label for="nome">Nome</label>
 
-                            </div>
-                            <div class="input-field col s12 m6">
-                                <i class="material-icons prefix">email</i>
-                                <input type="email" class="validate" name="email" class="form-control" id="email" value={{ old('email')}}> {{ $errors->first('email')}} <br/>
-                                <label for="email">Email</label>
-
-                            </div>
-                            <div class="input-field col s12 m6">
-                                <i class="material-icons prefix">phone</i>
-                                <input type="tel" name="telefone" class="form-control" id="telefone" required value={{ old('telefone')}}> {{ $errors->first('telefone')}} <br/>
-                                <label for="telefone">Telefone</label>
-
-                            </div>
-                            <div class="input-field col s12 m6">
-                                <i class="material-icons prefix">recent_actors</i>
-                                <input type="text" name="cpf" class="form-control" id="cpf" required value={{ old('cpf')}}> {{ $errors->first('cpf')}} <br/>
-                                <label for="cpf">CPF</label>
-
-                            </div>
-                            <div class="input-field col s12 m6">
-                                <i class="material-icons prefix">lock</i>
-                                <input type="password" name = "senha" class="form-control" id="senha" required value={{ old('senha')}}> {{ $errors->first('senha')}} <br/>
-                                <label for="senha">Senha</label>
-                            </div>
-                            <div class="input-field col s12 m6">
-                                <i class="material-icons prefix">lock</i>
-                                <input type="password" name = "senha_confirmation" class="form-control" id="senha_Confirmation" required>
-                                <label for="senha_Confirmation">Confirme a senha</label>
-                            </div>
-                        </div>
-                    </form>
-
+        <div class="row">
+            <font size="5" class="row">
+                Dados Pessoais:
+            </font> 
+            <div class="input-field col s12 m8 l12"> 
+                <input type="text" name="nome" class="form-control" id="nome"required value= {{ old('nome')}}> {{ $errors->first('nome')}} <br/>
+                <label for="nome">Nome</label>
             </div>
-            <div class="col s6">
-                <hr class="mb-4">
-                <button class="btn btn-primary btn-lg btn-block btn-large light-green darken-3 center" type="submit">Cadastrar Usuário</button>
+            <div class="input-field col s12 m8 l12"> 
+                <input type="email" class="validate" name="email" class="form-control" id="email" value={{ old('email')}}> {{ $errors->first('email')}} <br/>
+                <label for="email">Email</label>
             </div>
+            <div class="input-field col s12 m4 l6"> 
+                <input type="tel" name="telefone" class="form-control" id="telefone" required value={{ old('telefone')}}> {{ $errors->first('telefone')}} <br/>
+                <label for="telefone">Telefone</label>
             </div>
-        </div>
-
+            <div class="input-field col s12 l6"> 
+                <input type="text" name="cpf" class="form-control" id="cpf" required value={{ old('cpf')}}> {{ $errors->first('cpf')}} <br/>
+                <label for="cpf">CPF</label>
+            </div>
+            <div class="input-field col s12 m4 l6"> 
+                <input type="password" name = "senha" class="form-control" id="senha" required value={{ old('senha')}}> {{ $errors->first('senha')}} <br/>
+                <label for="senha">Senha</label>
+            </div>
+            <div class="input-field col s12 l6"> 
+                <input type="password" name = "senha_confirmation" class="form-control" id="senha_Confirmation" required>
+                <label for="senha_Confirmation">Confirme a senha</label>
+            </div>
+            <div class="row center">
+                <button class="btn-large waves-effect waves-light light-green darken-3" type="submit" name="action">Confirmar
+                <i class="material-icons right">check</i>
+            </button>
+            </div>
+        </form>
     </section>
 </body>
 
