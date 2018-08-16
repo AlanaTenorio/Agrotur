@@ -16,9 +16,7 @@
                     <li>
                         <!-- Dropdown Offer Service Trigger -->
                         <a class='waves-effect dropdown-button grey-text text-darken-3' href='/busca' data-target='dropdown_Search'>
-                            <i class="large material-icons left">search</i>
-                            PESQUISAR
-                            <!--<i class="large material-icons right">arrow_drop_down</i>-->
+                            PESQUISE
                         </a>
                     </li>
                     <li>
