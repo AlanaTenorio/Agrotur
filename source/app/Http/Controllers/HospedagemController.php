@@ -169,7 +169,7 @@ class HospedagemController extends Controller
       }
     }
 
-    return redirect ('/');
+    return redirect ('/ExibirHospedagem/'.$hospedagem->id);
 
   }
 

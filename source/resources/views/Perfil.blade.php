@@ -133,6 +133,7 @@
         <div class="col s12 l8">
             @switch($tab)
                 @case("conta")
+                    <h5 class="green-text text-darken-3">Meus dados</h5>
                     <div class="row">
                         <div class="col s3 m2">
                             <strong class="right">Nome: </strong>
@@ -177,13 +178,14 @@
                     <div class="row">
                         <div class="col s3 m2"></div>
                         <div class="col s9 m10">
-                            <a class=" left waves-effect waves-teal darken-4 btn-flat" href="/EditarCliente/{{Auth::user()->id}}">
+                            <a class="left waves-effect waves-teal darken-4 btn-flat" href="/EditarCliente/{{Auth::user()->id}}">
                                 <b>Editar</b> <i class="material-icons right">edit</i>
                             </a>
                         </div>
                     </div>
                     @break
                 @case("compras")
+                    <h5 class="green-text text-darken-3">Anúncios contratados</h5>
                     <div>
                         <ul>
                             @foreach ($compras as $compra)
@@ -243,6 +245,7 @@
                     </div>
                     @break
                 @case("anuncios")
+                    <h5 class="green-text text-darken-3">Meus anúncios</h5>
                     <div>
                         <ul>
                             @foreach ($ads as $ad)
