@@ -120,7 +120,7 @@ class ServicoController extends Controller
       }
     }
 
-    return redirect ('/listaServicos');
+    return redirect ('/ExibirServico/'.$servico->id);
   }
 
   public function listarServicos(){
