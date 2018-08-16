@@ -71,7 +71,7 @@ class ClienteController extends Controller
       $user->email = $request->email;
       $user->save();
 
-      return redirect ('/listaClientes');
+      return redirect ('/perfil?tab=conta');
     }
 
     public function salvarSenha(Request $request){

@@ -169,7 +169,7 @@ class HospedagemController extends Controller
       }
     }
 
-    return redirect ('/listaHospedagens');
+    return redirect ('/');
 
   }
 
