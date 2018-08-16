@@ -128,7 +128,7 @@
 
                         <!-- Dropdown Account Structure -->
                         <ul id='dropdown_Account' class='dropdown-content'>
-                            <li><a href="#!" class="black-text">Minha Conta</a></li>
+                            <li><a href="/perfil" class="black-text">Minha Conta</a></li>
                             <li class="divider" tabindex="-1"></li>
                             <li>
                                 <form action="{{ route('logout') }}" method="POST">
