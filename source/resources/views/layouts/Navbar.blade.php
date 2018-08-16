@@ -16,8 +16,8 @@
                     <li>
                         <!-- Dropdown Offer Service Trigger -->
                         <a class='waves-effect dropdown-button grey-text text-darken-3' href='/busca' data-target='dropdown_Search'>
-
-                            PESQUISE
+                            <i class="large material-icons left">search</i>
+                            PESQUISAR
                             <!--<i class="large material-icons right">arrow_drop_down</i>-->
                         </a>
                     </li>
@@ -128,14 +128,8 @@
 
                         <!-- Dropdown Account Structure -->
                         <ul id='dropdown_Account' class='dropdown-content'>
-                            <li><a href="/perfil?tab=conta" class="black-text">Minha Conta</a></li>
+                            <li><a href="/perfil" class="black-text">Minha Conta</a></li>
                             <li class="divider" tabindex="-1"></li>
-                            <li><a href="#!" class="black-text">Link 2</a></li>
-                            <li><a href="#!" class="black-text">Link 3</a></li>
-                            <li><a href="#!" class="black-text">
-                                    Link 4 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="material-icons right">view_module</i>
-                                </a>
-                            </li>
                             <li>
                                 <form action="{{ route('logout') }}" method="POST">
                                     @csrf

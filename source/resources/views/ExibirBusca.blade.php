@@ -14,22 +14,43 @@
 
 <body>
 <!-- Listagem -->
-    <div class="row center">
-        <div class="col s12 m7">
-            <ul class="collection with-header center">
-                <li class="collection-header light-green darken-3 white-text">
-                    <h4>Resultados:</h4>
-                </li>
-                <li>
-                    <form class="col s12 m12">
+    <div class="container white">
+        <h4>Resultados</h4>
+        <br>
+        <form class="col s12 m12">
                         <div class="row">
                             <table class="table table-striped">
                                 <thead>
                                     @foreach ($hospedagens as $hospedagem)
+                                    <?php $adData = \App\Http\Controllers\AnuncioController::getDadosAnuncio($hospedagem->id) ?>
+
+                                     <div class="col s06 m3 l3 xl3">
+                                    <div class="card small">
+                                        <div class="card-image waves-effect waves-block waves-light">
+                                          <a href="/Exibir{{ $adData['type'] }}/{{ $adData['id'] }}">
+                                              <img class="centered-and-cropped" style="border-radius:0%" src="{{ $adData['image'] }}" width=150 height=150>
+                                          </a>
+                                        </div>
+                                        <div class="card-content">
+                                            <span class="card-title activator grey-text text-darken-4">
+                                              {{ $adData['title'] }}
+                                              <i class="material-icons right">more_vert</i>
+                                            </span>
+                                            <p>
+                                               R$: {{ $adData['price'] }}
+                                            </p>
+                                        </div>
+                                        <div class="card-reveal">
+                                            <span class="card-title grey-text text-darken-4">
+                                                <i class="material-icons right">close</i>
+                                            </span>
+                                            <p>
+                                                {{ $adData['description'] }}
+                                            </p>
+                                        </div>
+
                                     <tr>
-                                        <th scope="col"><i class="material-icons">send</i></th>
-                                        <th scope="col"> {{$hospedagem->nomePropriedade}}</th>
-                                        <th scope="col"><a href="/ExibirHospedagem/{{$hospedagem->id}}">Visualizar</a></th></th>
+                                        
                                     </tr>
                                     @endforeach
                                     @foreach ($servicosh as $servicoh)
@@ -39,12 +60,7 @@
                                         <th scope="col"><a href="/ExibirHospedagem/{{$servicoh->id}}">Visualizar</a></th></th>
                                     </tr>
                                     @endforeach
-                                    @foreach ($hospedagensVal as $hospedagemVal)
-                                    <tr>
-                                        <th scope="col"><i class="material-icons">ac_unit</i></th>
-                                        <th scope="col"><a href="/ExibirHospedagem/{{$hospedagemVal->id}}">Visualizar</a></th></th>
-                                    </tr>
-                                    @endforeach
+                        
                                     @foreach ($servicos as $servico)
                                     <tr>
                                         <th scope="col"><i class="material-icons">clear</i></th>
@@ -55,12 +71,9 @@
                                 </thead>
                             </table>
                         </div>
-                    </form>
-                    
-                </li>
-            </ul>
-        </div>
-    </div>
+    </form>
+        
+
 </body>
 
 @include('layouts.Footer')

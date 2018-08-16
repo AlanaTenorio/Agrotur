@@ -141,7 +141,7 @@
                             $ref = "/login";
                             if (Auth::guard()->check()) $ref = "/contratarAnuncio/".$anuncio->id;
                         ?>
-                        @if (Auth::guard()->check() and Auth::user()->id != $anunciante->id)
+                        @if (!Auth::guard()->check() or (Auth::guard()->check() and Auth::user()->id != $anunciante->id))
                         <a class="right waves-effect teal waves-teal darken-3 white-text btn-flat btn-large" href="{{$ref}}">
                             Reservar <i class="material-icons right">add_shopping_cart</i>
                         </a>

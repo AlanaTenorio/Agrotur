@@ -6,7 +6,7 @@
         <div class="row container">
             <h4>
                 <span class="left grey-text text-darken-3">
-                    &nbsp;Encontre lugares
+                    &nbsp;Encontre lugares e experiências
                 </span>
             </h4>
         </div>
@@ -28,7 +28,7 @@
                           <i class="material-icons right">more_vert</i>
                         </span>
                         <p>
-                            {{ $adData['price'] }}
+                           R$: {{ $adData['price'] }}
                         </p>
                     </div>
                     <div class="card-reveal">
