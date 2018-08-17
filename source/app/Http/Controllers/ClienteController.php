@@ -140,11 +140,29 @@ class ClienteController extends Controller
                         );
         }
 
-        public function visualizarPerfilOutro(){
-            $clienteId = Auth::user()->id;
-            $favoritos = \App\Favorito::where('cliente_id', '=', $clienteId)->get();
-
-            return view("Perfil", ['favoritos' => $favoritos]);
+        public function visualizarPerfilVendedor($id){
+            $vendedor = \App\Cliente::where('id', $id)->get()->first();
+            $ads = \App\Anuncio::where('anunciante_id', $id)->get();
+            $notaTotal = 0;
+            $contagemAvaliacoes = 0;
+            $nota = 0;
+            foreach ($ads as $ad) {
+                $avaliacoesAnuncio = \App\Avaliacao_Anuncio::where('anuncio_id', $ad->id)->get();
+                foreach ($avaliacoesAnuncio as $avaliacao) {
+                    $contagemAvaliacoes++;
+                    $notaTotal += $avaliacao->nota;
+                }
+            }
+            if ($contagemAvaliacoes > 0) {
+                $nota = (float) $notaTotal / $contagemAvaliacoes;
+            }
+            
+            return view("Vendedor", [
+                                    'vendedor' => $vendedor,
+                                    'ads' => $ads,
+                                    'nota' => $nota,
+                                    ]
+                        );
         }
 
         public function procurarAnuncio($id){
