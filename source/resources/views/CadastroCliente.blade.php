@@ -31,23 +31,38 @@
                 Dados Pessoais:
             </font> 
             <div class="input-field col s12 m8 l12"> 
-                <input type="text" name="nome" class="form-control" id="nome"required value= {{ old('nome')}}> {{ $errors->first('nome')}} <br/>
+                <input type="text" name="nome" class="form-control" id="nome"required value= {{ old('nome')}}> 
+                <div>
+                    <span class="red-text text-darken-2">{{ $errors->first('nome')}} <br/></span>
+                </div>
                 <label for="nome">Nome</label>
             </div>
             <div class="input-field col s12 m8 l12"> 
-                <input type="email" class="validate" name="email" class="form-control" id="email" value={{ old('email')}}> {{ $errors->first('email')}} <br/>
+                <input type="email" class="validate" name="email" class="form-control" id="email" value={{ old('email')}}> 
+                <div>
+                    <span class="red-text text-darken-2">{{ $errors->first('email')}} <br/></span>
+                </div>
                 <label for="email">Email</label>
             </div>
             <div class="input-field col s12 m4 l6"> 
-                <input type="tel" name="telefone" class="form-control" id="telefone" required value={{ old('telefone')}}> {{ $errors->first('telefone')}} <br/>
+                <input type="tel" name="telefone" class="form-control" id="telefone" required value={{ old('telefone')}}> 
+                <div>
+                    <span class="red-text text-darken-2">{{ $errors->first('telefone')}} <br/></span>
+                </div>
                 <label for="telefone">Telefone</label>
             </div>
             <div class="input-field col s12 l6"> 
-                <input type="text" name="cpf" class="form-control" id="cpf" required value={{ old('cpf')}}> {{ $errors->first('cpf')}} <br/>
+                <input type="text" name="cpf" class="form-control" id="cpf" required value={{ old('cpf')}}> 
+                <div>
+                    <span class="red-text text-darken-2">{{ $errors->first('cpf')}} <br/></span>
+                  </div>
                 <label for="cpf">CPF</label>
             </div>
             <div class="input-field col s12 m4 l6"> 
-                <input type="password" name = "senha" class="form-control" id="senha" required value={{ old('senha')}}> {{ $errors->first('senha')}} <br/>
+                <input type="password" name = "senha" class="form-control" id="senha" required value={{ old('senha')}}>
+                  <div>
+                    <span class="red-text text-darken-2">{{ $errors->first('senha')}} <br/></span>
+                  </div>
                 <label for="senha">Senha</label>
             </div>
             <div class="input-field col s12 l6"> 

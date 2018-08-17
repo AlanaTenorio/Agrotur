@@ -44,12 +44,12 @@
           @endforeach
         </div>
 
-        <div class="row container">
+        <!-- <div class="row container"> 
             <h5>
                 <a href="#" class="green-text text-darken-3">&nbsp;&nbsp;Ver mais</a>
                 <br/>
             </h5>
-        </div>
+        </div>-->
         <span class="grey-text text-lighten-4">
             <hr/>
         </span>
