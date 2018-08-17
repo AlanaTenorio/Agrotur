@@ -137,7 +137,7 @@
                 <div class="row">
                     <div class="col l1"></div>
                     <div class="col l11">
-                        <h5 class='left'>Diária: R$ {{ $anuncio->preco }}</h5>
+                        <h5 class='left'>Preço do serviço: R$ {{ $anuncio->preco }}</h5>
                         <?php
                             $ref = "/login";
                             if (Auth::guard()->check()) $ref = "/contratarAnuncio/".$anuncio->id;
@@ -174,6 +174,13 @@
                             </div>
                             <div class="col s12">
                                 <strong>Complemento:</strong> {{$endereco->complemento}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s6">
+                                <strong>Categoria:</strong> {{ $servicos->categoria}}
+                            </div>
+
                             </div>
                         </div>
                     </div>
