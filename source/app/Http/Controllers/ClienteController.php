@@ -170,8 +170,12 @@ class ClienteController extends Controller
             return $anuncio;
         }
 
+        public static function getCliente($id) {
+            return DB::table('clientes')->where('id', $id)->first();
+        }
+
         public static function getDadosCliente($id) {
-            $client = DB::table('clientes')->where('id', $id)->first();
+            $client = \App\Http\Controllers\ClienteController::getCliente($id);
             $purchases = array(0);
             $ads = array(0);
             $ratingAsASeller = 0;

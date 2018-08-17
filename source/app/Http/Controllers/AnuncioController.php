@@ -60,4 +60,21 @@ class AnuncioController extends Controller
         }
         return $output;
     }
+
+    public function visualizarVendasAnuncio($id) {
+        $adData = \App\Http\Controllers\AnuncioController::getDadosAnuncio($id);
+        $transactions = \App\Transacao::where('anuncio_id', $id)->get();
+
+        return view("VendasAnuncio", [
+                                'id' => $adData['id'],
+                                'title' => $adData['title'],
+                                'price' => $adData['price'],
+                                'icon' => $adData['image'],
+                                'description' => $adData['description'],
+                                'type' => $adData['type'],
+                                'transactions' => $transactions,
+                                'seller_id' => $adData['seller_id'],
+                                ]
+                    );
+    }
 }

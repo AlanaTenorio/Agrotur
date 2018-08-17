@@ -285,7 +285,7 @@
                                             <div class="col s6 l5">
                                                 <strong>Receita do anúncio: R$</strong> {{ number_format ( $adRevenue, 2, '.', '' ) }}
                                                 <br>
-                                                <a class='green-text text-darken-3' href='/vendas/{{$ad->id}}'>
+                                                <a class='green-text text-darken-3' href='/vendasAnuncio/{{$ad->id}}'>
                                                     Vendas deste anúncio
                                                 </a>
                                             </div>

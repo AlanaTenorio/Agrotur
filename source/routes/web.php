@@ -109,9 +109,11 @@ Route::middleware('auth')->group(function() {
 
   Route::post('/ExibirServico/{id}', 'ClienteController@favoritarOuDesfavoritar')->name('favoritos');
 
-  Route::get('/perfil', "ClienteController@visualizarPerfil")->name('visualizarPerfil');
+  Route::get("/perfil", "ClienteController@visualizarPerfil")->name('visualizarPerfil');
 
-  Route::get('/vendedor/{id}', "ClienteController@visualizarPerfilVendedor")->name('visualizarPerfilVendedor');
+  Route::get("/vendedor/{id}", "ClienteController@visualizarPerfilVendedor")->name('visualizarPerfilVendedor');
+
+  Route::get("/vendasAnuncio/{id}", "AnuncioController@visualizarVendasAnuncio")->name('visualizarVendasAnuncio');
 });
 
 Route::get('/TransacaoSucesso', function(Request $request) {
