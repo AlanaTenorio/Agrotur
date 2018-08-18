@@ -15,6 +15,8 @@
 
 @include('layouts.StatusPagamento')
 
+@include('layouts.Listagem')
+
 @include('layouts.LocaisProximos')
 
 @include('layouts.OQueBusca')

@@ -6,7 +6,7 @@
         <div class="row container">
             <h4>
                 <span class="left grey-text text-darken-3">
-                    &nbsp;Lugares próximos de você
+                    &nbsp;Encontre lugares e experiências
                 </span>
             </h4>
         </div>
