@@ -63,10 +63,10 @@ class BuscaController extends Controller
                               ->orWhere('nomeServico', 'ilike', \Request::get('termo'));
                   });
 
-           $endereco_ids = \DB::table('servico_oferecido_hospedagems')->where('servico', 'ilike', 
+           /*$endereco_ids = \DB::table('servico_oferecido_hospedagems')->where('servico', 'ilike', 
             $request->termo)->pluck('hospedagem_id');
-           $hospedagens = \App\Hospedagem::whereIn('id', $endereco_ids);
- }   
+           $hospedagens = \App\Hospedagem::whereIn('id', $endereco_ids);*/
+      }   
       $hospedagens = $hospedagens->get();
       
 
