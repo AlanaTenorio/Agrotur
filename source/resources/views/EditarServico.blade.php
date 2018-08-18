@@ -36,10 +36,21 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <label for="service_description">Descrição do anúncio:</label>
-                        <input name="service_description" id="service_description" type="text" class="validate" required value="{{$anuncio->descricao}}">  {{ $errors->first('service_description')}} 
+                        <input name="service_description" id="service_description" type="text" class="validate" required value="{{$anuncio->descricao}}">  {{ $errors->first('service_description')}}
                     </div>
                 </div>
             </div>
+            <div class="input-field col s12">
+              <select name="service_category" id="service_category" class="validate" required value= {{ old('service_category')}}>
+                <option value="{{ $servico->categoria}}" selected>{{ $servico->categoria}}</option>
+                <option value="Esporte">Esporte</option>
+                <option value="Gastronomia">Gastronomia</option>
+                <option value="Trilha">Trilha</option>
+                <option value="Outros">Outros</option>
+              </select>
+              <label>Categoria</label>
+            </div>
+            {{ $errors->first('service_category')}}
         </div>
 
         <div class="row"> <!-- Endereço -->
@@ -158,7 +169,7 @@
                     </div>
                 </div>
                 @endfor
-            
+
                 <div class="input-field col s12"> <!-- YouTube video -->
                     <label class="active" for="service_video">Link para vídeo no YouTube:</label>
                     <input name="service_video" id="service_video" type="text" class="validate"
