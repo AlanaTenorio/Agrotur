@@ -12,13 +12,14 @@
         "fideloper/proxy": "^4.0",
         "intervention/image": "dev-master",
         "laracasts/behat-laravel-extension": "^1.0",
-        "pagseguro/pagseguro-php-sdk": "^4.2",
         "laravel/framework": "5.6.*",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "^1.0",
         "laravellegends/pt-br-validator": "5.1.*",
+        "pagseguro/pagseguro-php-sdk": "^4.2",
         "paypal/rest-api-sdk-php": "^1.13",
         "phpspec/phpspec": "^4.3",
+        "torann/geoip": "^1.0",
         "twbs/bootstrap": "4.1.1"
     },
     "require-dev": {

@@ -35,4 +35,8 @@ class Anuncio extends Model
   public function avaliacao_anuncios(){
     return $this->hasMany('App\Avaliacao_Anuncio');
   }
+
+  public function perguntas_anuncios(){
+    return $this->hasMany('App\AdQuestions');
+  }
 }
