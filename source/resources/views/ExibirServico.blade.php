@@ -312,6 +312,10 @@
             </div>
         </div>
     </section>
+    
+    <section>
+        @include('layouts.Questions')
+    </section>
 </body>
 
 @include('layouts.Footer')

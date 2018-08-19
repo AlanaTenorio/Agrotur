@@ -98,7 +98,7 @@
                     </div>
                     
                 </div>
-                <button class="btn-large waves-effect waves-light orange" type="submit" name="action">Filtrar
+                <button class="btn-large waves-effect waves-light orange text-darken-2" type="submit" name="action">Filtrar
                         <i class="material-icons right">send</i>
                 </button>
             </form>
