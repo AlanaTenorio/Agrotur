@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Transacao;
 
 class AnuncioController extends Controller
 {
@@ -47,6 +48,25 @@ class AnuncioController extends Controller
             'image' => $image_link,
             'seller_id' => $ad->anunciante_id,
         ];
+    }
+
+    public static function getAnunciosProximos(){
+      $location = \GeoIP::getLocation(request()->ip());
+
+      // Usando código de Busca controller aqui
+      $anuncios = \App\Anuncio::where("preco", ">", 0);
+      $anuncios = $anuncios->whereHas('endereco', function ($query2) use ($location) {
+                  $query2->where('cidade', 'ilike', $location['city'])
+                        ->orWhere('estado', 'ilike', $location['state']);
+              });
+      $anuncios = $anuncios->get();
+
+      return [
+        'cidade' => $location['city'],
+        'estado' => $location['state'],
+        'anuncios' => $anuncios,
+      ];
+
     }
 
     public static function getVendasAnuncio($id) {
