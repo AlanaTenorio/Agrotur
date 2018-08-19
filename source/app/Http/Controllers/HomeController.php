@@ -13,15 +13,27 @@ class HomeController extends Controller
      */
     public function home() {
       $anuncios = Anuncio::inRandomOrder()->take(8)->get();
-      $recomendados = $this->recomendar();
-
+      $recomendados = $this->recomendarPorCategoria();
       return view('Home',["anuncios"=>$anuncios,
                           "recomendados"=>$recomendados]);
     }
 
-    private function recomendar() {
+    private function recomendarPorCategoria() {
+      $categorias = array();
+      $clienteId = Auth::user()->id;
       if (Auth::guard()->check()) {
-        $anuncios = Anuncio::inRandomOrder()->take(8)->get();
+        $compras = \App\Transacao::where('cliente_id', '=', $clienteId)->get();
+        foreach ($compras as $compra) {
+          $servico = \App\Servico::where('anuncio_id', '=', $compra->anuncio_id)->first();
+          array_push($categorias, $servico->categoria);
+        }
+
+        $conta = array_count_values($categorias);
+        arsort($conta);
+        $categoria = key($conta);
+
+        $anuncios = \App\Servico::where('categoria', '=', $categoria)->get();
+
         return $anuncios;
       }else{
         $anuncios = Anuncio::inRandomOrder()->take(8)->get();
