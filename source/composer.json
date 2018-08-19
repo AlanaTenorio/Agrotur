@@ -19,10 +19,9 @@
         "pagseguro/pagseguro-php-sdk": "^4.2",
         "paypal/rest-api-sdk-php": "^1.13",
         "phpspec/phpspec": "^4.3",
+        "torann/geoip": "^1.0",
         "twbs/bootstrap": "4.1.1",
         "fzaninotto/faker": "1.8.0"
-        "torann/geoip": "^1.0",
-        "twbs/bootstrap": "4.1.1"
     },
     "require-dev": {
         "filp/whoops": "^2.0",

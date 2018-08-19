@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Anuncio;
+use App\Servico;
+use App\Transacao;
 use Auth;
 
 class HomeController extends Controller
@@ -23,12 +25,12 @@ class HomeController extends Controller
       if (Auth::guard()->check()) {
         $clienteId = Auth::user()->id;
 
-        $compras = \App\Transacao::where('cliente_id', '=', $clienteId)->get();
+        $compras = Transacao::where('cliente_id', '=', $clienteId)->get();
         if($compras->isEmpty()){
           return $this->recomendarAleatorio();
         }
         foreach ($compras as $compra) {
-          $servico = \App\Servico::where('anuncio_id', '=', $compra->anuncio_id)->first();
+          $servico = Servico::where('anuncio_id', '=', $compra->anuncio_id)->first();
           if($servico == NULL){
             return $this->recomendarAleatorio();
           }
@@ -39,21 +41,28 @@ class HomeController extends Controller
         arsort($conta);
         $categoria = key($conta);
 
-        $servicos = \App\Servico::where('categoria', '=', $categoria)->get();
+        $servicos = Servico::where('categoria', '=', $categoria)->take(8)->get();
 
         $anuncios = array();
         foreach ($servicos as $servico) {
-          $anuncio = \App\Anuncio::where('id', '=', $servico->anuncio_id)->first();
+          $anuncio = Anuncio::where('id', '=', $servico->anuncio_id)->first();
           array_push($anuncios, $anuncio);
         }
         return $anuncios;
       }else{
         return $this->recomendarAleatorio();
       }
-
     }
+
     private function recomendarAleatorio(){
-      $anuncios = Anuncio::inRandomOrder()->take(8)->get();
+      $servicos = Servico::inRandomOrder()->take(8)->get();
+
+      $anuncios = array();
+      foreach ($servicos as $servico) {
+        $anuncio = Anuncio::where('id', '=', $servico->anuncio_id)->first();
+        array_push($anuncios, $anuncio);
+      }
+
       return $anuncios;
     }
 }

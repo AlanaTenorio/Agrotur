@@ -8,7 +8,7 @@
         <div class="row container">
             <h4>
                 <span class="left grey-text text-darken-3">
-                    &nbsp;Lugares próximos de {{ $anunciosProx['cidade'] }} - {{ $anunciosProx['estado'] }}
+                    &nbsp;Lugares e experiências próximos de {{ $anunciosProx['cidade'] }} - {{ $anunciosProx['estado'] }}
                 </span>
             </h4>
         </div>
