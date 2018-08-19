@@ -93,6 +93,10 @@ Route::middleware('auth')->group(function() {
 
   Route::post('/avaliarAnuncio', "AvaliacaoController@avaliarAnuncio");
 
+  Route::post('/ask-question', "QuestionsController@askQuestion");
+
+  Route::post('/answer-question', "QuestionsController@answerQuestion");
+
   Route::get('/contratarAnuncio/{id}', function($id) {
       return view('ContratarAnuncio', ['id' => $id]);
   });
