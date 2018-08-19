@@ -15,7 +15,7 @@
         <!--esse código todo será gerado automaticamente-->
         <div class="row container">
           @foreach ($recomendados as $recomendado)
-            <?php $adData = \App\Http\Controllers\AnuncioController::getDadosAnuncio($recomendado->id) ?>
+            <?php $adData = \App\Http\Controllers\AnuncioController::getDadosAnuncio($recomendado->id);?>
 
             <div class="col s06 m3 l3 xl3">
                 <div class="card small">
