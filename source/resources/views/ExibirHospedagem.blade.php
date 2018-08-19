@@ -234,7 +234,7 @@
                                     <input type="hidden" name="user_id" value="{{Auth::user()->id}}"/>
                                     <input type="hidden" name="anuncio_id" value="{{$anuncio->id}}"/>
                                     <div class="input-field"> <!--avaliação-->
-                                        <select name="nota" id="nota" class="validate" required value={{old('nota')}}> {{ $errors->first('nota')}}
+                                        <select name="nota" id="nota" class="validate" required value="{{old('nota')}}"> {{ $errors->first('nota')}}
                                             <option value="" disabled selected>Avaliação</option>
                                             <option value="1">Péssimo</option>
                                             <option value="2">Ruim</option>
@@ -316,6 +316,10 @@
                 <div class="col m1"></div>
             </div>
         </div>
+    </section>
+
+    <section>
+        @include('layouts.Questions')
     </section>
 </body>
 
