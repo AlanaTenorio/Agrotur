@@ -2,12 +2,13 @@
 
 use Faker\Generator as Faker;
 
-$autoIncrement = autoIncrement5();
+// $autoIncrement = autoIncrement5();
 
-$factory->define(App\Imagem_Servico::class, function (Faker $faker) use ($autoIncrement){
-  $autoIncrement->next();
+$factory->define(App\Imagem_Servico::class, function (Faker $faker){ //use ($autoIncrement){
+  // $autoIncrement->next();
+  static $increment = 1;
 
-  $dir = 'public/images/servicos/'.$autoIncrement->current().'/';
+  $dir = 'public/images/servicos/'.$increment.'/';
 
   if(!file_exists($dir)){
       mkdir($dir, 0777);
@@ -25,13 +26,13 @@ $factory->define(App\Imagem_Servico::class, function (Faker $faker) use ($autoIn
 
   return [
       'imagem' => str_ireplace("public/", "", $dir),
-      'servico_id' => $autoIncrement->current()
+      'servico_id' => $increment++
   ];
 });
 
-function autoIncrement5()
-{
-    for ($i = 0; $i <= 50; $i++) {
-        yield $i;
-    }
-}
+// function autoIncrement5()
+// {
+//     for ($i = 0; $i <= 50; $i++) {
+//         yield $i;
+//     }
+// }

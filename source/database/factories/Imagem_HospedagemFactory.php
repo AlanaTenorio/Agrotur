@@ -2,12 +2,12 @@
 
 use Faker\Generator as Faker;
 
-$autoIncrement = autoIncrement4();
+// $autoIncrement = autoIncrement4();
 
-$factory->define(App\Imagem_Hospedagem::class, function (Faker $faker) use ($autoIncrement){
-  $autoIncrement->next();
+$factory->define(App\Imagem_Hospedagem::class, function (Faker $faker) { //use ($autoIncrement){
+  static $increment = 1;
 
-  $dir = 'public/images/hospedagens/'.$autoIncrement->current().'/';
+  $dir = 'public/images/hospedagens/'.$increment.'/';
 
   if(!file_exists($dir)){
       mkdir($dir, 0777);
@@ -25,13 +25,13 @@ $factory->define(App\Imagem_Hospedagem::class, function (Faker $faker) use ($aut
 
   return [
       'imagem' => str_ireplace("public/", "", $dir),
-      'hospedagem_id' => $autoIncrement->current()
+      'hospedagem_id' => $increment++
   ];
 });
 
-function autoIncrement4()
-{
-    for ($i = 0; $i <= 50; $i++) {
-        yield $i;
-    }
-}
+// function autoIncrement4()
+// {
+//     for ($i = 0; $i <= 50; $i++) {
+//         yield $i;
+//     }
+// }
