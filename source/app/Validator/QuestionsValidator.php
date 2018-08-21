@@ -65,7 +65,7 @@ class QuestionsValidator
         }
 
         
-        if (isEmpty($data['answer'])) {
+        if (empty($data['answer'])) {
             $validator->errors()->add('answer_error','A resposta não pode estar vazia.');
         }
 
