@@ -64,6 +64,11 @@ class QuestionsValidator
             $validator->errors()->add('seller_error','O anúncio não pertence ao vendedor.');
         }
 
+        
+        if (isEmpty($data['answer'])) {
+            $validator->errors()->add('answer_error','A resposta não pode estar vazia.');
+        }
+
         /*
         foreach (validateAnswerContent($data['answer']) as $error) {
             $validator->errors()->add('answer_error', $error);
