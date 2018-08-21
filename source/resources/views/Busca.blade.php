@@ -13,7 +13,7 @@
 
 <style>
 .centered-and-cropped { object-fit: cover }
-.small-input-field { width: 60px; } 
+.small-input-field { width: 60px; }
 </style>
 
 
@@ -32,7 +32,7 @@
                         <i class="material-icons right">send</i>
                 </button>
 
-                
+
               </div>
           </form>
         </div>
@@ -96,7 +96,7 @@
                                 <option value="4">Acima de 400</option>
                             </select>
                     </div>
-                    
+
                 </div>
                 <button class="btn-large waves-effect waves-light orange text-darken-2" type="submit" name="action">Filtrar
                         <i class="material-icons right">send</i>
@@ -104,53 +104,9 @@
             </form>
         </div>
 
+
+
         
-
-        <div class="col s12 l8">
-            <div class="row">
-                @if(Auth::guard()->check())
-                <?php
-                $favoritos = \App\Favorito::where('cliente_id', '=', Auth::user()->id)->get();
-                ?>
-                <ul id='dropdown_Favorites' class=''>
-                @foreach ($favoritos as $favorito)
-            <li>
-                <?php $adData = \App\Http\Controllers\AnuncioController::getDadosAnuncio($favorito->anuncio_id) ?>
-
-                <div class="row">
-                    <div class="col s2 center">
-                        <a href="/Exibir{{ $adData['type'] }}/{{ $adData['id'] }}">
-                            <img class="centered-and-cropped" style="border-radius:0%" src="{{ $adData['image'] }}" width=150 height=150>
-                        </a>
-                    </div>
-                    <div class="col s1"></div>
-                    <div class="col s9">
-                        <div class="row">
-                            <div class="col s8">
-                                <a class='grey-text text-darken-2' href='/Exibir{{ $adData["type"] }}/{{ $adData["id"] }}'>
-                                    <h5>{{ $adData['title'] }}</h5>
-                                </a>
-                            </div>
-                            <div class="col s4">
-                                <h5 class='right'>R$ {{ $adData['price'] }}</h5>
-                            </div>
-                        </div>
-                        <div class="row">
-                            
-                            {{substr($adData['description'], 0, 400)}}
-                            @if (strlen($adData['description']) > 400)
-                                ...
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            <hr><br>
-            </li>
-            @endforeach
-                </ul>
-                @endif
-            </div>
-        </div>
     </div>
 
 

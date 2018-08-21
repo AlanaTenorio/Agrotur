@@ -22,8 +22,8 @@ class CreateAdQuestionsTable extends Migration
             $table->integer('ad_id')->unsigned();
             $table->integer('client_id')->unsigned();
 
-            $table->foreign('ad_id')->references('id')->on('anuncios');
-            $table->foreign('client_id')->references('id')->on('clientes');
+            $table->foreign('ad_id')->references('id')->on('anuncios')->onDelete('cascade');
+            $table->foreign('client_id')->references('id')->on('clientes')->onDelete('cascade');
         });
     }
 

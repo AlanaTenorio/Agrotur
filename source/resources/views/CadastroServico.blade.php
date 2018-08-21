@@ -29,7 +29,7 @@
                 <input name="service_title" id="service_title" type="text" class="validate" required value= {{ old('service_title')}}> {{ $errors->first('service_title')}}
             </div>
             <div class="input-field col s12 m6 l4 left"> <!-- Preço -->
-                <label class="active" for="service_price">Preço da diária:</label>
+                <label class="active" for="service_price">Preço do serviço:</label>
                 <input name="service_price" placeholder="Valor em reais. Exemplo: 60.00" id="service_price" type="text" class="validate" required value= {{ old('service_price')}}> {{ $errors->first('service_price')}}
             </div>
             <div class="col s12 center"> <!-- Descrição -->
@@ -40,6 +40,17 @@
                     </div>
                 </div>
             </div>
+            <div class="input-field col s12">
+              <select name="service_category" id="service_category" class="validate" required value= {{ old('service_category')}}> {{ $errors->first('service_category')}}
+                <option value="" disabled selected>Escolha uma categoria</option>
+                <option value="Esporte">Esporte</option>
+                <option value="Gastronomia">Gastronomia</option>
+                <option value="Trilha">Trilha</option>
+                <option value="Outros">Outros</option>
+              </select>
+              <label>Categoria</label>
+            </div>
+
         </div>
 
         <div class="row"> <!-- Endereço -->
@@ -198,6 +209,9 @@
         });
         $(document).ready(function () {
             $('select').formSelect();
+        });
+        $(document).ready(function(){
+          $('select').formSelect();
         });
     </script>
 

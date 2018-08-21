@@ -23,9 +23,11 @@ class AnuncioController extends Controller
         }
 
         $title = '';
+        $categoria = '';
 
         if ($isService) {
             $title = $lodging->nomeServico;
+            $categoria = $lodging->categoria;
         }
         else {
             $title = $lodging->nomePropriedade;
@@ -47,6 +49,7 @@ class AnuncioController extends Controller
             'price' => $ad->preco,
             'image' => $image_link,
             'seller_id' => $ad->anunciante_id,
+            'categoria' => $categoria,
         ];
     }
 

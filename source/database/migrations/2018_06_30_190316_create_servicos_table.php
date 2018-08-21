@@ -18,6 +18,7 @@ class CreateServicosTable extends Migration
             $table->timestamps();
             $table->string('nomeServico');
             $table->integer('anuncio_id');
+            $table->string('categoria');
             $table->foreign('anuncio_id')->references('id')->on('anuncios');
         });
     }

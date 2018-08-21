@@ -88,9 +88,9 @@
 
                     <li>
                         <!-- Dropdown Notifications Trigger -->
-                        <a class='waves-effect dropdown-trigger grey-text text-darken-3' href='#' data-target='dropdown_Notifications'>NOTIFICAÇÕES</a>
+                        <!-- <a class='waves-effect dropdown-trigger grey-text text-darken-3' href='#' data-target='dropdown_Notifications'>NOTIFICAÇÕES</a> -->
                         <!-- Dropdown Notifications Structure -->
-                        <ul id='dropdown_Notifications' class='dropdown-content'>
+                        <!-- <ul id='dropdown_Notifications' class='dropdown-content'>
                             <li><a href="#!" class="black-text">Notificação 1</a></li>
                             <li><a href="#!" class="black-text">Notificação 2</a></li>
                             <li><a href="#!" class="black-text">Notificação 3</a></li>
@@ -103,20 +103,20 @@
                             <li><a href="#!" class="black-text">Textos intencionalmente visiveis
                             <li><a href="#!" class="black-text center">Ver Todas</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                     @endif
 
-                    <li>
+                    <!-- <li> -->
                         <!--testar substituir por um modal e um dropdown button-->
                         <!-- Dropdown Help Trigger -->
-                        <a class='waves-effect dropdown-trigger grey-text text-darken-3' href='#' data-target='dropdown_Help'>AJUDA</a>
+                        <!-- <a class='waves-effect dropdown-trigger grey-text text-darken-3' href='#' data-target='dropdown_Help'>AJUDA</a> -->
                         <!-- Dropdown Help Structure -->
-                        <ul id='dropdown_Help' class='dropdown-content'>
+                        <!-- <ul id='dropdown_Help' class='dropdown-content'>
                             <li><a href="#!" class="black-text">Perguntas Frequentes</a></li>
                             <li><a href="#!" class="black-text">Contato</a></li>
                             <li><a href="#!" class="black-text">Sobre o Agrotur</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                     <li>
                         @if(Auth::guard()->check())
                         <!-- Dropdown Account Trigger -->
