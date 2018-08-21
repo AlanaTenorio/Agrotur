@@ -20,7 +20,7 @@ class HomeController extends Controller
                           "recomendados"=>$recomendados]);
     }
 
-    private function recomendarPorCategoria() {
+    public function recomendarPorCategoria() {
       $categorias = array();
       if (Auth::guard()->check()) {
         $clienteId = Auth::user()->id;
@@ -54,7 +54,7 @@ class HomeController extends Controller
       }
     }
 
-    private function recomendarAleatorio(){
+    public function recomendarAleatorio(){
       $servicos = Servico::inRandomOrder()->take(8)->get();
 
       $anuncios = array();

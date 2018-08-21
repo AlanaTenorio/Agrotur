@@ -13,7 +13,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\Cliente::class, function (Faker $faker) {
+$factory->define(App\User::class, function (Faker $faker) {
 
     return [
         'nome' => $faker->name,
