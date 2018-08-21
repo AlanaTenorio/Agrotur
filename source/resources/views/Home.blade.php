@@ -19,8 +19,6 @@
 
 @include('layouts.LocaisProximos')
 
-@include('layouts.OQueBusca')
-
 @include('layouts.RecomendadoHome')
 
 @include('layouts.Footer')

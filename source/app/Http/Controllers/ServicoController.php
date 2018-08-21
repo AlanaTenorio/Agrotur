@@ -32,6 +32,7 @@ class ServicoController extends Controller
 
     $servico = new \App\Servico();
     $servico->nomeServico = $request->service_title;
+    $servico->categoria = $request->service_category;
     $servico->anuncio_id = $anuncio->id;
     $servico->save();
 
@@ -78,6 +79,7 @@ class ServicoController extends Controller
   public function salvar(Request $request){
     $servico = \App\Servico::find($request->id);
     $servico->nomeServico = $request->service_title;
+    $servico->categoria = $request->service_category;
     $servico->save();
 
     $anuncio = \App\Anuncio::find($servico->anuncio_id);

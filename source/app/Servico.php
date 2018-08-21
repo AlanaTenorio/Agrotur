@@ -17,6 +17,7 @@ class Servico extends Model
     'service_street_number'=>'required',
     'service_neighborhood'=>'required',
     'service_postal_code'=>'required|digits:8',
+    'service_category'=>'required',
   ];
 
   public static $messages = [
@@ -31,6 +32,7 @@ class Servico extends Model
     'service_street_neighborhood.required' => 'Insira o bairro no endereço do anúncio',
     'service_postal_code.required' => 'Insira um CEP válido',
     'service_postal_code.digits' => 'Insira um CEP válido',
+    'service_category.required' => 'Informe a categoria do serviço',
   ];
 
   public function anuncio(){

@@ -20,7 +20,8 @@
         "paypal/rest-api-sdk-php": "^1.13",
         "phpspec/phpspec": "^4.3",
         "torann/geoip": "^1.0",
-        "twbs/bootstrap": "4.1.1"
+        "twbs/bootstrap": "4.1.1",
+        "fzaninotto/faker": "1.8.0"
     },
     "require-dev": {
         "filp/whoops": "^2.0",
