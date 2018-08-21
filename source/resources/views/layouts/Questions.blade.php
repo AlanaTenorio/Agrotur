@@ -60,13 +60,15 @@
                                 <form action="/answer-question" method="post">
                                     <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                                     <input type="hidden" name="question_id" value="{{$question->id}}"/>
+                                    <input type="hidden" name="ad_id" value="{{$anuncio->id}}"/>
+                                    <input type="hidden" name="seller_id" value="{{Auth::user()->id}}"/>
                                     <div class="row valign-wrapper">
                                         <div class="input-field col s12 m9 l10">
-                                            <label for="response">Responder pergunta...</label>
-                                            <textarea id="response" class="materialize-textarea" name="response"></textarea>
+                                            <label for="answer">Responder pergunta...</label>
+                                            <textarea id="answer" class="materialize-textarea" name="answer"></textarea>
                                         </div>
                                         <div class="col s12 m3 l2">
-                                            <button class="btn-flat teal darken-3 white-text waves-effect waves-light center" type="submit" name="answer" value="answer">
+                                            <button class="btn-flat teal darken-3 white-text waves-effect waves-light center" type="submit" name="submit">
                                                 Responder
                                             </button>
                                         </div>
