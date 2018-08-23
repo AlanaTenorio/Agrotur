@@ -35,7 +35,7 @@ class TransacaoController extends Controller
 
     $transacao->save();
 
-    return redirect()->route('paypal', ['valor' => $transacao->precoTotal, 'descricao' => $this->obtemDescricao($request->anuncio_id), 'anuncio_id' => $transacao->anuncio_id]);
+    return redirect()->route('paypal', ['valor' => $transacao->precoTotal, 'descricao' => $this->obtemDescricao($request->anuncio_id), 'transacao_id' => $transacao->id]);
   }
 
   private static function calcularPreco($id, $dataEntrada, $dataSaida){
@@ -50,8 +50,14 @@ class TransacaoController extends Controller
     return $precoTotal;
   }
 
-  private static function obtemDescricao($id){
-    $anuncio = Anuncio::find($id);
+  private static function obtemDescricao($anuncio_id){
+    $anuncio = Anuncio::find($anuncio_id);
     return $anuncio->descricao;
   }
+
+  public static function apagaTransacao($trans_id){
+    $transacao = Transacao::find($trans_id);
+    $transacao->delete();
+  }
+
 }

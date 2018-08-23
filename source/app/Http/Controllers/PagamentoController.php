@@ -17,6 +17,8 @@ use PayPal\Api\Transaction;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Rest\ApiContext;
 
+use App\Http\Controllers\TransacaoController;
+
 use Redirect;
 use Session;
 use URL;
@@ -92,6 +94,8 @@ class PagamentoController extends Controller {
     /** add payment ID to session **/
     Session::put('paypal_payment_id', $payment->getId());
 
+    Session::put('transacao_id', $request->transacao_id);
+
     if (isset($redirect_url)) {
       /** redirect to paypal **/
       return Redirect::away($redirect_url);
@@ -106,11 +110,16 @@ class PagamentoController extends Controller {
     /** Get the payment ID before session clear **/
     $payment_id = Session::get('paypal_payment_id');
 
+    $trans_id = Session::get('transacao_id');
+
     /** clear the session payment ID **/
     Session::forget('paypal_payment_id');
 
     if (empty(Input::get('PayerID')) || empty(Input::get('token'))) {
       \Session::put('error', 'Payment failed');
+
+      TransacaoController::apagaTransacao($trans_id);
+
       return Redirect::route('home');
     }
 
@@ -127,6 +136,9 @@ class PagamentoController extends Controller {
     }
 
     \Session::put('error', 'Pagamento falhou');
+
+    TransacaoController::apagaTransacao($trans_id);
+
     return Redirect::route('home');
 
   }
