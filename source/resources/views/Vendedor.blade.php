@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Agrotur - favoritos</title>
+    <title>Agrotur - Vendedor</title>
     <link rel="icon" id="icon_AgroTur" href="/public_resources/images/fav_icon.png">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
@@ -20,15 +20,12 @@
     <section class="container">
         <div class="row">
             <h4 class="green-text text-darken-3">
-                {{$vendedor->nome}}
+                {{$vendedor->nome}} - Anúncios
             </h4>
             <strong>Avaliação: </strong>{{$nota}}
         </div>
         <div class="row">
             <div class="col s12">
-                <h5 class="green-text text-darken-3">
-                    Anúncios deste vendedor
-                </h5>
                 <div>
                     <ul>
                         @foreach ($ads as $ad)
@@ -42,7 +39,7 @@
                             <div class="row">
                                 <div class="col s3 m2 center">
                                     <a href="/Exibir{{ $adData['type'] }}/{{ $adData['id'] }}">
-                                        <img class="centered-and-cropped valign-wrapper" style="border-radius:0%" src="{{ $adData['image'] }}" width=100 height=100>
+                                        <img class="centered-and-cropped valign-wrapper" style="border-radius:0%" src="/{{ $adData['image'] }}" width=150 height=150>
                                     </a>
                                 </div>
                                 <div class="col s9 m10">
@@ -80,7 +77,7 @@
                 </div>
             </div>
             <div class="col s12">
-                
+
             </div>
         </div>
     </section>

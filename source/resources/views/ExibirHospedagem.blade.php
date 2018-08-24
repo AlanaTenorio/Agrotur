@@ -104,7 +104,7 @@
                     <div class="col l10">
                         <h4>{{ $hospedagem->nomePropriedade }}</h4>
                     </div>
-                    @if (Auth::guard()->check() and Auth::user()->id != $anunciante->id))
+                    @if (Auth::guard()->check() and (Auth::user()->id != $anunciante->id))
                     <div class="col l1">
                         <?php $favorito = \App\Favorito::where([
                             ['cliente_id', '=', Auth::user()->id],
@@ -132,6 +132,15 @@
                         @endif
                     </div>
                     @endif
+                </div>
+                <div class="row">
+                  <div class="col l1"></div>
+                  <div class="col l11">
+                      <strong>Anunciante:</strong>
+                      <a class='green-text text-darken-3' href='/vendedor/{{$anunciante->id}}'>
+                          {{$anunciante->nome }}
+                      </a>
+                  </div>
                 </div>
                 <div class="row">
                     <div class="col l1"></div>
@@ -193,7 +202,7 @@
                     <p>{{ $anuncio->descricao }}</p>
                 </div>
                 <div class="row green-text text-darken-3">
-                    <h6>Serviços oferecidos</h6>
+                    <h5>Serviços oferecidos</h5>
                 </div>
                 <div class="row">
                     <ul style="list-style-type:none">

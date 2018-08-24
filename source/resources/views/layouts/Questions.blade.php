@@ -1,12 +1,14 @@
-<div class="row">
-    <div class="col m1"></div>
-    <div class="col s12 m10">
-        <h5 class="green-text text-darken-3" >Perguntas</h5>
-    </div>
-    <div class="col m1"></div>
-</div>
+
 
 @if(Auth::guard()->check())
+  @if(Auth::user()->id != $anuncio->anunciante_id)
+    <div class="row">
+        <div class="col m1"></div>
+        <div class="col s12 m10">
+            <h5 class="green-text text-darken-3" >Perguntas</h5>
+        </div>
+        <div class="col m1"></div>
+    </div>
     <div class="row">
         <div class="col m1"></div>
         <div class="col s12 m10">
@@ -31,6 +33,7 @@
         </div>
         <div class="col m1"></div>
     </div>
+  @endif
 @else
     <div class="row">
         <div class="col m1"></div>
