@@ -134,6 +134,7 @@
                     </div>
                     @endif
                 </div>
+                @if (!Auth::guard()->check() or (Auth::guard()->check() and Auth::user()->id != $anunciante->id))
                 <div class="row">
                   <div class="col l1"></div>
                   <div class="col l11">
@@ -143,6 +144,7 @@
                       </a>
                   </div>
                 </div>
+                @endif
                 <div class="row">
                     <div class="col l1"></div>
                     <div class="col l11">
@@ -264,58 +266,70 @@
             @endif
 
             <div class="row">
-                <div class="col m1"></div>
-                <div class="col s12 m10">
-                    <div>
-                        <h5 class="green-text text-darken-3" >Avaliações</h5>
-                        <ul>
-                            @if (sizeof($avaliacoes) == 0)
-                                <li>Ainda não há avaliações para este anúncio.</li>
-                            @else
-                                @foreach ($avaliacoes as $avaliacao)
-                                    <div class="row card-panel">
-                                        <div class="col s12 m9 l10">
-                                            "{{ $avaliacao->comentario }}"
-                                        </div>
-                                        <div class="col s12 m3 l2">
-                                            <?php
-                                                $nota = "";
-                                                switch ($avaliacao->nota) {
-                                                    case 1:
-                                                        $nota = "Péssimo";
-                                                        break;
-                                                    case 2:
-                                                        $nota = "Ruim";
-                                                        break;
-                                                    case 3:
-                                                        $nota = "Razoável";
-                                                        break;
-                                                    case 4:
-                                                        $nota = "Bom";
-                                                        break;
-                                                    case 5:
-                                                        $nota = "Muito Bom";
-                                                        break;
-                                                    default:
-                                                        $nota = "Não avaliado";
-                                                }
-                                            ?>
-                                            <strong>Avaliação:</strong> {{$nota}}
-                                        </div>
-                                        <div class="col m11">
-                                            <span class="">
-                                                <?php
-                                                    $c_id = (string) $avaliacao->cliente_id;
-                                                    $user = DB::table('clientes')->where('id', $c_id)->first();
-                                                ?>
-                                                <b>&nbsp;&nbsp;&ndash; {{$user->nome}}</b>
-                                            </span>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            @endif
-                        </ul>
+              <div class="col m1"></div>
+              <div class="col s12 m10">
+
+                    <div class=row>
+                      <div class="col s12 m9 l10 green-text text-darken-3">
+                        <h5>
+                          Avaliações
+                        </h5>
+                      </div>
+                      <div class="col s12 m3 l2 green-text text-darken-3">
+                        @if($nota > 0)
+                          <h5>Média: {{$nota}}</h5>
+                        @endif
+                      </div>
                     </div>
+
+                    <ul>
+                        @if (sizeof($avaliacoes) == 0)
+                            <li>Ainda não há avaliações para este anúncio.</li>
+                        @else
+                            @foreach ($avaliacoes as $avaliacao)
+                                <div class="row card-panel">
+                                    <div class="col s12 m9 l10">
+                                        "{{ $avaliacao->comentario }}"
+                                    </div>
+                                    <div class="col s12 m3 l2">
+                                        <?php
+                                            $nota = "";
+                                            switch ($avaliacao->nota) {
+                                                case 1:
+                                                    $nota = "Péssimo";
+                                                    break;
+                                                case 2:
+                                                    $nota = "Ruim";
+                                                    break;
+                                                case 3:
+                                                    $nota = "Razoável";
+                                                    break;
+                                                case 4:
+                                                    $nota = "Bom";
+                                                    break;
+                                                case 5:
+                                                    $nota = "Muito Bom";
+                                                    break;
+                                                default:
+                                                    $nota = "Não avaliado";
+                                            }
+                                        ?>
+                                        <strong>Avaliação:</strong> {{$nota}}
+                                    </div>
+                                    <div class="col m11">
+                                        <span class="">
+                                            <?php
+                                                $c_id = (string) $avaliacao->cliente_id;
+                                                $user = DB::table('clientes')->where('id', $c_id)->first();
+                                            ?>
+                                            <b>&nbsp;&nbsp;&ndash; {{$user->nome}}</b>
+                                        </span>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endif
+                    </ul>
+                  </div>
                 </div>
                 <div class="col m1"></div>
             </div>

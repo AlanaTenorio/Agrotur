@@ -154,9 +154,9 @@ class ClienteController extends Controller
                 }
             }
             if ($contagemAvaliacoes > 0) {
-                $nota = (float) $notaTotal / $contagemAvaliacoes;
+                $nota = round($notaTotal / $contagemAvaliacoes,1);
             }
-            
+
             return view("Vendedor", [
                                     'vendedor' => $vendedor,
                                     'ads' => $ads,
