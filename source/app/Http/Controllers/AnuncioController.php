@@ -55,14 +55,13 @@ class AnuncioController extends Controller
 
     public static function getAnunciosProximos(){
       $location = \GeoIP::getLocation(request()->ip());
-
       // Usando código de Busca controller aqui
       $anuncios = \App\Anuncio::where("preco", ">", 0);
       $anuncios = $anuncios->whereHas('endereco', function ($query2) use ($location) {
                   $query2->where('cidade', 'ilike', $location['city'])
                         ->orWhere('estado', 'ilike', $location['state']);
               });
-      $anuncios = $anuncios->get();
+      $anuncios = $anuncios->take(8)->get();
 
       return [
         'cidade' => $location['city'],

@@ -81,6 +81,15 @@ class HospedagemController extends Controller
     $servicos = \App\servicoOferecido_hospedagem::where('hospedagem_id', '=', $id)->get();
     $avaliacoes = \App\Avaliacao_Anuncio::where('anuncio_id', '=', $anuncio->id)->get()->reverse();
     $questions = \App\AdQuestion::where('ad_id', $anuncio->id)->get()->reverse();
+
+    $nota = 0;
+    foreach ($avaliacoes as $avaliacao) {
+        $nota += $avaliacao->nota;
+    }
+    if($nota > 0){
+      $nota = round($nota/sizeof($avaliacoes), 1);      
+    }
+
     return view("ExibirHospedagem", ['hospedagem' => $hospedagem,
                                       'imagens' => $imagens,
                                       'anuncio' => $anuncio,
@@ -89,6 +98,7 @@ class HospedagemController extends Controller
                                       'anunciante' => $anunciante,
                                       'avaliacoes' => $avaliacoes,
                                       'questions' => $questions,
+                                      'nota' => $nota,
                                       ]);
   }
 

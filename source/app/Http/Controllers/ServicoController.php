@@ -139,6 +139,15 @@ class ServicoController extends Controller
     $imagens = \App\Imagem_Servico::where('servico_id', '=', $id)->get();
     $avaliacoes = \App\Avaliacao_Anuncio::where('anuncio_id', '=', $anuncio->id)->get()->reverse();
     $questions = \App\AdQuestion::where('ad_id', $anuncio->id)->get()->reverse();
+
+    $nota = 0;
+    foreach ($avaliacoes as $avaliacao) {
+        $nota += $avaliacao->nota;
+    }
+    if($nota > 0){
+      $nota = round($nota/sizeof($avaliacoes), 1);
+    }
+
     return view("ExibirServico", ['servicos' => $servicos,
                                       'imagens' => $imagens,
                                       'anuncio' => $anuncio,
@@ -146,6 +155,7 @@ class ServicoController extends Controller
                                       'anunciante' => $anunciante,
                                       'avaliacoes' => $avaliacoes,
                                       'questions' => $questions,
+                                      'nota' => $nota,
                                       ]
                 );
   }
