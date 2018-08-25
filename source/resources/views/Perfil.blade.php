@@ -211,14 +211,14 @@
                                             </div>
                                             <div class="col s12 l5">
                                                 <h5>
-                                                    Total gasto: 
+                                                    Total gasto:
                                                     R$ {{ $compra->precoTotal }}
                                                 </h5>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col s12 l4">
-                                                <strong>Vendedor: </strong>
+                                                <strong>Anunciante: </strong><br>
                                                 <a class='green-text text-darken-3' href='/vendedor/{{ $sellerData["client"]->id}}'>
                                                     {{ $sellerData["client"]->nome }}
                                                 </a>

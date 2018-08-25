@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Editar Usuário</title>
+    <title>Entrar</title>
     <link rel="icon" id="icon_AgroTur" href="/public_resources/images/fav_icon.png">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
@@ -14,14 +14,14 @@
 <body>
     <br/>
         <h4 class="container teal-text text-darken-3">Login</h4>
-    
+
     <section id="contact" class="section section-contact">
       <form class="container" method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
       @csrf
 
         <div class="row">
             <div class="input-field col s12 m8 l6">
-            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus> 
+            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
             @if ($errors->has('email'))
                 <span class="invalid-feedback red-text text-darken-2" role="alert">
                     <strong>{{ $errors->first('email') }}</strong>
@@ -39,7 +39,7 @@
                         <strong>{{ $errors->first('password') }}</strong>
                     </span>
                 @endif
-                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Senha') }}</label> 
+                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Senha') }}</label>
             </div>
 
             <!--<div class="form-group row">
@@ -119,4 +119,3 @@
 </body>
 
 </html>
-

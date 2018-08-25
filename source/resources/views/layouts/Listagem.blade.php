@@ -14,7 +14,6 @@
         <div class="row container">
           @foreach ($anuncios as $anuncio)
             <?php $adData = \App\Http\Controllers\AnuncioController::getDadosAnuncio($anuncio->id) ?>
-
             <div class="col s06 m3 l3 xl3">
                 <div class="card small">
                     <div class="card-image waves-effect waves-block waves-light">

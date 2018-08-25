@@ -107,7 +107,7 @@ Route::middleware('auth')->group(function() {
 
   Route::get('paypal', "PagamentoController@pagarComPayPal")->name('paypal');
 
-  Route::get('status', "PagamentoController@statusPagamento")->name('status');
+  Route::get('/status', "PagamentoController@statusPagamento")->name('status');
 
   Route::post('/ExibirHospedagem/{id}', 'ClienteController@favoritarOuDesfavoritar')->name('favoritos');
 
@@ -125,8 +125,8 @@ Route::get('/TransacaoSucesso', function(Request $request) {
   })->name('tran_sucesso');
 
 Route::get('/TransacaoFalha', function(Request $request) {
-return view('TransacaoFalha');
-})->name('tran_falha');
+    return view('TransacaoFalha');
+  })->name('tran_falha');
 
 Route::post('/ExibirBusca', "BuscaController@buscaAnuncio");
 
