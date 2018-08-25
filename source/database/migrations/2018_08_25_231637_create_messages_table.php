@@ -19,7 +19,7 @@ class CreateMessagesTable extends Migration
             $table->text('text');
             $table->integer('sender_id')->unsigned();
             $table->integer('recipient_id')->unsigned();
-            $table->boolean('b_read');
+            $table->boolean('b_read')->default(false);
             $table->foreign('sender_id')->references('id')->on('clientes');
             $table->foreign('recipient_id')->references('id')->on('clientes');
         });
