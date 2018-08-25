@@ -21,7 +21,7 @@
 
         <div class="row">
             <div class="input-field col s12 m8 l6">
-            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : 'Mensagem' }}" name="email" value="{{ old('email') }}" required autofocus>
             @if ($errors->has('email'))
                 <span class="invalid-feedback red-text text-darken-2" role="alert">
                     <strong>{{ $errors->first('email') }}</strong>
