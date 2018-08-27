@@ -132,10 +132,12 @@ class ClienteController extends Controller
             $clienteId = Auth::user()->id;
             $compras = \App\Transacao::where('cliente_id', '=', $clienteId)->get();
             $ads = \App\Anuncio::where('anunciante_id', $clienteId)->get();
+            $chats = \App\Http\Controllers\ChatController::getChatList($clienteId);
 
             return view("Perfil", [
                                     'compras' => $compras,
-                                    'ads' => $ads
+                                    'ads' => $ads,
+                                    'chats' => $chats,
                                     ]
                         );
         }
