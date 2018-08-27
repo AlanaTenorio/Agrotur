@@ -351,8 +351,9 @@
                                     <div class="col s12 m11">
                                         <div class="row">
                                             <div class="col s9 l10">
-                                                <a class='green-text text-darken-3' href='/chat/{{ $chat["other_id"] }}'>
-                                                    <h6>{{ $chat['other_name'] }}</h6>
+                                                <a class='green-text text-darken-3'
+                                                href='/chat/{{ $chat["last_message_other_id"] }}/{{ $chat["last_message_ad_id"] }}'>
+                                                    <h6>{{ $chat['last_message_other_name'] }}</h6>
                                                 </a>
                                             </div>
                                             <div class="col s3 l2">
@@ -366,7 +367,7 @@
                                                     ...
                                                 @endif
                                             </div>
-                                            @if ($chat['last_message_owner_id'] == Auth::user()->id && $chat['last_message_read'] == true)
+                                            @if ($chat['last_message_sender_id'] == Auth::user()->id && $chat['last_message_read'] == true)
                                             <div class="col s1">
                                                 <i class="material-icons text-green">check</i>
                                             </div>
@@ -375,6 +376,11 @@
                                                 <i class="material-icons text-grey text lighten-2">check</i>
                                             </div>
                                             @endif
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s11">
+                                                {{$chat['last_message_ad_title']}}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
