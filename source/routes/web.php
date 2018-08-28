@@ -115,7 +115,9 @@ Route::middleware('auth')->group(function() {
 
   Route::get("/perfil", "ClienteController@visualizarPerfil")->name('visualizarPerfil');
 
-  Route::get("/chat/{user_id}/{other_id}/{ad_id}", "ChatController@getChat")->name('viewChat');
+  Route::get("/chat/{user_id}/{other_id}/{ad_id}", 'ChatController@getChat')->name('viewChat');
+  
+  Route::post('/send-message', 'ChatController@sendMessage');
 
   Route::get("/vendedor/{id}", "ClienteController@visualizarPerfilVendedor")->name('visualizarPerfilVendedor');
 
