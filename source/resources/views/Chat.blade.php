@@ -12,15 +12,19 @@
 @include('layouts.Navbar')
 
 <body>
-    
+    <?php $adData = \App\Http\Controllers\AnuncioController::getDadosAnuncio($ad_id); ?>
     <section class='container'>
         <div class="row">
             <a class='green-text text-darken-3 valign-wrapper' href='/perfil?tab=mensagens'>
                 <i class="tiny material-icons green-text text-darken-3">arrow_back</i> &nbsp;&nbsp; <font size='4'>Voltar</font>
             </a>
         </div>
-        <font size='6' class='green-text text-darken-3'>Chat &dash; {{$other_name}}</font><br>
-        <font size='4' class='green-text text-darken-3'>Anúncio: {{$ad_title}}</font><br>
+        <a href='/vendedor/{{$other_id}}'>
+            <font size='6' class='green-text text-darken-3'>Chat &dash; {{$other_name}}</font><br>
+        </a>
+        <a href="/Exibir{{ $adData['type'] }}/{{ $adData['id'] }}">
+            <font size='4' class='green-text text-darken-3'>Anúncio: {{$ad_title}}</font><br>
+        </a>
         <br>
     </section>
     <section class='container'>

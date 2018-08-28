@@ -267,6 +267,14 @@
                                                 <strong>Diária: R$</strong> {{ $adData['price'] }}
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="col s12">
+                                                <a class='green-text text-darken-3'
+                                                href='/chat/{{Auth::user()->id}}/{{ $sellerData["client"]->id }}/{{ $adData["id"] }}'>
+                                                    ver mensagens
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </li>
@@ -379,7 +387,10 @@
                                         </div>
                                         <div class="row">
                                             <div class="col s11">
-                                                {{$chat['last_message_ad_title']}}
+                                                <?php $adData = \App\Http\Controllers\AnuncioController::getDadosAnuncio($chat['last_message_ad_id']); ?>
+                                                <a href="/Exibir{{ $adData['type'] }}/{{ $adData['id'] }}">
+                                                    {{$chat['last_message_ad_title']}}
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
