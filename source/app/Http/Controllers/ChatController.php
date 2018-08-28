@@ -48,8 +48,8 @@ class ChatController extends Controller
     public function getChat($user_id, $other_id, $ad_id)
     {
         $message_list = \App\Message::where('ad_id', $ad_id)
-                                    ->where('sender_id', $user_id)
-                                    ->orWhere('recipient_id', $user_id)
+                                    ->where([['sender_id', '=', $user_id], ['recipient_id', '=', $other_id],])
+                                    ->orWhere([['recipient_id', $user_id], ['sender_id', '=', $other_id],])
                                     ->orderBy('created_at')
                                     ->get();
         $other_name = \App\Cliente::find($other_id)->nome;
