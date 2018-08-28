@@ -352,7 +352,7 @@
                                         <div class="row">
                                             <div class="col s8">
                                                 <a class='green-text text-darken-3'
-                                                href='/chat/{{ $chat["last_message_other_id"] }}/{{ $chat["last_message_ad_id"] }}'>
+                                                href='/chat/{{Auth::user()->id}}/{{ $chat["last_message_other_id"] }}/{{ $chat["last_message_ad_id"] }}'>
                                                     <h6>{{ $chat['last_message_other_name'] }}</h6>
                                                 </a>
                                             </div>
