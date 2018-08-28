@@ -53,6 +53,9 @@
                                         
                                     </tr>
                                     @endforeach
+                                    @if (sizeof($hospedagens) == 0)
+                                        <h2 class="valign-wrapper center">Nenhum resultado encontrado</h2>
+                                    @endif
                                     @foreach ($servicosh as $servicoh)
                                     <tr>
                                         <th scope="col"><i class="material-icons">landscape</i></th>
@@ -68,15 +71,22 @@
                                         <th scope="col"><a href="/ExibirServico/{{$servico->id}}">Visualizar</a></th></th>
                                     </tr>
                                     @endforeach
+                                    <br><br><br>
+                                    <div class=" center col-md-8 offset-md-4">
+                                        <a class="btn-large btn-primary light-green darken-3 center" href="/busca">
+                                            {{ __('Voltar') }}
+                                        </a>
+                                    </div>
+                
                                 </thead>
                             </table>
                         </div>
-    </form>
-        
-
+        </div>
+    </form>        
 </body>
 
 @include('layouts.Footer')
+
 
 <body>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
