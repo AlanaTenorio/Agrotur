@@ -44,5 +44,54 @@ class ChatController extends Controller
         }
         return $chatList;
     }
+
+    public function getChat($user_id, $other_id, $ad_id)
+    {
+        $message_list = \App\Message::where('ad_id', $ad_id)
+                                    ->where('sender_id', $user_id)
+                                    ->orWhere('recipient_id', $user_id)
+                                    ->orderBy('created_at')
+                                    ->get();
+        $other_name = \App\Cliente::find($other_id)->nome;
+        $self_name = \App\Cliente::find($user_id)->nome;
+        $ad_title = \App\Http\Controllers\AnuncioController::getDadosAnuncio($ad_id)['title'];
+        return view('Chat',
+                    [
+                        'message_list' => $message_list,
+                        'other_name' => $other_name,
+                        'other_id' => $other_id,
+                        'self_name' => $self_name,
+                        'ad_title' => $ad_title,
+                        'ad_id' => $ad_id,
+                    ]);
+    }
+
+    public function sendMessage(Request $request)
+    {
+        try{
+            MessageValidator::validateMessage($request->all());
+            $message = new \App\Message();
+            $message->text = $request->text;
+            $message->ad_id = $request->ad_id;
+            $message->sender_id = $request->sender_id;
+            $message->recipient_id = $request->recipient_id;
+            $message->save();
+            return back();
+        } catch (\App\Validator\ValidationException $e) {
+            return back()->withErrors($e->getValidator())
+                        ->withInput();
+        }
+    }
+
+    public static function markAsRead($message_id)
+    {
+        try{
+            $message = \App\Message::findOrFail($message_id);
+            $message->b_read = true;
+            $message->save();
+        } catch (Illuminate\Database\Eloquent\ModelNotFoundException $e){
+            return back()->withErrors($e); 
+        }
+    }
 }
 ?>
