@@ -57,6 +57,7 @@
                                             </span>
                                         @else
                                             <span class='col s2'>
+                                                <?php \App\Http\Controllers\ChatController::markAsRead($message->id) ?>
                                                 <font size='2'>
                                                     {{$message->created_at}}
                                                 </font>
@@ -76,8 +77,8 @@
                             <input type="hidden" name="ad_id" value="{{$ad_id}}"/>
                             <div class="row center valign-wrapper">
                                 <div class="input-field col s12 m9 l10">
-                                    <label for="message_text">&nbsp;&nbsp;mensagem...</label>
-                                    <textarea id="message_text" class="materialize-textarea" name="message_text"></textarea>
+                                    <label for="text">&nbsp;&nbsp;mensagem...</label>
+                                    <textarea id="text" class="materialize-textarea" name="text"></textarea>
                                 </div>
                                 <div class="col s12 m3 l2">
                                     <button class="btn-flat teal darken-3 white-text waves-effect waves-light center" type="submit" name="submit">
