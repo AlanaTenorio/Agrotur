@@ -73,9 +73,26 @@
                     <h6><strong>Anúncios</strong></h6>
                 </a>
             </div>
+            <?php
+                if ($tab == "mensagens"){
+                    $iconColor = "green-text text-darken-3";
+                    $textAccent = "text-darken-3";
+                }
+                else {
+                    $iconColor = "grey-text text-darken-1";
+                    $textAccent = "text-darken-1";
+                }
+            ?>
+            <div>
+                <a href="/perfil?tab=mensagens" class="grey-text {{$textAccent}} valign-wrapper">
+                    <i class="material-icons left {{$iconColor}}">message</i>
+                    <h6><strong>Mensagens</strong></h6>
+                </a>
+            </div>
         </div>
+
         <div class="col s12 hide-on-large-only"> <!--barra topo (mobile)-->
-            <div class="col s4 center">
+            <div class="col s6 m3">
                 <?php
                     if ($tab == "conta"){
                         $iconColor = "green-text text-darken-3";
@@ -93,7 +110,7 @@
                     </a>
                 </div>
             </div>
-            <div class="col s4">
+            <div class="col s6 m3">
                 <?php
                     if ($tab == "compras"){
                         $iconColor = "green-text text-darken-3";
@@ -111,7 +128,7 @@
                     </a>
                 </div>
             </div>
-            <div class="col s4">
+            <div class="col s6 m3">
                 <?php
                     if ($tab == "anuncios"){
                         $iconColor = "green-text text-darken-3";
@@ -129,6 +146,25 @@
                     </a>
                 </div>
             </div>
+            <div class="col s6 m3">
+                <?php
+                    if ($tab == "mensagens"){
+                        $iconColor = "green-text text-darken-3";
+                        $textAccent = "text-darken-3";
+                    }
+                    else {
+                        $iconColor = "grey-text text-darken-1";
+                        $textAccent = "text-darken-1";
+                    }
+                ?>
+                <div class="center">
+                    <a href="/perfil?tab=mensagens" class="grey-text {{$textAccent}} valign-wrapper">
+                        <i class="material-icons {{$iconColor}}">message</i>
+                        <h6><strong>Mensagens</strong></h6>
+                    </a>
+                </div>
+            </div>
+            <div class="col s12"><hr><br></div>
         </div>
         <div class="col s12 l8">
             @switch($tab)
@@ -231,6 +267,14 @@
                                                 <strong>Diária: R$</strong> {{ $adData['price'] }}
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="col s12">
+                                                <a class='green-text text-darken-3'
+                                                href='/chat/{{Auth::user()->id}}/{{ $sellerData["client"]->id }}/{{ $adData["id"] }}'>
+                                                    ver mensagens
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </li>
@@ -296,6 +340,65 @@
                             @endforeach
                             @if (sizeof($ads) == 0)
                                 <h2 class="valign-wrapper center">Você não possui anúncios cadastrados</h2>
+                            @endif
+                            <span class='center'>
+                                <!--TODO Incluir paginação aqui -->
+                            </span>
+                        </ul>
+                    </div>
+                    @break
+                @case("mensagens")
+                    <h5 class="green-text text-darken-3">Mensagens</h5>
+                    <div>
+                        <ul>
+                            @foreach ($chats as $chat)
+                            <li>
+                            <hr>
+                                <div class="row">
+                                    <div class="col m1"> </div>
+                                    <div class="col s12 m11">
+                                        <div class="row">
+                                            <div class="col s8">
+                                                <a class='green-text text-darken-3'
+                                                href='/chat/{{Auth::user()->id}}/{{ $chat["last_message_other_id"] }}/{{ $chat["last_message_ad_id"] }}'>
+                                                    <h6>{{ $chat['last_message_other_name'] }}</h6>
+                                                </a>
+                                            </div>
+                                            <div class="col s4">
+                                                <h6 class='right'>{{ $chat['last_message_time'] }}</h6>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s11">
+                                                {{substr($chat['last_message_text'], 0, 400)}}
+                                                @if (strlen($chat['last_message_text']) > 400)
+                                                    ...
+                                                @endif
+                                            </div>
+                                            @if ($chat['last_message_sender_id'] == Auth::user()->id && $chat['last_message_read'] == true)
+                                            <div class="col s1">
+                                                <i class="material-icons green-text">check</i>
+                                            </div>
+                                            @elseif ($chat['last_message_sender_id'] == Auth::user()->id)
+                                            <div class="col s1">
+                                                <i class="material-icons grey-text text-lighten-2">check</i>
+                                            </div>
+                                            @endif
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s11">
+                                                <?php $adData = \App\Http\Controllers\AnuncioController::getDadosAnuncio($chat['last_message_ad_id']); ?>
+                                                <a href="/Exibir{{ $adData['type'] }}/{{ $adData['id'] }}">
+                                                    {{$chat['last_message_ad_title']}}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            @endforeach
+                            @if (sizeof($chats) == 0)
+                                <h2 class="valign-wrapper center">Ainda não há mensagens</h2>
                             @endif
                             <span class='center'>
                                 <!--TODO Incluir paginação aqui -->

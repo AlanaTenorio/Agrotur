@@ -72,6 +72,14 @@
                                     <strong>Diária: R$</strong> {{ $price }}
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    <a class='green-text text-darken-3'
+                                    href='/chat/{{Auth::user()->id}}/{{ $transaction->cliente_id }}/{{ $transaction->anuncio_id }}'>
+                                        ver mensagens
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </li>
