@@ -14,7 +14,7 @@ $factory->define(App\Imagem_Servico::class, function (Faker $faker){ //use ($aut
       mkdir($dir, 0777);
   }
 
-  $images = array('http://www.portalagropecuario.com.br/wp-content/uploads/2011/12/portal-agropecuario-ordenha-manual-coleta-armazenamento-leite-250x165.jpg',
+  $images = array('https://media-cdn.tripadvisor.com/media/photo-s/06/a1/97/c2/fazenda-ribeirao-hotel.jpg',
                   'https://www.melhoramiga.com.br/wp-content/uploads/2009/07/andar-de-cavalo.jpg',
                   'https://www.trilhaseaventuras.com.br/wp-content/uploads/2014/02/img_cocanha_07.jpg');
   $image = file_get_contents( $images[(rand(0,2))] );
